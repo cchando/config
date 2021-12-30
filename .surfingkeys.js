@@ -51,6 +51,28 @@ that P denotes (since most built-in functions are anonymous).
    -----------------------------------------------------------------
 */
 
+// Migrate settings from 0.9.74 to 1.0 (change e.g. map to api.map)
+const {
+    aceVimMap,
+    mapkey,
+    imap,
+    imapkey,
+    getClickableElements,
+    vmapkey,
+    map,
+    unmap,
+    cmap,
+    addSearchAlias,
+    removeSearchAlias,
+    tabOpenLink,
+    readText,
+    Clipboard,
+    Front,
+    Hints,
+    Visual,
+    RUNTIME
+} = api;
+
 
 /* set temp keys*/
 map('_t', 't');
