@@ -409,41 +409,41 @@ mapkey('su', '#8Search GitHub', function() {
 
 
 
-addSearchAliasX('laz', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
+addSearchAlias('laz', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
 
-addSearchAliasX('nix', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
+addSearchAlias('nix', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
 
-addSearchAliasX('mel', 'melpa', 'https://melpa.org/#/?q=');
+addSearchAlias('mel', 'melpa', 'https://melpa.org/#/?q=');
 
-addSearchAliasX('ra', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
+addSearchAlias('ra', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
 
-addSearchAliasX('tr', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
+addSearchAlias('tr', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
 
-addSearchAliasX('ha', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
+addSearchAlias('ha', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
 
-addSearchAliasX('pur', 'pursuit', 'https://pursuit.purescript.org/search?q=');
+addSearchAlias('pur', 'pursuit', 'https://pursuit.purescript.org/search?q=');
 
-addSearchAliasX('sp', 'startpage', 'https://startpage.com/sp/search/?q=');
+addSearchAlias('sp', 'startpage', 'https://startpage.com/sp/search/?q=');
 
-addSearchAliasX('gm', 'google maps', 'https://www.google.com/maps?q=');
+addSearchAlias('gm', 'google maps', 'https://www.google.com/maps?q=');
 
-addSearchAliasX('so', 'stack overflow', 'http://stackoverflow.com/search?q=');
+addSearchAlias('so', 'stack overflow', 'http://stackoverflow.com/search?q=');
 
-addSearchAliasX('az', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
+addSearchAlias('az', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
 
-addSearchAliasX('go', 'google', 'https://www.google.com/search?q=');
+addSearchAlias('go', 'google', 'https://www.google.com/search?q=');
 
-addSearchAliasX('yo', 'youtube', 'https://www.youtube.com/results?search_query=');
+addSearchAlias('yo', 'youtube', 'https://www.youtube.com/results?search_query=');
 
-addSearchAliasX('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/');
+addSearchAlias('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/');
 
-addSearchAliasX('hub', 'github', 'https://github.com/search?q=');
+addSearchAlias('hub', 'github', 'https://github.com/search?q=');
 
-// addSearchAliasX('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+// addSearchAlias('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 //   return JSON.parse(response.text)[1];
 // });
 
-// addSearchAliasX('hub', 'github', 'https://github.com/search?q=', 's', 'https://api.github.com/search/repositories?order=desc&q=', function(response) {
+// addSearchAlias('hub', 'github', 'https://github.com/search?q=', 's', 'https://api.github.com/search/repositories?order=desc&q=', function(response) {
 //   var res = JSON.parse(response.text)['items'];
 //   return res ? res.map(function(r){
 //     return {

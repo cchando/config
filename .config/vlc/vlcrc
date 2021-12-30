@@ -3795,13 +3795,13 @@ global-key-play-pause=Ctrl+Shift+p
 #key-rate-slower-fine=[
 
 # Next (string)
-global-key-next=Ctrl+.
+global-key-next=Ctrl+Shift+<
 
 # Next (string)
 #key-next=n	Media Next Track
 
 # Previous (string)
-global-key-prev=Ctrl+,
+global-key-prev=Ctrl+Shift+>
 
 # Previous (string)
 #key-prev=p	Media Prev Track
@@ -3831,25 +3831,25 @@ global-key-prev=Ctrl+,
 #key-jump+extrashort=Shift+Right
 
 # Short backwards jump (string)
-global-key-jump-short=Ctrl+Shift+<
+global-key-jump-short=Alt+,
 
 # Short backwards jump (string)
 key-jump-short=
 
 # Short forward jump (string)
-global-key-jump+short=Ctrl+Shift+>
+global-key-jump+short=Alt+.
 
 # Short forward jump (string)
 key-jump+short=
 
 # Medium backwards jump (string)
-global-key-jump-medium=Alt+Left
+#global-key-jump-medium=
 
 # Medium backwards jump (string)
 key-jump-medium=
 
 # Medium forward jump (string)
-global-key-jump+medium=Alt+Right
+#global-key-jump+medium=
 
 # Medium forward jump (string)
 key-jump+medium=
