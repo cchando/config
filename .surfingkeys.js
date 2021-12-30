@@ -57,7 +57,6 @@ const {
     mapkey,
     imap,
     imapkey,
-    iunmap,
     getClickableElements,
     vmapkey,
     map,
@@ -193,7 +192,7 @@ map('*', '.'); // repeat last command
 unmap(':');
 map(':dh', ';dh'); // delete history older than 30 days
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
-iunmap(':'); // disable emoji suggestions
+//iunmap(':'); // disable emoji suggestions
 map('e', 'cs'); // change scroll target
 map('cd', ';j'); // close Downloads bar
 map(':m', ';m'); // mouse-out last element (?)
