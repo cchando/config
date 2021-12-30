@@ -26,7 +26,8 @@ exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:di
 #bindsym $mod+n exec i3-msg move workspace 1 ; i3-msg workspace 1
 
 
-exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
+exec nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png
+# exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-white-HD.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/woona_by_rikose.png
 # exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
@@ -145,7 +146,8 @@ set $ibrowser google-chrome-stable
 # Basics:
 #
 		# set up dual screens correctly 
-    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
+    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
     # bindsym $mod+Shift+p exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; i3-msg workspace 1 ; i3-msg workspace 6 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
 		# bindsym $mod+Shift+p "exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; exec i3-msg workspace 3 ; exec i3-msg workspace 1"
@@ -172,9 +174,15 @@ set $ibrowser google-chrome-stable
     # start file browser
     bindsym Ctrl+b exec $fbrowser
  
-    # start internet browser
+    # start internet browser (chrome)
     bindsym $mod+i exec $ibrowser
     
+    # start firefox
+    bindsym $mod+Shift+i exec firefox
+
+    # screenshot using shotgun
+    bindsym $mod+Shift+s exec shotgun
+
     # close all google-chrome-stable windows
     bindsym $mod+Shift+g [class="^Google-chrome$"] kill
     
@@ -185,11 +193,11 @@ set $ibrowser google-chrome-stable
     bindsym $mod+n exec nitrogen 
     
     # start vlc w/ playlist
-		bindsym $mod+v exec vlc --loop  --random
-    bindsym $mod+7 exec vlc -L -Z file:///home/cameron/Music/1-Playlists/all-playlist.m3u
-		bindsym $mod+8 exec vlc -L -Z file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
-		bindsym $mod+9 exec vlc -L -Z file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
-		bindsym $mod+0 exec vlc -L file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
+		bindsym $mod+v exec vlc --loop  --random --no-repeat
+    bindsym $mod+7 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
+		bindsym $mod+8 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
+		bindsym $mod+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
+		bindsym $mod+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
 
     # kill vlc
 		bindsym Ctrl+Shift+f exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
@@ -201,7 +209,7 @@ set $ibrowser google-chrome-stable
     bindsym $mod+z exec kcolorchooser
     
     # start stretchly
-    bindsym $mod+Shift+b exec stretchly
+    # bindsym $mod+Shift+b exec stretchly
 
     # start charmap
     bindsym $mod+c exec gucharmap
@@ -469,8 +477,8 @@ for_window [window_role="vlc-main"] floating enable , \
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle
 
-    # Hold the Ctrl key and click on a floating window to drag it
-    floating_modifier Ctrl
+    # Hold the mod key and click on a floating window to drag it
+    floating_modifier $mod
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+Shift+f focus mode_toggle

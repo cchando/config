@@ -1,6 +1,7 @@
 
 #lang aful typed/racket
 (provide (all-defined-out))
+(require compact-annotations)
 (require (only-in typed/racket
                   [filter-map orig:filter-map] [hash-ref orig:hash-ref]
                   [U ⋃] [∩ ⋂] [Symbol 𝑺] [HashTable 𝑯] [Any 𝔸] [Boolean 𝔹] [Option 𝑴]
@@ -188,10 +189,13 @@
 ;; (define ‼ (flip list-ref))
 ;; (define !! ‼)
 
-(: !! : ∀ (a) Integer (Listof a) -> a)
-(define (!! i xs) (list-ref xs i))
-(define ‼ !!)
+;; (: !! : ∀ (a) Integer (Listof a) -> a)
+;; (define (!! i xs) (list-ref xs i))
+;; (define ‼ !!)
 
+(: !! : ∀ (a) (Listof a) Integer -> a)
+(define !! list-ref)
+(define ‼ !!)
 
 (: snoc : ∀ (a) [Listof a] a -> [𝑳^ a])
 (define (snoc xs x)

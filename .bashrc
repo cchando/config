@@ -63,6 +63,14 @@ alias xflux='xflux -z 75044'
 alias redshift='redshift -l 32.96:-96.67 -t 6500:2000'
 
 # wifi
+alias scan='iw wlp1s0 scan | grep SSID'
+alias scanb='iw wlp1s0 scan | grep BSS'
+alias checki='ip a | grep "inet '
+alias logi='systemctl status wpa_supplicant'
+alias logiv='dmesg wlp1s0'
+alias wpaoff='systemctl stop wpa_supplicant'
+alias wpaon='systemctl restart wpa_supplicant'
+
 alias conh='sudo nmcli device wifi connect Frontier4704 password 21422325889218' #5148275597
 alias con='nmcli device wifi connect'
 alias wifi='nmcli device wifi' # list wifi networks

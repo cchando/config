@@ -35,7 +35,7 @@
 (: rearrangements : (Listof Char) -> (Listof Char))
 (define (rearrangements xs)
   (map (lambda (x)
-         ((letrec ([xs-without-x (remove x xs)])
+         ((let* ([xs-without-x (remove x xs)])
             map (lambda (x)
                   (cons x (rearrangements (xs-without-x))))
             (xs-without-x))))
@@ -472,8 +472,8 @@
   (foldr (lambda (Dir M_qs)
            (cond [(false? M_qs)
                   (if (member f (Dir-files Dir))
-                      (list Dir #false]
-                 [(member f (Dir-files Dir))  (cons Dir M_qs)))]
+                      (list Dir #false))]
+                 [(member f (Dir-files Dir))  (cons Dir M_qs)]
          null (Dir-dirs d)))
 
 
@@ -687,19 +687,5 @@
   (go n0 1 0))
 
 
-;; (define conn
-;;   (http-conn-open "www.google.com"; no scheme nor path
-;;                   #:ssl #t #:auto-reconnect #t))
-;; (let*-values ([(status headers response)
-;;               (http-conn-sendrecv! conn "/search?q=berries")])
-;;   (displayln status)
-;;   (displayln headers)
-;;   (displayln (port->string response))
-;;   ...
-;;   (http-conn-close! conn)
-
-
-
-
-
 ;; WISH LIST OF FUNCTIONS:
+

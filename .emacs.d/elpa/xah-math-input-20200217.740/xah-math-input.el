@@ -311,8 +311,8 @@
 	["abs" "∣ "]
 	["|" "∣ "]
 	["neq" "≠ "]
-	["S" "∑ "]
-	["P" "∏ "]
+	["sum" "∑ "]
+	["prod" "∏ "]
 	["cop" "∐ "]
 	["acop" "⨿ "]
 	["cro" "⨯ "]
@@ -546,6 +546,8 @@
 	["csaeL" "case-λ"] ; catch typo
 	["le" "<= "]
 	["gr" ">= "]
+	["hr" "hash-ref"]
+	["lr" "list-ref"]
 	["pick" "list-ref"]
 	["not" "not "]
 	["neg" "negative? "]
@@ -567,8 +569,6 @@
 	["p" "length "] ; rho
 	["r" "length "] ; rho
 	["i" "build-list "] ; iota
-	["sum" "+ "]
-	["prod" "* "]
 	["%" "modulo "]
 	["j" "compose1 "]
 	["j_" "compose "]
@@ -582,7 +582,7 @@
 	["exi" "findf "]
 	["any" "findf "]
 	["some" "findf "]
-	["nex" "none "]
+	["nex" "none "] ; "not exists"
 	["none" "none "]
 	["in" "member "]
 	["mem" "member "]
@@ -785,6 +785,7 @@
 	["V" "Vectorof "]
 	["V'" "Vector "]
 	["PA" "Pair "]
+	["PS" "Path-String "]
 	["ST" "String "]
 	["SY" "Symbol "]
 	["H" "HashTable "]

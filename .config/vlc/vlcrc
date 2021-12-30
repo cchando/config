@@ -857,7 +857,7 @@ qt-notification=0
 #qt-name-in-title=1
 
 # Show a controller in fullscreen mode (boolean)
-qt-fs-controller=0
+#qt-fs-controller=1
 
 # Save the recently played items in the menu (boolean)
 qt-recentplay=0
@@ -3639,10 +3639,10 @@ vod-server=any
 #random=0
 
 # Repeat all (boolean)
-loop=1
+#loop=0
 
 # Repeat current item (boolean)
-#repeat=0
+repeat=1
 
 # Play and exit (boolean)
 #play-and-exit=0
@@ -3663,7 +3663,7 @@ loop=1
 #playlist-cork=1
 
 # Allow only one running instance (boolean)
-one-instance=1
+#one-instance=0
 
 # Use only one instance when started from file manager (boolean)
 one-instance-when-started-from-file=0
