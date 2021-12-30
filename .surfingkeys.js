@@ -57,6 +57,7 @@ const {
     mapkey,
     imap,
     imapkey,
+    iunmap,
     getClickableElements,
     vmapkey,
     map,
