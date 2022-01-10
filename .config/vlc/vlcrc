@@ -3729,10 +3729,10 @@ one-instance-when-started-from-file=0
 #control=
 
 # Mouse wheel vertical axis control (integer)
-#hotkeys-y-wheel-mode=0
+hotkeys-y-wheel-mode=-1
 
 # Mouse wheel horizontal axis control (integer)
-#hotkeys-x-wheel-mode=2
+hotkeys-x-wheel-mode=-1
 
 # Fullscreen (string)
 #global-key-toggle-fullscreen=
@@ -3747,7 +3747,7 @@ one-instance-when-started-from-file=0
 key-leave-fullscreen=Shift+f
 
 # Play/Pause (string)
-global-key-play-pause=Ctrl+Shift+p
+global-key-play-pause=Alt+Meta+p
 
 # Play/Pause (string)
 #key-play-pause=Space	Media Play Pause
@@ -3795,13 +3795,13 @@ global-key-play-pause=Ctrl+Shift+p
 #key-rate-slower-fine=[
 
 # Next (string)
-global-key-next=Ctrl+Shift+<
+global-key-next=Alt+Meta+.
 
 # Next (string)
 #key-next=n	Media Next Track
 
 # Previous (string)
-global-key-prev=Ctrl+Shift+>
+global-key-prev=Alt+Meta+,
 
 # Previous (string)
 #key-prev=p	Media Prev Track
@@ -3831,13 +3831,13 @@ global-key-prev=Ctrl+Shift+>
 #key-jump+extrashort=Shift+Right
 
 # Short backwards jump (string)
-global-key-jump-short=Alt+,
+global-key-jump-short=Ctrl+Shift+<
 
 # Short backwards jump (string)
 key-jump-short=
 
 # Short forward jump (string)
-global-key-jump+short=Alt+.
+global-key-jump+short=Ctrl+Shift+>
 
 # Short forward jump (string)
 key-jump+short=
@@ -3882,25 +3882,25 @@ key-jump+medium=
 #global-key-nav-up=
 
 # Navigate up (string)
-#key-nav-up=Up
+key-nav-up=k
 
 # Navigate down (string)
 #global-key-nav-down=
 
 # Navigate down (string)
-#key-nav-down=Down
+key-nav-down=j
 
 # Navigate left (string)
 #global-key-nav-left=
 
 # Navigate left (string)
-#key-nav-left=Left
+key-nav-left=h
 
 # Navigate right (string)
 #global-key-nav-right=
 
 # Navigate right (string)
-#key-nav-right=Right
+key-nav-right=l
 
 # Go to the DVD menu (string)
 #global-key-disc-menu=
@@ -3939,19 +3939,19 @@ key-jump+medium=
 #key-quit=Ctrl+q
 
 # Volume up (string)
-global-key-vol-up=Ctrl+Shift+u
+global-key-vol-up=Alt+Meta+u
 
 # Volume up (string)
 key-vol-up=
 
 # Volume down (string)
-global-key-vol-down=Ctrl+Shift+d
+global-key-vol-down=Alt+Meta+d
 
 # Volume down (string)
 key-vol-down=
 
 # Mute (string)
-global-key-vol-mute=Ctrl+Shift+m
+global-key-vol-mute=Alt+Meta+m
 
 # Mute (string)
 key-vol-mute=m
@@ -4197,13 +4197,13 @@ key-aspect-ratio=
 #key-uncrop-right=Alt+Shift+f
 
 # Random (string)
-global-key-random=Ctrl+Shift+y
+global-key-random=Alt+Meta+y
 
 # Random (string)
 #key-random=r
 
 # Normal/Loop/Repeat (string)
-global-key-loop=Ctrl+Shift+i
+global-key-loop=Alt+Meta+i
 
 # Normal/Loop/Repeat (string)
 key-loop=
