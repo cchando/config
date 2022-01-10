@@ -5,13 +5,12 @@
 # i3 config file (v4)     # ensure that this file is read using the i3 v4.0+ format
 
 
-# exec redshift -l 32.96:-96.67 -t 6500:2500
 # exec stretchly
-
 exec xmodmap ~/.Xmodmap   # map <Ctrl> to <Esc>
 exec xbanish  # banish mouse cursor upon any key press
 exec unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec compton  # compositor to enable window transparency
+exec redshift -l 32.96:-96.67 -t 6500:2500
 
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0 
@@ -26,8 +25,8 @@ exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:di
 #bindsym $mod+n exec i3-msg move workspace 1 ; i3-msg workspace 1
 
 
-exec nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png
-# exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png
+exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-white-HD.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/woona_by_rikose.png
 # exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
@@ -146,7 +145,8 @@ set $ibrowser google-chrome-stable
 # Basics:
 #
 		# set up dual screens correctly 
-    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
+    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
     # bindsym $mod+Shift+p exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; i3-msg workspace 1 ; i3-msg workspace 6 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
@@ -172,7 +172,7 @@ set $ibrowser google-chrome-stable
     # bindsym $mod+o exec $menu
 
     # start file browser
-    bindsym Ctrl+b exec $fbrowser
+    bindsym $mod+b exec $fbrowser
  
     # start internet browser (chrome)
     bindsym $mod+i exec $ibrowser
@@ -193,11 +193,11 @@ set $ibrowser google-chrome-stable
     bindsym $mod+n exec nitrogen 
     
     # start vlc w/ playlist
-		bindsym $mod+v exec vlc --loop  --random --no-repeat
-    bindsym $mod+7 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
-		bindsym $mod+8 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
-		bindsym $mod+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
-		bindsym $mod+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
+		bindsym Mod1+$mod+v exec vlc --loop --random --no-repeat
+    bindsym Mod1+$mod+7 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
+		bindsym Mod1+$mod+8 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
+		bindsym Mod1+$mod+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
+		bindsym Mod1+$mod+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
 
     # kill vlc
 		bindsym Ctrl+Shift+f exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
@@ -238,12 +238,12 @@ set $ibrowser google-chrome-stable
     bindsym Ctrl+d exec pulseaudio-ctl down
     
     # # redshift commands:
-    bindsym $mod+1 exec redshift -x # redshift off
-    bindsym $mod+2 exec redshift -x && redshift -O 5700
-    bindsym $mod+3 exec redshift -x && redshift -O 5000
-    bindsym $mod+4 exec redshift -x && redshift -O 4500
-    bindsym $mod+5 exec redshift -x && redshift -O 4000
-    bindsym $mod+6 exec redshift -x && redshift -O 3500
+		# former version broke, out of the blue. now all lines give same color, except 'redshift -x'
+    bindsym Ctrl+Shift+1 exec redshift -x # redshift off
+    bindsym Ctrl+Shift+2 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 4000"
+    bindsym Ctrl+Shift+3 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 3500"
+    bindsym Ctrl+Shift+4 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 3000"
+    bindsym Ctrl+Shift+5 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 2500"
 
 
     # # # adjust brightness
@@ -290,16 +290,21 @@ set $ibrowser google-chrome-stable
 # Moving around:
 #
     # Move your focus around
-    bindsym Ctrl+$left focus left
-    bindsym Ctrl+Shift+$down focus down
-    bindsym Ctrl+Shift+$up focus up
-    bindsym Ctrl+$right focus right
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Focus different outputs (screens)
+
+    # bindsym $mod+$left focus output left
+    # bindsym $mod+$right focus output right
 
     # _move_ the focused window 
-    bindsym $mod+$left move left
-    bindsym $mod+$down move down
-    bindsym $mod+$up move up
-    bindsym $mod+$right move right
+    bindsym Shift+$mod+$left move left
+    bindsym Shift+$mod+$down move down
+    bindsym Shift+$mod+$up move up
+    bindsym Shift+$mod+$right move right
 
     # move your focus using arrow keys
     # bindsym $mod+left focus left
@@ -327,24 +332,24 @@ set $ibrowser google-chrome-stable
     workspace 8 output HDMI-1 DP-1-3 eDP-1
     workspace 9 output HDMI-1 DP-1-3 eDP-1
     workspace 10 output HDMI-1 DP-1-3 eDP-1
-    workspace "1:chrome" output DP-1-3 HDMI-1 eDP-1
-    workspace "2:" output DP-1-3 HDMI-1 eDP-1
-    workspace "3:" output DP-1-3 HDMI-1 eDP-1
-    workspace "4:" output DP-1-3 HDMI-1 eDP-1
-    workspace "5:" output DP-1-3 HDMI-1 eDP-1
-    workspace "6:emacs" output HDMI-1 DP-1-3 eDP-1
-    workspace "7:term" output HDMI-1 DP-1-3 eDP-1
-    workspace "8:" output HDMI-1 DP-1-3 eDP-1
-    workspace "9:" output HDMI-1 DP-1-3 eDP-1
-    workspace "10:" output HDMI-1 DP-1-3 eDP-1
-    workspace " " output HDMI-1 DP-1-3 eDP-1
+    # workspace "1:chrome" output DP-1-3 HDMI-1 eDP-1
+    # workspace "2:" output DP-1-3 HDMI-1 eDP-1
+    # workspace "3:" output DP-1-3 HDMI-1 eDP-1
+    # workspace "4:" output DP-1-3 HDMI-1 eDP-1
+    # workspace "5:" output DP-1-3 HDMI-1 eDP-1
+    # workspace "6:emacs" output HDMI-1 DP-1-3 eDP-1
+    # workspace "7:term" output HDMI-1 DP-1-3 eDP-1
+    # workspace "8:" output HDMI-1 DP-1-3 eDP-1
+    # workspace "9:" output HDMI-1 DP-1-3 eDP-1
+    # workspace "10:" output HDMI-1 DP-1-3 eDP-1
+    # workspace " " output HDMI-1 DP-1-3 eDP-1
 
     # workspace_auto_back_and_forth yes
 
-    bindsym Ctrl+Shift+$left workspace prev_on_output
-    bindsym Ctrl+Shift+$right workspace next_on_output
-    bindsym Ctrl+apostrophe workspace back_and_forth
-    bindsym Ctrl+semicolon workspace back_and_forth 
+    bindsym $mod+Mod1+$left workspace prev_on_output
+    bindsym $mod+Mod1+$right workspace next_on_output
+    bindsym $mod+apostrophe workspace back_and_forth
+    bindsym $mod+semicolon workspace back_and_forth 
 
     # bindsym $mod+$left workspace prev_on_output
     # bindsym $mod+$right workspace next_on_output
@@ -377,27 +382,27 @@ set $ibrowser google-chrome-stable
     # bindsym Ctrl+Shift+0 move container to workspace "10:"
 
     # switch to workspace
-		bindsym Ctrl+1 workspace 1
-		bindsym Ctrl+2 workspace 2
-    bindsym Ctrl+3 workspace 3
-    bindsym Ctrl+4 workspace 4
-    bindsym Ctrl+5 workspace 5
-    bindsym Ctrl+6 workspace 6
-    bindsym Ctrl+7 workspace 7
-    bindsym Ctrl+8 workspace 8
-    bindsym Ctrl+9 workspace 9
-    bindsym Ctrl+0 workspace 10
+		bindsym $mod+1 workspace 1
+		bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
     # move focused container to workspace
-    bindsym Ctrl+Shift+1 move container to workspace 1
-    bindsym Ctrl+Shift+2 move container to workspace 2
-    bindsym Ctrl+Shift+3 move container to workspace 3
-    bindsym Ctrl+Shift+4 move container to workspace 4
-    bindsym Ctrl+Shift+5 move container to workspace 5
-    bindsym Ctrl+Shift+6 move container to workspace 6
-    bindsym Ctrl+Shift+7 move container to workspace 7
-    bindsym Ctrl+Shift+8 move container to workspace 8
-    bindsym Ctrl+Shift+9 move container to workspace 9
-    bindsym Ctrl+Shift+0 move container to workspace 10
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
 
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default. Non-number names must be quoted as strings.
@@ -417,7 +422,7 @@ set $ibrowser google-chrome-stable
 
 
 # # Don't focus on a window by hovering the mouse over it
-    # focus_follows_mouse no
+    focus_follows_mouse no
 
 
     # # testing purposes
@@ -430,6 +435,7 @@ set $ibrowser google-chrome-stable
 # for_window [class="^vlc$"] floating_maximum_size 151 x 101
 
 
+# center vlc at a certain size and move to scratchpad
 for_window [window_role="vlc-main"] floating enable , \
     resize set 1070 700, move position center, move scratchpad 
 
@@ -471,8 +477,7 @@ for_window [window_role="vlc-main"] floating enable , \
     #bindsym $mod+x layout toggle split
 
     # Make the current focus fullscreen
-    bindsym Ctrl+space fullscreen
-    bindsym Ctrl+Shift+space fullscreen
+    bindsym $mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle
@@ -483,8 +488,11 @@ for_window [window_role="vlc-main"] floating enable , \
     # Swap focus between the tiling area and the floating area
     bindsym $mod+Shift+f focus mode_toggle
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
+    # # move focus to the parent container
+    # bindsym $mod+a focus parent
+
+    # # move focus to the child container
+    # bindsym $mod+d focus child
 #
 # Scratchpad:
 #
@@ -492,9 +500,9 @@ for_window [window_role="vlc-main"] floating enable , \
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym Ctrl+Shift+minus move scratchpad
+    bindsym $mod+Shift+minus move scratchpad
 
-    bindsym Ctrl+minus scratchpad show
+    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -536,7 +544,7 @@ bar {
 # # modifier 
 		mode hide
 		hidden_state hide
-		modifier Ctrl
+		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons
     # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
     status_command i3status #--config ~/.i3status.conf
