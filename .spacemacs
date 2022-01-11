@@ -36,10 +36,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-		 html
-		 vimscript
-		 racket
-		 asciidoc
+     haskell
+	 html
+	 vimscript
+	 racket
+	 asciidoc
      javascript
      purescript
      clojure
@@ -70,7 +71,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
+   dotspacemacs-additional-packages '(workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
    ;; solarized-dark-theme tomorrow-blue-theme pheonix-dark-mono-theme apropospriate-light-theme adwaita-theme alect-light-theme
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '(xah-math-input pretty-mode)
@@ -659,9 +660,9 @@ you should place your code here."
 
 	(global-pretty-mode t)
 	(pretty-deactivate-groups
-	 ;; operator, equality and arrow groups interfere with Fira Code operators
-	;; logic group interferes with prettify-symbols
-	 '(:equality :ordering :ordering-double :ordering-triple
+    ;; operator, equality and arrow groups interfere with Fira Code operators
+	  ;; logic group interferes with prettify-symbols
+  	 '(:equality :ordering :ordering-double :ordering-triple
 							 :arrows :arrows-twoheaded :punctuation
 							 :logic :sets))
 	(pretty-activate-groups
@@ -694,22 +695,28 @@ you should place your code here."
 						 ("define" .   "𝑓")
 						 ("defun" .    "𝑓")
 						 ("define-type" . "Ƒ")
+						 ;; ("data" . "Ƒ")
 						 ;; ("::"    .    "∷")
 						 ("ann"   .    "∷")
 						 ("inst"   .    "∷")
 						 ("cast"   .   "⭆")
-						 ("for" .      "∀")
+						 ;; ("for" .      "∀")
+						 ;; ("for_" .      "∀")
+						 ;; ("forM" .      "∀")
+						 ;; ("forM_" .      "∀")
 						 ;; --- Functional ---
 						 ;; ("<=" .    "⩽")
 						 ;; (">=" .    "⩾")
+						 ("\\" .      "λ")
 						 ("exact-ceiling" .     "⌈")
 						 ("exact-floor" .     "⌊")
 						 ("take" .     "↑") ;
 						 ("drop" .     "↓") ;
 						 ("modulo" .      "%")
+						 ("mod" .      "%")
 						 ("abs" .      "∣")
 						 ;; ("+" .    "∑")
-						 ("sum" .   "∑")
+						 ;; ("sum" .   "∑")
 						 ;; ("*" .    "∏")
 						 ("/" .    "÷")
 						 ("sqrt" .    "√")
@@ -719,18 +726,18 @@ you should place your code here."
 						 ("let" .     "∴")
 						 ("let*" .     "∴")
 						 ("where" .     "∵")
-						 ("cons" .     "⧺")
-						 ("head" .     "↑")
-						 ("tail" .    "↓")
-						 ("first" .     "↑")
-						 ("rest" .     "↓")
-						 ("take" .      "↑")
-						 ("drop" .      "↓")
+						 ;; ("cons" .     "⧺")
+						 ;; ("head" .     "↑")
+						 ;; ("tail" .    "↓")
+						 ;; ("first" .     "↑")
+						 ;; ("rest" .     "↓")
+						 ;; ("take" .      "↑")
+						 ;; ("drop" .      "↓")
 						 ("compose1" .  "∘")
 						 ("compose" .  "⍛")
-						 ("log" .      "⍟")
-						 ("select" .      "σ")
-						 ("flip" .      "⍨")
+						 ;; ("log" .      "⍟")
+						 ;; ("select" .      "σ")
+						 ;; ("flip" .      "⍨")
 						 ("equal?" .      "≡")
 						 ("not-equal?" .      "≢")
 						 ("map" .    "↦") ; ↦ ⮕ ⍈ ¨
@@ -742,29 +749,33 @@ you should place your code here."
 						 ("length" .      "⍴")
 						 ("reverse" .      "⌽")
 						 ("build-list" .      "⍳")
+						 ("range" .      "⍳")
 						 ("exact-floor" .    "⌊")
 						 ("exact-ceiling" .    "⌈")
-						 ("ceiling" .     "⌉")
-						 ("floor" .     "⌋")
+						 ("ceiling" .     "⌈")
+						 ("floor" .     "⌊")
+						 ;; ("ceiling" .     "⌉")
+						 ;; ("floor" .     "⌋")
 						 ("foldl" .  "⮢")
 						 ("foldr" .  "⮣")
 						 ("sort" .     "⍋")
 						 ("remove*" .      "∖")
+						 ("remove" .      "∖")
 						 ("apply" .   "↥")
-						 ("format" .    "⍕")
-						 ("eval" .    "⍎")
-						 ("list-ref" .  "⊃")
-						 ("filter" .      "⊇")
-						 ("filter-not" .      "⊉")
-						 ("concat" .    "⧺")
-						 ("append" .      "⧺")
-						 ("append*" .      "⧺")
-						 ("string-append" .    "⧺")
-						 ("string-append*" .    "⧺")
+						 ;; ("format" .    "⍕")
+						 ;; ("eval" .    "⍎")
+						 ;; ("list-ref" .  "⊃")
+						 ;; ("filter" .      "⊇")
+						 ;; ("filter-not" .      "⊉")
+						 ;; ("concat" .    "⧺")
+						 ;; ("append" .      "⧺")
+						 ;; ("append*" .      "⧺")
+						 ;; ("string-append" .    "⧺")
+						 ;; ("string-append*" .    "⧺")
 						 ("curry" .   "⫶") ; ⫶ ⋮ ⦙
 						 ;; ("compose1" .  "⋘")
 						 ;; ("compose" .  "⍛")
-						 ;; ("."  .   "∘") ; haskell infix use
+						 ("."  .   "∘") ; haskell infix use
 						 ;; ("powerset" .  "℘")
 						 ;; ("cross" .    "⨯")
 						 ;; ("del" .  "∇")
@@ -774,7 +785,7 @@ you should place your code here."
 						 ;; ("<*>" .   "⊛")
 						 ;; ("mappend" .   "⊕")
 						 ;; ("`mappend`" .   "⊕")
-						 ;; ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
+						 ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
 						 ;; ("join" .   "⨝") ; µ ⨝
 						 ;; ("bind" .   "η")
 						 ;; ("yield" .   "⮨")
@@ -786,36 +797,42 @@ you should place your code here."
 						 ;; --- Types ---
 						 ("Any" .      "𝔸")
 						 ("Integer" .      "ℤ")
+						 ("Int" .      "ℤ")
 						 ("Boolean" .      "𝔹")
-						 ("Char" .      "𝐂")
-						 ;; ("Char" .      "𝑪")
+						 ;; ("Char" .      "𝐂")
+						 ("Char" .      "𝑪")
 						 ("Float"  .  "ℝ")
 						 ("Flonum"  .  "ℝ")
-						 ("Number"  .   "ℂ")
+						 ("Complex"  .   "ℂ")
+						 ("Number"  .   "ℝ")
 						 ("Real"  .  "ℝ")
 						 ("Natural"  .  "ℕ")
 						 ("Index"  .  "𝕀")
 						 ("Exact-Rational"  .  "ℚ")
-						 ("String" .      "𝕊")
-						 ("Symbol" .      "𝑺")
+						 ("String" .      "𝑺") ; 𝐒
+						 ("Symbol" .      "𝕊")
 						 ("#t" .     "𝑻")
+						 ("True" .     "𝑻")
 						 ("False" .    "𝑭")
 						 ("#f" .    "𝑭")
 						 ("Listof" .    "𝑳")
-						 ("List" .    "𝗟")
+						 ("List" .    "𝑳")
+						 ;; ("List" .    "𝗟")
 						 ("Vectorof" .    "𝑽")
-						 ("Vector" .    "𝗩")
+						 ("Vector" .    "𝑽")
+						 ;; ("Vector" .    "𝗩")
 						 ("Pair" .    "⊕")
 						 ("Pairof" .    "⊕")
+						 ("Tuple" .    "⊕")
 						 ("HashTable" .    "𝑯")
 						 ("Option"  .  "𝑴") ; "Maybe"
 						 ("Void" .   "∅")
 						 ("All" .      "∀")
 						 ;; ("Bool" .      "𝔹")
-						 ;; ("forall" .      "∀")
+						 ("forall" .      "∀")
 						 ;; ("All" .      "∀")
-						 ;; ("all" .      "∀")
-						 ;; ("any" .      "∃")
+						 ("all" .      "∀")
+						 ("any" .      "∃")
 						 ;; ("int" .      "ℤ")
 						 ;; ("Negative-Integer" .      "ℤ")
 						 ;; ("Nonpositive-Integer" .      "ℤ")
@@ -851,6 +868,7 @@ you should place your code here."
 						 ;; ("Top" .      "⟙")
 						 ;; ("Bottom" .   "⟘")
 						 ;; --- ADTs ---
+						 ("Option"  .  "𝑴")
 						 ("Maybe"  .  "𝑴")
 						 ("Just"  .  "𝐽")
 						 ("Nothing"  .  "𝑁")
@@ -861,11 +879,11 @@ you should place your code here."
 						 ;; ("!=" .     "≠") ;
 						 ;; ("<=" .      "⩽") ;≤ ⩽
 						 ;; (">=" .      "⩾") ;≥ ⩾
-						 ("≤" .      "⩽") ;≤ ⩽
-						 ("≥" .      "⩾") ;≥ ⩾
+						 ;; ("≤" .      "⩽") ;≤ ⩽
+						 ;; ("≥" .      "⩾") ;≥ ⩾
 						 ;; ("not equal" . "≠")
 						 ;; --- Predicate Logic ---
-						 ("not" .      "¬")
+						 ("not" .      "⌙") ;; ¬
 						 ("negate" .      "⌙")
 						 ("and" .      "∧")
 						 ("or" .      "∨")
@@ -873,6 +891,7 @@ you should place your code here."
 						 ("nor" .      "⊽")
 						 ("nand" .      "⊼")
 						 ("all" .      "∀")
+						 ("exists" .      "∃")
 						 ("findf" .      "∃")
 						 ("memf" .      "∃")
 						 ("some" .      "∃")
@@ -892,8 +911,10 @@ you should place your code here."
 						 ;; ("not in" .   #x2209)
 						 ;; ("element" .      "∈")
 						 ("Union" .      "⋃")
+						 ("union" .      "⋃")
 						 ("∪" .      "⋃")
 						 ("Intersection" .      "⋂")
+						 ("intersection" .      "⋂")
 						 ("∩" .      "⋂")
 						 ;; ("complement" .      "∁")
 						 ))))  ;ends add-hook for prettify-symbols-alist
@@ -1284,6 +1305,7 @@ you should place your code here."
 	(setq evil-snipe-tab-increment t)
 
 
+	;; doesn't seem to work; default is still 2 chars
 	(setq-default evil-snipe--match-count 3)
 
 
@@ -1438,11 +1460,11 @@ you should place your code here."
      ("#010F1D" . 100)))
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
-   '(web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help company-tern tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(workgroups hlint-refactor hindent helm-hoogle haskell-snippets company-ghci haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help company-tern tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(pos-tip-background-color "#FFF9DC")
  '(pos-tip-foreground-color "#011627")
- '(psc-ide-add-import-on-completion t t)
- '(psc-ide-rebuild-on-save nil t)
+ '(psc-ide-add-import-on-completion t)
+ '(psc-ide-rebuild-on-save nil)
  '(standard-indent 4)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

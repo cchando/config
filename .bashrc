@@ -14,6 +14,10 @@ function conda-shell {
     nix-shell ~/.conda-shell.nix
 }
 
+function ps-shell {
+		nix-shell ~/programs/easy-purescript-nix/ci.nix
+}
+
 # # Notes
 #stat -- display file permissions -- stat -c %A %n
 #lspci -- list PCI bus devices
@@ -49,6 +53,8 @@ alias linst='nix-env -q --installed'
 # program aliases
 alias e='exit'
 alias c='clear'
+alias s='spago'
+alias u='cd ..'
 alias rm='command mv -t /home/cameron/.trash'
 alias rmu='command rm' # remove unsafe
 alias rmdir='command rm -r' # remove recursive
@@ -151,16 +157,14 @@ alias est='emacs -nw ~/.config/stretchly/config.json -fs'
 # alias es='emacs -nw ~/.config/sway/config -fs'
 
 # git commands
-alias uns='git restore' # "unstage"
-alias unt='git rm --cached' # "untrack"
-alias s='git switch'
+alias unstage='git restore' # "unstage"
+alias untrack='git rm --cached' # "untrack"
+alias switch='git switch'
 alias st='git status'
-alias com='git commit'
+alias commit='git commit'
 alias grm='git rm'
-alias grc='git rm --cached' # "git untrack"
-alias rest='git restore'
 alias restore='git restore'
-alias br='git branch'
+alias branch='git branch'
 alias cbr='git switch -c'
 alias cbrO='echo "use cbr [-f | --force]"'
 alias cbrF='echo "use cbr [-f | --force]"'

@@ -543,7 +543,7 @@ bar {
 # # mode dock|hide|invisible
 # # hidden_state hide|show
 # # modifier 
-		mode hide
+		mode dock
 		hidden_state hide
 		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons
