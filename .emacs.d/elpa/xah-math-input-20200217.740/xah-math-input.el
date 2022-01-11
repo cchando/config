@@ -77,8 +77,8 @@
 
 (xah-math-input--add-to-hash
  [
-	;; ["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["II" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UU" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
-	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["ID" "𝕀"] ["I2" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UD" "𝕌"] ["U2" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
+	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["II" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UU" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
+	;; ["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["ID" "𝕀"] ["I2" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UD" "𝕌"] ["U2" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
 	;; ["dd" "ⅆ"] ["ee" "ⅇ"] ["ii" "ⅈ"] ["jj" "ⅉ"]
 	["dd" "ⅆ"] ["ee" "ⅇ"] ["id" "ⅈ"] ["i2" "ⅈ"] ["jj" "ⅉ"]
 	;; ["N" "ℕ"]
@@ -239,15 +239,15 @@
 
 (xah-math-input--add-to-hash
  [
-	;; misc. unicode
-	["mda" "—"]
-	["nda" "–"]
+ 	;; misc. unicode
+	["mda" "— "]
+	["nda" "– "]
 	["dlim" "-----------------------------------------------------------------------------------"]
-	["bul" "•"]
-	["aub" "↥"]
-	["arb" "↦"]
-	["alb" "↤"]
-	["adb" "↧"]
+	["bul" "• "]
+	["aub" "↥ "]
+	["arb" "↦ "]
+	["alb" "↤ "]
+	["adb" "↧ "]
 
 
 	;; Mathematics
@@ -289,7 +289,11 @@
 	["con" "∋ "]
 	["cont" "∋ "]
 	["ncon" "∌ "]
-	["j" "∘ "] ; jot (composition)
+	["." "∘ "] ; jot (composition)
+	["._" "⍛"]
+	["compose" "∘ "] ; jot (composition)
+	["maps" "↦ "]
+	["apply" "↥ "]
 	["and" "∧ "]
 	["or" "∨ "]
 	["nor" "⊽ "]
@@ -304,9 +308,9 @@
 	["emp" "∅ "]
 	["le" "⩽ "]
 	["gr" "⩾ "]
-	["le'" "≤ "]
-	["ge'" "≥ "]
-	["not" "¬ "]
+	;; ["le'" "≤ "]
+	;; ["gr'" "≥ "]
+	["not" "⌙ "]; ¬
 	["nega" "⌙ "]
 	["abs" "∣ "]
 	["|" "∣ "]
@@ -318,7 +322,7 @@
 	["cro" "⨯ "]
 	["G" "𝚪 "]
 	["l" "λ "]
-	["pi" "𝛑"]
+	["pib" "𝛑"] ; pi bold
 	["eul" "ℯ "]
 	["eul'" "ℇ "]
 	["planck" "ℎ "]
@@ -357,7 +361,6 @@
 	["cir*" "⊛ "]
 	["cird" "⨸ "]
 	["cir/" "⊘ "]
-	;; ["maps" "↦ "]
 	["bagl" "⟅ "]
 	["bagr" "⟆ "]
 	["inbag" "⋿ "]
@@ -397,10 +400,10 @@
 	["part" "⊆"] ; partition
 	["no" "~"] ; not
 	["wo" "~"] ; without
-	["lv" "⍅"]
-	["rv" "⍆"]
-	["uv" "⍏"]
-	["dv" "⍖"]
+	["lv" "⍅"] ; left vane
+	["rv" "⍆"] ; right vane
+	["uv" "⍏"] ; upward vane
+	["dv" "⍖"] ; downward vane
 	["div" "÷"]
 	["x'" "×"]
 	["-" "−"]
@@ -412,10 +415,10 @@
 	["til" "∼"]
 	["no" "∼"]
 	["p" "⍴"] ; rho
-	["r" "⍴"] ; rho
 	["w" "⍵"] ; omega
 	["w_" "⍹"]
 	["i" "⍳"] ; iota
+	;; ["iota" "⍳"] ; iota
 	["i_" "⍸"]
 	["a" "⍺"] ; alpha
 	["a_" "⍶"]
@@ -463,9 +466,9 @@
 	["o_" "⍜"]
 	["ro" "⌽"]
 	["rot" "⌽"]
-	["rev" "⌽"]
-	["rof" "⊖"]
-	["tra" "⍉"]
+	;; ["rev" "⌽"]
+	["rof" "⊖"] ; rotate first
+	["tra" "⍉"] ; transpose
 	["xf" "⍀"] ; expand 1st
 	["sf" "⍀"] ; scan 1st
 	["rf" "⌿"] ; [replicate / reduce] 1st
@@ -487,7 +490,6 @@
 	["IB" "⌶"]
 	["Ib" "⌶"]
 	["ib" "⌶"]
-	["map" "¨"]
 	["each" "¨"]
 	["dia" "¨"]
 	["pwr" "⍣"]
@@ -526,7 +528,7 @@
 
 
 	;; Haskell
-	("fmap" "↥")
+	;; ("fmap" "↥")
 	;; ("fmap" "↦")
 
 
@@ -546,112 +548,59 @@
 	["csaeL" "case-λ"] ; catch typo
 	["le" "<= "]
 	["gr" ">= "]
-	["hr" "hash-ref"]
-	["lr" "list-ref"]
-	["pick" "list-ref"]
-	["not" "not "]
+	;; ["hr" "hash-ref "]
+	;; ["lr" "list-ref "]
+	;; ["pick" "list-ref "]
+	;; ["not" "not "]
 	["neg" "negative? "]
 	["pos" "positive? "]
-	["and" "and "]
-	["or" "or "]
-	["nor" "nor "]
-	["nand" "nand "]
-	["xor" "xor "]
-	["abs" "abs "]
-	["rem" "remove "]
-	["rems" "remove* "]
-	["rem*" "remove* "]
+	;; ["and" "and "]
+	;; ["or" "or "]
+	;; ["nor" "nor "]
+	;; ["nand" "nand "]
+	;; ["xor" "xor "]
+	;; ["abs" "abs "]
+	;; ["rem" "remove "]
+	;; ["rems" "remove* "]
+	;; ["rem*" "remove* "]
 	[":" "cons "]
 	["fll" "foldl "]
 	["frr" "foldr "]
-	["eq" "equal? "]
-	["neq" "not-equal? "]
-	["p" "length "] ; rho
-	["r" "length "] ; rho
-	["i" "build-list "] ; iota
-	["%" "modulo "]
-	["j" "compose1 "]
-	["j_" "compose "]
-	["flip" "flip "]
-	["rev" "reverse "]
-	["rot" "reverse "]
-	["so" "sort "]
-	["fmt" "format "]
-	["exc" "eval "]
-	["all" "all "]
-	["exi" "findf "]
-	["any" "findf "]
-	["some" "findf "]
-	["nex" "none "] ; "not exists"
-	["none" "none "]
-	["in" "member "]
-	["mem" "member "]
-	["fm" "filter-map "] ; filter-map
-	["mf" "map-filter "] ; map-filter
+	;; ["eq" "equal? "]
+	;; ["neq" "not-equal? "]
+	;; ["p" "length "] ; rho
+	;; ["i" "build-list "] ; iota
+	;; ["j" "compose1 "]
+	;; ["j_" "compose "]
+	;; ["flip" "flip "]
+	;; ["rev" "reverse "]
+	;; ["rot" "reverse "]
+	;; ["fmt" "format "]
+	;; ["all" "all "]
+	;; ["exi" "findf "]
+	;; ["any" "findf "]
+	;; ["some" "findf "]
+	;; ["nex" "none "] ; "not exists"
+	;; ["none" "none "]
+	;; ["in" "member "]
+	;; ["mem" "member "]
+	;; ["fm" "filter-map "] ; filter-map
+	;; ["mf" "map-filter "] ; map-filter
 	["flr" "exact-floor "] ; result is Integer
 	["cei" "exact-ceiling "] ; result is Integer
 	["flrr" "floor "] ; result is Real
-	["flrs" "floor "] ; result is Real
 	["ceir" "ceiling "] ; result is Real
-	["ceis" "ceiling "] ; result is Real
-	["cur" "curry "]
-	["fil" "filter "]
-	["fno" "filter-not "]
-	["repl" "replicate "]
-	["cat" "concat "]
-	["ap" "append "]
-	["zipw" "zip-with "]
-	["zw" "zip-with "]
-	["ir" "in-range? "]
+	;; ["fil" "filter "]
+	;; ["fno" "filter-not "]
+	;; ["repl" "replicate "]
+	;; ["cat" "concat "]
+	;; ["ap" "append "]
+	;; ["zipw" "zip-with "]
+	;; ["zw" "zip-with "]
+	;; ["ir" "in-range? "]
 	["lsit" "list "] ; catch typo
-	["let" "let* "]
-	["for" "∀: "]
-	["forn" "∀*: "] "nested"
-	["forl" "∀:l "]
-	["fornl" "∀*:l "]
-	["forh" "∀:h "]
-	["fornh" "∀*:h "]
-	["forv" "∀:v "]
-	["fornv" "∀*:v "]
-	["fors" "∀:∑ "]
-	["forns" "∀*:∑ "]
-	["forp" "∀:∏ "]
-	["fornp" "∀*:∏ "]
-	["forse" "∀:s "]
-	["fornse" "∀*:s "]
-	["forhe" "∀:hq "]
-	["fornhe" "∀*:hq "]
-	["forhv" "∀:hv "]
-	["fornhv" "∀*:hv "]
-	["foro" "∀:or "]
-	["forno" "∀*:or "]
-	["foror" "∀:or "]
-	["forno" "∀*:or "]
-	["fora" "∀:and "]
-	["forna" "∀*:and "]
-	["forfi" "∀:1st "]
-	["fornfi" "∀*:1st "]
-	["forla" "∀:last "]
-	["fornla" "∀*:last "]
-	["forls" "∀:lists "]
-	["fornls" "∀*:lists "]
-	["forfo" "∀:fold "]
-	["fornfo" "∀*:fold "]
-	["for*" "∀*: "]
-	["for*l" "∀*:l "]
-	["for*h" "∀*:h "]
-	["for*v" "∀*:v "]
-	["for*s" "∀*:∑ "]
-	["for*p" "∀*:∏ "]
-	["for*se" "∀*:s "]
-	["for*he" "∀*:hq "]
-	["for*hv" "∀*:hv "]
-	["for*o" "∀*:or "]
-	["for*an" "∀*:and "]
-	["for*fi" "∀*:1st "]
-	["for*la" "∀*:last "]
-	["for*ls" "∀*:lists "]
-	["for*fo" "∀*:fold "]
+	["list" "list "] ; catch typo
+	;; ["let" "let* "]
 
 ])
 
@@ -667,97 +616,97 @@
 		;; ADT constructors, (Just, True, etc) are slanted but not bold
 		;; The exception is Symbol, which is bold/italic, while String is double-struck, in order to differentiate the two.
 
-	["O" "𝑴 "]
-	["M" "𝑴 "]
-	["JU" "𝐽 "]
-	["NO" "𝑁 "]
-	["EI" "𝑬 "]
-	["RI" "𝑅 "]
-	["LE" "𝐿 "]
-	["T" "𝑻 "]
-	["F" "𝑭 "]
-	["B" "𝔹 "]
-	["N" "ℕ "]
-	["IN" "𝕀 "]
-	["NU" "ℂ "]
-	["CO" "ℂ "]
-	["COM" "ℂ "]
-	["Z-" "ℤ⁻ "]
-	["Z-0" "ℤ⁰⁻ "]
-	["Z" "ℤ "]
-	["Z+0" "ℤ⁰⁺ "]
-	["Z+" "ℤ⁺ "]
-	["R-" "ℝ⁻ "]
-	["R-0" "ℝ⁰⁻ "]
-	["R" "ℝ "]
-	["R+0" "ℝ⁰⁺ "]
-	["R+" "ℝ⁺ "]
-	["Q-" "ℚ⁻ "]
-	["Q-0" "ℚ⁰⁻ "]
-	["Q" "ℚ "]
-	["Q+0" "ℚ⁰⁺ "]
-	["Q+" "ℚ⁺ "]
-	["Fl-" "Fl⁻ "]
-	["Fl-0" "Fl⁰⁻ "]
-	["Fl" "Fl "]
-	["Fl+0" "Fl⁰⁺ "]
-	["Fl+" "Fl⁺ "]
-	["L" "𝑳 "]
-	["L'" "𝗟 "]
-	["LF" "𝗟 "]
-	["V" "𝑽 "]
-	["V'" "𝗩 "]
-	["VF" "𝗩 "]
-	["PA" "𝐏 "]
-	["STR" "𝕊 "]
-	["SY" "𝑺 "]
-	["H" "𝑯 "]
-	["HI" "𝑯i "]
-	["HM" "𝑯m "]
-	["A" "𝔸 "]
-	["L^" "𝑳^ "]
-	["JS" "JSExpr "]
-	["JH" "JSHash "]
-	["Z-" "ℤ⁻ "]
-	["Z0-" "ℤ⁰⁻ "]
-	["Z" "ℤ "]
-	["Z0+" "ℤ⁰⁺ "]
-	["Z+" "ℤ⁺ "]
-	["R-" "ℝ⁻ "]
-	["R0-" "ℝ⁰⁻ "]
-	["R" "ℝ "]
-	["R0+" "ℝ⁰⁺ "]
-	["R+" "ℝ⁺ "]
-	["Q-" "ℚ⁻ "]
-	["Q0-" "ℚ⁰⁻ "]
-	["Q" "ℚ "]
-	["Q0+" "ℚ⁰⁺ "]
-	["Q+" "ℚ⁺ "]
-	["Fl-" "Fl⁻ "]
-	["Fl0-" "Fl⁰⁻ "]
-	["Fl" "Fl "]
-	["Fl0+" "Fl⁰⁺ "]
-	["Fl+" "Fl⁺ "]
-	["ZN" "ℤ⁻ "]
-	["ZN0" "ℤ⁰⁻ "]
-	["Z" "ℤ "]
-	["ZP0" "ℤ⁰⁺ "]
-	["ZP" "ℤ⁺ "]
-	["RN" "ℝ⁻ "]
-	["RN0" "ℝ⁰⁻ "]
-	["R" "ℝ "]
-	["RP0" "ℝ⁰⁺ "]
-	["RP" "ℝ⁺ "]
-	["QN" "ℚ⁻ "]
-	["QN0" "ℚ⁰⁻ "]
-	["Q" "ℚ "]
-	["QP0" "ℚ⁰⁺ "]
-	["QP" "ℚ⁺ "]
-	["FLN" "Fl⁻ "]
-	["FLN0" "Fl⁰⁻ "]
-	["FL" "Fl "]
-	["FLP0" "Fl⁰⁺ "]
-	["FLP" "Fl⁺ "]
+	;; ["JS" "JSExpr "]
+	;; ["JH" "JSHash "]
+	;; ["O" "𝑴 "]
+	;; ["M" "𝑴 "]
+	;; ["JU" "𝐽 "]
+	;; ["NO" "𝑁 "]
+	;; ["EI" "𝑬 "]
+	;; ["RI" "𝑅 "]
+	;; ["LE" "𝐿 "]
+	;; ["T" "𝑻 "]
+	;; ["F" "𝑭 "]
+	;; ["B" "𝔹 "]
+	;; ["N" "ℕ "]
+	;; ["IN" "𝕀 "]
+	;; ["NU" "ℂ "]
+	;; ["CO" "ℂ "]
+	;; ["COM" "ℂ "]
+	;; ["Z-" "ℤ⁻ "]
+	;; ["Z-0" "ℤ⁰⁻ "]
+	;; ["Z" "ℤ "]
+	;; ["Z+0" "ℤ⁰⁺ "]
+	;; ["Z+" "ℤ⁺ "]
+	;; ["R-" "ℝ⁻ "]
+	;; ["R-0" "ℝ⁰⁻ "]
+	;; ["R" "ℝ "]
+	;; ["R+0" "ℝ⁰⁺ "]
+	;; ["R+" "ℝ⁺ "]
+	;; ["Q-" "ℚ⁻ "]
+	;; ["Q-0" "ℚ⁰⁻ "]
+	;; ["Q" "ℚ "]
+	;; ["Q+0" "ℚ⁰⁺ "]
+	;; ["Q+" "ℚ⁺ "]
+	;; ["Fl-" "Fl⁻ "]
+	;; ["Fl-0" "Fl⁰⁻ "]
+	;; ["Fl" "Fl "]
+	;; ["Fl+0" "Fl⁰⁺ "]
+	;; ["Fl+" "Fl⁺ "]
+	;; ["L" "𝑳 "]
+	;; ["L'" "𝗟 "]
+	;; ["LF" "𝗟 "]
+	;; ["V" "𝑽 "]
+	;; ["V'" "𝗩 "]
+	;; ["VF" "𝗩 "]
+	;; ["PA" "𝐏 "]
+	;; ["STR" "𝕊 "]
+	;; ["SY" "𝑺 "]
+	;; ["H" "𝑯 "]
+	;; ["HI" "𝑯i "]
+	;; ["HM" "𝑯m "]
+	;; ["A" "𝔸 "]
+	;; ["L^" "𝑳^ "]
+	;; ["Z-" "ℤ⁻ "]
+	;; ["Z0-" "ℤ⁰⁻ "]
+	;; ["Z" "ℤ "]
+	;; ["Z0+" "ℤ⁰⁺ "]
+	;; ["Z+" "ℤ⁺ "]
+	;; ["R-" "ℝ⁻ "]
+	;; ["R0-" "ℝ⁰⁻ "]
+	;; ["R" "ℝ "]
+	;; ["R0+" "ℝ⁰⁺ "]
+	;; ["R+" "ℝ⁺ "]
+	;; ["Q-" "ℚ⁻ "]
+	;; ["Q0-" "ℚ⁰⁻ "]
+	;; ["Q" "ℚ "]
+	;; ["Q0+" "ℚ⁰⁺ "]
+	;; ["Q+" "ℚ⁺ "]
+	;; ["Fl-" "Fl⁻ "]
+	;; ["Fl0-" "Fl⁰⁻ "]
+	;; ["Fl" "Fl "]
+	;; ["Fl0+" "Fl⁰⁺ "]
+	;; ["Fl+" "Fl⁺ "]
+	;; ["ZN" "ℤ⁻ "]
+	;; ["ZN0" "ℤ⁰⁻ "]
+	;; ["Z" "ℤ "]
+	;; ["ZP0" "ℤ⁰⁺ "]
+	;; ["ZP" "ℤ⁺ "]
+	;; ["RN" "ℝ⁻ "]
+	;; ["RN0" "ℝ⁰⁻ "]
+	;; ["R" "ℝ "]
+	;; ["RP0" "ℝ⁰⁺ "]
+	;; ["RP" "ℝ⁺ "]
+	;; ["QN" "ℚ⁻ "]
+	;; ["QN0" "ℚ⁰⁻ "]
+	;; ["Q" "ℚ "]
+	;; ["QP0" "ℚ⁰⁺ "]
+	;; ["QP" "ℚ⁺ "]
+	;; ["FLN" "Fl⁻ "]
+	;; ["FLN0" "Fl⁰⁻ "]
+	;; ["FL" "Fl "]
+	;; ["FLP0" "Fl⁰⁺ "]
+	;; ["FLP" "Fl⁺ "]
 
 	;; overrides
 	["O" "Option "]
@@ -947,37 +896,37 @@
 
 (xah-math-input--add-to-hash
  [
-	["deg" "°"]
-  ["micro" "µ"]
-  ["mdot" "·"]
-  ["1/4" "¼"]
-  ["1/2" "½"]
-  ["3/4" "¾"]
+	["deg" "° "]
+  ["micro" "µ "]
+  ["mdot" "· "]
+  ["1/4" "¼ "]
+  ["1/2" "½ "]
+  ["3/4" "¾ "]
 
-  ["Theta" "Θ"] ["Lambda" "Λ"] ["Xi" "Ξ"] ["Phi" "Φ"] ["Psi" "Ψ"] ["Omega" "Ω"]
+  ["Theta" "Θ "] ["Lambda" "Λ "] ["Xi" "Ξ "] ["Phi" "Φ "] ["Psi" "Ψ "] ["Omega" "Ω "]
 
-  ["beta" "β"] ["delta" "δ"] ["epsilon" "ε"] ["zeta" "ζ"] ["eta" "η"] ["theta" "θ"] ["mu" "μ"] ["xi" "ξ"] ["sigmaf" "ς"] ["tau" "τ"] ["phi" "φ"] ["psi" "ψ"] ["theta2" "ϑ"] ["upsih" "ϒ"] ["piv" "ϖ"]
+  ["beta" "β "] ["delta" "δ "] ["epsilon" "ε "] ["zeta" "ζ "] ["eta" "η "] ["theta" "θ "] ["mu" "μ "] ["xi" "ξ "] ["sigmaf" "ς "] ["tau" "τ "] ["phi" "φ "] ["psi" "ψ "] ["theta2" "ϑ "] ["upsih" "ϒ "] ["piv" "ϖ "]
 
-  ["ndash" "–"] ["mdash" "—"]
+  ["ndash" "– "] ["mdash" "— "]
 
-  ["times" "×"] ["divide" "÷"] ["minus" "−"] ["lowast" "∗"] ["radic" "√"]
-  ["oplus" "⊕"] ["otimes" "⊗"]
-  ["oslash" "ø"]
-  ["fnof" "ƒ"]
+  ["times" "× "] ["divide" "÷ "] ["minus" "− "] ["lowast" "∗ "] ["radic" "√ "]
+  ["oplus" "⊕ "] ["otimes" "⊗ "]
+  ["oslash" "ø "]
+  ["fnof" "ƒ "]
 
-  ["nabla" "∇"]
-  ;; ["part" "∂"]
-  ["dp" "∂"]
+  ["nabla" "∇ "]
+  ["partial" "∂ "]
+  ["dp" "∂ "]
 
-	["ang" "∠"]
+	["ang" "∠ "]
 
-  ;; ["sub" "⊂"] ["sup" "⊃"] ["nsub" "⊄"] ["sube" "⊆"] ["supe" "⊇"]
+  ["sub" "⊂ "] ["sup" "⊃ "] ["nsub" "⊄ "] ["sube" "⊆ "] ["supe" "⊇ "]
 
-  ["perp" "⊥"] ["sdot" "⋅"]
+  ["perp" "⊥ "] ["mdot" "⋅ "]
 
-  ["lceil" "⌈"] ["rceil" "⌉"] ["lfloor" "⌊"] ["rfloor" "⌋"]
+  ["lceil" "⌈ "] ["rceil" "⌉ "] ["lfloor" "⌊ "] ["rfloor" "⌋ "]
 
-  ["lang" "〈"] ["rang" "〉"]
+  ["lang" "〈 "] ["rang" "〉 "]
 
   ]
  )
@@ -986,18 +935,18 @@
 (xah-math-input--add-to-hash
  [
   ;; misc non-math symbols
-  ["tm" "™"]
-  ["3/4" "¾"]
-  ["1/2" "½"]
-  ["1/4" "¼"]
-  ["..." "…"]
-  ["fdash" "‒"]
-  ["wdash" "〜"]
-  ["--" "—"]
-  ;; ["??" "⁇"]
-  ;; ["?!" "⁈"]
-  ;; ["!?" "⁉"]
-  ;; ["!!" "‼"]
+  ["tm" "™ "]
+  ["3/4" "¾ "]
+  ["1/2" "½ "]
+  ["1/4" "¼ "]
+  ["..." "… "]
+  ["fdash" "‒ "]
+  ["wdash" "〜 "]
+  ["--" "— "]
+  ;; ["??" "⁇ "]
+  ;; ["?!" "⁈ "]
+  ;; ["!?" "⁉ "]
+  ;; ["!!" "‼ "]
 
   ;;
   ]
@@ -1006,93 +955,93 @@
 
 (xah-math-input--add-to-hash
  [
-  ["m2" "㎡"]
-  ["cm" "㎝"]
-  ["cm2" "㎠"]
-  ["cm3" "㎤"]
+  ["m2" "㎡ "]
+  ["cm" "㎝ "]
+  ["cm2" "㎠ "]
+  ["cm3" "㎤ "]
   ] )
 
 
 (xah-math-input--add-to-hash
  [
   ;; superscripts
-  ["^0" "⁰"]
-  ["^1" "¹"]
-  ["^2" "²"]
-  ["^3" "³"]
-  ["^4" "⁴"]
-  ["^5" "⁵"]
-  ["^6" "⁶"]
-  ["^7" "⁷"]
-  ["^8" "⁸"]
-  ["^9" "⁹"]
-  ["^+" "⁺"]
-  ["^-" "⁻"]
-  ["^=" "⁼"]
-  ["^(" "⁽"]
-  ["^)" "⁾"]
-  ["^n" "ⁿ"]
-  ["^i" "ⁱ"]
+  ["^0" "⁰ "]
+  ["^1" "¹ "]
+  ["^2" "² "]
+  ["^3" "³ "]
+  ["^4" "⁴ "]
+  ["^5" "⁵ "]
+  ["^6" "⁶ "]
+  ["^7" "⁷ "]
+  ["^8" "⁸ "]
+  ["^9" "⁹ "]
+  ["^+" "⁺ "]
+  ["^-" "⁻ "]
+  ["^=" "⁼ "]
+  ["^(" "⁽ "]
+  ["^)" "⁾ "]
+  ["^n" "ⁿ "]
+  ["^i" "ⁱ "]
 
   ;; subscripts
-  ["_(" "₍"]
-  ["_)" "₎"]
-  ["_+" "₊"]
-  ["_-" "₋"]
-  ["_0" "₀"]
-  ["_1" "₁"]
-  ["_2" "₂"]
-  ["_3" "₃"]
-  ["_4" "₄"]
-  ["_5" "₅"]
-  ["_6" "₆"]
-  ["_7" "₇"]
-  ["_8" "₈"]
-  ["_9" "₉"]
-  ["_=" "₌"]
-  ["_a" "ₐ"]
-  ["_e" "ₑ"]
+  ["_(" "₍ "]
+  ["_)" "₎ "]
+  ["_+" "₊ "]
+  ["_-" "₋ "]
+  ["_0" "₀ "]
+  ["_1" "₁ "]
+  ["_2" "₂ "]
+  ["_3" "₃ "]
+  ["_4" "₄ "]
+  ["_5" "₅ "]
+  ["_6" "₆ "]
+  ["_7" "₇ "]
+  ["_8" "₈ "]
+  ["_9" "₉ "]
+  ["_=" "₌ "]
+  ["_a" "ₐ "]
+  ["_e" "ₑ "]
 
-  ["_h" "ₕ"]
-  ["_i" "ᵢ"]
-  ["_j" "ⱼ"]
-  ["_k" "ₖ"]
-  ["_l" "ₗ"]
-  ["_m" "ₘ"]
-  ["_n" "ₙ"]
-  ["_o" "ₒ"]
-  ["_p" "ₚ"]
-  ["_r" "ᵣ"]
-  ["_s" "ₛ"]
-  ["_t" "ₜ"]
-  ["_u" "ᵤ"]
-  ["_v" "ᵥ"]
-  ["_x" "ₓ"]
-  ["_schwa" "ₔ"]
+  ["_h" "ₕ "]
+  ["_i" "ᵢ "]
+  ["_j" "ⱼ "]
+  ["_k" "ₖ "]
+  ["_l" "ₗ "]
+  ["_m" "ₘ "]
+  ["_n" "ₙ "]
+  ["_o" "ₒ "]
+  ["_p" "ₚ "]
+  ["_r" "ᵣ "]
+  ["_s" "ₛ "]
+  ["_t" "ₜ "]
+  ["_u" "ᵤ "]
+  ["_v" "ᵥ "]
+  ["_x" "ₓ "]
+  ["_schwa" "ₔ "]
 
   ])
 
 (xah-math-input--add-to-hash
-'(  ["empty" "∅"] ["+-" "±"] ["-+" "∓"]))
+'(  ["empty" "∅ "] ["+-" "± "] ["-+" "∓ "]))
 
 (xah-math-input--add-to-hash
  '(
 
-   ;; ["flr" "⌊⌋"]
-   ;; ["ceil" "⌈⌉"]
-   ;; ["floor" "⌊⌋"]
-   ;; ["ceiling" "⌈⌉"]
+   ;; ["flr" "⌊⌋ "]
+   ;; ["ceil" "⌈⌉ "]
+   ;; ["floor" "⌊⌋ "]
+   ;; ["ceiling" "⌈⌉ "]
 
-   ;; ["\"" "“”"] ;curly quote
-   ;; ["\"\"" "“”"]
+   ;; ["\"" "“” "] ;curly quote
+   ;; ["\"\"" "“” "]
 
-   ;; ["cb" "「」"] ; corner bracket
-   ;; ["[" "「」"]
+   ;; ["cb" "「」 "] ; corner bracket
+   ;; ["[" "「」 "]
 
-   ;; ["[(" "【】"] ; LEFT BLACK LENTICULAR BRACKET
+   ;; ["[(" "【】 "] ; LEFT BLACK LENTICULAR BRACKET
 
-  ;;   ["tb" "〔〕"] ; TORTOISE SHELL BRACKET
-  ;; ["(" "〔〕"]
+  ;;   ["tb" "〔〕 "] ; TORTOISE SHELL BRACKET
+  ;; ["(" "〔〕 "]
 
    ))
 
@@ -1142,21 +1091,20 @@
 (xah-math-input--add-to-hash
  '(
 
-   ["<-" "←"] ["->" "→"] ["<->" "↔"] ["!<-" "↚"] ["!->" "↛"] ["!<->" "↮"]
-   ["≤" "⇐"] ["=>" "⇒"]
+   ["<-" "← "] ["->" "→ "] ["<->" "↔ "] ["!<-" "↚ "] ["!->" "↛ "] ["!<->" "↮ "]
+   ["≤" "⇐ "] ["=>" "⇒ "]
 ["to" "⇒"]
- ["<=>" "⇔"] ["!<=" "⇍"] ["!=>" "⇏"] ["!<=>" "⇎"]
-   ["<==" "⟸"] ["==>" "⟹"] ["<==>" "⟺"]
+ ["<=>" "⇔ "] ["!<=" "⇍ "] ["!=>" "⇏ "] ["!<=>" "⇎ "]
+   ["<==" "⟸ "] ["==>" "⟹ "] ["<==>" "⟺ "]
    ["<-|" "↤"] ["|->" "↦"]
-   ["<--" "⟵"] ["-->" "⟶"] ["<-->" "⟷"]
-   ["al" "←"]
-   ["ar" "→"]
-   ["au" "↑"]
-   ["ad" "↓"]
-   ["-<" "←"]
-   ["->" "→"]
-   ["-!" "↑"]
-   ["-v" "↓"]
+   ["<--" "⟵ "] ["-->" "⟶ "] ["<-->" "⟷ "]
+   ;; ["al" "← "]
+   ;; ["ar" "→ "]
+   ;; ["au" "↑ "]
+   ;; ["ad" "↓ "]
+   ["-!" "↑ "]
+   ["-^" "↑ "]
+   ["-v" "↓ "]
 
    ))
 
@@ -1164,37 +1112,37 @@
  '(
 
    ;; operators
-   ;; ["cp" "⊕"] ; circle plus
-   ;; ["ct" "⊗"] ; circle times
-   ;; ["cm" "⊖"] ; circle minus
-   ;; ["cd" "⊘"] ; circle divide
-   ["'" "′"]  ; prime
-   ["''" "″"] ; double prime
-   ["'''" "‴"]
-   ["." "·"]
-   ["sqrt" "√"]
-   ["rt" "√"]
-   ["rtt" "∛"]
-   ["crt" "∛"] ; cube root
-   ["rt3" "∛"]
-   ["rtf" "∜"]
-   ["frt" "∜"] ; fourth root
-   ["rt4" "∜"]
-   ["del" "∇"]
+   ;; ["cp" "⊕ "] ; circle plus
+   ;; ["ct" "⊗ "] ; circle times
+   ;; ["cm" "⊖ "] ; circle minus
+   ;; ["cd" "⊘ "] ; circle divide
+   ["'" "′ "]  ; prime
+   ["''" "″ "] ; double prime
+   ["'''" "‴ "]
+   [".m" "· "]
+   ["sqrt" "√ "]
+   ["rt" "√ "]
+   ["rtt" "∛ "]
+   ["crt" "∛ "] ; cube root
+   ["rt3" "∛ "]
+   ["rtf" "∜ "]
+   ["frt" "∜ "] ; fourth root
+   ["rt4" "∜ "]
+   ["del" "∇ "]
 
-   ["pd" "∂"] ; partial derivative
-   ["cross" "⨯"]
-   ;; ["cint" "∮"] ; contour integral
-   ;; ["ccint" "∲"]
-   ;; ["cccint" "∳"]
+   ["pd" "∂ "] ; partial derivative
+   ["cross" "⨯ "]
+   ;; ["cint" "∮ "] ; contour integral
+   ;; ["ccint" "∲ "]
+   ;; ["cccint" "∳ "]
    ["union" "∪ "]
    ["intersection" "∩ "]))
 
 (xah-math-input--add-to-hash
  '(
-   ["/_" "∠"] ;ANGLE
-   ["rightangle" "⦜"]
-   ["|_" "⦜"]
+   ["/_" "∠ "] ;ANGLE
+   ["rightangle" "⦜ "]
+   ["|_" "⦜ "]
    ))
 
 
