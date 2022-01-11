@@ -302,10 +302,10 @@ set $ibrowser google-chrome-stable
     # bindsym $mod+$right focus output right
 
     # _move_ the focused window 
-    bindsym Mod1+$mod+$left move left
-    bindsym Mod1+$mod+$down move down
-    bindsym Mod1+$mod+$up move up
-    bindsym Mod1+$mod+$right move right
+    bindsym Shift+$mod+$left move left
+    bindsym Shift+$mod+$down move down
+    bindsym Shift+$mod+$up move up
+    bindsym Shift+$mod+$right move right
 
     # move your focus using arrow keys
     # bindsym $mod+left focus left
