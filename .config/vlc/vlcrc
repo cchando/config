@@ -3876,31 +3876,31 @@ key-jump+medium=
 #global-key-nav-activate=
 
 # Activate (string)
-#key-nav-activate=Enter
+key-nav-activate=
 
 # Navigate up (string)
 #global-key-nav-up=
 
 # Navigate up (string)
-key-nav-up=k
+#key-nav-up=Up
 
 # Navigate down (string)
 #global-key-nav-down=
 
 # Navigate down (string)
-key-nav-down=j
+#key-nav-down=Down
 
 # Navigate left (string)
 #global-key-nav-left=
 
 # Navigate left (string)
-key-nav-left=h
+#key-nav-left=Left
 
 # Navigate right (string)
 #global-key-nav-right=
 
 # Navigate right (string)
-key-nav-right=l
+#key-nav-right=Right
 
 # Go to the DVD menu (string)
 #global-key-disc-menu=

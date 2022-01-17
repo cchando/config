@@ -214,6 +214,9 @@ set $ibrowser google-chrome-stable
     # start charmap
     bindsym $mod+c exec gucharmap
 
+    # # start kakoune
+    # bindsym Mod1+$mod+k exec kak
+
     # reload the configuration file
     bindsym $mod+Shift+c reload
 
@@ -231,7 +234,7 @@ set $ibrowser google-chrome-stable
     # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
 
     # toggle-mute pulseaudio
-    bindsym Mod1+$mod+Return exec pulseaudio-ctl mute
+    bindsym $mod+Return exec pulseaudio-ctl mute
     # vol up
     bindsym $mod+u exec pulseaudio-ctl up
     # vol down
@@ -240,11 +243,11 @@ set $ibrowser google-chrome-stable
     # # redshift commands:
 		# former version broke, out of the blue. now all lines give same color, except 'redshift -x'
     bindsym Ctrl+Shift+1 exec redshift -x # redshift off
-    bindsym Ctrl+Shift+2 exec "redshift -l 32.96:-96.67 -t 6500:3000"
-    bindsym Ctrl+Shift+3 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 4000"
-    bindsym Ctrl+Shift+4 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 3500"
-    bindsym Ctrl+Shift+5 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 3000"
-    bindsym Ctrl+Shift+6 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2000 -o 2500"
+    bindsym Ctrl+Shift+2 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2500"
+    # bindsym Ctrl+Shift+3 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 4000"
+    # bindsym Ctrl+Shift+4 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3500"
+    # bindsym Ctrl+Shift+5 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3000"
+    # bindsym Ctrl+Shift+6 exec "redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 2500"
 
 
     # # # adjust brightness

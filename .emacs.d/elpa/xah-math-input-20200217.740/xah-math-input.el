@@ -240,9 +240,11 @@
 (xah-math-input--add-to-hash
  [
  	;; misc. unicode
-	["mda" "— "]
-	["nda" "– "]
-	["dlim" "-----------------------------------------------------------------------------------"]
+	["mda" "—"]
+	["dmd" "——"]
+	["nda" "–"]
+	["dnd" "––"]
+	["dlim" "————————————————————————————————————————————————————————————————————"]
 	["bul" "• "]
 	["aub" "↥ "]
 	["arb" "↦ "]
@@ -275,7 +277,8 @@
 	["\\" "∖ "]
 	["setm" "∖ "]
 	["smin" "∖ "]
-	;; ["fora" "∀ "]
+	["set-" "∖ "]
+	["fora" "∀ "]
 	["All" "∀ "]
 	["all" "∀ "]
 	["exi" "∃ "]
@@ -290,8 +293,8 @@
 	["cont" "∋ "]
 	["ncon" "∌ "]
 	["." "∘ "] ; jot (composition)
-	["._" "⍛"]
-	["compose" "∘ "] ; jot (composition)
+  	["._" "⍛"]
+	;; ["compose" "∘ "] ; jot (composition)
 	["maps" "↦ "]
 	["apply" "↥ "]
 	["and" "∧ "]
@@ -322,7 +325,8 @@
 	["cro" "⨯ "]
 	["G" "𝚪 "]
 	["l" "λ "]
-	["pib" "𝛑"] ; pi bold
+	["pi" "π "]
+	["pib" "𝛑 "] ; pi bold
 	["eul" "ℯ "]
 	["eul'" "ℇ "]
 	["planck" "ℎ "]
@@ -348,6 +352,7 @@
 	["prer" "⊰ "]
 	["sucr" "⊱ "]
 	["pro" "∷ "]
+	["::" "∷ "]
 	["prop" "∝ "]
 	["inf" "∞ "]
 	["o+" "⊕ "]
@@ -361,8 +366,8 @@
 	["cir*" "⊛ "]
 	["cird" "⨸ "]
 	["cir/" "⊘ "]
-	["bagl" "⟅ "]
-	["bagr" "⟆ "]
+	["bagl" "⟅"]
+	["bagr" "⟆"]
 	["inbag" "⋿ "]
 	["power" "℘ "]
 	["o-" "⟜ "]
@@ -392,18 +397,22 @@
 	["dro" "↓"] ; drop
 	["dr" "↓"] ; drop
 	["spl" "↓"] ; split
-	["head" "⊃"]
+	["fst" "⊃"]
+	["pic" "⊃"]
 	["pick" "⊃"]
 	["encl" "⊂"] ; enclose
+	["pae" "⊂"] ; partitioned enclose
 	["paen" "⊂"] ; partitioned enclose
 	["nest" "⊆"]
+	["par" "⊆"] ; partition
 	["part" "⊆"] ; partition
-	["no" "~"] ; not
+	["noa" "~"] ; not sign (APL)
+	["nota" "~"] ; not sign (APL)
 	["wo" "~"] ; without
-	["lv" "⍅"] ; left vane
-	["rv" "⍆"] ; right vane
-	["uv" "⍏"] ; upward vane
-	["dv" "⍖"] ; downward vane
+	["vl" "⍅"] ; left vane
+	["vr" "⍆"] ; right vane
+	["vu" "⍏"] ; upward vane
+	["vd" "⍖"] ; downward vane
 	["div" "÷"]
 	["x'" "×"]
 	["-" "−"]
@@ -466,7 +475,7 @@
 	["o_" "⍜"]
 	["ro" "⌽"]
 	["rot" "⌽"]
-	;; ["rev" "⌽"]
+	["rev" "⌽"]
 	["rof" "⊖"] ; rotate first
 	["tra" "⍉"] ; transpose
 	["xf" "⍀"] ; expand 1st
@@ -710,7 +719,7 @@
 
 	;; overrides
 	["O" "Option "]
-	["M" "Option "]
+	["M" "Maybe "]
 	["JU" "Just "]
 	["NO" "Nothing "]
 	["EI" "Either "]
@@ -909,8 +918,9 @@
 
   ["ndash" "– "] ["mdash" "— "]
 
-  ["times" "× "] ["divide" "÷ "] ["minus" "− "] ["lowast" "∗ "] ["radic" "√ "]
-  ["oplus" "⊕ "] ["otimes" "⊗ "]
+  ["times" "×"] ["divide" "÷"] ["minus" "− "] ["lowast" "∗ "] ["radic" "√"]
+	["x" "×"] ["/" "÷"]
+  ["oplus" "⊕ "] ["otimes" "⊗ "] ["ox" "⊗"]
   ["oslash" "ø "]
   ["fnof" "ƒ "]
 
@@ -922,7 +932,7 @@
 
   ["sub" "⊂ "] ["sup" "⊃ "] ["nsub" "⊄ "] ["sube" "⊆ "] ["supe" "⊇ "]
 
-  ["perp" "⊥ "] ["mdot" "⋅ "]
+  ["perp" "⊥ "] ["bot" "⊥ "] ["top" "⊤"] ["mdot" "⋅ "]
 
   ["lceil" "⌈ "] ["rceil" "⌉ "] ["lfloor" "⌊ "] ["rfloor" "⌋ "]
 
@@ -942,7 +952,10 @@
   ["..." "… "]
   ["fdash" "‒ "]
   ["wdash" "〜 "]
-  ["--" "— "]
+  ;; ["--" "— "]
+  ["----" "——"] ; double m-dash
+  ["---" "—"] ; m-dash
+  ["--" "–"] ; n-dash
   ;; ["??" "⁇ "]
   ;; ["?!" "⁈ "]
   ;; ["!?" "⁉ "]
@@ -1119,10 +1132,11 @@
    ["'" "′ "]  ; prime
    ["''" "″ "] ; double prime
    ["'''" "‴ "]
-   [".m" "· "]
+   [".m" "·"]
    ["sqrt" "√ "]
    ["rt" "√ "]
    ["rtt" "∛ "]
+   ["rtc" "∛ "]
    ["crt" "∛ "] ; cube root
    ["rt3" "∛ "]
    ["rtf" "∜ "]
