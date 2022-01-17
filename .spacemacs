@@ -149,6 +149,7 @@ values."
 												 ;; --- Dark themes ---
 												 spacemacs-dark
 												 night-owl-cac
+												 moe-dark ;; colorful
 												 ;; base16-solarflare
 												 ;; flucui-dark ;; based off of lab-dark
 												 ;; base16-atelier-cave ;; rabi-ribi
@@ -567,7 +568,7 @@ you should place your code here."
 	;; 𝔹 𝕃 𝕍
 	;; ℕ ℤ ℝ ℍ ℚ
 	;; 𝐋  𝐙  𝑭
-	;; ⬅ ⮈ ⮲ ⭅
+	;; ⮢ ⬅ ⮈ ⮲ ⭅
 
 
 
@@ -695,12 +696,13 @@ you should place your code here."
 						 ("define" .   "𝑓")
 						 ("defun" .    "𝑓")
 						 ("define-type" . "Ƒ")
-						 ;; ("data" . "Ƒ")
+						 ("data" . "Ƒ")
+						 ("type" . "Ƒ")
 						 ;; ("::"    .    "∷")
 						 ("ann"   .    "∷")
 						 ("inst"   .    "∷")
 						 ("cast"   .   "⭆")
-						 ;; ("for" .      "∀")
+						 ("for" .      "∀")
 						 ;; ("for_" .      "∀")
 						 ;; ("forM" .      "∀")
 						 ;; ("forM_" .      "∀")
@@ -708,40 +710,51 @@ you should place your code here."
 						 ;; ("<=" .    "⩽")
 						 ;; (">=" .    "⩾")
 						 ("\\" .      "λ")
+						 ("list" .      "ε")
 						 ("exact-ceiling" .     "⌈")
 						 ("exact-floor" .     "⌊")
 						 ("take" .     "↑") ;
 						 ("drop" .     "↓") ;
-						 ("modulo" .      "%")
-						 ("mod" .      "%")
-						 ("abs" .      "∣")
+						 ("car" .     "↑") ;
+						 ("cdr" .     "↓") ;
+						 ;; ("modulo" .      "%")
+						 ("modulo" .      "|")
+						 ;; ("mod" .      "%")
+						 ("mod" .      "|")
+						 ("abs" .      "|")
 						 ;; ("+" .    "∑")
-						 ;; ("sum" .   "∑")
+						 ("sum" .   "∑")
 						 ;; ("*" .    "∏")
-						 ("/" .    "÷")
+						 ("product" .    "∏") ; 𝚷
+						 ;; ("/" .    "÷")
+						 ("/" .    "%")
 						 ("sqrt" .    "√")
 						 ;; --- decent-readability-to-others separater ---
-						 ;; ("list-ref" .     "!!") ;‼
+						 ;; ("list-ref" .     "‼")
 						 ("if" .     "?")
 						 ("let" .     "∴")
 						 ("let*" .     "∴")
 						 ("where" .     "∵")
 						 ;; ("cons" .     "⧺")
-						 ;; ("head" .     "↑")
-						 ;; ("tail" .    "↓")
-						 ;; ("first" .     "↑")
-						 ;; ("rest" .     "↓")
+						 ("head" .     "↑")
+						 ("tail" .    "↓")
+						 ("first" .     "↑")
+						 ("rest" .     "↓")
 						 ;; ("take" .      "↑")
 						 ;; ("drop" .      "↓")
 						 ("compose1" .  "∘")
+						 ("<<<" .  "∘")
+						 (">>>" .  "⋙")
 						 ("compose" .  "⍛")
-						 ;; ("log" .      "⍟")
-						 ;; ("select" .      "σ")
-						 ;; ("flip" .      "⍨")
+						 ("log" .      "⍟")
+						 ("select" .      "σ")
+						 ("!!" .      "⊃")
+						 ("flip" .      "⍨")
 						 ("equal?" .      "≡")
+						 ("eq?" .      "≡")
 						 ("not-equal?" .      "≢")
-						 ("map" .    "↦") ; ↦ ⮕ ⍈ ¨
-						 ("fmap" .    "↦") ; ↥ ↦
+						 ("map" .    "¨") ; ↦ ⮕ ⍈ ¨
+						 ("fmap" .    "¨") ; ↥ ↦ ¨
 						 ("maximum" .    "⌈")
 						 ("minimum" .    "⌊")
 						 ("max" .    "⌈")
@@ -750,12 +763,14 @@ you should place your code here."
 						 ("reverse" .      "⌽")
 						 ("build-list" .      "⍳")
 						 ("range" .      "⍳")
-						 ("exact-floor" .    "⌊")
-						 ("exact-ceiling" .    "⌈")
-						 ("ceiling" .     "⌈")
-						 ("floor" .     "⌊")
-						 ;; ("ceiling" .     "⌉")
-						 ;; ("floor" .     "⌋")
+						 ;; ("exact-floor" .    "⌊")
+						 ;; ("exact-ceiling" .    "⌈")
+						 ;; ("ceiling" .     "⌈")
+						 ;; ("floor" .     "⌊")
+						 ("exact-floor" .    "⌋")
+						 ("exact-ceiling" .    "⌉")
+						 ("ceiling" .     "⌉")
+						 ("floor" .     "⌋")
 						 ("foldl" .  "⮢")
 						 ("foldr" .  "⮣")
 						 ("sort" .     "⍋")
@@ -764,22 +779,22 @@ you should place your code here."
 						 ("apply" .   "↥")
 						 ;; ("format" .    "⍕")
 						 ;; ("eval" .    "⍎")
-						 ;; ("list-ref" .  "⊃")
-						 ;; ("filter" .      "⊇")
-						 ;; ("filter-not" .      "⊉")
-						 ;; ("concat" .    "⧺")
-						 ;; ("append" .      "⧺")
-						 ;; ("append*" .      "⧺")
-						 ;; ("string-append" .    "⧺")
-						 ;; ("string-append*" .    "⧺")
+						 ("list-ref" .  "⊃")
+						 ("filter" .      "⊇")
+						 ("filter-not" .      "⊉")
+						 ("concat" .    ",")
+						 ("append" .      ",")
+						 ("append*" .      ",")
+						 ("string-append" .    ",")
+						 ("string-append*" .    ",")
 						 ("curry" .   "⫶") ; ⫶ ⋮ ⦙
 						 ;; ("compose1" .  "⋘")
 						 ;; ("compose" .  "⍛")
-						 ("."  .   "∘") ; haskell infix use
-						 ;; ("powerset" .  "℘")
+						 ;; ("."  .   "∘") ; haskell infix use
+             ;; ("powerset" .  "℘")
 						 ;; ("cross" .    "⨯")
 						 ;; ("del" .  "∇")
-						 ;; ("nabla" .  "∇")
+ 						 ;; ("nabla" .  "∇")
 						 ;; ("-o" .  "⊸")
 						 ;; ("++" .      "◇")
 						 ;; ("<*>" .   "⊛")
@@ -788,9 +803,9 @@ you should place your code here."
 						 ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
 						 ;; ("join" .   "⨝") ; µ ⨝
 						 ;; ("bind" .   "η")
-						 ;; ("yield" .   "⮨")
+ 						 ;; ("yield" .   "⮨")
 						 ;; ("divide" .    "÷")
-						 ;; ("for-each" .      "∀")
+						 ("for-each" .      "∀")
 						 ;; ("sub" .      "-")
 						 ;; ("product" .    "∏")
 						 ;; ("coproduct" .    "∐")
@@ -799,6 +814,7 @@ you should place your code here."
 						 ("Integer" .      "ℤ")
 						 ("Int" .      "ℤ")
 						 ("Boolean" .      "𝔹")
+						 ;; ("Bool" .      "𝔹")
 						 ;; ("Char" .      "𝐂")
 						 ("Char" .      "𝑪")
 						 ("Float"  .  "ℝ")
@@ -811,15 +827,20 @@ you should place your code here."
 						 ("Exact-Rational"  .  "ℚ")
 						 ("String" .      "𝑺") ; 𝐒
 						 ("Symbol" .      "𝕊")
-						 ("#t" .     "𝑻")
+						 ("#t" .     "𝑇")
+						 ("#true" .     "𝑇")
+						 ("true" .     "𝑇")
 						 ("True" .     "𝑻")
 						 ("False" .    "𝑭")
-						 ("#f" .    "𝑭")
+						 ("#f" .    "𝐹")
+						 ("#false" .    "𝐹")
+						 ("false" .    "𝐹")
 						 ("Listof" .    "𝑳")
 						 ("List" .    "𝑳")
 						 ;; ("List" .    "𝗟")
 						 ("Vectorof" .    "𝑽")
 						 ("Vector" .    "𝑽")
+						 ("Array" .    "𝑽") ; "Vector"
 						 ;; ("Vector" .    "𝗩")
 						 ("Pair" .    "⊕")
 						 ("Pairof" .    "⊕")
@@ -828,11 +849,7 @@ you should place your code here."
 						 ("Option"  .  "𝑴") ; "Maybe"
 						 ("Void" .   "∅")
 						 ("All" .      "∀")
-						 ;; ("Bool" .      "𝔹")
 						 ("forall" .      "∀")
-						 ;; ("All" .      "∀")
-						 ("all" .      "∀")
-						 ("any" .      "∃")
 						 ;; ("int" .      "ℤ")
 						 ;; ("Negative-Integer" .      "ℤ")
 						 ;; ("Nonpositive-Integer" .      "ℤ")
@@ -866,7 +883,7 @@ you should place your code here."
 						 ;; ("#true" .     "𝑻")
 						 ;; ("#false" .    "𝑭")
 						 ;; ("Top" .      "⟙")
-						 ;; ("Bottom" .   "⟘")
+						 ("Bottom" .   "⟘")
 						 ;; --- ADTs ---
 						 ("Option"  .  "𝑴")
 						 ("Maybe"  .  "𝑴")
@@ -881,7 +898,7 @@ you should place your code here."
 						 ;; (">=" .      "⩾") ;≥ ⩾
 						 ;; ("≤" .      "⩽") ;≤ ⩽
 						 ;; ("≥" .      "⩾") ;≥ ⩾
-						 ;; ("not equal" . "≠")
+						 ("not equal" . "≠")
 						 ;; --- Predicate Logic ---
 						 ("not" .      "⌙") ;; ¬
 						 ("negate" .      "⌙")
@@ -891,6 +908,9 @@ you should place your code here."
 						 ("nor" .      "⊽")
 						 ("nand" .      "⊼")
 						 ("all" .      "∀")
+						 ("any" .      "∃")
+						 ("andmap" .      "∀")
+						 ("ormap" .      "∃")
 						 ("exists" .      "∃")
 						 ("findf" .      "∃")
 						 ("memf" .      "∃")
@@ -907,8 +927,8 @@ you should place your code here."
 						 ("not-member" .   "∉")
 						 ("notElem" .   "∉")
 						 ("U" .      "⋃")
-						 ;; ("in" .       #x2208)
-						 ;; ("not in" .   #x2209)
+						 ("in" .       "∈")
+						 ("not in" .   "∉")
 						 ;; ("element" .      "∈")
 						 ("Union" .      "⋃")
 						 ("union" .      "⋃")
