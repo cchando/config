@@ -166,8 +166,6 @@ mapkey('D', '#3Move current tab to rightmost', function() {
         step: 99
     });
 });
-map('gH', 'U'); // from above
-map('gL', 'D'); // from above
 
 
 /* open links */
@@ -190,7 +188,7 @@ unmap('>');
 */
 
 // map('mu', '<Alt-m>'); // mute current tab  -- use Vimium C's muteTab variants
-map('*', '.'); // repeat last command
+// map('*', '.'); // repeat last command
 unmap(':');
 map(':dh', ';dh'); // delete history older than 30 days
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
@@ -201,9 +199,10 @@ map(':m', ';m'); // mouse-out last element (?)
 unmap(";"); // unmap bindings prefixed with ";"
 map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
 map('w', '_oh'); // open from history
-// map('gh', 'g#'); // open current url without the hash fragment  // shadows "go to history"
+map('gH', 'g#'); // open current url without the hash fragment  // shadows "go to history"
 map('<Alt-p>', ';s'); // toggle pdf viewer
 map('g/', ';e'); // open SurfingKeys settings
+map('tj', ';gt'); // "tab join": [join into current window] a tab from another window, selected from Omnibar
 map(':D', 'ab'); // add bookmark
 map('F', 'cf'); // open multiple links in new tabs
 // map('I', 'i'); // enter insert mode
