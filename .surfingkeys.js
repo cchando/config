@@ -170,8 +170,6 @@ mapkey('D', '#3Move current tab to rightmost', function() {
 
 /* open links */
 map('F', 'cf'); // open multiple links in new tabs
-map(',', '[[');
-map('.', ']]');
 map('<', '[[');
 map('>', ']]');
 /* replace w/ Vimium's goPrevious / goNext */
@@ -196,13 +194,13 @@ iunmap(':'); // disable emoji suggestions
 map('e', 'cs'); // change scroll target
 map('cd', ';j'); // close Downloads bar
 map(':m', ';m'); // mouse-out last element (?)
+map('tj', ';gt'); // "tab join": [join into current window] a tab from another window, selected from Omnibar
 unmap(";"); // unmap bindings prefixed with ";"
 map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
 map('w', '_oh'); // open from history
 map('gH', 'g#'); // open current url without the hash fragment  // shadows "go to history"
 map('<Alt-p>', ';s'); // toggle pdf viewer
 map('g/', ';e'); // open SurfingKeys settings
-map('tj', ';gt'); // "tab join": [join into current window] a tab from another window, selected from Omnibar
 map(':D', 'ab'); // add bookmark
 map('F', 'cf'); // open multiple links in new tabs
 // map('I', 'i'); // enter insert mode
