@@ -87,6 +87,7 @@ where e1 is an expression that should evaluate to a Boolean value (true or false
 
 ==== Assertions
 Assertions are generally used to check that certain requirements on or between features and dependencies hold. They look like this:
+
 -     `assert e1; e2`
 where e1 is an expression that should evaluate to a Boolean value. If it evaluates to true, e2 is returned; otherwise expression evaluation is aborted and a backtrace is printed.
 
