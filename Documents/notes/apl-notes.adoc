@@ -33,7 +33,7 @@
 - fully filled-in: `[defVal] [u] F(./:)(./:/"") v X` ⟶ fold (single/multiple) (forward/reverse/conjuction)
   ** single/multiple refers to the result type——multiple returns an aggregate structure (list, tree, etc.)
 	** forward/reverse are foldl/foldr, resp.
-	** fold-multiple returns the list of all intermediate results, _without affecting the type returned by v_, e.g. `0 ] F.: + 1 2 3 4` --> `1 3 6 10`. Note that _v is still (ℤ->ℤ->ℤ)_, even though the result is a list. To do this in Haskell, we'd do foldr {(⍺ + ⊃ ⍵) : ⍵} 0
+	** fold-multiple returns the list of all intermediate results, _without affecting the type returned by v_, e.g. `0 ] F.: + 1 2 3 4` --> `1 3 6 10`. Note that _v is still (ℤ → ℤ → ℤ)_, even though the result is a list. To do this in Haskell, we'd do foldr {(⍺ + ⊃ ⍵) : ⍵} 0
   ** v is the (a->b->b) combining fn
   ** u ∷ (b->c) is an optional map to be run on the result of the fold, except it incorporates fusion, i.e., it happens stepwise during the fold. If you don't want to map anything, use `u=:]`. For a single fold, this operates only on the (single-valued) end result, so then it's more natural to just think of it as a function you're going to run on the accumulator before returning it, in the base case.
 	   *** further exposition: 'u' runs on the final result of the fold (for fold-single), or on the 'b' produced at each step by v (for fold-multiple). So for fold-multiple, at each step, the 'b' output of v is calculated, but before it's passed to the next call, the unary function 'u' runs on it, and snocs it to the output list.
