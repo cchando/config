@@ -1,6 +1,6 @@
 ⍝-----apl notes---------------------------------------
 
-.Tacit style:
+==== Tacit style:
 - forks:
   ** `(fgh) ⍵` --> `(f ⍵) g (h ⍵)`
   ** `⍺ (fgh) ⍵` --> `(⍺ f ⍵) g (⍺ h ⍵)`
@@ -15,7 +15,7 @@
 - before (reverse compose)
   ** `(f⍛g) ⍵` --> `g (f ⍵)`
   ** `⍺ (f⍛g) ⍵` --> `g (f ⍺) (f ⍵)`
-—————————————————————————————— unique to J: ————————————————————————————
+.Unique to J:
   ** dup (~)
   ** `(g~) ⍵` --> `⍵ g ⍵`
     *** NB. `⍺ ~g ⍵` is just `⍺ (⍨g) ⍵` (commute) from APL
@@ -26,7 +26,8 @@
     *** `(f^:n) ⍵` --> `fⁿ ⍵`
     *** `⍺ (f^:n) ⍵` --> ⍺ `fⁿ ⍵`
 
-—————————————————————————————— unique to J: ————————————————————————————
+
+==== Unique to J
 .Folds:
 - `[u] F(./:)(./:/"") v` --> -> fold (single/multiple) (forward/reverse/conjuction)
 - fully filled-in: `[defVal] [u] F(./:)(./:/"") v X` --> -> fold (single/multiple) (forward/reverse/conjuction)
@@ -36,4 +37,4 @@
   ** v is the (a->b->b) combining fn
   ** u ∷ (b->c) is an optional map to be run on the result of the fold, except it incorporates fusion, i.e., it happens stepwise during the fold. If you don't want to map anything, use `u=:]`. For a single fold, this operates only on the (single-valued) end result, so then it's more natural to just think of it as a function you're going to run on the accumulator before returning it, in the base case.
 	   *** further exposition: 'u' runs on the final result of the fold (for fold-single), or on the 'b' produced at each step by v (for fold-multiple). So for fold-multiple, at each step, the 'b' output of v is calculated, but before it's passed to the next call, the unary function 'u' runs on it, and snocs it to the output list.
- ** if ⍺ is not provided, ⍵ must be non-empty, as the result list will be one  
+ ** if ⍺ is not provided, ⍵ must be non-empty, as the result list will be one
