@@ -51,8 +51,8 @@ In the special case where an attribute name inside of a set declaration evaluate
      `{ ${if foo then "bar" else null} = true; }`
 This will evaluate to {} if foo evaluates to false.
 
-==== __functor
-A set that has a `\__functor` attribute whose value is callable (i.e. is itself a function or a set with a `\__functor` attribute whose value is callable) can be applied as if it were a function, with the set itself implicitly passed in first , e.g.,
+==== +++__functor+++
+A set that has a `+++__functor+++` attribute whose value is callable (i.e. is itself a function or a set with a `+++__functor+++` attribute whose value is callable) can be applied as if it were a function, with the set itself implicitly passed in first , e.g.,
 [source,nix]
 ----
     let add = { __functor = self: x: x + self.x; };
