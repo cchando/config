@@ -15,6 +15,7 @@
 - before (reverse compose)
   ** `(f⍛g) ⍵` --> `g (f ⍵)`
   ** `⍺ (f⍛g) ⍵` --> `g (f ⍺) (f ⍵)`
+
 .Unique to J:
   ** dup (~)
   ** `(g~) ⍵` --> `⍵ g ⍵`
