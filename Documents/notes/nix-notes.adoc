@@ -4,6 +4,7 @@
 To do this, we generally need to do 3 things:
 
   . Write a Nix expression for the package. This is a file that describes all the inputs involved in building the package, such as dependencies, sources, etc. Specifically, it describes the human-readable name of the package, where to order it from, how to unpack it, and what environment tools we need in order to build it (the tools are the function args), and what tools need to be passed to the builder script.
+
   . Write a _builder_. This is a shell script that actually builds the package from the inputs. Specifically, it tells
     .. what standard environment (standard toolbox) should be used (done by calling the setup script of the standard environment -- this begins by clearing the normal user environment variables out of scope so none are accidentally used),
     .. how to unpack the source file (e.g. tar xvfz $src),
@@ -13,7 +14,8 @@ To do this, we generally need to do 3 things:
     .. where to put everything when the product has been built (e.g, make install).
  . Add the package to the file pkgs/top-level/all-packages.nix. The Nix expression written in the first step is a _function_; it requires other packages in order to build it. In this step you put it all together, i.e., you call the function with the right args to build the actual package.
 
-- Remember: all uses of colons are just to specify function arguments, and functions are always anonymous, and can only be “implicitly named” by assigning the function to an attribute (like dfns in APL).
+[NOTE]
+Remember: all uses of colons are just to specify function arguments, and functions are always anonymous, and can only be “implicitly named” by assigning the function to an attribute (like dfns in APL).
 
 ==== Lists
 Lists are formed by enclosing a whitespace-separated list of values between square brackets. For example,
