@@ -2,6 +2,7 @@
 
 ==== Adding a package to Nix Packages collection
 To do this, we generally need to do 3 things:
+
   . Write a Nix expression for the package. This is a file that describes all the inputs involved in building the package, such as dependencies, sources, etc. Specifically, it describes the human-readable name of the package, where to order it from, how to unpack it, and what environment tools we need in order to build it (the tools are the function args), and what tools need to be passed to the builder script.
   . Write a _builder_. This is a shell script that actually builds the package from the inputs. Specifically, it tells
     .. what standard environment (standard toolbox) should be used (done by calling the setup script of the standard environment -- this begins by clearing the normal user environment variables out of scope so none are accidentally used),
@@ -51,7 +52,7 @@ In the special case where an attribute name inside of a set declaration evaluate
      `{ ${if foo then "bar" else null} = true; }`
 This will evaluate to {} if foo evaluates to false.
 
-==== +++__functor+++
+==== __functor
 A set that has a `+++__functor+++` attribute whose value is callable (i.e. is itself a function or a set with a `+++__functor+++` attribute whose value is callable) can be applied as if it were a function, with the set itself implicitly passed in first , e.g.,
 [source,nix]
 ----
