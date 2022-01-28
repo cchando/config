@@ -52,7 +52,7 @@ In the special case where an attribute name inside of a set declaration evaluate
 This will evaluate to {} if foo evaluates to false.
 
 ==== __functor
-A set that has a `__functor` attribute whose value is callable (i.e. is itself a function or a set with a `__functor` attribute whose value is callable) can be applied as if it were a function, with the set itself implicitly passed in first , e.g.,
+A set that has a `\__functor` attribute whose value is callable (i.e. is itself a function or a set with a `\__functor` attribute whose value is callable) can be applied as if it were a function, with the set itself implicitly passed in first , e.g.,
 [source,nix]
 ----
     let add = { __functor = self: x: x + self.x; };
@@ -77,8 +77,11 @@ evaluates to 2. This can be used to attach metadata to a function without the ca
 ----
 
 - Note that functions do not have names. If you want to “give them a name”, you can bind them to an attribute, so the attribute itself effectively becomes the name of the function, e.g. the attribute “concat” here...
-let concat = { x, y }: x + y;
-in concat { x = "foo"; y = "bar"; }
+[source,nix]
+----
+    let concat = { x, y }: x + y;
+    in concat { x = "foo"; y = "bar"; }
+----
 
 ==== Conditionals
 Conditionals look like this:
@@ -118,7 +121,7 @@ Comments can be single-line, started with a # character, or inline/multi-line, e
 
 - Strings and numbers are just passed verbatim.
 
-- A path (e.g., ../foo/sources.tar) causes the referenced file to be copied to the store; its location in the store is put in the environment variable. The idea is that all sources should reside in the Nix store, since all inputs to a derivation should reside in the Nix store.
+- A path (e.g., `../foo/sources.tar`) causes the referenced file to be copied to the store; its location in the store is put in the environment variable. The idea is that all sources should reside in the Nix store, since all inputs to a derivation should reside in the Nix store.
 
 - A derivation causes that derivation to be built prior to the present derivation; its default output path is put in the environment variable.
 
@@ -163,10 +166,10 @@ $ ./result/bin/hello
 Hello, world!
 ----
 
-The -A option selects the hello attribute (in all-packages.nix). This is faster than using the symbolic package name specified by the name attribute (which also happens to be hello) and is unambiguous (there can be multiple packages with the symbolic name hello, but there can be only one attribute in a set named hello).
+The `-A` option selects the hello attribute (in all-packages.nix). This is faster than using the symbolic package name specified by the name attribute (which also happens to be `hello`) and is unambiguous (there can be multiple packages with the symbolic name `hello`, but there can be only one attribute in a set named hello).
 
-nix-build registers the ./result symlink as a garbage collection root, so unless and until you delete the ./result symlink, the output of the build will be safely kept on your system. You can use nix-build’s -o switch to give the symlink another name.
+nix-build registers the ./result symlink as a garbage collection root, so unless and until you delete the `./result` symlink, the output of the build will be safely kept on your system. You can use nix-build’s `-o` switch to give the symlink another name.
 
 Nix-shell drops us in a shell with the same (or almost) environment used to run the builder.
 
-nix-shell builds the .drv file and its input dependencies, then drops into a shell by setting up the environment variables necessary to build the .drv, in particular those passed to the derivation function.
+nix-shell builds the .drv file and its input dependencies, then drops into a shell by setting up the environment variables necessary to build the `.drv`, in particular those passed to the derivation function.
