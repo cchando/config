@@ -103,6 +103,8 @@
 (xah-math-input--add-to-hash
  '(
 
+	 ["t" "    "]
+
 	 ;; personal
 	 ["cam" "Cameron"]
 	 ["cac" "Cameron Chandoke"]
@@ -241,25 +243,23 @@
  [
  	;; misc. unicode
 	["mda" "—"]
-	["dmd" "——"]
+	["mmd" "——"] ; double m-dash
 	["nda" "–"]
 	["dnd" "––"]
-	["dlim" "————————————————————————————————————————————————————————————————————"]
+	["line" "————————————————————————————————————————————————————————————————————"]
 	["bul" "• "]
 	["aub" "↥ "]
 	["arb" "↦ "]
 	["alb" "↤ "]
 	["adb" "↧ "]
+  ["b" "``"]  ; back-ticks
 
 
 	;; Mathematics
 	["U" "∪ "]
 	["I" "∩ "]
-	["inter" "∩ "]
 	["UU" "⋃ "]
-	["aU" "⋃ "]
 	["II" "⋂ "]
-	["aI" "⋂ "]
 	;; ["c" "⊂ "]
 	;; ["c_" "⊆ "]
 	;; ["cb" "⊆ "]
@@ -275,8 +275,7 @@
 	["comp" "∁ "]
 	["scom" "∁ "]
 	["\\" "∖ "]
-	["setm" "∖ "]
-	["smin" "∖ "]
+	["setm" "∖ "] ; set minus
 	["set-" "∖ "]
 	["fora" "∀ "]
 	["All" "∀ "]
@@ -287,18 +286,17 @@
 	["nex" "∄ "]
 	["none" "∄ "]
 	["in" "∈ "]
-	["mem" "∈ "]
+ 	["e'" "∈ "]
 	["nin" "∉ "]
 	["con" "∋ "]
 	["cont" "∋ "]
 	["ncon" "∌ "]
-	["." "∘ "] ; jot (composition)
+	["." "∘"] ; jot (compose)
   	["._" "⍛"]
-	;; ["compose" "∘ "] ; jot (composition)
 	["maps" "↦ "]
-	["apply" "↥ "]
+	["app" "↥ "] ; apply
 	["and" "∧ "]
-	["or" "∨ "]
+  ["or" "∨ "]
 	["nor" "⊽ "]
 	["nand" "⊼ "]
 	["xor" "⊻ "]
@@ -313,7 +311,8 @@
 	["gr" "⩾ "]
 	;; ["le'" "≤ "]
 	;; ["gr'" "≥ "]
-	["not" "⌙ "]; ¬
+	["not" "⌙ "]
+	["not'" "¬ "] ; actual not-sign
 	["nega" "⌙ "]
 	["abs" "∣ "]
 	["|" "∣ "]
@@ -347,10 +346,10 @@
 	["iocl" "∲ "]
 	["ioacl" "∳ "]
 	["intf" "⨍ "]
-	["prec" "≺ "]
+	["pred" "≺ "]
 	["succ" "≻ "]
-	["prer" "⊰ "]
-	["sucr" "⊱ "]
+	["prer" "⊰ "] ; precedes under relation
+	["sucr" "⊱ "] ; succeeds under relation
 	["pro" "∷ "]
 	["::" "∷ "]
 	["prop" "∝ "]
@@ -389,18 +388,19 @@
 	["ar" "→"]
 	["au" "↑"]
 	["ad" "↓"]
-	["take" "↑"]
-	["tak" "↑"] ; take
-	["ta" "↑"] ; take
-	["mix" "↑"]
-	["drop" "↓"]
-	["dro" "↓"] ; drop
-	["dr" "↓"] ; drop
-	["spl" "↓"] ; split
+	;; ["take" "↑"]
+	;; ["tak" "↑"] ; take
+	;; ["ta" "↑"] ; take
+	;; ["mix" "↑"]
+	;; ["drop" "↓"]
+	;; ["dro" "↓"] ; drop
+	;; ["dr" "↓"] ; drop
+	;; ["spl" "↓"] ; split
 	["fst" "⊃"]
 	["pic" "⊃"]
 	["pick" "⊃"]
 	["encl" "⊂"] ; enclose
+	["enc" "⊂"] ; enclose
 	["pae" "⊂"] ; partitioned enclose
 	["paen" "⊂"] ; partitioned enclose
 	["nest" "⊆"]
@@ -415,10 +415,13 @@
 	["vd" "⍖"] ; downward vane
 	["div" "÷"]
 	["x'" "×"]
-	["-" "−"]
+	["–" "¯"] ; high minus
+	["_" "¯"] ; high minus
 	["log" "⍟"]
+	["lo" "⍟"]
 	["eq" "≡"]
 	["dep" "≡"] ; depth
+	["de" "≡"] ; depth
 	["mat" "≡"] ; match
 	["neq" "≢"]
 	["til" "∼"]
@@ -433,21 +436,21 @@
 	["a_" "⍶"]
 	["enl" "∊"] ; enlist
 	["en" "∊"] ; enlist
-	["es" "∊"]
-	["se" "∊"]
-	["find" "⋸"]
-	["e_" "⋸"]
-	["en_" "⋸"]
-	["in_" "⋸"]
+	["e" "∊"] ; small element of
+	["fin" "⍷"] ; find
+	["fi" "⍷"] ; find
+	["e_" "⍷"]
+	["en_" "⍷"]
+	["in_" "⍷"]
 	["flr" "⌊"] ; floor
 	["min" "⌊"]
 	["cei" "⌈"] ; ceiling
 	["max" "⌈"]
 	["lcm" "∧"] ; lowest common denomenator
 	["gcd" "∨"] ; greatest common divisor
-	["conj" "+"] ; conjugate
-	["neg" "-"] ; negate
-	["nega" "-"] ; negate
+	;; ["conj" "+"] ; conjugate
+	["neg" "¯"] ; negate
+	["nega" "¯"] ; negate
 	["dire" "×"] ; direction
 	["dir" "×"] ; direction
 	["mag" "∣"] ; magnitude
@@ -458,17 +461,18 @@
 	["del" "∇"]
 	["nab" "∇"] ; nabla
 	["j_" "⍛"]
-	["enc" "⊤"] ; encode
-	["enco" "⊤"] ; encode
+	["enco" "⊤"] ; encode -- enc already taken by enclose (more common)
 	["dec" "⊥"] ; decode
 	["deco" "⊥"] ; decode
+	["tl" "⊣"] ; tack left
 	["left" "⊣"]
 	["lef" "⊣"] ; left
+	["tr" "⊢"] ; tack right
 	["righ" "⊢"] ; right
 	["ri" "⊢"] ; right
 	["rig" "⊢"] ; right
 	["mdv" "⌹"] ; matrix divide
-	["min" "⌹"] ; matrix inverse
+	["md" "⌹"] ; matrix divide
 	["minv" "⌹"] ; matrix inverse
 	["o" "○"] ; APL pi-times (not composition)
 	["trig" "○"] ; trigonometric functions
@@ -489,9 +493,12 @@
 	["gru" "⍋"]
 	["grd" "⍒"]
 	["sou" "⍋"]
+	("su" "⍋")
 	["sod" "⍒"]
+	["sd" "⍒"]
 	["nn" "¯"]
-	["zil" "⍬"]
+	["zil" "⍬"] ; zilde
+	["zi" "⍬"]
 	[",_" "⍪"]
 	["fmt" "⍕"]
 	["exc" "⍎"]
@@ -500,30 +507,46 @@
 	["Ib" "⌶"]
 	["ib" "⌶"]
 	["each" "¨"]
-	["dia" "¨"]
+	["map" "¨"]
+	["pow" "⍣"]
 	["pwr" "⍣"]
 	["strd" "⍣"]
+	["sw" "⍨"] ; swap
+	["swp" "⍨"] ; swap
 	["flip" "⍨"]
-	["smrk" "⍨"]
+	["fli" "⍨"]
+	["sel" "⍨"] ; selfie
 	["rank" "⍤"]
-	["hoot" "⍤"]
+	["ato" "⍤"] ; atop
 	["sep" "◇"] ; statement separator
 	["dia" "◇"]
-	["holl" "⍥"]
-	["vari" "⍠"] ; variant
+	["di" "◇"]
+	["ove" "⍥"] ; over
+	["ov" "⍥"]
+	["wit" "⍩"] ; withe
+	["wi" "⍩"]
+	["va" "⍠"] ; variant
+	["var" "⍠"] ; variant
 	["opt" "⍠"] ; option
+	["op" "⍠"] ; option
 	["quc" "⍠"]
 	["qua" "⎕"]
 	["sys" "⎕"]
 	["mat" "⌷"] ; materialize
+	["ma" "⌷"] ; materialize
 	["ind" "⌷"] ; index
 	["squ" "⌷"]
 	["key" "⌸"]
-	["que" "⌸"]
+	["ke" "⌸"]
+	["qeq" "⌸"]
 	["sten" "⌺"]
-	["qudi" "⌺"]
+	["sten" "⌺"]
+	["qdi" "⌺"]
 	["com" "⍝"]
-	["c" "⍝"]
+	["co" "⍝"]
+  ["c" "⍝"]
+  ["rec" "∇"] ; recurse
+  ["re" "∇"] ; recurse
 
 ])
 
@@ -542,7 +565,7 @@
 
 
 	;; Racket
-	["t" "#t"]
+	["ht" "#t"] ; t is taken by "    " for tabbing
 	["f" "#f"]
 	["em" "'()"]
 	["emp" "'()"]
@@ -1131,7 +1154,8 @@
    ;; ["cd" "⊘ "] ; circle divide
    ["'" "′ "]  ; prime
    ["''" "″ "] ; double prime
-   ["'''" "‴ "]
+   ["'''" "‴ "] ; triple prime
+   ["''''" "⁗ "] ; quad prime
    [".m" "·"]
    ["sqrt" "√ "]
    ["rt" "√ "]
@@ -1144,6 +1168,7 @@
    ["rt4" "∜ "]
    ["del" "∇ "]
 
+   ["d" "∂ "] ; derivative and partial derivative in NARS2000 APL
    ["pd" "∂ "] ; partial derivative
    ["cross" "⨯ "]
    ;; ["cint" "∮ "] ; contour integral

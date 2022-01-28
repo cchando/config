@@ -18,7 +18,8 @@
                   [for/hasheq ∀:hq] [for*/hasheq ∀*:hq] [for/hasheqv ∀:hv] [for*/hasheqv ∀*:hv]
                   [for/or ∀:or] [for*/or ∀*:or] [for/and ∀:and] [for*/and ∀*:and]
                   [for/product ∀:∏] [for*/product ∀*:∏] [for/first ∀:1st] [for*/first ∀*:1st]
-                  [for/lists ∀:lists] [for*/lists ∀*:lists] [for/fold ∀:fold] [for*/fold ∀*:fold]))
+                  [for/lists ∀:lists] [for*/lists ∀*:lists] [for/fold ∀:fold] [for*/fold ∀*:fold]
+                  ))
 (require cond-strict)
 
 (require (only-in typed-map [map map] [foldl infer:foldl] [foldr infer:foldr]))

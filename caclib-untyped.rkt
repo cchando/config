@@ -308,7 +308,7 @@
   (: list-children : Node -> (Listof Node))
   (define (list-children x)
     (cond [(NONE? x) null]
-          [(and (node? (node-left x)) (node? (node-left x)))
+          [(and (node? (node-left x)) (node? (node-right x)))
            (list (node-left x) (node-right x))]
           [(node? (node-left x)) (list (node-left x))]
           [else (list (node-right x))]))
@@ -436,11 +436,11 @@
 
 (: exists? : Dir String -> Boolean)
 (define (exists? d fname)
-  (define here? (member fname (map File-name (Dir-files d))))
-  (if here?
+  ; if it's right here, we're done
+  (if (member fname (map File-name (Dir-files d)))
       #true
       ; search the next level
-      (ormap  (lambda (Dir) (exists? Dir fname))  (Dir-dirs d))))
+      (ormap (lambda (Dir) (exists? Dir fname))  (Dir-dirs d))))
 
 
 ; gives list of all paths in the directory tree, rooted at d, that lead to files with name f, or else #false.
@@ -458,7 +458,6 @@
   ;; (: prepend-to-all : Dir (Listof (Listof Dir)) -> (Listof (Listof Dir)))
   (define (prepend-to-all d xss) (map (curry cons (Dir-name d))  xss))
   (cond [(or  (empty? (Dir-dirs d))  (false? M_rss))
-         ; will not be combining with recursive result
          (if here?
              `((,(Dir-name d) ,fname))
              #false)]
@@ -590,6 +589,13 @@
                         (quick-sort< (largers (remove pivot xs) pivot))))]))
 
 
+; gives ys++(x:zs)
+(: enconcat : All (a) a (Listof a) (Listof a) -> (Listof a))
+(define (enconcat x ys zs)
+  (append ys (cons x zs)))
+
+
+
 ; bundles a natural number length with an function that maps numbers from [0, length) to the set of Integers
 (struct table ([len : Natural] [array : ( -> Exact-Number Exact-Number)]))
 
@@ -685,6 +691,42 @@
     (cond [(= 0 n) a]
           [else (go (sub1 n) (+ a b) a)]))
   (go n0 1 0))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; filtermap :: [a] -> (a -> Option b) -> [Option b]
+;; after mapping f to xs, producing list of maybe's, filters out the Nothings
+
+;; concatMap :: [a] -> (a -> [b]) -> [b]
+;; same as (flatten . map)
+
+;; foldMap :: Foldable t, Monoid m => (a -> m) -> t a -> m
+;; same as ((foldl mappend mempty) . (map f))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;; WISH LIST OF FUNCTIONS:

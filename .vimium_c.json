@@ -26,7 +26,7 @@
 		"map ma Marks.activateCreateMode swap",
 		"map ' Marks.activate swap",
 		"map R reload hard",
-		"map A joinTabs",
+		"# map <a-a> joinTabs",
 		"map M toggleMuteTab all",
 		"map <a-m> toggleMuteTab other",
 		"map <c-s-a> toggleMuteTab",

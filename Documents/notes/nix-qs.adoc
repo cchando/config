@@ -1,0 +1,27 @@
+
+
+
+
+
+* how do we set up and configure a sandbox environment for a programming project?
+
+* how do we nixify a given free package?
+
+* how do we wrap proprietary packages, e.g., Dyalog APL? how do we find out the build dependencies?
+
+* why can't I install e.g. dapl by doing inst nixos.dapl, as instructed by search.nixos.org? do I need to add or switch to another channel? nixos.dapl, nixos.haskellPackages.orthotope, nixos.ngn-k
+
+* how do we use Nick's search-nixpkgs tool to quickly search nixpkgs offline?
+
+* how to install easy-purescript-nix system-wide rather than having to use a nix-shell? (involves configuration.nix)
+
+
+
+
+
+
+
+
+* ??? after doing `gem install pry`, why does "pry" command not call it? where did it install to? same would go for installing things with any other package manager (e.g., yarn, npm) (I since installed it from nixpkgs, but that doesn't answer the question.) Maybe this is the whole point of NixOS——to not allow impure (i.e., undeclared in nix-config) packages on the system…
+
+* learn how to search nixpkgs (cr just searches the nixos space, not the nixpkgs space)
