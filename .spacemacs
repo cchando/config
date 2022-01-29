@@ -1449,7 +1449,7 @@ you should place your code here."
  '(evil-snipe-enable-highlight nil)
  '(evil-snipe-enable-incremental-highlight nil)
  '(evil-surround-pairs-alist
-	 '((81 "`" . "'")
+	 '((113 "`" . "'")
 		 (80 "+++" . "+++")
 		 (112 "+" . "+")
 		 (68 "``" . "''")
