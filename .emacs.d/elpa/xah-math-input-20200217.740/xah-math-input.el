@@ -77,22 +77,14 @@
 
 (xah-math-input--add-to-hash
  [
-	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["II" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UU" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
-	;; ["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["ID" "𝕀"] ["I2" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UD" "𝕌"] ["U2" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
-	;; ["dd" "ⅆ"] ["ee" "ⅇ"] ["ii" "ⅈ"] ["jj" "ⅉ"]
+	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["III" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UUU" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
+
+	["AAS" "𝑨"] ["BBS" "𝑩"] ["CCS" "𝑪"] ["DDS" "𝑫"] ["EES" "𝑬"] ["FFS" "𝑭"] ["GGS" "𝑮"] ["HHS" "𝑯"] ["IIS" "𝑰"] ["JJS" "𝑱"] ["KKS" "𝑲"] ["LLS" "𝑳"] ["MMS" "𝑴"] ["NNS" "𝑵"] ["OOS" "𝑶"] ["PPS" "𝑷"] ["QQS" "𝑸"] ["RRS" "𝑹"] ["SSS" "𝑺"] ["TT" "𝑻"] ["UUS" "𝑼"] ["VVS" "𝑽"] ["WWS" "𝑾"] ["XXS" "𝑿"] ["YYS" "𝒀"] ["ZZS" "𝒁"]
+
 	["dd" "ⅆ"] ["ee" "ⅇ"] ["id" "ⅈ"] ["i2" "ⅈ"] ["jj" "ⅉ"]
-	;; ["N" "ℕ"]
-	;; ["integer" "ℤ"]
-	;; ["rational" "ℚ"]
-	;; ["Q" "ℚ"]
-	;; ["real" "ℝ"]
-	;; ["R" "ℝ"]
-	;; ["C" "ℂ"]
 	["quaternion" "ℍ"]
 	["quat" "ℍ"]
-	;; ["H" "ℍ"]
 	["sedenion" "𝕊"]
-	;; ["S" "𝕊"]
 	])
 
 
@@ -103,7 +95,41 @@
 (xah-math-input--add-to-hash
  '(
 
-	 ["t" "    "]
+	 ["t" "    "] ; 4 spaces
+	 ["hh" "== "] ; header — adoc
+	 ["hhh" "=== "] ; header — adoc
+	 ["hhhh" "==== "] ; header — adoc
+	 ["hhhhh" "===== "]; header — adoc
+	 ["E" "===="] ; still 4 e's -> adoc use
+	 ["eee" "===="] ; still 4 e's -> adoc use
+	 ["eeee" "===="] ; adoc use
+	 ["pb" "++++"] ; passthrough block -> adoc use
+	 ["pass" "++++"] ; passthrough block -> adoc use
+	 ["lb" "...."] ; literal block -> adoc use
+	 ["lit" "...."] ; literal block -> adoc use
+	 ["esc" "+++"] ; escaped -> adoc use
+	 ["ESC" "++++++"] ; escaped -> adoc use
+
+	 ["s" "[]"] ; square
+	 ["c" "{}"] ; curly
+	 ["ti" "∼"]
+	 ["til" "∼"]
+	 ["ex" "!"]
+	 ["h" "#"]
+	 ["ha" "#"]
+	 ["do" "$"] ; dollar sign
+	 ["dol" "${}"]
+	 ["pe" "%"] ; percent
+	 ["ca" "^"] ; carrot
+	 ["am" "&"]
+	 ["amp" "&"]
+	 ["as" "*"] ; asterick
+	 ["st" "*"]
+	 ["mi" "-"]
+	 ["un" "_"]
+	 ["pl" "+"]
+	 ["eq" "="]
+	 ["bs" "\\"]
 
 	 ;; personal
 	 ["cam" "Cameron"]
@@ -118,61 +144,63 @@
 	 ["und" "understand"]
 	 ["ur" "you are"]
 	 ["btw" "by the way"]
-	 ["ie" "i.e.,"]
-	 ["eg" "e.g.,"]
+	 ["ie" "i.e., "]
+	 ["eg" "e.g., "]
+	 ["cf" "c.f. "]
 
-	 ["cant" "can't"]
-	 ["didnt" "didn't"]
-	 ["dont" "don't"]
+	 ["cant" "can't "]
+	 ["didnt" "didn't "]
+	 ["dont" "don't "]
 
 	 ;; english word abbrev
-	 ["ann" "announcement"]
-	 ["arg" "argument"]
-	 ["autom" "automatic"]
-	 ["bc" "because"]
-	 ["bg" "background"]
-	 ["bt" "between"]
-	 ["math" "mathematics"]
+	 ["ann" "announcement "]
+	 ["arg" "argument "]
+	 ["autom" "automatic "]
+	 ["bc" "because "]
+	 ["bg" "background "]
+	 ["bt" "between "]
+	 ["math" "mathematics "]
 
 	 ;; computing
-	 ["ahk" "AutoHotkey"]
-	 ["cfg" "context-free grammar"]
-	 ["cj" "Clojure"]
-	 ["csi" "computer science"]
+	 ["ahk" "AutoHotkey "]
+	 ["cfg" "context-free grammar "]
+	 ["cj" "Clojure "]
+	 ["cs" "computer science "]
+	 ["CS" "Computer Science "]
 
 	 ;; tech company
-	 ["gc" "Google Chrome"]
-	 ["gm" "Google Map"]
-	 ["macos" "Mac OS"]
-	 ["msw" "Microsoft Windows"]
+	 ["gc" "Google Chrome "]
+	 ["gm" "Google Map "]
+	 ["macos" "Mac OS "]
+	 ["msw" "Microsoft Windows "]
 
 	 ;; programing
-	 ["ev" "environment variable"]
-	 ["ipa" "IP address"]
-	 ["jvm" "Java Virtual Machine"]
-	 ["rsi" "repetitive-strain injury"]
-	 ["subdir" "sub-directory"]
-	 ["subf" "sub-folder"]
-	 ["wd" "web development"]
+	 ["ev" "environment variable "]
+	 ["ipa" "IP address "]
+	 ["jvm" "Java Virtual Machine "]
+	 ["rsi" "repetitive-strain injury "]
+	 ["subdir" "sub-directory "]
+	 ["subf" "sub-folder "]
+	 ["wd" "web development "]
 
-	 ["db" "database"]
-	 ["guif" "graphical user interface"]
-	 ["gui" "GUI"]
-	 ["oopf" "object oriented programing"]
-	 ["oop" "OOP"]
+	 ["db" "database "]
+	 ["guif" "graphical user interface "]
+	 ["gui" "GUI "]
+	 ["oopf" "object oriented programing "]
+	 ["oop" "OOP "]
 
-	 ["osf" "operating system"]
-	 ["os" "OS"]
+	 ["osf" "operating system "]
+	 ["os" "OS "]
 
 	 ;; programming
 	 ["eqe" "=="]
-	 ["ret" "return"]
+	 ["ret" "return "]
 	 ["utf8" "-*- coding: utf-8 -*-"]
 
 	 ;; catch typos
-	 ["pwoer" "power"]
-	 ["lsit" "list"]
-	 ["csae" "case"]
+	 ["pwoer" "power "]
+	 ["lsit" "list "]
+	 ["csae" "case "]
 
 ))
 
@@ -243,10 +271,8 @@
  [
  	;; misc. unicode
 	["mda" "—"]
-	["mmd" "——"] ; double m-dash
 	["nda" "–"]
-	["dnd" "––"]
-	["line" "————————————————————————————————————————————————————————————————————"]
+	["line" "——————————————————————————————————————"]
 	["bul" "• "]
 	["aub" "↥ "]
 	["arb" "↦ "]
@@ -260,17 +286,9 @@
 	["I" "∩ "]
 	["UU" "⋃ "]
 	["II" "⋂ "]
-	;; ["c" "⊂ "]
-	;; ["c_" "⊆ "]
-	;; ["cb" "⊆ "]
-	;; ["cl" "⊃ "]
-	;; ["c_l" "⊇ "]
-	;; ["cbl" "⊇ "]
-	;; ["cn" "⊄ "]
-	;; ["nc" "⊄ "]
-	;; ["cnl" "⊅ "]
-	;; ["c_nl" "⊉ "]
-	;; ["cbnl" "⊉ "]
+	["ncon" "⊄ "]
+	["nsup" "⊅ "]
+	["nsupe" "⊉ "]
 	["sc" "∁ "]
 	["comp" "∁ "]
 	["scom" "∁ "]
@@ -279,7 +297,7 @@
 	["set-" "∖ "]
 	["fora" "∀ "]
 	["All" "∀ "]
-	["all" "∀ "]
+supe	["all" "∀ "]
 	["exi" "∃ "]
 	["any" "∃ "]
 	["some" "∃ "]
@@ -290,9 +308,10 @@
 	["nin" "∉ "]
 	["con" "∋ "]
 	["cont" "∋ "]
+	["nco" "∌ "]
 	["ncon" "∌ "]
-	["." "∘"] ; jot (compose)
-  	["._" "⍛"]
+	["." "∘"]
+ 	["._" "⍛"]
 	["maps" "↦ "]
 	["app" "↥ "] ; apply
 	["and" "∧ "]
@@ -303,8 +322,8 @@
 	["OR" "⋁ "]
 	["AND" "⋀ "]
 	["let" "∴ "]
-	["where" "∵ "]
 	["wh" "∵ "]
+	["where" "∵ "]
 	["em" "∅ "]
 	["emp" "∅ "]
 	["le" "⩽ "]
@@ -322,6 +341,10 @@
 	["cop" "∐ "]
 	["acop" "⨿ "]
 	["cro" "⨯ "]
+ 	["delt" "∆"]
+	["delta" "∆"]
+	["del" "∇"]
+	["nab" "∇"] ; nabla
 	["G" "𝚪 "]
 	["l" "λ "]
 	["pi" "π "]
@@ -334,6 +357,7 @@
 	["est" "℮ "]
 	["fourier" "ℱ "]
 	["ft" "ℱ "]
+	["fft" "ℱ "]
 	["int" "∫ "]
 	["ii" "∬ "]
 	["iii" "∭ "]
@@ -350,31 +374,48 @@
 	["succ" "≻ "]
 	["prer" "⊰ "] ; precedes under relation
 	["sucr" "⊱ "] ; succeeds under relation
-	["pro" "∷ "]
 	["::" "∷ "]
 	["prop" "∝ "]
 	["inf" "∞ "]
-	["o+" "⊕ "]
-	["o--" "⊖ "]
-	["o*" "⊛ "]
-	["od" "⨸ "]
-	["o/" "⊘ "]
+	["O+" "⊕ "]
+	["O--" "⊖ "]
+	["O*" "⊛ "]
+	["Od" "⨸ "]
+	["O/" "⊘ "]
 	["cir+" "⊕ "]
-	["cir-" "⊕ "]
+	["cir-" "⊖ "]
 	["cirx" "⊗ "]
 	["cir*" "⊛ "]
 	["cird" "⨸ "]
 	["cir/" "⊘ "]
+	["cirm" "⊖ "]
+	["cirp" "⊕ "]
+	["cirs" "⊛ "]
 	["bagl" "⟅"]
 	["bagr" "⟆"]
 	["inbag" "⋿ "]
-	["power" "℘ "]
+	["power" "℘ "] ; powerset
 	["o-" "⟜ "]
 	["-o" "⊸ "]
 	["o-o" "⧟ "]
 	["o-." "⊶ "]
 	[".-o" "⊷ "]
 	;; ["cur" "⫶ "] ; curry
+
+])
+
+
+
+(xah-math-input--add-to-hash
+ [
+
+  ;; J language
+  ["sl" "["] ; square
+  ["sr" "]"] ; square
+  ["cl" "{"] ; curly
+  ["cr" "}"] ; curly
+  ["jd" "%"] ; J divide
+  ["jc" "NB. "] ; J comment
 
 ])
 
@@ -400,7 +441,6 @@
 	["pic" "⊃"]
 	["pick" "⊃"]
 	["encl" "⊂"] ; enclose
-	["enc" "⊂"] ; enclose
 	["pae" "⊂"] ; partitioned enclose
 	["paen" "⊂"] ; partitioned enclose
 	["nest" "⊆"]
@@ -415,22 +455,20 @@
 	["vd" "⍖"] ; downward vane
 	["div" "÷"]
 	["x'" "×"]
-	["–" "¯"] ; high minus
+	["-" "¯"] ; high minus
 	["_" "¯"] ; high minus
+	["n" "¯"] ; high minus
 	["log" "⍟"]
-	["lo" "⍟"]
-	["eq" "≡"]
+	["eqq" "≡"]
 	["dep" "≡"] ; depth
 	["de" "≡"] ; depth
 	["mat" "≡"] ; match
 	["neq" "≢"]
-	["til" "∼"]
 	["no" "∼"]
 	["p" "⍴"] ; rho
 	["w" "⍵"] ; omega
 	["w_" "⍹"]
 	["i" "⍳"] ; iota
-	;; ["iota" "⍳"] ; iota
 	["i_" "⍸"]
 	["a" "⍺"] ; alpha
 	["a_" "⍶"]
@@ -448,8 +486,7 @@
 	["max" "⌈"]
 	["lcm" "∧"] ; lowest common denomenator
 	["gcd" "∨"] ; greatest common divisor
-	;; ["conj" "+"] ; conjugate
-	["neg" "¯"] ; negate
+	;; ["neg" "¯"] ; negate
 	["nega" "¯"] ; negate
 	["dire" "×"] ; direction
 	["dir" "×"] ; direction
@@ -457,10 +494,6 @@
 	["norm" "∣"] ; magnitude
 	["res" "∣"] ; residue
 	["inc" "∆"] ; increment
-	["delta" "∆"]
-	["del" "∇"]
-	["nab" "∇"] ; nabla
-	["j_" "⍛"]
 	["enco" "⊤"] ; encode -- enc already taken by enclose (more common)
 	["dec" "⊥"] ; decode
 	["deco" "⊥"] ; decode
@@ -475,7 +508,6 @@
 	["md" "⌹"] ; matrix divide
 	["minv" "⌹"] ; matrix inverse
 	["o" "○"] ; APL pi-times (not composition)
-	["trig" "○"] ; trigonometric functions
 	["o_" "⍜"]
 	["ro" "⌽"]
 	["rot" "⌽"]
@@ -511,12 +543,12 @@
 	["pow" "⍣"]
 	["pwr" "⍣"]
 	["strd" "⍣"]
+	["co" "⍨"] ; commute
+	["com" "⍨"] ; commute
 	["sw" "⍨"] ; swap
 	["swp" "⍨"] ; swap
-	["flip" "⍨"]
-	["fli" "⍨"]
-	["sel" "⍨"] ; selfie
-	["rank" "⍤"]
+	["rnk" "⍤"] ; rank
+	["rank" "⍤"] ; rank
 	["ato" "⍤"] ; atop
 	["sep" "◇"] ; statement separator
 	["dia" "◇"]
@@ -532,21 +564,20 @@
 	["quc" "⍠"]
 	["qua" "⎕"]
 	["sys" "⎕"]
-	["mat" "⌷"] ; materialize
-	["ma" "⌷"] ; materialize
+	["SYS" "⎕"]
+	["mate" "⌷"] ; materialize
 	["ind" "⌷"] ; index
 	["squ" "⌷"]
 	["key" "⌸"]
 	["ke" "⌸"]
+	["qe" "⌸"]
 	["qeq" "⌸"]
-	["sten" "⌺"]
-	["sten" "⌺"]
 	["qdi" "⌺"]
-	["com" "⍝"]
-	["co" "⍝"]
-  ["c" "⍝"]
+	["ste" "⌺"]
+  ["sten" "⌺"]
   ["rec" "∇"] ; recurse
   ["re" "∇"] ; recurse
+	["ac" "⍝ "] ; APL comment
 
 ])
 
@@ -557,11 +588,6 @@
 
 	;; elisp
 	("lam" "λ")
-
-
-	;; Haskell
-	;; ("fmap" "↥")
-	;; ("fmap" "↦")
 
 
 	;; Racket
@@ -947,7 +973,6 @@
   ["oslash" "ø "]
   ["fnof" "ƒ "]
 
-  ["nabla" "∇ "]
   ["partial" "∂ "]
   ["dp" "∂ "]
 

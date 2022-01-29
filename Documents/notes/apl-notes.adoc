@@ -1,39 +1,37 @@
-⍝-----apl notes---------------------------------------
-
 ==== Tacit style:
 - forks:
-  ** `(fgh) ⍵` --> `(f ⍵) g (h ⍵)`
-  ** `⍺ (fgh) ⍵` --> `(⍺ f ⍵) g (⍺ h ⍵)`
+  ** `(fgh) ⍵` ⟶ `(f ⍵) g (h ⍵)`
+  ** `⍺ (fgh) ⍵` ⟶ `(⍺ f ⍵) g (⍺ h ⍵)`
 - beside (aka compose)
-  ** `⍺ (f∘g) ⍵` --> `⍺ f (g ⍵)`
+  ** `⍺ (f∘g) ⍵` ⟶ `⍺ f (g ⍵)`
 - atop
-  ** `⍺ (f⍤g) ⍵` --> `f (⍺ g ⍵)`
+  ** `⍺ (f⍤g) ⍵` ⟶ `f (⍺ g ⍵)`
 - over
-  ** `⍺ (f⍥g) ⍵` --> `f (g ⍺) (g ⍵)`
+  ** `⍺ (f⍥g) ⍵` ⟶ `f (g ⍺) (g ⍵)`
 - withe
-  ** `⍺ (f⍩g) ⍵` --> `⍺ f (g ⍵)`
+  ** `⍺ (f⍩g) ⍵` ⟶ `⍺ f (g ⍵)`
 - before (reverse compose)
-  ** `(f⍛g) ⍵` --> `g (f ⍵)`
-  ** `⍺ (f⍛g) ⍵` --> `g (f ⍺) (f ⍵)`
+  ** `(f⍛g) ⍵` ⟶ `g (f ⍵)`
+  ** `⍺ (f⍛g) ⍵` ⟶ `g (f ⍺) (f ⍵)`
 
 
 .Unique to J:
   ** dup (~)
-  ** `(g~) ⍵` --> `⍵ g ⍵`
+  ** `(g~) ⍵` ⟶ `⍵ g ⍵`
     *** NB. `⍺ ~g ⍵` is just `⍺ (⍨g) ⍵` (commute) from APL
   ** under (dual) (J)
-    *** `(f&.g) ⍵` --> `g⁻¹ (f (g ⍵))`
-    *** `⍺ (f&.g) ⍵` --> `g⁻¹ (f (⍺ g ⍵))`
+    *** `(f&.g) ⍵` ⟶ `g⁻¹ (f (g ⍵))`
+    *** `⍺ (f&.g) ⍵` ⟶ `g⁻¹ (f (⍺ g ⍵))`
   *** power
-    *** `(f^:n) ⍵` --> `fⁿ ⍵`
-    *** `⍺ (f^:n) ⍵` --> ⍺ `fⁿ ⍵`
+    *** `(f^:n) ⍵` ⟶ `fⁿ ⍵`
+    *** `⍺ (f^:n) ⍵` ⟶ ⍺ `fⁿ ⍵`
 
 
-==== Unique to J
+==== Unique-to-J functions/features
 .Folds:
-- `[u] F(./:)(./:/"") v` --> -> fold (single/multiple) (forward/reverse/conjuction)
-- fully filled-in: `[defVal] [u] F(./:)(./:/"") v X` ⟶ fold (single/multiple) (forward/reverse/conjuction)
-  ** single/multiple refers to the result type——multiple returns an aggregate structure (list, tree, etc.)
+- `[u] F(./:)(./:/"") v` ⟶ fold (single/multiple) (forward/reverse/conjuction)
+- fully filled-in: `[defVal] [u] F(./:)(./:/"") v X`
+  ** single/multiple refers to the result type—multiple returns an aggregate structure (list, tree, etc.)
 	** forward/reverse are foldl/foldr, resp.
 	** fold-multiple returns the list of all intermediate results, _without affecting the type returned by v_, e.g. `0 ] F.: + 1 2 3 4` --> `1 3 6 10`. Note that _v is still (ℤ → ℤ → ℤ)_, even though the result is a list. To do this in Haskell, we'd do foldr {(⍺ + ⊃ ⍵) : ⍵} 0
   ** v is the (a->b->b) combining fn
