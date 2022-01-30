@@ -85,9 +85,8 @@
 	["quaternion" "ℍ"]
 	["quat" "ℍ"]
 	["sedenion" "𝕊"]
+
 	])
-
-
 
 
 

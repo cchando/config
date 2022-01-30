@@ -1,0 +1,5 @@
+==== Generic problem-solving strategy
+- use `<SPC> w p m  (popwin:messages—display *Messages* buffer)` for first clues about the problem—this is precisely the thing that's responsible for giving you diagnostic info about any command you've run recently.
+   ** in the case of emacs apparently using an old file version of xah-math-input, when I tried to do any xah stuff, or explicitly toggle xah-math-input-mode, the status line continued to say something to the effect of `xah-math-input-mode: syntax error 'supe'`, _after_ I had since found and removed the offending error.
+	   *** doing `<SPC> w p m` showed something like `xah-math-input: there is new file, and old file is already byte-compiled—will use old file`, which instantly showed the problem.
+		 *** in this case, we did `<SPC><SPC> byte-compile-file` and selected xah-math-input.el, and problem was solved.

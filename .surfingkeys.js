@@ -1,4 +1,7 @@
 
+// file:///home/cameron/.surfingkeys.js
+
+
 /*
 ---- WARNING: ----
 
@@ -29,16 +32,17 @@ that P denotes (since most built-in functions are anonymous).
 
 		- This means longer-keystroke bindings must always come before shorter ones.
 		- A best-practice for dealing with the imperativeness:
-        // save default key `t` to temp key `>_t`
+        // save default key `t` to temp key `>_t` NOTE: This must not shadow an existing key binding β, or β will be gone and will not be "revived" after unmapping `>_t` later
    	  	map('>_t', 't');
 				// create a new key `t` for default key `on`
 				map('t', 'on');
 				// create a new key `o` for saved temp key `>_t`
   		  map('o', '>_t');
+				// unmap the temp key when we're done using it
+  		  unmap('>_t');
 
 ---- END OF WARNING ----
 */
-
 
 
 /*
@@ -82,6 +86,8 @@ map('_q', 'q');
 map('_oh', 'oh');
 map('_ox', 'ox');
 map('_og', 'og');
+map('_g0', 'g0');
+map('_g$', 'g$');
 unmap('t');
 unmap('q');
 unmap('oh');
@@ -92,10 +98,10 @@ unmap('og');
 
 
 // scrolling
-map('(', 'h'); // scroll left
-map(')', 'l'); // scroll right
-map('zh', '0'); // scroll all the way left
-map('zl', '$'); // scroll all the way right
+map('9', 'h'); // scroll left
+map('0', 'l'); // scroll right
+map('(', '0'); // scroll all the way left
+map(')', '$'); // scroll all the way right
 map('J', 'd'); // scroll half-page down
 map('K', 'u'); // scroll half-page down
 
@@ -107,8 +113,8 @@ map('td', 'W'); // detach tab (new window w/ current tab)
 map('h', 'E'); // tab left
 map('l', 'R'); // tab right
 map('p', '<Alt-p>'); // pin current tab
-map('ga', 'g0'); // focus leftmost tab
-map('gl', 'g$'); // focus rightmost tab
+map('ga', '_g0'); // focus leftmost tab
+map('gl', '_g$'); // focus rightmost tab
 
 
 // navigate history
@@ -135,16 +141,16 @@ unmap('gxx');
 
 // open particular tabs
 map('gj', 'gd'); // open downloads
-mapkey('gE', '#12Open Chrome Extension Shortcuts', function() {
+mapkey('gE', '#12Open Chrome extension shortcuts', function() {
     tabOpenLink("chrome://extensions/shortcuts");
 });
-mapkey('gS', '#12Open Chrome Settings', function() {
+mapkey('gS', '#12Open Chrome settings', function() {
     tabOpenLink("chrome://settings");
 });
-mapkey('gb', '#12Open Chrome Settings', function() {
+mapkey('gb', '#12Open Chrome bookmarks', function() {
   tabOpenLink("chrome://bookmarks");
 });
-mapkey('gh', '#12Open Chrome Settings', function() {
+mapkey('gh', '#12Open Chrome history', function() {
   tabOpenLink("chrome://history");
 });
 map('g/', ';e'); // open SurfingKeys settings
@@ -168,13 +174,18 @@ mapkey('D', '#3Move current tab to rightmost', function() {
 });
 
 
+// /* repeat last command*/
+// map('8', '.');
+// map('gr', '.');
+// unmap('.');
+
+
 /* open links */
 map('F', 'cf'); // open multiple links in new tabs
-map('<', '[[');
-map('>', ']]');
+map('<', '[['); // prev
+map('>', ']]'); // next
 /* replace w/ Vimium's goPrevious / goNext */
 unmap(',');
-unmap('.');
 unmap('<');
 unmap('>');
 
@@ -194,14 +205,20 @@ iunmap(':'); // disable emoji suggestions
 map('e', 'cs'); // change scroll target
 map('cd', ';j'); // close Downloads bar
 map(':m', ';m'); // mouse-out last element (?)
-map('tj', ';gt'); // "tab join": [join into current window] a tab from another window, selected from Omnibar
+map('tj', ';gt'); // "tab join": [join into current window] filtered tabs from another window, filtered from Omnibar
+
+map('<Alt-p>', ';s'); // toggle pdf viewer
 unmap(";"); // unmap bindings prefixed with ";"
 map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
+
 map('w', '_oh'); // open from history
-map('gH', 'g#'); // open current url without the hash fragment  // shadows "go to history"
-map('<Alt-p>', ';s'); // toggle pdf viewer
+map('gH', 'g#'); // open current url without the hash fragment  // shadows default "go to history" binding
 map('g/', ';e'); // open SurfingKeys settings
+
 map(':D', 'ab'); // add bookmark
+// map('B', 'ab'); // add bookmark
+unmap("ab");
+
 map('F', 'cf'); // open multiple links in new tabs
 // map('I', 'i'); // enter insert mode
 map('O', '_ox'); // open recently-closed url
@@ -233,8 +250,8 @@ unmap('S'); // go backward in history
 */
 unmap('on');
 unmap('og');
-unmap('g0');
-unmap('g$');
+// unmap('g0');
+// unmap('g$');
 unmap('@'); // Vimium_C toggleMuteTab all
 unmap('$'); // Vimium_C toggleMuteTab other
 // unmap('yf'); // copy form data in JSON on current page
@@ -261,7 +278,7 @@ unmap('<Ctrl-d>');
 unmap('<Ctrl-u>');
 unmap('<Shift-Tab>');
 unmap('<Tab>');
-
+unmap('_'); // unmap all temp bindings, which are prefixed with '_'
 
 
 
@@ -320,12 +337,19 @@ aceVimMap('gl', '$', 'normal'); // line end
 aceVimMap('gh', '^', 'normal'); // first non-whitespace on line
 aceVimMap('a', '^', 'normal'); // first non-whitespace on line
 aceVimMap('ga', '0', 'normal'); // line beginning
+aceVimMap('gi', 'A', 'normal'); // insert at line end
 // aceVimMap('ygh', 'y0', 'normal'); // yank to first char on line
 // aceVimMap('ygl', 'y$', 'normal'); // yank to line end
 /* word boundaries */
 aceVimMap('e', 'ea', 'normal');
-aceVimMap('w', 'W', 'normal');
-aceVimMap('b', 'B', 'normal');
+aceVimMap('_W', 'W', 'normal'); // temp key
+aceVimMap('_w', 'w', 'normal'); // temp key
+aceVimMap('_B', 'B', 'normal'); // temp key
+aceVimMap('_b', 'b', 'normal'); // temp key
+aceVimMap('w', '_W', 'normal'); // swap
+aceVimMap('W', '_w', 'normal'); // swap
+aceVimMap('b', '_B', 'normal'); // swap
+aceVimMap('B', '_b', 'normal'); // swap
 
 
 
@@ -479,12 +503,13 @@ unmap('ssp');
 
 settings.scrollStepSize = 200;
 settings.hintAlign = "left";
-settings.focusAfterClosed = "left";
-settings.prevLinkRegex = '/((back|older|<|‹|←|«|≪|<<|prev(ious)?)+)/i';
-settings.nextLinkRegex = '/((more|newer|>|›|→|»|≫|>>|next)+)/i';
+settings.focusAfterClosed = "last";
+settings.prevLinkRegex = '/((back|older|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
+settings.nextLinkRegex = '/((more|newer|>|›|→|»|≫|>>|[Nn]ext)+)/i';
+settings.digitForRepeat	= false;
 settings.hintShiftNonActive	= true;
 settings.hintExplicit = true;
-settings.omnibarMaxResults = 12;
+settings.omnibarMaxResults = 10;
 settings.omnibarPosition = "middle";
 settings.focusFirstCandidate = true; // for omnibar
 settings.focusOnSaved = false; // do not focus the text input after quitting from vim editor
@@ -668,4 +693,3 @@ div > .vimiumHintMarker > .matchingCharacter {
 }
 // HUD.D{color:#d0d0d0;}
 */
-
