@@ -49,10 +49,12 @@ that P denotes (since most built-in functions are anonymous).
 	   	in terms of 99E/99R (navigate to tab left/right, resp.), if you remap E/R, then g0/g$ WILL BE
 			IMPLICITLY REMAPPED. E.g., if you `map('E', 'j')`, then g0, inadvertently, will now scroll
 			down 99 lines. Horrible of horrible.
+			    Strangely, the same does not hold for merely unmapping E/R, i.e., doing so does not affect
+					g0/g$.
 			    Also, unlike with keybindings, which are set sequentially, the settings are automatically
-					set before all keybindings, regardless of the line number on which the settings are set.
-					Thus, setting `settings.digitForRepeat = false` will break e.g., g0/g$ since they are
-					implemented as 99E and 99R.
+			set before all keybindings, regardless of the line number on which the settings are set.
+			Thus, setting `settings.digitForRepeat = false` will break e.g., g0/g$ since they are
+			implemented as 99E and 99R.
 			   So basically, you can't ever turn off digitForRepeat if you want to ever use the functionality
 			of {g0, g$} without reimplementing them in Javascript yourself.
 
