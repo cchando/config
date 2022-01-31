@@ -426,10 +426,7 @@ unmap(';db');
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
 unmap('<Alt-i>');
 
-map('e', 'cs'); // change scroll target
-unmap('cs');
-
-map('E', ';fs'); // display hints to focus scrollable elements
+map('e', ';fs'); // change scroll target
 unmap(';fs');
 
 map('cd', ';j'); // close Downloads bar
@@ -485,6 +482,7 @@ unmap('m'); // replaced by Vimium C's since the popup looks better and we can us
 unmap('af');
 unmap(';m'); // mouse-out last element (?)
 unmap('go'); // replaced by 'o'
+unmap('cs'); // change scroll target (use 'e' for scroll hints instead)
 unmap('ss');
 unmap('sb');
 unmap('sd');
