@@ -238,7 +238,7 @@ unmap('D');
 
 
 // /* marks */
-// map('ma', 'm'); // create mark -- replace with Vimium's marks
+// map('ma', 'm'); // create mark -- replace with Vimium C's marks
 
 
 
@@ -665,7 +665,7 @@ settings.tabsThreshold = 0; // threshold at/above which to show tabs in omnibar 
 settings.interceptedErrors = ["*"]; // allow SurfingKeys on all error pages
 Hints.numericHints = false; // type text to filter hints
 
-// Vimium C bindings: (A, join tabs) (M, mute all tabs) (ma, create mark) (R, reload hard)
+// Vimium C bindings: (M, mute all tabs) (ma, create mark) (R, reload hard)
 Hints.characters = "sdfghjkletncvbw";
 // Hints.characters = "sdfgwhjkletncvb";
 // Hints.characters = "sdfgwjhletncvb";
