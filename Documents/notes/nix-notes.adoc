@@ -37,6 +37,7 @@ Note that lists are only lazy in values, and they are strict in length.
 Sets are really the core of the language, since ultimately the Nix language is all about creating derivations, which are really just sets of attributes to be passed to build scripts.
 
 Sets are just a list of name/value pairs (called attributes) enclosed in curly brackets, where each value is an arbitrary expression terminated by a semicolon. For example:
+[source,nix]
 ----
      { x = 123;
      text = "Hello";

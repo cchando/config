@@ -109,15 +109,15 @@
 	 ["esc" "+++"] ; escaped -> adoc use
 	 ["ESC" "++++++"] ; escaped -> adoc use
 
-	 ["s" "[]"] ; square
-	 ["c" "{}"] ; curly
+	 ["s" "[] "] ; square
+	 ["c" "{} "] ; curly
+	 ["dol" "${} "]
 	 ["ti" "∼"]
 	 ["til" "∼"]
 	 ["ex" "!"]
 	 ["h" "#"]
 	 ["ha" "#"]
 	 ["do" "$"] ; dollar sign
-	 ["dol" "${}"]
 	 ["pe" "%"] ; percent
 	 ["ca" "^"] ; carrot
 	 ["am" "&"]
@@ -271,7 +271,7 @@
  	;; misc. unicode
 	["mda" "—"]
 	["nda" "–"]
-	["line" "——————————————————————————————————————"]
+	["line" "———————————————"]
 	["bul" "• "]
 	["aub" "↥ "]
 	["arb" "↦ "]

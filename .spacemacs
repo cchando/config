@@ -4,6 +4,16 @@
 
 ;; /= ->> *** <<< <*> >>> >>- -<< ==> .. ... <$> <+> <* *> |> <| <-> >- -< :: :::
 ;; <=> =<< >>= <=< >=> <> ++ || !! && -> => \\ +++ <|> != !==
+;; ∀ ∈ ⋸ ∉ ∃ ∑ Π ¬ ⊼ ⊽ ⊻ ∅ ⊖ ⊕ ⊗ ⊃ ⊇ ⊉ ∩ ∪ ⋂ ⋃ ⋀ ⋁ ⋵ ⋹ ⋺ ⋻ ⋽ ∵ ∴ ⋙ ⨁ ⨂ ⨯ ⩽ ⩾ ⨌ ↰ ↦
+;; → ← ↑ ↓ ∆ ∇ ⍴ ∊ ⍳ ⍺ ⍵ ⍷ ⍸ ⍶ ⍹ ∘ ∧ ∨ ⍲ ⍱ ¨ ⍨ ⍤ ∩ ∪ ∼ ≡ ≢ ≤ ≥ ⊂ ⊃ ⊖ ⊢ ⊣ ⊤ ⊥ ⋄ ⌈ ⌊ ⌶ ⌷ ⌹ ⌽ ⌿ ⍀ ⍉ ⍋ ⍒ ⍎ ⍕ ⍝ ⍞ ⍪ ⎕ ○ × ÷
+;; ⍬ ⍔ ⌻ ⍫ ⌾ ⍁ ⍍ ⍠ ⌼ ⍟ ⍏ ⍛ ⍓ ¨ ⍢ ⍤ ⍰ ⍂ ⍃ ⍅ ⍖ ⍘ ⍙ ⍣ ⍯ ⍆ ⍌ ⍑ ⍦ ⍧ ⍚ ⍥ ⍄ ⍡ ⍊ ⍮ ⍩ ⍭ ⍇ ⍐ ⍈ ⍗
+;; 𝔹 𝕃 𝕍
+;; ℕ ℤ ℝ ℍ ℚ
+;; 𝐋  𝐙  𝑭
+;; ⮢ ⬅ ⮈ ⮲ ⭅
+
+
+
 
 ;; spacemacs-dark: font-lock-comment-face:   fg: #2aa1ae   bg: #292e34
 
@@ -37,13 +47,13 @@ values."
    dotspacemacs-configuration-layers
    '(
      haskell
-	 html
-	 vimscript
-	 racket
-	 ruby
-	 asciidoc
-     javascript
      purescript
+  	 html
+	   vimscript
+  	 racket
+  	 ruby
+  	 asciidoc
+     javascript
      clojure
 		 ;; themes-megapack
      ;; ----------------------------------------------------------------
@@ -408,11 +418,14 @@ you should place your code here."
 
   (setq-default xah-math-input-mode t)
 
+	(add-hook 'adoc-mode-hook 'xah-math-input-mode)
 	(add-hook 'prog-mode-hook 'xah-math-input-mode)
 
 	(remove-hook 'prog-mode-hook 'global-highlight-parentheses-mode)
 	(remove-hook 'prog-mode-hook 'highlight-parentheses-mode)
-	(remove-hook 'prog-mode-hook 'line-number-mode)
+	;; (remove-hook 'prog-mode-hook 'line-number-mode)
+	(add-hook 'adoc-mode-hook 'smartparens-mode)
+	(add-hook 'adoc-mode-hook 'smartparens-mode)
 	(add-hook 'prog-mode-hook 'smartparens-mode)
 	(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
@@ -562,14 +575,6 @@ you should place your code here."
 	;; up tack jot 234E S2M
 	;; turned-not sign 2319 S2M
 	;; (can't change diaeresis (#xA8) b/c it's already covered by Fira Code / Hasklig...)
-
-	;; ∀ ∈ ⋸ ∉ ∃ ∑ Π ¬ ⊼ ⊽ ⊻ ∅ ⊖ ⊕ ⊗ ⊃ ⊇ ⊉ ∩ ∪ ⋂ ⋃ ⋀ ⋁ ⋵ ⋹ ⋺ ⋻ ⋽ ∵ ∴ ⋙ ⨁ ⨂ ⨯ ⩽ ⩾ ⨌ ↰ ↦
-	;; → ← ↑ ↓ ∆ ∇ ⍴ ∊ ⍳ ⍺ ⍵ ⍷ ⍸ ⍶ ⍹ ∘ ∧ ∨ ⍲ ⍱ ¨ ⍨ ⍤ ∩ ∪ ∼ ≡ ≢ ≤ ≥ ⊂ ⊃ ⊖ ⊢ ⊣ ⊤ ⊥ ⋄ ⌈ ⌊ ⌶ ⌷ ⌹ ⌽ ⌿ ⍀ ⍉ ⍋ ⍒ ⍎ ⍕ ⍝ ⍞ ⍪ ⎕ ○ × ÷
-	;; ⍬ ⍔ ⌻ ⍫ ⌾ ⍁ ⍍ ⍠ ⌼ ⍟ ⍏ ⍛ ⍓ ¨ ⍢ ⍤ ⍰ ⍂ ⍃ ⍅ ⍖ ⍘ ⍙ ⍣ ⍯ ⍆ ⍌ ⍑ ⍦ ⍧ ⍚ ⍥ ⍄ ⍡ ⍊ ⍮ ⍩ ⍭ ⍇ ⍐ ⍈ ⍗
-	;; 𝔹 𝕃 𝕍
-	;; ℕ ℤ ℝ ℍ ℚ
-	;; 𝐋  𝐙  𝑭
-	;; ⮢ ⬅ ⮈ ⮲ ⭅
 
 
 
@@ -1160,11 +1165,12 @@ you should place your code here."
 (spacemacs/set-leader-keys (kbd "tw") 'toggle-word-wrap) ; shadow toggle-whitespace
 (spacemacs/set-leader-keys (kbd "tp") 'smartparens-mode)
 (spacemacs/set-leader-keys (kbd "tP") 'pretty-mode)
-(spacemacs/set-leader-keys (kbd "fS") 'write-file) ;; "save as"
-(spacemacs/set-leader-keys (kbd "fA") 'evil-write-all) ;; save all open files
+(spacemacs/set-leader-keys (kbd "Tt") 'nil) ; disable toggle-tool-bar
+(spacemacs/set-leader-keys (kbd "fS") 'write-file) ; "save as"
+(spacemacs/set-leader-keys (kbd "fA") 'evil-write-all) ; save all open files
 (spacemacs/set-leader-keys (kbd "bh") 'previous-buffer)
 (spacemacs/set-leader-keys (kbd "bl") 'next-buffer)
-(spacemacs/set-leader-keys (kbd "gm") 'magit-dispatch) ;; replace obsolete magit-dispatch-popup
+(spacemacs/set-leader-keys (kbd "gm") 'magit-dispatch) ; replace obsolete magit-dispatch-popup
 (spacemacs/set-leader-keys (kbd "wg") 'enlarge-window)
 (spacemacs/set-leader-keys (kbd "wG") 'shrink-window)
 (spacemacs/set-leader-keys (kbd "hsd") 'evil-ex-show-digraphs)
