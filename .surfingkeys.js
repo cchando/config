@@ -107,7 +107,7 @@ that P denotes (since most built-in functions are anonymous).
 			 '_⍵' bindings are at least two characters).
 
 
-      - NOTE !!! (debugging algorithm): if there's an issue with e.g.,
+      - NOTE: !!! (debugging algorithm): if there's an issue with e.g.,
 			     `map('tw', 'op')`
 				then
 				1. First try replacing 'tw' with the letters of an already-working binding, thus shadowing that old
