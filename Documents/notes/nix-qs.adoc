@@ -1,7 +1,3 @@
-
-
-
-
 ==== Nix learning objectives:
 . how do we set up and configure a sandbox environment (for ensuring that a given project doesn’t mess up the wider environment, or to use other package managers, like pip, whose operations are usually blocked by NixOS)?
 

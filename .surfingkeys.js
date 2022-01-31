@@ -49,10 +49,10 @@ that P denotes (since most built-in functions are anonymous).
 	   	in terms of 99E/99R (navigate to tab left/right, resp.), if you remap E/R, then g0/g$ WILL BE
 			IMPLICITLY REMAPPED. E.g., if you `map('E', 'j')`, then g0, inadvertently, will now scroll
 			down 99 lines. Horrible of horrible.
-			    Also, unlike with keybindings, which are set sequentially, the settings
-			are automatically set before all keybindings regardless of the line number on which the settings
-			are set. Thus, setting `settings.digitForRepeat = false` will break e.g., g0/g$ since they are
-			implemented as 99E and 99R.
+			    Also, unlike with keybindings, which are set sequentially, the settings are automatically
+					set before all keybindings, regardless of the line number on which the settings are set.
+					Thus, setting `settings.digitForRepeat = false` will break e.g., g0/g$ since they are
+					implemented as 99E and 99R.
 			   So basically, you can't ever turn off digitForRepeat if you want to ever use the functionality
 			of {g0, g$} without reimplementing them in Javascript yourself.
 
@@ -305,8 +305,6 @@ unmap(']]');
 	open particular tabs
 	-----------------------------------------------------------------
 */
-// map('gj', 'gd'); // open downloads
-// unmap('gd');
 
 map('g/', ';e'); // open SurfingKeys settings
 unmap(';e');
@@ -315,21 +313,11 @@ mapkey('gE', '#12Open Chrome extension shortcuts', function() {
     tabOpenLink("chrome://extensions/shortcuts");
 });
 // map('gE', 'ge');
-unmap('ge');
+// unmap('ge');
 
 mapkey('gS', '#12Open Chrome settings', function() {
     tabOpenLink("chrome://settings");
 });
-
-// // reimplementation of a keybinding that's not working for some reason
-// mapkey('gb', '#12Open Chrome bookmarks', function() {
-// 		tabOpenLink("chrome://bookmarks");
-// });
-
-// // reimplementation of a keybinding that's not working for some reason
-// mapkey('gh', '#12Open Chrome history', function() {
-// 		tabOpenLink("chrome://history");
-// });
 
 mapkey('<Ctrl-/>', '#12Open Vimium C Settings', function() {
 		tabOpenLink("chrome-extension://hfjbmagddngcpeloejdejnfgbamkjaeg/pages/options.html");
@@ -422,17 +410,18 @@ aceVimMap('B', '_b', 'normal'); // swap
 */
 // map('<Ctrl-Alt-m>', '<Alt-m>'); // mute current tab  -- use Vimium C's muteTab variants
 
-mapkey(':dH', '#14Delete history newer than 2 hours', function() {
-    RUNTIME('deleteHistoryNewerThan', {
-        hours: 2
-    });
-});
 
-
-// !!! must put this BEFORE any new bindings prefixed by ':'
+// !!! must unmap this BEFORE any new bindings prefixed by ':'
 unmap(':'); // free up ':_' space, which would be preemptively shadowed otherwise; was 'open omnibar for arb. command'
-// map(':dh', ';dh'); // delete history older than 30 days
-// unmap(';dh');
+map(':dh', ';dh'); // delete history older than 30 days
+unmap(';dh');
+map(':db', ';db'); // delete bookmark for current tab
+unmap(';db');
+// mapkey(':dH', '#14Delete history newer than 2 hours', function() {
+    // RUNTIME('deleteHistoryNewerThan', {
+//         hours: 2
+//     });
+// });
 
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
 unmap('<Alt-i>');
@@ -440,8 +429,8 @@ unmap('<Alt-i>');
 map('e', 'cs'); // change scroll target
 unmap('cs');
 
-map('E', ';w'); // focus top window (?)
-unmap(';w');
+map('E', ';fs'); // display hints to focus scrollable elements
+unmap(';fs');
 
 map('cd', ';j'); // close Downloads bar
 unmap(';j');
@@ -483,9 +472,9 @@ unmap('ab'); // add bookmark
 	-----------------------------------------------------------------
 */
 unmap('_'); // unmap all temp bindings, which are prefixed with '_'
-unmap(','); // prefix key, unused
-// unmap(';'); // prefix key, unused
-unmap('gx'); // prefix key, unused
+unmap(','); // prefix key
+// unmap(';'); // was prefix key, now tab-back-and-forth
+unmap('gx'); // prefix key
 // replace '<' and '>' w/ Vimium's goPrevious / goNext
 unmap('<');
 unmap('>');
