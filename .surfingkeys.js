@@ -195,9 +195,11 @@ unmap('u');
 
 /* navigate tabs */
 
-map('ga', 'g0'); // !!! must come BEFORE unmapping 'E', since 'g0' depends on 'E'; ga is now focus leftmost tab
+map('ga', ':feedkeys 99h', 0, "#3Go to the first tab");
+// map('ga', 'g0'); // !!! must come BEFORE unmapping 'E', since 'g0' depends on 'E'; ga is now focus leftmost tab
 unmap('g0');
-map('gl', 'g$'); // !!! must come BEFORE unmapping 'R', since 'g$' depends on 'R'; gl is now focus rightmost tab
+map('gl', ':feedkeys 99l', 0, "#3Go to the first tab");
+// map('gl', 'g$'); // !!! must come BEFORE unmapping 'R', since 'g$' depends on 'R'; gl is now focus rightmost tab
 unmap('g$');
 map('h', 'E'); // tab left
 unmap('E'); // !!! must come AFTER using g0, since g0 is implemented as 99E
@@ -428,8 +430,11 @@ unmap(';db');
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
 unmap('<Alt-i>');
 
-map('e', ';fs'); // change scroll target
+map('e', ';fs'); // hints for scroll targets (pressing any key outside the hints resets to the default scroll target)
 unmap(';fs');
+
+map('E', 'cs'); // change scroll target
+unmap('cs');
 
 map('cd', ';j'); // close Downloads bar
 unmap(';j');
@@ -593,38 +598,21 @@ mapkey('su', '#8Search GitHub', function() {
 
 
 addSearchAlias('laz', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
-
 addSearchAlias('nix', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
-
 addSearchAlias('mel', 'melpa', 'https://melpa.org/#/?q=');
-
 addSearchAlias('ra', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
-
 addSearchAlias('tr', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
-
 addSearchAlias('ha', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
-
 addSearchAlias('pur', 'pursuit', 'https://pursuit.purescript.org/search?q=');
-
 addSearchAlias('sp', 'startpage', 'https://startpage.com/sp/search/?q=');
-
 addSearchAlias('gm', 'google maps', 'https://www.google.com/maps?q=');
-
 addSearchAlias('so', 'stack overflow', 'http://stackoverflow.com/search?q=');
-
 addSearchAlias('se', 'stack exchange', 'http://stackexchange.com/search?q=');
-
 addSearchAlias('az', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
-
 addSearchAlias('go', 'google', 'https://www.google.com/search?q=');
-
 addSearchAlias('yo', 'youtube', 'https://www.youtube.com/results?search_query=');
-
 addSearchAlias('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/');
-
 addSearchAlias('hub', 'github', 'https://github.com/search?q=');
-
-
 
 
 
@@ -641,8 +629,8 @@ addSearchAlias('hub', 'github', 'https://github.com/search?q=');
 settings.scrollStepSize = 200;
 settings.hintAlign = "left";
 settings.focusAfterClosed = "last";
-settings.prevLinkRegex = '/((back|older|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
-settings.nextLinkRegex = '/((more|newer|>|›|→|»|≫|>>|[Nn]ext)+)/i';
+settings.prevLinkRegex = '/(([Bb]ack|[Oo]lder|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
+settings.nextLinkRegex = '/(([Mm]ore|[Nn]ewer|>|›|→|»|≫|>>|[Nn]ext)+)/i';
 settings.digitForRepeat	= true; // can never set to false if using e.g., ⍺ ← navigateToLeftmostTab, since ⍺ is implemented as 99[navigateToTabLeft] under-the-hood
 settings.hintShiftNonActive	= true;
 settings.hintExplicit = true;
@@ -655,11 +643,8 @@ settings.interceptedErrors = ["*"]; // allow SurfingKeys on all error pages
 Hints.numericHints = false; // type text to filter hints
 
 // Vimium C bindings: (M, mute all tabs) (ma, create mark) (R, reload hard)
-Hints.characters = "sdfghjkletncvbw";
-// Hints.characters = "sdfgwhjkletncvb";
-// Hints.characters = "sdfgwjhletncvb";
-// Hints.characters = "asdfgqwertzxcvb"; // default value
-Hints.scrollKeys = "0G$";
+Hints.characters = "sdfghjkletncvbw"; // default value "asdfgqwertzxcvb"
+Hints.scrollKeys = "0G$"; // for scrolling in hints mode
 
 
 // Vimium-style link hints

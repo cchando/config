@@ -595,6 +595,3 @@
 ;;      1. it gives #f on an empty list instead of #t, thus eliminating the problem
 ;;          of the result type being (U Boolean a), given (Listof a).
 ;;      2. it specifies in a case-λ that if given an (NEList z), returns z (rather than (Union True z)).
-
-
-
