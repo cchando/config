@@ -665,15 +665,15 @@ you should place your code here."
   ;; (when (version<= emacs-version "27.0") ; when using version lower than 27.0
 	;;  (add-hook 'prog-mode-hook 'my-set-fira-code-ligatures))
 
-	(global-pretty-mode t)
-	(pretty-deactivate-groups
-    ;; operator, equality and arrow groups interfere with Fira Code operators
-	  ;; logic group interferes with prettify-symbols
-  	 '(:equality :ordering :ordering-double :ordering-triple
-							 :arrows :arrows-twoheaded :punctuation
-							 :logic :sets))
-	(pretty-activate-groups
-	 '(:sub-and-superscripts :greek :arithmetic-nary))
+	;; (global-pretty-mode t)
+	;; (pretty-deactivate-groups
+  ;;   ;; operator, equality and arrow groups interfere with Fira Code operators
+	;;   ;; logic group interferes with prettify-symbols
+  ;; 	 '(:equality :ordering :ordering-double :ordering-triple
+	;; 						 :arrows :arrows-twoheaded :punctuation
+	;; 						 :logic :sets))
+	;; (pretty-activate-groups
+	;;  '(:sub-and-superscripts :greek :arithmetic-nary))
 
 
 
@@ -686,11 +686,17 @@ you should place your code here."
 	(remove-hook 'prog-mode-hook 'pretty-mode)
 	;; (add-hook 'prog-mode-hook 'pretty-mode)
 	;; (remove-hook 'prog-mode-hook 'prettify-symbols-mode)
-	(add-hook 'prog-mode-hook 'prettify-symbols-mode)
+	;; (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 	;; (add-hook 'prog-mode-hook 'fira-code-mode)
 	(remove-hook 'prog-mode-hook 'fira-code-mode)
 	;; (add-hook 'prog-mode-hook 'hasklig-mode)
 	(remove-hook 'prog-mode-hook 'hasklig-mode)
+	(add-hook 'purescript-mode-hook 'prettify-symbols-mode)
+	(add-hook 'haskell-mode-hook 'prettify-symbols-mode)
+	(add-hook 'racket-mode-hook 'prettify-symbols-mode)
+	(add-hook 'lisp-mode-hook 'prettify-symbols-mode)
+	(add-hook 'c-mode-hook 'prettify-symbols-mode)
+	(add-hook 'prog-mode-hook 'toggle-word-wrap)
 
 
 	(add-hook
@@ -796,7 +802,7 @@ you should place your code here."
 						 ;; ("compose1" .  "⋘")
 						 ;; ("compose" .  "⍛")
 						 ;; ("."  .   "∘") ; haskell infix use
-             ;; ("powerset" .  "℘")
+						 ;; ("powerset" .    "℘")
 						 ;; ("cross" .    "⨯")
 						 ;; ("del" .  "∇")
  						 ;; ("nabla" .  "∇")
@@ -1077,9 +1083,9 @@ you should place your code here."
 	(evil-previous-line))
 
 
-;; (evil-define-motion vile-append-word ()
+;; (evil-define-motion vile-append-WORD (count) ; error somewhy
 ;;   "Jump to end of the word under the cursor and switch to insert mode"
-;; 	(evil-forward-word-end)
+;; 	(evil-forward-WORD-end)
 ;; 	(evil-append))
 
 
@@ -1093,12 +1099,139 @@ you should place your code here."
 
 
 
-;; TODO: write vile motion-command similar to "ds(" that, when executed inside a set of parenthesis, deletes everything
-;;     in the immediately-surrounding set of parentheses. Just like with evil-surround, have two options,
-;;     one of which keeps the surrounding parentheses themselves, and one of which discards them.
-;;     This is very helpful when you add e.g. a cast statement like
-;;         (cast (hash-ref stockmap stock) (Listof Candle))
-;;     except it's a longer expression that wraps to the next line, and you later want to remove the surrounding expression.
+(defun keymap+ (&rest bindings)
+  (if (stringp (car bindings))
+      (progn (setq k (pop bindings) f (pop bindings))
+             (while k
+               (global-set-key (kbd k) f)
+               (setq k (pop bindings) f (pop bindings))))
+    (let ((m (pop bindings)))
+      (setq k (pop bindings) f (pop bindings))
+      (while k
+        (define-key m (kbd k) f)
+        (setq k (pop bindings) f (pop bindings))))))
+
+;; leader keys mappings
+(keymap+ evil-normal-state-local-map ;; c.f. (spacemacs/set-leader-keys (kdb "⍵") 'f)
+				 "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
+				 "SPC t p"   'smartparens-mode
+				 "SPC t P"   'pretty-mode
+				 "SPC T t"   'nil ; disable toggle-tool-bar
+				 "SPC f S"   'write-file ; "save as"
+				 "SPC f A"   'evil-write-all ; save all open files
+				 "SPC b h"   'previous-buffer
+				 "SPC b l"   'next-buffer
+				 "SPC g m"   'magit-dispatch ; replace obsolete magit-dispatch-popup
+				 "SPC w g"   'enlarge-window
+				 "SPC w G"   'shrink-window
+				 "SPC h sd"   'evil-ex-show-digraphs
+				 "SPC i c"   'insert-char
+				 "SPC t s"   'prettify-symbols-mode
+				 "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
+				 "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
+				 "SPC h w"   'helm-man-woman
+				 "SPC b H"   'spacemacs/home
+				 "SPC '"   'spacemacs/shell-pop-ansi-term
+				 ;; "SPC \""   'ansi-term
+				 )
+
+;; user prefix mappings
+(define-prefix-command 'cm) ;; prefix key map, "cac's m"
+(define-key evil-normal-state-map (kbd "m") cm)
+(keymap+ cm
+				 "a"   'evil-set-marker
+				 "m"   'evil-scroll-line-to-center
+				 "t"   'evil-scroll-line-to-top
+				 "b"   'evil-scroll-line-to-bottom
+				 "e"   'vile-backward-paragraph
+				 "r"   'vile-forward-paragraph
+				 "n"   'org-timer-set-timer
+				 "N"   'toggle-timer-bell
+				 )
+
+;; normal state mappings
+  (keymap+ evil-normal-state-map
+					 "w"    'evil-forward-WORD-begin
+					 "b"    'evil-backward-WORD-begin
+					 "W"    'evil-forward-word-begin
+					 "B"    'evil-backward-word-begin
+        	 "A"    'evil-insert-line
+        	 "I"    'evil-append
+					 "\\"   'isearch-forward-word
+					 "gu"   'evil-upcase
+					 "gU"   'evil-downcase
+					 "C-m"  'spacemacs/evil-insert-line-below
+					 "C-."  'call-last-kbd-macro ; q for evil-record-macro
+					 "C-o"  'evil-jump-forward
+					 "C-i"  'evil-jump-backward
+					 "C-p"  'evil-paste-pop-next
+					 "C-j"  'evil-join
+					 "C-n"  'electric-newline-and-maybe-indent ;; split-line
+					 "C-k"  'spacemacs/evil-smart-doc-lookup
+					 "C-;"  'evil-indent
+					 "("    'evil-backward-paragraph
+					 ")"    'evil-forward-paragraph
+					 "t"    'evil-find-char
+					 "T"    'evil-find-char-backward
+					 "f"    'vile-goto-word-by-first-letter
+					 "F"    'vile-goto-word-by-first-letter-backward
+					 "a"    'evil-first-non-blank
+					 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
+					 "J"    'vile-scroll-down
+					 "K"    'vile-scroll-up
+					 "ga"   'evil-digit-argument-or-evil-beginning-of-line
+					 "gl"   'evil-end-of-line
+					 "gi"   'evil-append-line
+					 "gI"   'evil-insert-resume
+					 "gd"   'racket-jump-visit-definition
+	 				 "gm"   'evil-jump-item
+					 "gn"   'spacemacs/enter-ahs-forward
+					 "gN"   'spacemacs/enter-ahs-backward
+					 "B"    'evil-backward-word-begin
+					 "ZQ"   'kill-current-buffer
+					 "zm"    nil ;; disable close-folds function
+					 "zr"    nil ;; disable open-folds function
+					 "gy"    nil ;; disable spacemacs/copy-and-comment-lines
+					 "gr"   'racket-run
+					 "gR"   'racket-run-and-switch-to-repl
+					 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
+					 "~e"   'evil-forward-word-end ; temp key
+					 "E"     "~eI" ; append at end of word
+					 "~E"   'evil-forward-WORD-end ; temp key
+					 "e"     "~EI" ; append at end of WORD
+	 				 ;; "mc"   "ciw <C-r> 0 <ESC>" ;; how to pass e.g., <C-r> or <ESC> to string macro?
+           ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
+           ;; "M-f"  'vile-goto-word-by-first-letter
+           ;; "M-o"  'find-file-at-point
+           ;; "M-F"  'vile-goto-word-by-first-letter-backward
+           ;; "g"    "cg"
+           ;; "ZZ"   'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
+					 ;; "gr"   'cider-load-buffer
+					 ;; "gR"   'spacemacs/cider-send-buffer-in-repl-and-focus
+					 ;; "M-d"   nil ;; disable kill-word
+					 ;; "C-d"   'evil-scroll-down
+					 ;; "C-u"   'evil-scroll-up
+					 ;; "C-f"   nil
+					 ;; "C-b"   nil
+					 ;; "C-p"   'replace-from-register-0
+					 )
+
+;; visual-state mappings
+(keymap+ evil-visual-state-map
+				 "("  'evil-backward-paragraph
+				 ")"  'evil-forward-paragraph
+				 )
+
+;; glabal mappings
+(keymap+ "M-t"          'toggle-timer-bell
+         "<C-return>"   'shell
+         "<C-S-return>" 'eshell
+         ;; "C-x C-e"      'eval-print-last-sexp
+         ;; "C-x C-u"      'eval-last-sexp
+         ;; "M-+"          'text-scale-increase ;; error somewhy
+         ;; "M--"          'text-scale-decrease ;; error somewhy
+         ;; "M-="          (cmd (text-scale-set 0)) ;; error somewhy
+				 )
 
 
 ;; ;; Global key bindings
@@ -1109,156 +1242,50 @@ you should place your code here."
 (define-key key-translation-map (kbd "<f1>") (kbd "•")) ;; example
 
 
-;; visual-state mappings
-(define-key evil-visual-state-map (kbd "(") 'evil-backward-paragraph)
-(define-key evil-visual-state-map (kbd ")") 'evil-forward-paragraph)
 
 
-;; normal-state mappings
+
 ;; TODO: map gb -> toggle-between-this-buffer-and-most-recently-visited-buffer (write this function)
-(define-key evil-normal-state-map (kbd "\\") 'isearch-forward-word)
-(define-key evil-normal-state-map (kbd "C-m") 'spacemacs/evil-insert-line-below)
-(define-key evil-normal-state-map (kbd "C-.") 'call-last-kbd-macro) ; q for evil-record-macro
-(define-key evil-normal-state-map (kbd "C-o") 'evil-jump-forward)
-(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-backward)
-(define-key evil-normal-state-map (kbd "C-p") 'evil-paste-pop-next)
-(define-key evil-normal-state-map (kbd "C-j") 'evil-join)
-(define-key evil-normal-state-map (kbd "C-n") 'electric-newline-and-maybe-indent) ;; split-line
-(define-key evil-normal-state-map (kbd "C-k") 'spacemacs/evil-smart-doc-lookup)
-(define-key evil-normal-state-map (kbd "C-,") 'evil-indent)
-(define-key evil-normal-state-map (kbd "(") 'evil-backward-paragraph)
-(define-key evil-normal-state-map (kbd ")") 'evil-forward-paragraph)
-(define-key evil-normal-state-map (kbd "t") 'evil-find-char)
-(define-key evil-normal-state-map (kbd "T") 'evil-find-char-backward)
-(define-key evil-normal-state-map (kbd "f") 'vile-goto-word-by-first-letter)
-(define-key evil-normal-state-map (kbd "F") 'vile-goto-word-by-first-letter-backward)
-(define-key evil-normal-state-map (kbd "A") 'evil-insert-line)
-(define-key evil-normal-state-map (kbd "I") 'evil-append)
-(define-key evil-normal-state-map (kbd "a") 'evil-first-non-blank)
-(define-key evil-normal-state-map (kbd "gh") 'evil-first-non-blank) ;; for use with d,c,y, etc
-(define-key evil-normal-state-map (kbd "J") 'vile-scroll-down)
-(define-key evil-normal-state-map (kbd "K") 'vile-scroll-up)
-(define-key evil-normal-state-map (kbd "ga") 'evil-digit-argument-or-evil-beginning-of-line)
-(define-key evil-normal-state-map (kbd "gl") 'evil-end-of-line)
-(define-key evil-normal-state-map (kbd "gi") 'evil-append-line)
-(define-key evil-normal-state-map (kbd "gI") 'evil-insert-resume)
-(define-key evil-normal-state-map (kbd "gd") 'racket-xp-visit-definition)
-(define-key evil-normal-state-map (kbd "gm") 'evil-jump-item)
-(define-key evil-normal-state-map (kbd "gn") 'spacemacs/enter-ahs-forward)
-(define-key evil-normal-state-map (kbd "gN") 'spacemacs/enter-ahs-backward)
-(define-key evil-normal-state-map (kbd "B") 'evil-backward-word-begin)
-(define-key evil-normal-state-map (kbd "ZQ") 'kill-current-buffer)
-(define-key evil-normal-state-map (kbd "w") 'evil-forward-WORD-begin)
-(define-key evil-normal-state-map (kbd "b") 'evil-backward-WORD-begin)
-(define-key evil-normal-state-map (kbd "W") 'evil-forward-word-begin)
-(define-key evil-normal-state-map (kbd "B") 'evil-backward-word-begin)
-;; (define-key evil-normal-state-map (kbd "e") (cmd (evil-forward-WORD-end) (evil-append 1)))
-(define-key evil-normal-state-map (kbd "zm") nil) ;; disable close-folds function
-(define-key evil-normal-state-map (kbd "zr") nil) ;; disable open-folds function
-(define-key evil-normal-state-map (kbd "gy") nil) ;; disable spacemacs/copy-and-comment-lines
-;; (define-key magit-diff-mode-map (kbd "C-k") 'magit-file-untrack) ; binding map not loaded until magit is called
-;; (define-key magit-diff-mode-map (kbd "K") 'vile-scroll-up) ; binding map not loaded until magit is called
-;; (define-key magit-log-mode-map (kbd "C-k") 'magit-file-untrack) ; binding map not loaded until magit is called
-;; (define-key magit-log-mode-map (kbd "K") 'vile-scroll-up) ; binding map not loaded until magit is called
 
-
-(spacemacs/set-leader-keys (kbd "tw") 'toggle-word-wrap) ; shadow toggle-whitespace
-(spacemacs/set-leader-keys (kbd "tp") 'smartparens-mode)
-(spacemacs/set-leader-keys (kbd "tP") 'pretty-mode)
-(spacemacs/set-leader-keys (kbd "Tt") 'nil) ; disable toggle-tool-bar
-(spacemacs/set-leader-keys (kbd "fS") 'write-file) ; "save as"
-(spacemacs/set-leader-keys (kbd "fA") 'evil-write-all) ; save all open files
-(spacemacs/set-leader-keys (kbd "bh") 'previous-buffer)
-(spacemacs/set-leader-keys (kbd "bl") 'next-buffer)
-(spacemacs/set-leader-keys (kbd "gm") 'magit-dispatch) ; replace obsolete magit-dispatch-popup
-(spacemacs/set-leader-keys (kbd "wg") 'enlarge-window)
-(spacemacs/set-leader-keys (kbd "wG") 'shrink-window)
-(spacemacs/set-leader-keys (kbd "hsd") 'evil-ex-show-digraphs)
-(spacemacs/set-leader-keys (kbd "ic") 'insert-char)
-(spacemacs/set-leader-keys (kbd "ts") 'prettify-symbols-mode)
-(spacemacs/set-leader-keys (kbd "kw") 'evil-window-up) ; shadow evil-lisp-state-wrap binding
-(spacemacs/set-leader-keys (kbd "jw") 'evil-window-down) ; shadow evil-avy-goto-word-or-subword-1
-(spacemacs/set-leader-keys (kbd "hw") 'helm-man-woman)
-(spacemacs/set-leader-keys (kbd "bH") 'spacemacs/home)
-(spacemacs/set-leader-keys (kbd "'") 'spacemacs/shell-pop-ansi-term)
-(spacemacs/set-leader-keys (kbd "\"") 'ansi-term)
-
-;; (define-key evil-normal-state-map (kbd "gr") 'cider-load-buffer)
-;; (define-key evil-normal-state-map (kbd "gR") 'spacemacs/cider-send-buffer-in-repl-and-focus)
-;; (define-key evil-normal-state-map (kbd "M-d") nil) ;; disable kill-word
-;; (define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-down)
-;; (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-;; (define-key evil-normal-state-map (kbd "C-f") nil)
-;; (define-key evil-normal-state-map (kbd "C-b") nil)
-;; (define-key evil-normal-state-map (kbd "C-p") 'replace-from-register-0)
-
-;; (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
-
-(define-key evil-normal-state-map (kbd "gr") 'racket-run)
-(define-key evil-normal-state-map (kbd "gR") 'racket-run-and-switch-to-repl)
 
 (setq-default evil-escape-key-sequence "fd") ;; key sequence to go from insert to normal mode, etc
 (define-key evil-insert-state-map (kbd "C-n") 'evil-force-normal-state)
 (setq-default evil-escape-delay 0.3)
-(define-prefix-command 'cm) ;; prefix key map, "cac's m"
-(define-key evil-normal-state-map (kbd "m") cm)
-(define-key cm (kbd "a") 'evil-set-marker)
-(define-key cm (kbd "m") 'evil-scroll-line-to-center)
-(define-key cm (kbd "t") 'evil-scroll-line-to-top)
-(define-key cm (kbd "b") 'evil-scroll-line-to-bottom)
-(define-key cm (kbd "e") 'vile-backward-paragraph)
-(define-key cm (kbd "r") 'vile-forward-paragraph)
-(define-key cm (kbd "n") 'org-timer-set-timer)
-(define-key cm (kbd "N") 'toggle-timer-bell)
-
-  (defun keymap+ (&rest bindings)
-    (if (stringp (car bindings))
-        (progn (setq k (pop bindings) f (pop bindings))
-               (while k
-                 (global-set-key (kbd k) f)
-                 (setq k (pop bindings) f (pop bindings))))
-      (let ((m (pop bindings)))
-        (setq k (pop bindings) f (pop bindings))
-        (while k
-          (define-key m (kbd k) f)
-          (setq k (pop bindings) f (pop bindings))))))
-
-  (keymap+
-           ;; "C-x C-e"      'eval-print-last-sexp
-           ;; "C-x C-u"      'eval-last-sexp
-           ;; "M-+"          'text-scale-increase
-           ;; "M--"          'text-scale-decrease
-           ;; "M-="          (cmd (text-scale-set 0))
-           ;; "<C-return>"   'shell
-           ;; "<C-S-return>" 'eshell
-					 )
-  ;; (keymap+ evil-normal-state-local-map  ;; TODO: cf spacemacs/set-leader-keys
-  ;;          "SPC t n" 'line-numbers-on ;; overrides spacemacs/toggle-line-numbers
-  ;;          "SPC T z" 'nics-counsel-load-theme)
-  (keymap+ evil-normal-state-map
-           ;; "e" (cmd (evil-forward-WORD-end) (evil-append 1))
-           ;; "E" (cmd (evil-forward-word-end) (evil-append 1))
-           "SPC T c" 'try-theme ;; mnemonic: "try colors"
-           ;; "ZZ"  'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
-           ;; "M-f" 'vile-goto-word-by-first-letter
-           "M-o" 'find-file-at-point
-           "M-F" 'vile-goto-word-by-first-letter-backward
-           ;; "g"    cg
-					 )
-	;; (keymap+ cg
-  ;;          ;; "r" 'save-buffer
-  ;;          ;; "c" 'spacemacs/kill-this-buffer
-  ;;          ;; "T" 'centaur-tabs-backward
-  ;;          ;; "t" 'centaur-tabs-forward
-  ;;          ;; "b" 'toggle-cursor-blink
-  ;;          "T" 'open-typed-racket-docs)
 
 
-;; vimscript-like commands
-;; (define-key evil-normal-state-map (kbd "mdoi") (lambda ))
-;; (define-key evil-normal-state-map (kbd "mdoi") (cmd (evil-ex-normal (line-beginning-position) (line-end-position) "T(T(dt(gmldt)")))
-;; (define-key evil-normal-state-map (kbd "mdoo") (cmd (evil-ex-normal (line-beginning-position) (line-end-position) "T(T(dt(gmdt)")))
 
+
+(define-key evil-motion-state-map (kbd "C-,") 'evil-repeat-find-char-reverse) ;; why does setting "C-," in evil-normal-state-map make this not work when this is set as "C-,"? They're two different maps…
+
+
+	;; ;; magit mode mappings
+	;; (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
+	;; (add-hook 'magit-log-mode-hook
+	;; 		  (lambda ()
+	;; 			(map (lambda (pair)
+	;; 				   (define-key magit-log-mode-map (kdb (car pair)) (cdr pair))))
+	;; 			'(
+	;; 			  ("K" . 'vile-scroll-up)
+	;; 			  ;; ("C-k" . 'magit-file-untrack)
+	;; 			  )))
+	;; (add-hook 'magit-diff-mode-hook
+	;; 		  (lambda ()
+	;; 			(map (lambda (pair)
+	;; 				   (define-key magit-diff-mode-map (kdb (car pair)) (cdr pair))))
+	;; 			'(
+	;; 			  ("K" . 'vile-scroll-up)
+	;; 			  ;; ("C-k" . 'magit-file-untrack)
+	;; 			  )))
+
+
+
+;; ;; ;; vimscript-like commands
+;; ;; 	TODO: write vile motion-command similar to "ds(" that, when executed inside a set of parenthesis, deletes everything only in the immediately-surrounding set of parentheses. Just like with evil-surround, have two options,one of which keeps the surrounding parentheses themselves, and one of which discards them. This is very helpful when you add e.g. a cast statement like
+;; ;;     	(cast (hash-ref stockmap stock) (Listof Candle))
+	;; ;; except it's a longer expression that wraps to the next line, and you later want to remove the surrounding expression. See how evil-surround finds out what comprises the outer expr. Basically, the logic is to keep going forward, "collecting" parenthesis, until you have one more right-parentheses than left ones, and then delete that one. And do the same thing for left-parens, but while going backward.
+	;; ;; `[(` and `])` move to previous/next paren, resp., even if it's on a different line.
+
+;; 	 (define-key evil-normal-state-map (kbd "mdl") "2[(dt(%ldf)") ;; doesn't work for above example, nor for multi-line exprs
 
 
 

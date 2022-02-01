@@ -140,10 +140,6 @@ that P denotes (since most built-in functions are anonymous).
    -----------------------------------------------------------------
 */
 
-/* NOTE: ';w' (focus top window) does not reset the scroll target to the default one. Need to implement new
-function for that. */
-
-
 // Migrate settings from 0.9.74 to 1.0 (change e.g. map to api.map)
 const {
     aceVimMap,
