@@ -167,7 +167,6 @@ set $ibrowser google-chrome-stable
 
     # kill focused window
     bindsym Ctrl+Shift+q kill
-    bindsym Ctrl+Shift+w kill
 
     # start program launcher
     bindsym $mod+o exec $menu
@@ -179,7 +178,7 @@ set $ibrowser google-chrome-stable
     bindsym $mod+i exec $ibrowser
 
     # start firefox
-    bindsym $mod+Shift+i exec firefox
+    bindsym $alt+$mod+i exec firefox
 
     # screenshot using shotgun
     bindsym $alt+$mod+s exec shotgun
@@ -187,36 +186,33 @@ set $ibrowser google-chrome-stable
     # close all google-chrome-stable windows
     bindsym $alt+$mod+g [class="^Google-chrome$"] kill
 
-    # start encryptr
-    bindsym $mod+e exec encryptr
+    # start password manager
+    bindsym $mod+p exec encryptr
 
-    # start wallpaper program
-    bindsym $mod+n exec nitrogen
+    # start wallpaper manager
+    bindsym $mod+w exec nitrogen
 
     # start vlc w/ playlist
-		bindsym $alt+$mod+v exec vlc --loop --random --no-repeat
+		bindsym $mod+v exec vlc --loop --random --no-repeat
     bindsym $alt+$mod+7 exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
 		bindsym $alt+$mod+8 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
 		bindsym $alt+$mod+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
 		bindsym $alt+$mod+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
 
     # kill vlc
-		bindsym $alt+$mod+f exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
+		bindsym $alt+$mod+v exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
 
     # volume control
     bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
 
     # start kcolorchooser
-    bindsym $mod+z exec kcolorchooser
-
-    # start stretchly
-    # bindsym $mod+Shift+b exec stretchly
+    bindsym $mod+c exec kcolorchooser
 
     # start charmap
-    bindsym $mod+c exec gucharmap
+    bindsym $alt+$mod+c exec gucharmap
 
-    # # start kakoune
-    # bindsym $alt+$mod+k exec kak
+    # start stretchly
+    bindsym $alt+$mod+b exec stretchly
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
@@ -244,11 +240,11 @@ set $ibrowser google-chrome-stable
     # # redshift commands:
 		# former version broke, out of the blue. now all lines give same color, except 'redshift -x'
     bindsym Ctrl+Shift+1 exec redshift -x # redshift off
-    bindsym Ctrl+Shift+2 exec "command redshift -x && redshift -l 32.96:-96.67 -t 6500:2500"
-    # bindsym Ctrl+Shift+3 exec "command redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 4000"
-    # bindsym Ctrl+Shift+4 exec "command redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3500"
-    # bindsym Ctrl+Shift+5 exec "command redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3000"
-    # bindsym Ctrl+Shift+6 exec "command redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 2500"
+    bindsym Ctrl+Shift+2 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500
+    # bindsym Ctrl+Shift+3 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 4000
+    # bindsym Ctrl+Shift+4 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3500
+    # bindsym Ctrl+Shift+5 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3000
+    # bindsym Ctrl+Shift+6 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 2500
 
 
     # # # adjust brightness -- need sudo permission
@@ -317,7 +313,7 @@ set $ibrowser google-chrome-stable
     workspace 3 output DP-1-3 HDMI-1 eDP-1
     workspace 4 output DP-1-3 HDMI-1 eDP-1
     workspace 5 output DP-1-3 HDMI-1 eDP-1
-    workspace 6 output HDMI-1 DP-1-3 eDP-1
+    workspace 6 output DP-1-3 HDMI-1 eDP-1
     workspace 7 output HDMI-1 DP-1-3 eDP-1
     workspace 8 output HDMI-1 DP-1-3 eDP-1
     workspace 9 output HDMI-1 DP-1-3 eDP-1
