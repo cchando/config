@@ -50,7 +50,7 @@ that P denotes (since most built-in functions are anonymous).
 			IMPLICITLY REMAPPED. E.g., if you `map('E', 'j')`, then g0, inadvertently, will now scroll
 			down 99 lines. Horrible of horrible.
 			    Strangely, the same does not hold for merely unmapping E/R, i.e., doing so does not affect
-					g0/g$.
+					g0/g$. Go figure.
 			    Also, unlike with keybindings, which are set sequentially, the settings are automatically
 			set before all keybindings, regardless of the line number on which the settings are set.
 			Thus, setting `settings.digitForRepeat = false` will break e.g., g0/g$ since they are
@@ -77,7 +77,7 @@ that P denotes (since most built-in functions are anonymous).
             unmap('on');
 
 				OK, so we try sequence 2:
-            map('tt', 'on'); // !!! 'tt' is prefixed by (and thus shadows) 't', which we're attempting to use below
+            map('tt', 'on'); // !!! 'tt' is prefixed by (and thus will be shadowed by) 't', which we're attempting to use below
             unmap('on');
 
      	      map('o', 't'); // !!! 't' no longer mapped to anything, so neither is 'o'
@@ -125,22 +125,12 @@ that P denotes (since most built-in functions are anonymous).
 				   binding being implemented as 99R, and thus breaking if either digitForRepeat is disabled (hidden
 					 dependency #1), or if R is remapped anywhere (hidden dependency #2).
 
-
 ---- END OF WARNING ----
 */
 
 
-/*
-   -----------------------------------------------------------------
-   -----------------------------------------------------------------
-   -----------------------------------------------------------------
-   Start my settings:
-   -----------------------------------------------------------------
-   -----------------------------------------------------------------
-   -----------------------------------------------------------------
-*/
 
-// Migrate settings from 0.9.74 to 1.0 (change e.g. map to api.map)
+// Migrate settings from 0.9.74 to 1.0 (change e.g., map to api.map)
 const {
     aceVimMap,
     mapkey,
@@ -524,59 +514,45 @@ unmap('ssp'); // search StartPage for term in clipboard
 mapkey('sw', '#8Search Wikipedia', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "wi"});
 });
-
 mapkey('sg', '#8Search with Google', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "go"});
 });
-
 mapkey('sy', '#8Search Youtube', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "yo"});
 });
-
 mapkey('sa', '#8Search Amazon', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "az"});
 });
-
 mapkey('sm', '#8Search MELPA', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "mel"});
 });
-
 mapkey('sh', '#8Search Hoogle', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "ha"});
 });
-
 mapkey('sp', '#8Search Pursuit', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "pur"});
 });
-
 mapkey('so', '#8Search Stack Overflow', function() {
   Front.openOmnibar({type: "SearchEngine", extra: "so"});
 });
-
 mapkey('se', '#8Search Stack Exchange', function() {
 		Front.openOmnibar({type: "SearchEngine", extra: "se"});
 });
-
 mapkey('ss', '#8Search with StartPage', function() {
   Front.openOmnibar({type: "SearchEngine", extra: "sp"});
 });
-
 mapkey('sn', '#8Search Nixpkgs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "nix"});
 });
-
 mapkey('st', '#8Search Typed-Racket Docs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "tr"});
 });
-
 mapkey('sr', '#8Search Racket Docs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "ra"});
 });
-
 mapkey('sl', '#8Find Nix revision for given package', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "laz"});
 });
-
 mapkey('su', '#8Search GitHub', function() {
   Front.openOmnibar({type: "SearchEngine", extra: "hub"});
 });
@@ -590,9 +566,6 @@ mapkey('su', '#8Search GitHub', function() {
 	----------------------------------------------------------------------
 	----------------------------------------------------------------------
 */
-
-
-
 addSearchAlias('laz', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
 addSearchAlias('nix', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
 addSearchAlias('mel', 'melpa', 'https://melpa.org/#/?q=');

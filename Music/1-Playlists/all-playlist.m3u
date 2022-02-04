@@ -1,16 +1,10 @@
 #EXTM3U
-#EXTINF:244,Art of the Industry (Rarity IS Industry).mp3
-file:///home/cameron/Music/nick%20anime%20playlist/Art%20of%20the%20Industry%20(Rarity%20IS%20Industry).mp3
-#EXTINF:200,Dr. Dissonance - Night Shift at the Cupcake Factory
-file:///home/cameron/Music/nick%20anime%20playlist/dr-8a.%20Dissonance/unknwnalbm-9b/nightshifttthcupckfactry-0y.mp3
-#EXTINF:92,Mushroom Hill Zone Act 1
-file:///home/cameron/Music/nick%20anime%20playlist/unknwnartst-8b/unknwnalbm-9b/mushrmhillzonact1-8y.mp3
 #EXTINF:285,Fields 2 - THE DOG Island OST.mp3
 file:///home/cameron/Music/Fields%202%20-%20THE%20DOG%20Island%20OST.mp3
-#EXTINF:1005,Is This... Lastation - Super Neptunia RPG OST Extended.mp3
-file:///home/cameron/Music/Neptunia/Extended/Is%20This...%20Lastation%20-%20Super%20Neptunia%20RPG%20OST%20Extended.mp3
 #EXTINF:5575,A NEWBIE HOPE [Extended] Cyberdimension Neptunia OST.mp3
 file:///home/cameron/Music/Neptunia/Extended/A%20NEWBIE%20HOPE%20[Extended]%20Cyberdimension%20Neptunia%20OST.mp3
+#EXTINF:1005,Is This... Lastation - Super Neptunia RPG OST Extended.mp3
+file:///home/cameron/Music/Neptunia/Extended/Is%20This...%20Lastation%20-%20Super%20Neptunia%20RPG%20OST%20Extended.mp3
 #EXTINF:4201,NARF BANG THEORY [Extended] Cyberdimension Neptunia OST.mp3
 file:///home/cameron/Music/Neptunia/Extended/NARF%20BANG%20THEORY%20[Extended]%20Cyberdimension%20Neptunia%20OST.mp3
 #EXTINF:3600,Megadimension Neptunia VII -  Let's Bake The Cookie! [Extended][HD].mp3
@@ -61,8 +55,6 @@ file:///home/cameron/Music/Spyro/Good/Spyro_the_Dragon_Soundtrack_-_End_Credits.
 file:///home/cameron/Music/Spyro/Good/Spyro_the_Dragon_Soundtrack_-_Metalhead.mp3
 #EXTINF:346,Mariko Nanba - Gaia Temple Music
 file:///home/cameron/Music/nick-focus-playlist/marknanb-8a/soncunlshdsoundtrck-8i/19gaitemplmusc-8a.mp3
-#EXTINF:140,Adabat_Day_-_Sonic_Unleashed_OST.mp3
-file:///home/cameron/Music/Sonic-Unleashed-OST/Adabat_Day_-_Sonic_Unleashed_OST.mp3
 #EXTINF:151,Adabat_Night_-_Sonic_Unleashed_OST.mp3
 file:///home/cameron/Music/Sonic-Unleashed-OST/Adabat_Night_-_Sonic_Unleashed_OST.mp3
 #EXTINF:198,Apotos_Day_-_Sonic_Unleashed_OST.mp3
@@ -109,14 +101,14 @@ file:///home/cameron/Music/Sonic_Generations_-_Full_OST/Mushroom_Hill_Zone_-_Son
 file:///home/cameron/Music/Sonic_Generations_-_Full_OST/Savannah_Citadel_-_Day_-_Sonic_Unleashed.mp3
 #EXTINF:139,Speed_Highway_-_Act_1_Run_Through_the_Speed_Highway_-_Cash_Cash_RMX_-_Sonic_Generations.mp3
 file:///home/cameron/Music/Sonic_Generations_-_Full_OST/Speed_Highway_-_Act_1_Run_Through_the_Speed_Highway_-_Cash_Cash_RMX_-_Sonic_Generations.mp3
+#EXTINF:92,Mushroom Hill Zone Act 1
+file:///home/cameron/Music/nick%20anime%20playlist/unknwnartst-8b/unknwnalbm-9b/mushrmhillzonact1-8y.mp3
 #EXTINF:243,DANGANRONPA_OST_-_-1-04-_Beautiful_Days.mp3
 file:///home/cameron/Music/Danganronpa/DANGANRONPA_OST_-_-1-04-_Beautiful_Days.mp3
 #EXTINF:245,DANGANRONPA_OST_-_-1-08-_BOX_15.mp3
 file:///home/cameron/Music/Danganronpa/DANGANRONPA_OST_-_-1-08-_BOX_15.mp3
 #EXTINF:302,Kodocha - Love Me Deeper
 file:///home/cameron/Music/Kodocha%20OST%20Love%20Me%20Deeper.mp3
-#EXTINF:308,Koji Kondo, Hajime Wakai - Staff Credits
-file:///home/cameron/Music/nick-focus-playlist/kojkondhajmwak-8j/starfox64orignlsoundtrck-9q/39staffcredts-0b.mp3
 #EXTINF:50,Paul Leonard - Morgan - Psyched
 file:///home/cameron/Music/nick-focus-playlist/paulleonrdmorgn-1i/limtlssorignlmotnpictrsound-8z/02psychd-8b.mp3
 #EXTINF:89,Paul Leonard - Morgan - Limitless
@@ -363,3 +355,9 @@ file:///home/cameron/Music/Rabi%20Ribi/Rabi-Ribi_OST_-_Kitty_Attack.mp3
 file:///home/cameron/Music/Rabi%20Ribi/Rabi_Ribi_-_Spectral_Cave_-_OST.mp3
 #EXTINF:133,DANGANRONPA_OST_-_-1-02-_Dangan_Ronpa.mp3
 file:///home/cameron/Music/Danganronpa/DANGANRONPA_OST_-_-1-02-_Dangan_Ronpa.mp3
+#EXTINF:308,Koji Kondo, Hajime Wakai - Staff Credits
+file:///home/cameron/Music/nick-focus-playlist/kojkondhajmwak-8j/starfox64orignlsoundtrck-9q/39staffcredts-0b.mp3
+#EXTINF:244,Art of the Industry (Rarity IS Industry).mp3
+file:///home/cameron/Music/nick%20anime%20playlist/Art%20of%20the%20Industry%20(Rarity%20IS%20Industry).mp3
+#EXTINF:200,Dr. Dissonance - Night Shift at the Cupcake Factory
+file:///home/cameron/Music/nick%20anime%20playlist/dr-8a.%20Dissonance/unknwnalbm-9b/nightshifttthcupckfactry-0y.mp3
