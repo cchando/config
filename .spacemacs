@@ -1112,126 +1112,134 @@ you should place your code here."
         (setq k (pop bindings) f (pop bindings))))))
 
 ;; leader keys mappings
-(keymap+ evil-normal-state-local-map ;; c.f. (spacemacs/set-leader-keys (kdb "⍵") 'f)
-				 "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
-				 "SPC t p"   'smartparens-mode
-				 "SPC t P"   'pretty-mode
-				 "SPC T t"   'nil ; disable toggle-tool-bar
-				 "SPC f S"   'write-file ; "save as"
-				 "SPC f A"   'evil-write-all ; save all open files
-				 "SPC b h"   'previous-buffer
-				 "SPC b l"   'next-buffer
-				 "SPC g m"   'magit-dispatch ; replace obsolete magit-dispatch-popup
-				 "SPC w g"   'enlarge-window
-				 "SPC w G"   'shrink-window
-				 "SPC h sd"   'evil-ex-show-digraphs
-				 "SPC i c"   'insert-char
-				 "SPC t s"   'prettify-symbols-mode
-				 "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
-				 "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
-				 "SPC h w"   'helm-man-woman
-				 "SPC b H"   'spacemacs/home
-				 "SPC '"   'spacemacs/shell-pop-ansi-term
-				 ;; "SPC \""   'ansi-term
-				 )
+(keymap+ evil-normal-state-local-map ;; c.f. (spacemacs/set-leader-keys (kdb "⍵") 'f) instead of <SPC ⍵>
+		 "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
+		 "SPC t p"   'smartparens-mode
+		 "SPC t P"   'pretty-mode
+		 "SPC T t"   'nil ; disable toggle-tool-bar
+		 "SPC f S"   'write-file ; "save as"
+		 "SPC f A"   'evil-write-all ; save all open files
+		 "SPC b h"   'previous-buffer
+		 "SPC b l"   'next-buffer
+		 "SPC g m"   'magit-dispatch ; replace obsolete magit-dispatch-popup
+		 "SPC w g"   'enlarge-window
+		 "SPC w G"   'shrink-window
+		 "SPC i c"   'insert-char
+		 "SPC t s"   'prettify-symbols-mode
+		 "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
+		 "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
+		 "SPC h w"   'helm-man-woman
+		 "SPC b H"   'spacemacs/home
+		 "SPC H k"  'describe-key
+		 "SPC H f"  'describe-function
+		 "SPC H c"  'describe-char
+		 "SPC H K"  'describe-key-briefly
+		 "SPC H v"  'describe-variable
+		 "SPC '"   'spacemacs/shell-pop-ansi-term
+		 ;; "SPC '"   'spacemacs/shell-pop-eshell ; no aliases
+		 ;; "SPC '"   'spacemacs/shell-pop-shell ; no highlighting
+		 ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
+		 )
 
 ;; user prefix mappings
 (define-prefix-command 'cm) ;; prefix key map, "cac's m"
 (define-key evil-normal-state-map (kbd "m") cm)
 (keymap+ cm
-				 "a"   'evil-set-marker
-				 "m"   'evil-scroll-line-to-center
-				 "t"   'evil-scroll-line-to-top
-				 "b"   'evil-scroll-line-to-bottom
-				 "e"   'vile-backward-paragraph
-				 "r"   'vile-forward-paragraph
-				 "n"   'org-timer-set-timer
-				 "N"   'toggle-timer-bell
-				 )
+		 "a"   'evil-set-marker
+		 "m"   'evil-scroll-line-to-center
+		 "t"   'evil-scroll-line-to-top
+		 "b"   'evil-scroll-line-to-bottom
+		 "e"   'vile-backward-paragraph
+		 "r"   'vile-forward-paragraph
+		 "n"   'org-timer-set-timer
+		 "N"   'toggle-timer-bell
+		 )
 
 ;; normal state mappings
-  (keymap+ evil-normal-state-map
-					 "w"    'evil-forward-WORD-begin
-					 "b"    'evil-backward-WORD-begin
-					 "W"    'evil-forward-word-begin
-					 "B"    'evil-backward-word-begin
-        	 "A"    'evil-insert-line
-        	 "I"    'evil-append
-					 "\\"   'isearch-forward-word
-					 "gu"   'evil-upcase
-					 "gU"   'evil-downcase
-					 "C-m"  'spacemacs/evil-insert-line-below
-					 "C-."  'call-last-kbd-macro ; q for evil-record-macro
-					 "C-o"  'evil-jump-forward
-					 "C-i"  'evil-jump-backward
-					 "C-p"  'evil-paste-pop-next
-					 "C-j"  'evil-join
-					 "C-n"  'electric-newline-and-maybe-indent ;; split-line
-					 "C-k"  'spacemacs/evil-smart-doc-lookup
-					 "C-;"  'evil-indent
-					 "("    'evil-backward-paragraph
-					 ")"    'evil-forward-paragraph
-					 "t"    'evil-find-char
-					 "T"    'evil-find-char-backward
-					 "f"    'vile-goto-word-by-first-letter
-					 "F"    'vile-goto-word-by-first-letter-backward
-					 "a"    'evil-first-non-blank
-					 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
-					 "J"    'vile-scroll-down
-					 "K"    'vile-scroll-up
-					 "ga"   'evil-digit-argument-or-evil-beginning-of-line
-					 "gl"   'evil-end-of-line
-					 "gi"   'evil-append-line
-					 "gI"   'evil-insert-resume
-					 "gd"   'racket-jump-visit-definition
-	 				 "gm"   'evil-jump-item
-					 "gn"   'spacemacs/enter-ahs-forward
-					 "gN"   'spacemacs/enter-ahs-backward
-					 "B"    'evil-backward-word-begin
-					 "ZQ"   'kill-current-buffer
-					 "zm"    nil ;; disable close-folds function
-					 "zr"    nil ;; disable open-folds function
-					 "gy"    nil ;; disable spacemacs/copy-and-comment-lines
-					 "gr"   'racket-run
-					 "gR"   'racket-run-and-switch-to-repl
-					 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
-					 "~e"   'evil-forward-word-end ; temp key
-					 "E"     "~eI" ; append at end of word
-					 "~E"   'evil-forward-WORD-end ; temp key
-					 "e"     "~EI" ; append at end of WORD
-	 				 ;; "mc"   "ciw <C-r> 0 <ESC>" ;; how to pass e.g., <C-r> or <ESC> to string macro?
-           ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
-           ;; "M-f"  'vile-goto-word-by-first-letter
-           ;; "M-o"  'find-file-at-point
-           ;; "M-F"  'vile-goto-word-by-first-letter-backward
-           ;; "g"    "cg"
-           ;; "ZZ"   'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
-					 ;; "gr"   'cider-load-buffer
-					 ;; "gR"   'spacemacs/cider-send-buffer-in-repl-and-focus
-					 ;; "M-d"   nil ;; disable kill-word
-					 ;; "C-d"   'evil-scroll-down
-					 ;; "C-u"   'evil-scroll-up
-					 ;; "C-f"   nil
-					 ;; "C-b"   nil
-					 ;; "C-p"   'replace-from-register-0
-					 )
+(keymap+ evil-normal-state-map
+		 ;; "C-d"    'vile-scroll-down
+		 ;; "C-u"    'vile-scroll-up
+		 ;; "C-f"    'evil-scroll-down
+		 ;; "C-b"    'evil-scroll-up
+		 "J"    'vile-scroll-down
+		 "K"    'vile-scroll-up ;; often gets overridden by other modes due to non-determinism
+		 "w"    'evil-forward-WORD-begin
+		 "b"    'evil-backward-WORD-begin
+		 "W"    'evil-forward-word-begin
+		 "B"    'evil-backward-word-begin
+		 "A"    'evil-insert-line
+		 "I"    'evil-append
+		 "go"   'isearch-forward-word
+		 "gu"   'evil-upcase
+		 "gU"   'evil-downcase
+		 "("    'evil-backward-paragraph
+		 ")"    'evil-forward-paragraph
+		 "t"    'evil-find-char
+		 "T"    'evil-find-char-backward
+		 "f"    'vile-goto-word-by-first-letter
+		 "F"    'vile-goto-word-by-first-letter-backward
+		 "a"    'evil-first-non-blank
+		 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
+		 "ga"   'evil-digit-argument-or-evil-beginning-of-line
+		 "gl"   'evil-end-of-line
+		 "gi"   'evil-append-line
+		 "gI"   'evil-insert-resume
+		 "gd"   'racket-jump-visit-definition
+		 "gm"   'evil-jump-item
+		 "gn"   'spacemacs/enter-ahs-forward
+		 "gN"   'spacemacs/enter-ahs-backward
+		 "ZQ"   'kill-current-buffer
+		 "gr"   'racket-run
+		 "gR"   'racket-run-and-switch-to-repl
+		 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
+		 "~e"   'evil-forward-word-end ; temp key
+		 "E"     "~eI" ; append at end of word
+		 "~E"   'evil-forward-WORD-end ; temp key
+		 "e"     "~EI" ; append at end of WORD
+		 "C-h"  'previous-buffer
+		 "C-l"  'next-buffer
+		 "C-m"  'spacemacs/evil-insert-line-below
+		 "C-."  'call-last-kbd-macro ; q for evil-record-macro
+		 "C-o"  'evil-jump-forward
+		 "C-i"  'evil-jump-backward
+		 "C-p"  'evil-paste-pop-next
+		 "C-j"  'evil-join
+		 "C-n"  'electric-newline-and-maybe-indent ;; split-line
+		 "C-k"  'spacemacs/evil-smart-doc-lookup
+		 "C-;"  'evil-indent
+		 "zm"    nil ;; disable close-folds function
+		 "zr"    nil ;; disable open-folds function
+		 "gy"    nil ;; disable spacemacs/copy-and-comment-lines
+		 ;; "mc"   "ciw <C-r> 0 <ESC>" ;; how to pass e.g., <C-r> or <ESC> to string macro?
+		 ;; "M-o"  'find-file-at-point
+		 ;; "g"    "cg"
+		 ;; "ZZ"   'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
+		 ;; "gr"   'cider-load-buffer
+		 ;; "gR"   'spacemacs/cider-send-buffer-in-repl-and-focus
+		 ;; "M-d"   nil ;; disable kill-word
+		 ;; "C-d"   'evil-scroll-down
+		 ;; "C-u"   'evil-scroll-up
+		 ;; "C-f"   nil
+		 ;; "C-b"   nil
+		 ;; "C-p"   'replace-from-register-0
+		 )
 
 ;; visual-state mappings
 (keymap+ evil-visual-state-map
-				 "("  'evil-backward-paragraph
-				 ")"  'evil-forward-paragraph
-				 )
+		 "("  'evil-backward-paragraph
+		 ")"  'evil-forward-paragraph
+		 )
 
-;; glabal mappings
+;; global mappings
 (keymap+ "M-t"          'toggle-timer-bell
-         "<C-return>"   'shell
-         "<C-S-return>" 'eshell
-         ;; "C-x C-e"      'eval-print-last-sexp
-         ;; "C-x C-u"      'eval-last-sexp
-         ;; "M-+"          'text-scale-increase ;; error somewhy
-         ;; "M--"          'text-scale-decrease ;; error somewhy
-         ;; "M-="          (cmd (text-scale-set 0)) ;; error somewhy
-				 )
+		 "<C-return>"   'shell
+		 "<C-S-return>" 'eshell
+		 ;; "C-x C-e"      'eval-print-last-sexp
+		 ;; "C-x C-u"      'eval-last-sexp
+		 ;; "M-+"          'text-scale-increase ;; error somewhy
+		 ;; "M--"          'text-scale-decrease ;; error somewhy
+		 ;; "M-="          (cmd (text-scale-set 0)) ;; error somewhy
+		 )
 
 
 ;; ;; Global key bindings

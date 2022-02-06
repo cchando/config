@@ -256,33 +256,29 @@ unmap('gxT');
 
 map('u', '<<');
 unmap('<<');
-
 map('d', '>>');
 unmap('>>');
-
 mapkey('U', '#3Move current tab to leftmost', function() {
     RUNTIME('moveTab', {
         step: -99
     });
 });
-
 mapkey('D', '#3Move current tab to rightmost', function() {
     RUNTIME('moveTab', {
         step: 99
     });
 });
 
-
-
-
 /* open links */
 map('F', 'cf'); // open multiple links in new tabs
 unmap('cf');
 
-map('<', '[['); // prev
+// map(',', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
+// map('<', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 unmap('[[');
 
-map('>', ']]'); // next
+// map('.', ']]'); // next -- replace w/ Vimium's prevPage/nextPage
+// map('>', ']]'); // next -- replace w/ Vimium's prevPage/nextPage
 unmap(']]');
 
 
@@ -330,7 +326,7 @@ cmap('<Ctrl-q>', '<Ctrl-d>'); // remove selected item from bookmarks
 
 
 /* visual mode mappings */
-vmap('mm', 'zz'); // center the display
+vmap('M', 'zz'); // center the display
 vmap('J', '<Ctrl-d>'); // scroll 20 lines down
 vmap('K', '<Ctrl-u>'); // scroll 20 lines up
 
@@ -399,6 +395,7 @@ aceVimMap('B', '_b', 'normal'); // swap
   -----------------------------------------------------------------
 */
 // map('<Ctrl-Alt-m>', '<Alt-m>'); // mute current tab  -- use Vimium C's muteTab variants
+unmap('<Alt-m>');
 
 
 // !!! must unmap this BEFORE any new bindings prefixed by ':'
@@ -438,16 +435,15 @@ unmap('g#');
 map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
 unmap('<Ctrl-6>');
 
-// prefix must be available
-
-// map(':D', 'ab'); // add bookmark
-// unmap('B'); // if not using for "add bookmark"—back in tab history (H)
 map('B', 'ab'); // add bookmark
 unmap('ab'); // add bookmark
 
+map('yu', 'yy'); // copy url of current tab
+unmap('yy');
+
 // map('I', 'i'); // enter insert mode
-// unmap('I'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
-// unmap('i'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
+unmap('I'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
+unmap('i'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
 
 
 
@@ -462,17 +458,16 @@ unmap('ab'); // add bookmark
 	-----------------------------------------------------------------
 */
 unmap('_'); // unmap all temp bindings, which are prefixed with '_'
-unmap(','); // prefix key
+// unmap('.'); // repeat last command
+// unmap(','); // prefix key
 // unmap(';'); // was prefix key, now tab-back-and-forth
 unmap('gx'); // prefix key
 // replace '<' and '>' w/ Vimium's goPrevious / goNext
 unmap('<');
 unmap('>');
-unmap('.'); // repeat last command
 iunmap(':'); // disable emoji suggestions
-unmap("'"); // replaced by Vimium C's since it can use '' to toggle prev mark
-unmap('m'); // replaced by Vimium C's since the popup looks better and we can use '' with it
-unmap('af');
+unmap("'"); // replaced by Vimium C's marks since it can use '' to toggle prev mark
+unmap('m'); // replaced by Vimium C's marks since the popup looks better and we can use '' with it
 unmap(';m'); // mouse-out last element (?)
 unmap('go'); // replaced by 'o'
 unmap('cs'); // change scroll target (use 'e' for scroll hints instead)
@@ -485,9 +480,10 @@ unmap('@'); // Vimium_C toggleMuteTab all
 unmap('$'); // Vimium_C toggleMuteTab other
 unmap('ya'); // copy a link url to the clipboard
 unmap('om'); // open url from marks
+unmap('af');
 unmap('gf'); // redundant since <Shift> after 'f' does the same thing
 unmap('C'); // same as 'gf' above
-unmap('A'); // not sure if mapped; Vimium_C joinTabs
+unmap('A'); // not sure if mapped
 unmap('M'); // not sure if mapped; Vimium_C toggleMuteTab all
 unmap('<Ctrl-d>');
 unmap('<Ctrl-u>');

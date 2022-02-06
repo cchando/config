@@ -1,17 +1,16 @@
 ! -*- coding: utf-8 -*-
-! 2014-09-10
-! make caps lock do escape
-! from http://xahlee.info/
+
+! use xev(1) to get keycode for given key press (interactive)
 
 ! here's the default setting on special keys:
-!  xmodmap -pke | grep -P '(Control|Super|Alt|Menu)'
+!  xmodmap -pke | grep '(Control|Super|Alt|Menu)'
 
-! keycode  37 = Control_L NoSymbol Control_L
-! keycode  64 = Alt_L Meta_L Alt_L Meta_L
-! keycode 105 = Control_R NoSymbol Control_R
-! keycode 108 = Alt_R Meta_R Alt_R Meta_R
-! keycode 133 = Super_L NoSymbol Super_L
-! keycode 134 = Super_R NoSymbol Super_R
+! keycode  37 = Control_L NoSymbol Control_L  -- left Control key
+! keycode  64 = Alt_L Meta_L Alt_L Meta_L     -- left Alt key
+! keycode 105 = Control_R NoSymbol Control_R  -- right Control key
+! keycode 108 = Alt_R Meta_R Alt_R Meta_R     -- right Alt key
+! keycode 133 = Super_L NoSymbol Super_L      -- left Meta (logo) key
+! keycode 134 = Super_R NoSymbol Super_R      -- right Meta (logo) key
 ! keycode 135 = Menu NoSymbol Menu
 ! keycode 147 = XF86MenuKB NoSymbol XF86MenuKB
 ! keycode 204 = NoSymbol Alt_L NoSymbol Alt_L
@@ -25,10 +24,5 @@ clear Lock
 ! bind CapsLock to Escape
 keycode 66 = Escape NoSymbol Escape
 
-! ! bind CapsLock to Alt_L
-! keycode 66 = Alt_L Meta_L Alt_L Meta_L
-
-
-
-
-
+! bind Esc to CapsLock
+keycode 9 = Caps_Lock NoSymbol Caps_Lock
