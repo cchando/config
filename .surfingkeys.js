@@ -336,7 +336,7 @@ cmap('<Ctrl-m>', '<Esc>');
 cmap('<Ctrl-g>', '<Esc>');
 cmap('<Ctrl-u>', '<Ctrl-,>');
 cmap('<Ctrl-i>', '<Ctrl-.>');
-/* ctrl apparently cannot be used for vim visual mode (not documented!) */
+/* ctrl apparently cannot be used for vim visual mode commands -- always exits (not documented!) */
 // aceVimMap('fd', '<Esc>', 'insert');
 // aceVimMap('fd', '<Esc>', 'visual');
 /* ctrl has to be used for vim normal mode (not documented!) */
@@ -365,24 +365,15 @@ map('<Ctrl-g>', '<Esc>');
 
 
 /* ACE-Vim-Map bindings */
-// move to beginning/end of line
+// NOTE: these don't allow for temp keys since ['_', '~', etc., aren't automatically shadowed by creating mappings that prefix them], and [all these already have the regular vim mappings], and there is no 'unmap' command. Instead of prefix shadowing, the prefix mappings just don't take effect.
 aceVimMap('gl', '$', 'normal'); // line end
 aceVimMap('gh', '^', 'normal'); // first non-whitespace on line
-aceVimMap('a', '^', 'normal'); // first non-whitespace on line
 aceVimMap('ga', '0', 'normal'); // line beginning
 aceVimMap('gi', 'A', 'normal'); // insert at line end
-// aceVimMap('ygh', 'y^', 'normal'); // yank to first char on line
-// aceVimMap('ygl', 'y$', 'normal'); // yank to line end
-/* word boundaries */
-aceVimMap('e', 'ea', 'normal');
-aceVimMap('_W', 'W', 'normal'); // temp key
-aceVimMap('_w', 'w', 'normal'); // temp key
-aceVimMap('_B', 'B', 'normal'); // temp key
-aceVimMap('_b', 'b', 'normal'); // temp key
-aceVimMap('w', '_W', 'normal'); // swap
-aceVimMap('W', '_w', 'normal'); // swap
-aceVimMap('b', '_B', 'normal'); // swap
-aceVimMap('B', '_b', 'normal'); // swap
+aceVimMap('ygh', 'y^', 'normal'); // yank to first char on line
+aceVimMap('ygl', 'y$', 'normal'); // yank to line end
+aceVimMap('A', 'I', 'normal'); // insert at line start
+aceVimMap('I', 'a', 'normal'); // insert right of cursor
 
 
 
@@ -431,9 +422,10 @@ unmap(';s');
 map('gH', 'g#'); // open current url without the hash fragment  // shadows default "go to history" binding
 unmap('g#');
 
-// !!! must put this AFTER all mappings based on ';'-prefixed default bindings
-map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
-unmap('<Ctrl-6>');
+map(':u', ';U'); // edit current url w/ vim editor and reload
+unmap(';U');
+map(':U', ';u'); // edit current url w/ vim editor and open in new tab
+unmap(';u');
 
 map('B', 'ab'); // add bookmark
 unmap('ab'); // add bookmark
@@ -445,7 +437,9 @@ unmap('yy');
 unmap('I'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
 unmap('i'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
 
-
+// !!! must put this AFTER all mappings based on ';'-prefixed default bindings
+map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
+unmap('<Ctrl-6>');
 
 
 
