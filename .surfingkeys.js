@@ -326,7 +326,7 @@ cmap('<Ctrl-q>', '<Ctrl-d>'); // remove selected item from bookmarks
 
 
 /* visual mode mappings */
-vmap('M', 'zz'); // center the display
+vmap('mm', 'zz'); // center the display
 vmap('J', '<Ctrl-d>'); // scroll 20 lines down
 vmap('K', '<Ctrl-u>'); // scroll 20 lines up
 
@@ -460,8 +460,8 @@ unmap('gx'); // prefix key
 unmap('<');
 unmap('>');
 iunmap(':'); // disable emoji suggestions
-unmap("'"); // replaced by Vimium C's marks since it can use '' to toggle prev mark
 unmap('m'); // replaced by Vimium C's marks since the popup looks better and we can use '' with it
+unmap("'"); // replaced by Vimium C's marks since it can use '' to toggle prev mark
 unmap(';m'); // mouse-out last element (?)
 unmap('go'); // replaced by 'o'
 unmap('cs'); // change scroll target (use 'e' for scroll hints instead)

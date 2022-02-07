@@ -278,6 +278,7 @@
 	["alb" "↤ "]
 	["adb" "↧ "]
   ["b" "``"]  ; back-ticks
+  [";" "`"]  ; back-tick
 
 
 	;; Mathematics
@@ -415,6 +416,7 @@
   ["cr" "}"] ; curly
   ["jd" "%"] ; J divide
   ["jc" "NB. "] ; J comment
+  ["nb" "NB. "] ; J comment
 
 ])
 
@@ -575,7 +577,6 @@
 	["ste" "⌺"]
   ["sten" "⌺"]
   ["rec" "∇"] ; recurse
-  ["re" "∇"] ; recurse
 	["ac" "⍝ "] ; APL comment
 
 ])

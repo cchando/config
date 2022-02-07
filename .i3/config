@@ -20,14 +20,11 @@ exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[
 # disable mouse stick:
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 
-# set up monitors correctly:
-# exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
-# exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; i3-msg workspace 1 ; i3-msg workspace 6; exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
-
-#bindsym $mod+n exec i3-msg move workspace 1 ; i3-msg workspace 1
-
-
-exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/rainy-birds.jpg
+exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-1.png
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-night.png
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-square.png
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-bedroom.png
+# exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/rainy-birds.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-white-HD.jpg
@@ -76,7 +73,7 @@ new_float none
 
 ### Variables
 #
-# Logo key is Mod4. <Alt> is Mod1.
+# Logo key is Mod4. <Alt> is Mod1. For complete list of such keysyms, use xev(1).
 set $mod Mod4
 set $alt Mod1
 # Home row direction keys, like vim
@@ -146,16 +143,16 @@ set $ibrowser google-chrome-stable
 # Basics:
 #
 		# set up dual screens correctly
-    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/rainy-birds.jpg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/WallpaperStudio10-176516-1280x800.jpg" # rain w/ birds
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/vlad-squares-green.jpg"
+    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-1.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-square.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-night.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/basilicom.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/WallpaperStudio10-176516-1280x800.jpg" # rain w/ birds
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/Nep-sleepover.jpg"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad-squares-green.jpg"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
-    # bindsym $mod+Shift+p exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; i3-msg workspace 1 ; i3-msg workspace 6 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg"
-		# bindsym $mod+Shift+p "exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; exec i3-msg workspace 3 ; exec i3-msg workspace 1"
-    # bindsym $mod+Shift+p exec xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 && i3-msg workspace 3 && i3-msg workspace 1
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg"
 
     bindsym $mod+bracketleft exec xrandr --output HDMI-1 --rotate normal
 
@@ -328,25 +325,25 @@ set $ibrowser google-chrome-stable
     bindsym $mod+semicolon workspace back_and_forth
 
     # switch to workspace
-		  # choosing Ctrl over $mod b/c it works w/ both left/right side of keyboard
-		bindsym Ctrl+1 workspace 1
-		bindsym Ctrl+2 workspace 2
-    bindsym Ctrl+3 workspace 3
-    bindsym Ctrl+4 workspace 4
-    bindsym Ctrl+5 workspace 5
-    bindsym Ctrl+6 workspace 6
+		  # assumes that Alt_R ← Super_L
+		bindsym $mod+1 workspace 1
+		bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
     bindsym $mod+7 workspace 7
     bindsym $mod+8 workspace 8
     bindsym $mod+9 workspace 9
-    bindsym Ctrl+0 workspace 10
+    bindsym $mod+0 workspace 10
     # move focused container to workspace
-		  # different for left/right side of keyboard for ease
-    bindsym $alt+Ctrl+1 move container to workspace 1
-    bindsym $alt+Ctrl+2 move container to workspace 2
-    bindsym $alt+Ctrl+3 move container to workspace 3
-    bindsym $alt+Ctrl+4 move container to workspace 4
-    bindsym $alt+Ctrl+5 move container to workspace 5
-    bindsym $alt+Ctrl+6 move container to workspace 6
+		  # assumes that Alt_R ← Super_L
+    bindsym $alt+$mod+1 move container to workspace 1
+    bindsym $alt+$mod+2 move container to workspace 2
+    bindsym $alt+$mod+3 move container to workspace 3
+    bindsym $alt+$mod+4 move container to workspace 4
+    bindsym $alt+$mod+5 move container to workspace 5
+    bindsym $alt+$mod+6 move container to workspace 6
     bindsym $alt+$mod+7 move container to workspace 7
     bindsym $alt+$mod+8 move container to workspace 8
     bindsym $alt+$mod+9 move container to workspace 9

@@ -106,9 +106,14 @@ alias ydlpv='youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(playlist)s/
 alias uni='command cp /etc/nixos/configuration.nix  /home/cameron/.configuration.nix'
 alias uvi='mv -f ~/Downloads/vimium-options.json  ~/.vimium-options.json'
 alias uvc='mv -f ~/Downloads/vimium_c*.json  ~/.vimium_c.json'
-alias name='echo -e "NAME = Title, CLASS = (Instance, Class):\n" && xprop | grep "WM_CLASS|^WM_NAME|WM_WINDOW_ROLE"' # get [instance, class, title] of whatever window we click on next
-alias uxm='xmodmap ~/.Xmodmap'  # update xmodmap
-alias getkey='xev'
+alias wname='echo -e "NAME = Title, CLASS = (Instance, Class):\n" && xprop | grep "WM_CLASS|^WM_NAME|WM_WINDOW_ROLE"' # get [instance, class, title] of whatever window we click on next
+alias xmu='xmodmap ~/.Xmodmap'  # update xmodmap
+alias updatekeys='xmodmap ~/.Xmodmap'  # update xmodmap
+alias xmf='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
+alias safekeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
+alias defaultkeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
+alias xme='xmodmap -pke > ~/.Xmodmap-fallback-tmp'  # export current keymap to holding file
+alias xmexportpermanent='xmodmap -pke > ~/.Xmodmap-fallback'  # export current keymap to holding file
 alias key='xev'
 alias wifioff='sudo rfkill block all'
 alias wifion='sudo rfkill unblock all'
@@ -190,4 +195,3 @@ alias tag="git tag"
 PS1='[\u@\h \W]\$ '
 
 stty -ixon
-
