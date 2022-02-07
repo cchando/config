@@ -27,10 +27,13 @@
 ! keycode 204 = NoSymbol Alt_L NoSymbol Alt_L
 ! keycode 206 = NoSymbol Super_L NoSymbol Super_L
 
-
+! clear relevant modifier maps
 clear Lock
 clear Control
 clear Mod4
+
+
+
 
 ! CapsLock ← Escape:
 keycode 66 = Escape NoSymbol Escape
@@ -38,20 +41,15 @@ keycode 66 = Escape NoSymbol Escape
 ! Esc ← CapsLock:
 keycode 9 = Caps_Lock NoSymbol Caps_Lock
 
+! Ctrl_R ← Logo Key
+keycode 105 = Super_R NoSymbol Super_R
 
 
-! bind control-right ← right logo key:
-  ! Ctrl_R ← Logo Key
-  keycode 105 = Super_R NoSymbol Super_R
-  ! Ctrl_L ← Ctrl_L
-  keycode 37 = Control_L NoSymbol Control_L
-  ! Logo Key ← Logo Key
-  keycode 133 = Super_L NoSymbol Super_L
 
-! add "Caps Lock" label to the physical Escape key, which we've mapped to the Caps_Lock keysym (above)
+
+
+! update relevant modifier maps
 add Lock = Caps_Lock
-
-
 add Control = Control_L Control_R
 add Mod4 = Super_L Super_R
 
