@@ -433,10 +433,6 @@ unmap('ab'); // add bookmark
 map('yu', 'yy'); // copy url of current tab
 unmap('yy');
 
-// map('I', 'i'); // enter insert mode
-unmap('I'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
-unmap('i'); // override with Vimium_C insertMode; go to edit box -- doesn't work well yet
-
 // !!! must put this AFTER all mappings based on ';'-prefixed default bindings
 map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
 unmap('<Ctrl-6>');
