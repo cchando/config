@@ -11,6 +11,20 @@ on the user the burden of keeping track of the order in which values are set.
 Also it forces the user to map e.g. p to P rather than explicitly to the named function
 that P denotes (since most built-in functions are anonymous).
 
+      All 'removeSearchAlias' calls should happen BEFORE any mappings that reference any
+			search alias, e.g.,
+			      mapkey('sg', '#8Search with Google', function() {
+			      Front.openOmnibar({type: "SearchEngine", extra: "sP"});
+			      });
+
+						'removeSearchAlias('s')'; // remove default Stack Overflow search alias
+
+						addSearchAlias('sP', 'startpage', 'https://startpage.com/sp/search/?q=');
+			The above code inadvertently removes the 'sP' search alias, as 's' -- a prefix of
+			'sP', is removed. Note that this happens even though the 'sP' alias is added after
+			the removal of 's'. As long as 's' is removed after some reference to 'sP', the 'sP'
+			alias will not be available. Exceptionally strange.
+
     - Remapping is automatic and not even optional: there is no "noremap" command (yikes).
       E.g., we must set P=p *before* setting p=k if we want P to be the original p.
 
@@ -132,26 +146,26 @@ that P denotes (since most built-in functions are anonymous).
 
 // Migrate settings from 0.9.74 to 1.0 (change e.g., map to api.map)
 const {
-    aceVimMap,
-    mapkey,
-    imap,
-    imapkey,
-    iunmap,
+		aceVimMap,
+		mapkey,
+		imap,
+		imapkey,
+		iunmap,
 		vmap,
-    getClickableElements,
-    vmapkey,
-    map,
-    unmap,
-    cmap,
-    addSearchAlias,
-    removeSearchAlias,
-    tabOpenLink,
-    readText,
-    Clipboard,
-    Front,
-    Hints,
-    Visual,
-    RUNTIME
+		getClickableElements,
+		vmapkey,
+		map,
+		unmap,
+		cmap,
+		addSearchAlias,
+		removeSearchAlias,
+		tabOpenLink,
+		readText,
+		Clipboard,
+		Front,
+		Hints,
+		Visual,
+		RUNTIME
 } = api;
 
 
@@ -184,7 +198,7 @@ unmap('u');
 map('ga', ':feedkeys 99h', 0, "#3Go to the first tab");
 // map('ga', 'g0'); // !!! must come BEFORE unmapping 'E', since 'g0' depends on 'E'; ga is now focus leftmost tab
 unmap('g0');
-map('gl', ':feedkeys 99l', 0, "#3Go to the first tab");
+map('gl', ':feedkeys 99l', 0, "#3Go to the last tab");
 // map('gl', 'g$'); // !!! must come BEFORE unmapping 'R', since 'g$' depends on 'R'; gl is now focus rightmost tab
 unmap('g$');
 map('h', 'E'); // tab left
@@ -385,6 +399,11 @@ aceVimMap('I', 'a', 'normal'); // insert right of cursor
   Misc
   -----------------------------------------------------------------
 */
+// map('_r', 'r'); // reload page
+// unmap('r');
+// map('rr', '_r'); // reload page
+// map('ra', ':feedkeys 99_r', 0, "#4Reload all pages"); // doesn't work somewhy
+
 // map('<Ctrl-Alt-m>', '<Alt-m>'); // mute current tab  -- use Vimium C's muteTab variants
 unmap('<Alt-m>');
 
@@ -409,6 +428,9 @@ unmap(';fs');
 
 map('E', 'cs'); // change scroll target
 unmap('cs');
+
+map('ZL', 'ZR'); // open last browser session
+unmap('ZR'); // 'R' is being used by Vimium C for 'reload hard', thus the 'R' keypress in 'ZR' is shadowed by Vimium C
 
 map('cd', ';j'); // close Downloads bar
 unmap(';j');
@@ -448,8 +470,8 @@ unmap('<Ctrl-6>');
 	-----------------------------------------------------------------
 */
 unmap('_'); // unmap all temp bindings, which are prefixed with '_'
-// unmap('.'); // repeat last command
-// unmap(','); // prefix key
+unmap('.'); // repeat last command
+unmap(','); // prefix key
 // unmap(';'); // was prefix key, now tab-back-and-forth
 unmap('gx'); // prefix key
 // replace '<' and '>' w/ Vimium's goPrevious / goNext
@@ -490,58 +512,20 @@ unmap('ssp'); // search StartPage for term in clipboard
 
 
 
+
 /*
-	----------------------------------------------------------------------
-	----------------------------------------------------------------------
-	Search alias keybindings:
-	----------------------------------------------------------------------
-	----------------------------------------------------------------------
+  Remove default search aliases
+  WARNING: !!! Broadly speaking, all 'removeSearchAlias' calls must happen BEFORE any 'mapkey' calls
+           that reference a search alias. See the top warning block for details.
 */
-mapkey('sw', '#8Search Wikipedia', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "wi"});
-});
-mapkey('sg', '#8Search with Google', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "go"});
-});
-mapkey('sy', '#8Search Youtube', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "yo"});
-});
-mapkey('sa', '#8Search Amazon', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "az"});
-});
-mapkey('sm', '#8Search MELPA', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "mel"});
-});
-mapkey('sh', '#8Search Hoogle', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "ha"});
-});
-mapkey('sp', '#8Search Pursuit', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "pur"});
-});
-mapkey('so', '#8Search Stack Overflow', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "so"});
-});
-mapkey('se', '#8Search Stack Exchange', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "se"});
-});
-mapkey('ss', '#8Search with StartPage', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "sp"});
-});
-mapkey('sn', '#8Search Nixpkgs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "nix"});
-});
-mapkey('st', '#8Search Typed-Racket Docs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "tr"});
-});
-mapkey('sr', '#8Search Racket Docs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "ra"});
-});
-mapkey('sl', '#8Find Nix revision for given package', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "laz"});
-});
-mapkey('su', '#8Search GitHub', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "hub"});
-});
+removeSearchAlias('g'); // google
+removeSearchAlias('d'); // duck-duck-go
+removeSearchAlias('b'); // baidu
+removeSearchAlias('e'); // wikipedia
+removeSearchAlias('w'); // bing
+removeSearchAlias('s'); // stack overflow
+removeSearchAlias('h'); // github
+removeSearchAlias('y'); // youtube
 
 
 
@@ -551,23 +535,93 @@ mapkey('su', '#8Search GitHub', function() {
 	Search alias definitions:
 	----------------------------------------------------------------------
 	----------------------------------------------------------------------
+
+	Include "_" suffix in each search alias name to prevent e.g., inadvertently doing a
+	NixPkgs search when doing "T nix pills" to search through our open tabs for a tab that
+	includes "nix pills" in the page name. Otherwise said key sequence would bring up
+	"nixpkgs> pills" in the omnibar. If we name the search alias "nIX" instead of "nix", then
+	we'd have to do "T nix_ pills" to get the same accidental result, so we can now safely type
+	"T nix pills".
 */
-addSearchAlias('laz', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
-addSearchAlias('nix', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
-addSearchAlias('mel', 'melpa', 'https://melpa.org/#/?q=');
-addSearchAlias('ra', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
-addSearchAlias('tr', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
-addSearchAlias('ha', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
-addSearchAlias('pur', 'pursuit', 'https://pursuit.purescript.org/search?q=');
-addSearchAlias('sp', 'startpage', 'https://startpage.com/sp/search/?q=');
-addSearchAlias('gm', 'google maps', 'https://www.google.com/maps?q=');
-addSearchAlias('so', 'stack overflow', 'http://stackoverflow.com/search?q=');
-addSearchAlias('se', 'stack exchange', 'http://stackexchange.com/search?q=');
-addSearchAlias('az', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
-addSearchAlias('go', 'google', 'https://www.google.com/search?q=');
-addSearchAlias('yo', 'youtube', 'https://www.youtube.com/results?search_query=');
-addSearchAlias('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/');
-addSearchAlias('hub', 'github', 'https://github.com/search?q=');
+addSearchAlias('laz_', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
+addSearchAlias('nix_', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
+addSearchAlias('mel_', 'melpa', 'https://melpa.org/#/?q=');
+addSearchAlias('ra_', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
+addSearchAlias('tr_', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
+addSearchAlias('ha_', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
+addSearchAlias('pur_', 'pursuit', 'https://pursuit.purescript.org/search?q=');
+addSearchAlias('sp_', 'startpage', 'https://startpage.com/sp/search/?q=');
+addSearchAlias('so_', 'stack overflow', 'http://stackoverflow.com/search?q=');
+addSearchAlias('se_', 'stack exchange', 'http://stackexchange.com/search?q=');
+addSearchAlias('az_', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
+addSearchAlias('go_', 'google', 'https://www.google.com/search?q=');
+addSearchAlias('gm_', 'google maps', 'https://www.google.com/maps?q=');
+addSearchAlias('yo_', 'youtube', 'https://www.youtube.com/results?search_query=');
+addSearchAlias('wi_', 'wikipedia', 'https://en.wikipedia.org/wiki/');
+addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
+
+
+
+/*
+	----------------------------------------------------------------------
+	----------------------------------------------------------------------
+	Search alias keybindings:
+	----------------------------------------------------------------------
+	----------------------------------------------------------------------
+*/
+/*
+	We want our search mappings to prefix our search aliases (e.g., the 'w' in 'sw' prefixes the "wI"
+	alias used by the 'sw' command) in order to shadow the "search selected (i.e., clipboard text)
+	with search alias 'wI'" that would otherwise be *implicitly* created upon defining said search alias.
+*/
+mapkey('sw', '#8Search Wikipedia', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "wi_"});
+});
+mapkey('sg', '#8Search with Google', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "go_"});
+});
+mapkey('sy', '#8Search Youtube', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "yo_"});
+});
+mapkey('sa', '#8Search Amazon', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "az_"});
+});
+mapkey('sm', '#8Search MELPA', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "mel_"});
+});
+mapkey('sM', '#8Search with Google Maps', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "gm_"});
+});
+mapkey('sh', '#8Search Hoogle', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "ha_"});
+});
+mapkey('sp', '#8Search Pursuit', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "pur_"});
+});
+mapkey('so', '#8Search Stack Overflow', function() {
+  Front.openOmnibar({type: "SearchEngine", extra: "so_"});
+});
+mapkey('se', '#8Search Stack Exchange', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "se_"});
+});
+mapkey('ss', '#8Search with StartPage', function() {
+  Front.openOmnibar({type: "SearchEngine", extra: "sp_"});
+});
+mapkey('sn', '#8Search Nixpkgs', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "nix_"});
+});
+mapkey('st', '#8Search Typed-Racket Docs', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "tr_"});
+});
+mapkey('sr', '#8Search Racket Docs', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "ra_"});
+});
+mapkey('sl', '#8Find Nix revision for given package', function() {
+   Front.openOmnibar({type: "SearchEngine", extra: "laz_"});
+});
+mapkey('su', '#8Search GitHub', function() {
+  Front.openOmnibar({type: "SearchEngine", extra: "hub_"});
+});
 
 
 
