@@ -86,20 +86,13 @@ that P denotes (since most built-in functions are anonymous).
          sequence 1:
      	      map('o', 't'); // !!! 'o' prefixes (and thus shadows) 'on', which we're attempting to use below
 		        unmap('t');
-
             map('tt', 'on'); // !!! 'on' no longer mapped to anything, so neither is 'tt'
             unmap('on');
 
 				OK, so we try sequence 2:
-            map('tt', 'on'); // !!! 'tt' is prefixed by (and thus will be shadowed by) 't', which we're attempting to use below
+            map('tt', 'on'); // !!! 'tt' is prefixed by (and thus will be shadowed by) 't', so this mapping never takes effect
             unmap('on');
-
-     	      map('o', 't'); // !!! 't' no longer mapped to anything, so neither is 'o'
-		        unmap('t');  // !!! also, if we unmap 't' (which isn't necessary, since depending on the line
-						             // number at which we unmap it, it's either already been shadowed by 'tt', or it
-												 // will be later) out of habit (usually it's good to unmap each default binding
-												 // after it's been mapped to), the unmapping will also inadvertently unmap 'tt',
-												 // 't' prefixes it.
+     	      map('o', 't');
            E.g., 't' and 'tt' bindings cannot logically both exist. The prefix always covers (shadows) the
 				longer one that's prefixed by it——each time we set try to set 'tt', it won't be accessible if there
 				was any existing 't' binding, because that 't' binding will still be in effect afterward, thus
@@ -430,7 +423,7 @@ map('E', 'cs'); // change scroll target
 unmap('cs');
 
 map('ZL', 'ZR'); // open last browser session
-unmap('ZR'); // 'R' is being used by Vimium C for 'reload hard', thus the 'R' keypress in 'ZR' is shadowed by Vimium C
+unmap('ZR'); // 'R' is being used by Vimium C for 'reload hard', and thus shadows the 'R' keypress in 'ZR'
 
 map('cd', ';j'); // close Downloads bar
 unmap(';j');
