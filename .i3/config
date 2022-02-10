@@ -21,7 +21,7 @@ exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 
 exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-1.png
-# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-night.png
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-2.png
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-square.png
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-bedroom.png
 # exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/rainy-birds.jpg
@@ -144,12 +144,12 @@ set $ibrowser google-chrome-stable
 #
 		# set up dual screens correctly
     bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-1.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-2.png"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-square.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-night.png"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/basilicom.png"
+    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/Nep-sleepover.jpg"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/WallpaperStudio10-176516-1280x800.jpg" # rain w/ birds
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/Nep-sleepover.jpg"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad-squares-green.jpg"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
     # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg"

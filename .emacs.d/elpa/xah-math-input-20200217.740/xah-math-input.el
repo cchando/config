@@ -94,6 +94,7 @@
 (xah-math-input--add-to-hash
  '(
 
+	 ;; AsciiDoc
 	 ["t" "    "] ; 4 spaces
 	 ["hh" "== "] ; header — adoc
 	 ["hhh" "=== "] ; header — adoc
@@ -108,6 +109,7 @@
 	 ["lit" "...."] ; literal block -> adoc use
 	 ["esc" "+++"] ; escaped -> adoc use
 	 ["ESC" "++++++"] ; escaped -> adoc use
+
 
 	 ["s" "[] "] ; square
 	 ["c" "{} "] ; curly
@@ -128,7 +130,8 @@
 	 ["un" "_"]
 	 ["pl" "+"]
 	 ["eq" "="]
-	 ["bs" "\\"]
+	 ["bs" "\\"] ; single backslash
+	 ["mc" "/**/"] ; multi-line comment
 
 	 ;; personal
 	 ["cam" "Cameron"]
@@ -144,8 +147,11 @@
 	 ["ur" "you are"]
 	 ["btw" "by the way"]
 	 ["ie" "i.e., "]
+	 ["Ie" "I.e., "]
 	 ["eg" "e.g., "]
+	 ["Eg" "E.g., "]
 	 ["cf" "c.f. "]
+	 ["Cf" "C.f. "]
 
 	 ["cant" "can't "]
 	 ["didnt" "didn't "]
@@ -279,6 +285,7 @@
 	["adb" "↧ "]
   ["b" "``"]  ; back-ticks
   [";" "`"]  ; back-tick
+  [":" "`"]  ; back-tick
 
 
 	;; Mathematics
@@ -621,7 +628,6 @@
 	;; ["rem" "remove "]
 	;; ["rems" "remove* "]
 	;; ["rem*" "remove* "]
-	[":" "cons "]
 	["fll" "foldl "]
 	["frr" "foldr "]
 	;; ["eq" "equal? "]
