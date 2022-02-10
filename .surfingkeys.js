@@ -162,8 +162,6 @@ const {
 } = api;
 
 
-
-
 /* scrolling */
 map('(', 'h'); // scroll left
 unmap('h');
@@ -210,7 +208,11 @@ unmap('oh');
 // complex dependencies block
 map('_t', 't'); // temp key
 unmap('t'); // make '⍵_' space available; said space will be preemtively shadowed otherwise
-map('tt', 'on'); // open new tab
+// map('tt', 'on'); // open new tab
+mapkey('tt', '#3Open newtab', function() {
+    tabOpenLink("file:///home/cameron/.blank");
+});
+
 unmap('on');
 map('o', '_t'); // !!! must happen BEFORE any mappings using 'o_';  open omnibar  // 't', 'go'
 unmap('_t');
@@ -308,7 +310,8 @@ mapkey('gE', '#12Open Chrome extension shortcuts', function() {
 // map('gE', 'ge');
 // unmap('ge');
 
-mapkey('gS', '#12Open Chrome settings', function() {
+map('gS', 'gs'); // view page source
+mapkey('gs', '#12Open Chrome settings', function() {
     tabOpenLink("chrome://settings");
 });
 
@@ -325,8 +328,7 @@ mapkey('<Ctrl-/>', '#12Open Vimium C Settings', function() {
 /* omnibar controls */
 cmap('<Ctrl-j>', '<Tab>'); // up
 cmap('<Ctrl-k>', '<Shift-Tab>'); // down
-cmap('<Ctrl-q>', '<Ctrl-d>'); // remove selected item from bookmarks
-
+// cmap('<Ctrl-q>', '<Ctrl-d>'); // remove selected item from bookmarks
 // cmap('<Ctrl-[>', '<Shift-,>'); // page up
 // cmap('<Ctrl-]>', '<Shift-.>'); // page down
 
@@ -341,6 +343,7 @@ vmap('K', '<Ctrl-u>'); // scroll 20 lines up
 /* map keys for setting escape */
 cmap('<Ctrl-m>', '<Esc>');
 cmap('<Ctrl-g>', '<Esc>');
+
 cmap('<Ctrl-u>', '<Ctrl-,>');
 cmap('<Ctrl-i>', '<Ctrl-.>');
 /* ctrl apparently cannot be used for vim visual mode commands -- always exits (not documented!) */
@@ -377,10 +380,9 @@ aceVimMap('gl', '$', 'normal'); // line end
 aceVimMap('gh', '^', 'normal'); // first non-whitespace on line
 aceVimMap('ga', '0', 'normal'); // line beginning
 aceVimMap('gi', 'A', 'normal'); // insert at line end
-aceVimMap('ygh', 'y^', 'normal'); // yank to first char on line
+aceVimMap('ygh', 'y^', 'normal'); // yank to first non-whitespace char on line
+aceVimMap('yga', 'y0', 'normal'); // yank to beginning of line
 aceVimMap('ygl', 'y$', 'normal'); // yank to line end
-aceVimMap('A', 'I', 'normal'); // insert at line start
-aceVimMap('I', 'a', 'normal'); // insert right of cursor
 
 
 
@@ -402,16 +404,29 @@ unmap('<Alt-m>');
 
 
 // !!! must unmap this BEFORE any new bindings prefixed by ':'
+map('A', ':'); // open Omnibar for commands -- doesn't work somewhy
+mapkey('\"', '#8Open commands', function() {
+    Front.openOmnibar({type: "Commands"});
+});
 unmap(':'); // free up ':_' space, which would be preemptively shadowed otherwise; was 'open omnibar for arb. command'
 map(':dh', ';dh'); // delete history older than 30 days
 unmap(';dh');
 map(':db', ';db'); // delete bookmark for current tab
 unmap(';db');
-// mapkey(':dH', '#14Delete history newer than 2 hours', function() {
-    // RUNTIME('deleteHistoryNewerThan', {
-//         hours: 2
-//     });
-// });
+
+
+mapkey(':s', '#5Save session ', function() {
+    RUNTIME('createSession', {
+        name: 'LAST',
+        quitAfterSaved: false
+    });
+});
+
+// mapkey(':dH', '#14Delete history newer than 2 hours', function(){
+// 		var nor=(newDate).getTime();
+// 		chrome.history.deleteRange({startTime: now -2*1e3*3600, endTime: now})
+// })
+
 
 map('P', '<Alt-i>'); // enter PassThrough mode (refined version of Vimium's insert mode)
 unmap('<Alt-i>');
@@ -532,11 +547,11 @@ removeSearchAlias('y'); // youtube
 	Include "_" suffix in each search alias name to prevent e.g., inadvertently doing a
 	NixPkgs search when doing "T nix pills" to search through our open tabs for a tab that
 	includes "nix pills" in the page name. Otherwise said key sequence would bring up
-	"nixpkgs> pills" in the omnibar. If we name the search alias "nIX" instead of "nix", then
+	"nixpkgs➤ pills" in the omnibar. If we name the search alias "nIX" instead of "nix", then
 	we'd have to do "T nix_ pills" to get the same accidental result, so we can now safely type
 	"T nix pills".
 */
-addSearchAlias('laz_', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
+addSearchAlias('nr_', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
 addSearchAlias('nix_', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
 addSearchAlias('mel_', 'melpa', 'https://melpa.org/#/?q=');
 addSearchAlias('ra_', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
@@ -548,12 +563,13 @@ addSearchAlias('so_', 'stack overflow', 'http://stackoverflow.com/search?q=');
 addSearchAlias('se_', 'stack exchange', 'http://stackexchange.com/search?q=');
 addSearchAlias('az_', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
 addSearchAlias('go_', 'google', 'https://www.google.com/search?q=');
+addSearchAlias('go_~', 'google (site only)', 'https://www.google.com/search?q=site%3A' + window.location.href.split('/')[2]+'%20');
 addSearchAlias('gm_', 'google maps', 'https://www.google.com/maps?q=');
 addSearchAlias('yo_', 'youtube', 'https://www.youtube.com/results?search_query=');
 addSearchAlias('wi_', 'wikipedia', 'https://en.wikipedia.org/wiki/');
 addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
-
-
+// addSearchAlias('go_~', 'google', 'https://www.google.com/search?q=site%3A' + window.location.href.replace(/\?)+'%20'); // search pages only from current site --> replace everything after hostname, e.g., after '*.com' or '*.net'
+// window.location.href = window.location.href.replace(/\?[^\?]*$/, ''); --> 'g?' for reference
 
 /*
 	----------------------------------------------------------------------
@@ -567,11 +583,15 @@ addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
 	alias used by the 'sw' command) in order to shadow the "search selected (i.e., clipboard text)
 	with search alias 'wI'" that would otherwise be *implicitly* created upon defining said search alias.
 */
+
 mapkey('sw', '#8Search Wikipedia', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "wi_"});
 });
 mapkey('sg', '#8Search with Google', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "go_"});
+});
+mapkey('sG', '#8Search with Google on current site only', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "go_~"});
 });
 mapkey('sy', '#8Search Youtube', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "yo_"});
@@ -603,14 +623,14 @@ mapkey('ss', '#8Search with StartPage', function() {
 mapkey('sn', '#8Search Nixpkgs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "nix_"});
 });
+mapkey('sN', '#8Find Nix revision for given package', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "nr_"});
+});
 mapkey('st', '#8Search Typed-Racket Docs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "tr_"});
 });
 mapkey('sr', '#8Search Racket Docs', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "ra_"});
-});
-mapkey('sl', '#8Find Nix revision for given package', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "laz_"});
 });
 mapkey('su', '#8Search GitHub', function() {
   Front.openOmnibar({type: "SearchEngine", extra: "hub_"});
