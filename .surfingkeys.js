@@ -181,6 +181,7 @@ unmap('d');
 map('K', 'u'); // scroll half-page up
 unmap('u');
 
+map('<Space>', 'j'); // scroll down; prevent large scroll from <Space>
 
 
 
@@ -344,8 +345,10 @@ vmap('K', '<Ctrl-u>'); // scroll 20 lines up
 cmap('<Ctrl-m>', '<Esc>');
 cmap('<Ctrl-g>', '<Esc>');
 
-cmap('<Ctrl-u>', '<Ctrl-,>');
-cmap('<Ctrl-i>', '<Ctrl-.>');
+cmap('<Ctrl-h>', '<Ctrl-,>');
+cmap('<Ctrl-l>', '<Ctrl-.>');
+// cmap('<Ctrl-u>', '<Ctrl-,>');
+// cmap('<Ctrl-i>', '<Ctrl-.>');
 /* ctrl apparently cannot be used for vim visual mode commands -- always exits (not documented!) */
 // aceVimMap('fd', '<Esc>', 'insert');
 // aceVimMap('fd', '<Esc>', 'visual');
@@ -404,7 +407,7 @@ unmap('<Alt-m>');
 
 
 // !!! must unmap this BEFORE any new bindings prefixed by ':'
-map('A', ':'); // open Omnibar for commands -- doesn't work somewhy
+// map('A', ':'); // open Omnibar for commands -- doesn't work somewhy
 mapkey('\"', '#8Open commands', function() {
     Front.openOmnibar({type: "Commands"});
 });
@@ -415,11 +418,12 @@ map(':db', ';db'); // delete bookmark for current tab
 unmap(';db');
 
 
-mapkey(':s', '#5Save session ', function() {
-    RUNTIME('createSession', {
-        name: 'LAST',
-        quitAfterSaved: false
-    });
+mapkey(':s', '#5Save session', function() {
+		RUNTIME('createSession', {
+				name: 'LAST',
+				quitAfterSaved: false
+		});
+		Front.showPopup('Session saved');
 });
 
 // mapkey(':dH', '#14Delete history newer than 2 hours', function(){
@@ -460,11 +464,14 @@ unmap(';u');
 map('B', 'ab'); // add bookmark
 unmap('ab'); // add bookmark
 
-map('yu', 'yy'); // copy url of current tab
-unmap('yy');
+// map('yu', 'yy'); // copy url of current tab
+// unmap('yy');
+
+map(':l', ';ql'); // show last command
 
 // !!! must put this AFTER all mappings based on ';'-prefixed default bindings
-map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map blah to ;_")
+map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map('⍵', ';_')")
+// map('<Ctrl-;>', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map('⍵', ';_')")
 unmap('<Ctrl-6>');
 
 
@@ -491,29 +498,20 @@ unmap("'"); // replaced by Vimium C's marks since it can use '' to toggle prev m
 unmap(';m'); // mouse-out last element (?)
 unmap('go'); // replaced by 'o'
 unmap('cs'); // change scroll target (use 'e' for scroll hints instead)
-unmap('ss');
-unmap('sb');
-unmap('sd');
-unmap('se');
 unmap('og');
 unmap('@'); // Vimium_C toggleMuteTab all
 unmap('$'); // Vimium_C toggleMuteTab other
-unmap('ya'); // copy a link url to the clipboard
 unmap('om'); // open url from marks
-unmap('af');
 unmap('gf'); // redundant since <Shift> after 'f' does the same thing
 unmap('C'); // same as 'gf' above
-unmap('A'); // not sure if mapped
 unmap('M'); // not sure if mapped; Vimium_C toggleMuteTab all
 unmap('<Ctrl-d>');
 unmap('<Ctrl-u>');
 unmap('<Shift-Tab>');
 unmap('<Tab>');
-unmap('yf'); // copy form data in JSON on current page
 unmap('cc'); // open selected link, or link from clipboard
-unmap('sse'); // search Stack Exchange for term in clipboard
-unmap('sso'); // search Stack Overflow for term in clipboard
-unmap('ssp'); // search StartPage for term in clipboard
+// unmap('ya'); // copy a link url to the clipboard
+// unmap('af'); // open link in active new tab
 
 
 
@@ -563,7 +561,7 @@ addSearchAlias('so_', 'stack overflow', 'http://stackoverflow.com/search?q=');
 addSearchAlias('se_', 'stack exchange', 'http://stackexchange.com/search?q=');
 addSearchAlias('az_', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
 addSearchAlias('go_', 'google', 'https://www.google.com/search?q=');
-addSearchAlias('go_~', 'google (site only)', 'https://www.google.com/search?q=site%3A' + window.location.href.split('/')[2]+'%20');
+addSearchAlias('go_~', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
 addSearchAlias('gm_', 'google maps', 'https://www.google.com/maps?q=');
 addSearchAlias('yo_', 'youtube', 'https://www.youtube.com/results?search_query=');
 addSearchAlias('wi_', 'wikipedia', 'https://en.wikipedia.org/wiki/');
@@ -652,7 +650,7 @@ settings.scrollStepSize = 200;
 settings.hintAlign = "left";
 settings.focusAfterClosed = "last";
 settings.prevLinkRegex = '/(([Bb]ack|[Oo]lder|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
-settings.nextLinkRegex = '/(([Mm]ore|[Nn]ewer|>|›|→|»|≫|>>|[Nn]ext)+)/i';
+settings.nextLinkRegex = '/(([Mm]ore|[Nn]ewer|>|›|→|»|≫|>>|[Nn]ext)+)/i'; // TODO: adjust to account for "* ->", "* |>", etc.
 settings.digitForRepeat	= true; // can never set to false if using e.g., ⍺ ← navigateToLeftmostTab, since ⍺ is implemented as 99[navigateToTabLeft] under-the-hood
 settings.hintShiftNonActive	= true;
 settings.hintExplicit = true;

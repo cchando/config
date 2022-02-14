@@ -82,7 +82,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
+   dotspacemacs-additional-packages '(evil-easymotion j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
    ;; solarized-dark-theme tomorrow-blue-theme pheonix-dark-mono-theme apropospriate-light-theme adwaita-theme alect-light-theme
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '(xah-math-input pretty-mode)
@@ -980,17 +980,22 @@ you should place your code here."
   (global-unset-key (kbd "<M-down>"))
 
 
-	(evil-define-motion vile-scroll-down ()
-    "Scroll down 10 lines."
-		(evil-next-line 10))
+  (evil-define-motion vile-scroll-down (count)
+	"Scroll down 10 lines."
+	(setq count (or count 1))
+	(evil-next-line (* 10 count)))
 
 
-	(evil-define-motion vile-scroll-up ()
-		"Scroll up 10 lines."
-		(evil-previous-line 10))
+  (evil-define-motion vile-scroll-up (count)
+	"Scroll up 10 lines."
+	(setq count (or count 1))
+	(evil-previous-line (* 10 count)))
 
 
-	(evil-define-motion vile-goto-word-by-first-letter (count char)
+
+	;; TODO: how to get ';' and ',' to work with this?
+	;; TODO: how to get an alt. version of this to take 2 chars, like evil-snipe?
+	(evil-define-motion vile-goto-word-by-first-char (count char)
 		"Move to the next COUNT'th word beginning with CHAR.
 		movement is restricted to the current line unless `evil-cross-lines' is non-nil.
 		slightly modified version of evil-find-char."
@@ -1024,11 +1029,13 @@ you should place your code here."
 					(user-error "Can't find %c" char)))))
 
 ;; backwards version
-(evil-define-motion vile-goto-word-by-first-letter-backward (count char)
-  "Move to the previous COUNT'th word beginning with CHAR."
+(evil-define-motion vile-goto-word-by-first-char-backward (count char)
+  "Move to the previous COUNT'th word beginning with CHAR.
+	movement is restricted to the current line unless `evil-cross-lines' is non-nil.
+	slightly modified version of evil-find-char-reverse."
   :type exclusive
   (interactive "<c><C>")
-  (vile-goto-word-by-first-letter (- (or count 1)) char)
+  (vile-goto-word-by-first-char (- (or count 1)) char)
   (forward-char 1))
 
 (defun shrink-window ()
@@ -1036,7 +1043,42 @@ you should place your code here."
 	(interactive (enlarge-window -1)))
 
 
-;; (defun vile-goto-word-by-first-letter-unbounded (&optional count)
+;; ;; replacement for ';'
+;; (evil-define-motion vile-repeat-goto-word-by-first-char (count)
+;;   "Repeat the last find COUNT times."
+;;   :type inclusive
+;;   (setq count (or count 1))
+;;   (if evil-last-find
+;;       (let ((cmd (car evil-last-find))
+;;             (char (nth 1 evil-last-find))
+;;             (fwd (nth 2 evil-last-find))
+;;             evil-last-find) ; ? "let … in <var>" doesn't seem to make sense…
+;;         ;; ensure count is non-negative
+;;         (when (< count 0)
+;;           (setq count (- count)
+;;                 fwd (not fwd)))
+;;         ;; skip next character when repeating t or T
+;;         (and (eq cmd #'evil-find-char-to)
+;;              evil-repeat-find-to-skip-next
+;;              (= count 1)
+;;              (or (and fwd (= (char-after (1+ (point))) char))
+;;                  (and (not fwd) (= (char-before) char)))
+;;              (setq count (1+ count))) ; ? what kind of stmt is "∧ cond1 cond2 …"? Nothing being defined nor executed?
+;;         (funcall cmd (if fwd count (- count)) char)
+;;         (unless (nth 2 evil-last-find)
+;;           (setq evil-this-type 'exclusive)))
+;;     (user-error "No previous search")))
+
+;; ;; replacement for ','
+;; (evil-define-motion vile-repeat-goto-word-by-first-char-reverse (count)
+;;   "Repeat the last find COUNT times in the opposite direction."
+;;   :type inclusive
+;;   (vile-repeat-goto-word-by-first-char (- (or count 1)))) ; ??? but that fn seems to ignore neg. count anyway…
+
+
+
+
+;; (defun vile-goto-word-by-first-char-unbounded (&optional count)
 ;;   "Move to the next COUNT'th word beginning with CHAR.
 ;; Slightly modified version of evil-find-char."
 ;;   (interactive)
@@ -1055,11 +1097,11 @@ you should place your code here."
 ;;         (user-error "Can't find %c" char)))))
 
 ;; ;; backwards version
-;; (evil-define-motion vile-goto-word-by-first-letter-backward-unbounded (count char1 char2)
+;; (evil-define-motion vile-goto-word-by-first-char-backward-unbounded (count char1 char2)
 ;;   "Move to the previous COUNT'th word beginning with CHAR."
 ;;   :type exclusive
 ;;   (interactive "<c><C>")
-;;   (vile-goto-word-by-first-letter-unbounded (- (or count 1)) char1 char2)
+;;   (vile-goto-word-by-first-char-unbounded (- (or count 1)) char1 char2)
 ;;   (forward-char 1))
 
 
@@ -1111,6 +1153,24 @@ you should place your code here."
         (define-key m (kbd k) f)
         (setq k (pop bindings) f (pop bindings))))))
 
+
+
+
+(defun avy-goto-word-crt-line ()
+  "Jump to a word start on the current line only."
+  (interactive)
+  (avy-with avy-goto-word-0
+    (avy-goto-word-0 nil (line-beginning-position) (line-end-position))))
+;; optional evil integration example:
+   ;; (declare-function 'avy-goto-word-crt-line "avy")
+   ;; (evil-define-avy-motion avy-goto-word-crt-line inclusive)
+	 ;; (define-key evil-motion-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
+
+
+
+
+
+
 ;; leader keys mappings
 (keymap+ evil-normal-state-local-map ;; c.f. (spacemacs/set-leader-keys (kdb "⍵") 'f) instead of <SPC ⍵>
 		 "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
@@ -1148,9 +1208,14 @@ you should place your code here."
 		 "a"   'evil-set-marker
 		 "m"   'evil-scroll-line-to-center
 		 "t"   'evil-scroll-line-to-top
+		 ;; "t"   "zt3K3J"  ; not working somewhy
 		 "b"   'evil-scroll-line-to-bottom
+		 ;; "b"   "zb3J3K"  ; not working somewhy
 		 "e"   'vile-backward-paragraph
 		 "r"   'vile-forward-paragraph
+		 "f"   'avy-goto-word-crt-line
+		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
+		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
 		 "n"   'org-timer-set-timer
 		 "N"   'toggle-timer-bell
 		 )
@@ -1161,44 +1226,50 @@ you should place your code here."
 		 ;; "C-u"    'vile-scroll-up
 		 ;; "C-f"    'evil-scroll-down
 		 ;; "C-b"    'evil-scroll-up
+		 ;; "~e"   'evil-forward-word-end ; temp key
+		 ;; "E"     "~ea" ; append at end of word
+		 ;; "~E"   'evil-forward-WORD-end ; temp key
+		 ;; "e"     "~Ea" ; append at end of WORD
+		 ;; "a"    'evil-append  ; default
+		 ;; "gd"   'racket-jump-visit-definition
+		 ;; "A"    'evil-insert-line
+		 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
+		 "e"  'evil-forward-WORD-end
+		 "E"  'evil-forward-word-end
+		 "C-e"  'iedit-mode
+		 "C-'"  'evil-indent
+		 "C-;"  'evil-switch-to-windows-last-buffer
+		 "t"    'evil-find-char
+		 "T"    'evil-find-char-backward
+		 "f"    'vile-goto-word-by-first-char
+		 "F"    'vile-goto-word-by-first-char-backward
 		 "J"    'vile-scroll-down
 		 "K"    'vile-scroll-up ;; often gets overridden by other modes due to non-determinism
 		 "w"    'evil-forward-WORD-begin
 		 "b"    'evil-backward-WORD-begin
 		 "W"    'evil-forward-word-begin
 		 "B"    'evil-backward-word-begin
-		 "A"    'evil-insert-line
-		 "I"    'evil-append
 		 "go"   'isearch-forward-word
 		 "gu"   'evil-upcase
 		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph
 		 ")"    'evil-forward-paragraph
-		 "t"    'evil-find-char
-		 "T"    'evil-find-char-backward
-		 "f"    'vile-goto-word-by-first-letter
-		 "F"    'vile-goto-word-by-first-letter-backward
-		 "a"    'evil-first-non-blank
 		 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
 		 "ga"   'evil-digit-argument-or-evil-beginning-of-line
 		 "gl"   'evil-end-of-line
 		 "gi"   'evil-append-line
 		 "gI"   'evil-insert-resume
-		 "gd"   'racket-jump-visit-definition
+		 "gd"   'spacemacs/jump-to-definition
 		 "gm"   'evil-jump-item
 		 "gn"   'spacemacs/enter-ahs-forward
 		 "gN"   'spacemacs/enter-ahs-backward
 		 "ZQ"   'kill-current-buffer
 		 "gr"   'racket-run
 		 "gR"   'racket-run-and-switch-to-repl
-		 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
-		 "~e"   'evil-forward-word-end ; temp key
-		 "E"     "~eI" ; append at end of word
-		 "~E"   'evil-forward-WORD-end ; temp key
-		 "e"     "~EI" ; append at end of WORD
 		 "C-h"  'previous-buffer
 		 "C-l"  'next-buffer
 		 "C-m"  'spacemacs/evil-insert-line-below
+		 ;; "S-C-m"  'spacemacs/evil-insert-line-above  ; how to do Shift-Ctrl bindings?
 		 "C-."  'call-last-kbd-macro ; q for evil-record-macro
 		 "C-o"  'evil-jump-forward
 		 "C-i"  'evil-jump-backward
@@ -1206,7 +1277,6 @@ you should place your code here."
 		 "C-j"  'evil-join
 		 "C-n"  'electric-newline-and-maybe-indent ;; split-line
 		 "C-k"  'spacemacs/evil-smart-doc-lookup
-		 "C-;"  'evil-indent
 		 "zm"    nil ;; disable close-folds function
 		 "zr"    nil ;; disable open-folds function
 		 "gy"    nil ;; disable spacemacs/copy-and-comment-lines
@@ -1336,43 +1406,55 @@ you should place your code here."
 	(setq highlight-indent-guides-method 'character)
 
 
+;; ;; enable easymotion bindings w/ given key prefix
+;; 	(evilem-default-keybindings ",")
 
-	;; Disable evil-snipe repeat keys s and S
+
+
+	;; Disable evil-snipe repeat keys 's' and 'S'
   (setq evil-snipe-repeat-keys nil)
 
 ;; Disable evil-snipe highlighting
   (setq evil-snipe-enable-highlight nil)
   (setq evil-snipe-enable-incremental-highlight nil)
+
   ;; (setq evil-snipe-override-local-mode nil)
-  ;; (evil-snipe-override-mode 1)
+
+
+	;; ;; replace evil-mode's f/F/t/T functionality with (1-character) sniping:
+	;; (evil-snipe-override-mode 1)
+
+	;; ;; enable snipe replacements of 'f' and 't'
+	;; (setq-default dotspacemacs-configuration-layers
+	;; 							'((evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)))
 
 	;; Disable evil search persistent highlighting
   (global-evil-search-highlight-persist 0)
 
-  ;; Disable evil-snipe-override for , and ; keys (doing "(define-key evil-snipe-mode-map (kbd ",") nil)" does not work )
-  (setq evil-snipe-override-evil-repeat-keys nil)
-  (setq evil-snipe-override-local-mode-map
-				(let ((map (make-sparse-keymap)))
-					(evil-define-key* 'motion map
-														"s" #'evil-snipe-s
-														"S" #'evil-snipe-S)
-					map))
-  (setq evil-snipe-parent-transient-map
-				(let ((map (make-sparse-keymap)))
-					(define-key map ";" #'evil-snipe-repeat)
-					(define-key map "," #'evil-snipe-repeat-reverse)
-					map))
+  ;; ;; Disable evil-snipe-override for , and ; keys (doing "(define-key evil-snipe-mode-map (kbd ",") nil)" doesn't work )
+  ;; (setq evil-snipe-override-evil-repeat-keys nil)
+  ;; (setq evil-snipe-override-local-mode-map
+	;; 			(let ((map (make-sparse-keymap)))
+	;; 				(evil-define-key* 'motion map
+	;; 													"s" #'evil-snipe-s
+	;; 													"S" #'evil-snipe-S)
+	;; 				map))
+  ;; (setq evil-snipe-parent-transient-map
+	;; 			(let ((map (make-sparse-keymap)))
+	;; 				(define-key map ";" #'evil-snipe-repeat)
+	;; 				(define-key map "," #'evil-snipe-repeat-reverse)
+	;; 				map))
 
 
 	;; Enable evil-snipe to do a longer n-char search using TAB
 	(setq evil-snipe-tab-increment t)
 
 
-	;; doesn't seem to work; default is still 2 chars
-	(setq-default evil-snipe--match-count 3)
+	;; ;; doesn't seem to work; default is still 2 chars
+	;; (setq-default evil-snipe--match-count 3)
 
 
-	;; Disable evil-snipe
+	;; ;; Disable evil-snipe
 	;; (evil-snipe-mode 0)
 
 
@@ -1465,75 +1547,77 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-	 ["#19171c" "#be4678" "#2a9292" "#a06e3b" "#576ddb" "#955ae7" "#576ddb" "#8b8792"])
+   ["#19171c" "#be4678" "#2a9292" "#a06e3b" "#576ddb" "#955ae7" "#576ddb" "#8b8792"])
+ '(avy-case-fold-search nil)
  '(compilation-message-face 'default)
  '(custom-safe-themes
-	 '("e8349abfd1c6513e40322ccce5652b5ef6b6665d3fed6e2d9447617c3cf35ee9" "702b04f42e51ad9889fd34b9fd065e79ec33f5fc4b17334cba9e49729a6d59d7" "65f35d1e0d0858947f854dc898bfd830e832189d5555e875705a939836b53054" "5c75e3fa3c2153e149bea54ef5324bdafea4e7ba9ae4b12314dd3ad13211e89e" "c2efd2e2e96b052dd91940b100d86885337a37be1245167642451cf6da5b924a" "6271fc9740379f8e2722f1510d481c1df1fcc43e48fa6641a5c19e954c21cc8f" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "cba5ebfabc6456e4bbd68e0394d176161e1db063c6ca24c23b9828af0bdd7411" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "13880fa28757754bc40c85b05689c801ddaa877f2fe65abf1779f37776281ef1" "bbb521edff9940ba05aeeb49f9b247e95e1cb03bd78de18122f13500bda6514f" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+   '("e8349abfd1c6513e40322ccce5652b5ef6b6665d3fed6e2d9447617c3cf35ee9" "702b04f42e51ad9889fd34b9fd065e79ec33f5fc4b17334cba9e49729a6d59d7" "65f35d1e0d0858947f854dc898bfd830e832189d5555e875705a939836b53054" "5c75e3fa3c2153e149bea54ef5324bdafea4e7ba9ae4b12314dd3ad13211e89e" "c2efd2e2e96b052dd91940b100d86885337a37be1245167642451cf6da5b924a" "6271fc9740379f8e2722f1510d481c1df1fcc43e48fa6641a5c19e954c21cc8f" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "cba5ebfabc6456e4bbd68e0394d176161e1db063c6ca24c23b9828af0bdd7411" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "13880fa28757754bc40c85b05689c801ddaa877f2fe65abf1779f37776281ef1" "bbb521edff9940ba05aeeb49f9b247e95e1cb03bd78de18122f13500bda6514f" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(ensime-sem-high-faces
-	 '((var :foreground "#000000" :underline
-					(:style wave :color "yellow"))
-		 (val :foreground "#000000")
-		 (varField :foreground "#600e7a" :slant italic)
-		 (valField :foreground "#600e7a" :slant italic)
-		 (functionCall :foreground "#000000" :slant italic)
-		 (implicitConversion :underline
-												 (:color "#c0c0c0"))
-		 (implicitParams :underline
-										 (:color "#c0c0c0"))
-		 (operator :foreground "#000080")
-		 (param :foreground "#000000")
-		 (class :foreground "#20999d")
-		 (trait :foreground "#20999d" :slant italic)
-		 (object :foreground "#5974ab" :slant italic)
-		 (package :foreground "#000000")
-		 (deprecated :strike-through "#000000")))
+   '((var :foreground "#000000" :underline
+          (:style wave :color "yellow"))
+     (val :foreground "#000000")
+     (varField :foreground "#600e7a" :slant italic)
+     (valField :foreground "#600e7a" :slant italic)
+     (functionCall :foreground "#000000" :slant italic)
+     (implicitConversion :underline
+                         (:color "#c0c0c0"))
+     (implicitParams :underline
+                     (:color "#c0c0c0"))
+     (operator :foreground "#000080")
+     (param :foreground "#000000")
+     (class :foreground "#20999d")
+     (trait :foreground "#20999d" :slant italic)
+     (object :foreground "#5974ab" :slant italic)
+     (package :foreground "#000000")
+     (deprecated :strike-through "#000000")))
  '(evil-snipe-enable-highlight nil)
  '(evil-snipe-enable-incremental-highlight nil)
  '(evil-surround-pairs-alist
-	 '((113 "`" . "'")
-		 (80 "+++" . "+++")
-		 (112 "+" . "+")
-		 (68 "``" . "''")
-		 (100 "${" . "}")
-		 (108 "(" . ")")
-		 (76 "( " . " )")
-		 (115 "[" . "]")
-		 (40 "( " . " )")
-		 (83 "[ " . " ]")
-		 (67 "{ " . " }")
-		 (41 "(" . ")")
-		 (93 "[" . "]")
-		 (125 "{" . "}")
-		 (104 "#{" . "}")
-		 (72 "#{ " . " }")
-		 (117 "_" . "_")
-		 (98 "`" . "`")
-		 (59 "`" . "`")
-		 (99 "{" . "}")
-		 (67 "{ " . " }")
-		 (97 "<" . ">")
-		 (65 "< " . " >")
-		 (116 . evil-surround-read-tag)
-		 (60 . evil-surround-read-tag)
-		 (102 . evil-surround-function)))
+   '((113 "`" . "'")
+     (80 "+++" . "+++")
+     (112 "+" . "+")
+     (68 "``" . "''")
+     (100 "${" . "}")
+     (108 "(" . ")")
+     (76 "( " . " )")
+     (115 "[" . "]")
+     (40 "( " . " )")
+     (83 "[ " . " ]")
+     (67 "{ " . " }")
+     (41 "(" . ")")
+     (93 "[" . "]")
+     (125 "{" . "}")
+     (104 "#{" . "}")
+     (72 "#{ " . " }")
+     (117 "_" . "_")
+     (98 "`" . "`")
+     (59 "`" . "`")
+     (99 "{" . "}")
+     (67 "{ " . " }")
+     (97 "<" . ">")
+     (65 "< " . " >")
+     (116 . evil-surround-read-tag)
+     (60 . evil-surround-read-tag)
+     (102 . evil-surround-function)))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#010F1D")
+ '(fci-rule-color "#010F1D" t)
  '(global-evil-search-highlight-persist nil)
  '(global-xah-math-input-mode t)
  '(helm-completion-style 'emacs)
  '(highlight-changes-colors '("#EF5350" "#7E57C2"))
  '(highlight-tail-colors
-	 '(("#010F1D" . 0)
-		 ("#B44322" . 20)
-		 ("#34A18C" . 30)
-		 ("#3172FC" . 50)
-		 ("#B49C34" . 60)
-		 ("#B44322" . 70)
-		 ("#8C46BC" . 85)
-		 ("#010F1D" . 100)))
+   '(("#010F1D" . 0)
+     ("#B44322" . 20)
+     ("#34A18C" . 30)
+     ("#3172FC" . 50)
+     ("#B49C34" . 60)
+     ("#B44322" . 70)
+     ("#8C46BC" . 85)
+     ("#010F1D" . 100)))
+ '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
-	 '(rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby j-mode gnu-apl-mode workgroups hlint-refactor hindent helm-hoogle haskell-snippets company-ghci haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help company-tern tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(evil-easymotion rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby j-mode gnu-apl-mode workgroups hlint-refactor hindent helm-hoogle haskell-snippets company-ghci haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help company-tern tern company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(pos-tip-background-color "#FFF9DC")
  '(pos-tip-foreground-color "#011627")
  '(psc-ide-add-import-on-completion t t)
@@ -1541,46 +1625,46 @@ you should place your code here."
  '(standard-indent 4)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-	 '((20 . "#C792EA")
-		 (40 . "#CF4F1F")
-		 (60 . "#C26C0F")
-		 (80 . "#FFEB95")
-		 (100 . "#AB8C00")
-		 (120 . "#A18F00")
-		 (140 . "#989200")
-		 (160 . "#8E9500")
-		 (180 . "#F78C6C")
-		 (200 . "#729A1E")
-		 (220 . "#609C3C")
-		 (240 . "#4E9D5B")
-		 (260 . "#3C9F79")
-		 (280 . "#7FDBCA")
-		 (300 . "#299BA6")
-		 (320 . "#2896B5")
-		 (340 . "#2790C3")
-		 (360 . "#82AAFF")))
+   '((20 . "#C792EA")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#FFEB95")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#F78C6C")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#7FDBCA")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#82AAFF")))
  '(vc-annotate-color-↦
-	 '((20 . "#C792EA")
-		 (40 . "#CF4F1F")
-		 (60 . "#C26C0F")
-		 (80 . "#FFEB95")
-		 (100 . "#AB8C00")
-		 (120 . "#A18F00")
-		 (140 . "#989200")
-		 (160 . "#8E9500")
-		 (180 . "#F78C6C")
-		 (200 . "#729A1E")
-		 (220 . "#609C3C")
-		 (240 . "#4E9D5B")
-		 (260 . "#3C9F79")
-		 (280 . "#7FDBCA")
-		 (300 . "#299BA6")
-		 (320 . "#2896B5")
-		 (340 . "#2790C3")
-		 (360 . "#82AAFF")))
+   '((20 . "#C792EA")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#FFEB95")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#F78C6C")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#7FDBCA")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#82AAFF")))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
-	 '(unspecified "#011627" "#010F1D" "#DC2E29" "#EF5350" "#D76443" "#F78C6C" "#D8C15E" "#FFEB95" "#5B8FFF" "#82AAFF" "#AB69D7" "#C792EA" "#AFEFE2" "#7FDBCA" "#D6DEEB" "#FFFFFF")))
+   '(unspecified "#011627" "#010F1D" "#DC2E29" "#EF5350" "#D76443" "#F78C6C" "#D8C15E" "#FFEB95" "#5B8FFF" "#82AAFF" "#AB69D7" "#C792EA" "#AFEFE2" "#7FDBCA" "#D6DEEB" "#FFFFFF")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

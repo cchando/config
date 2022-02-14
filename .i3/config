@@ -21,17 +21,17 @@ exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 
 exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-1.png
+# exec nitrogen --head=-1 --set-zoom-fill ~/Pictures/wallpapers/Egg-Carrier-Bridge-Sonic.jpg    &&   nitrogen --head=0 --set-scaled ~/Pictures/Wallpapers/Egg-Carrier-Bridge-Sonic.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/datacenter-2.png
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-square.png
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/backgrounds/nep-mk2-bg/planeptune-bedroom.png
-# exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/rainy-birds.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png
-# exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-sleepover.jpg
-# exec nitrogen --set-zoom-fill ~/Pictures/Neptunia-etc/Nep-white-HD.jpg
-# exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/5684679-beach-hd-wallpaper.jpg
-# exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/vlad-squares-green.jpg
-# exec nitrogen --set-zoom-fill ~/Pictures/Wallpapers/vlad\ diving.jpg
-# exec nitrogen --head=-1 --set-zoom-fill ~/Pictures/Wallpapers/Egg-Carrier-Bridge-Sonic.jpg    &&   nitrogen --head=0 --set-scaled ~/Pictures/Wallpapers/Egg-Carrier-Bridge-Sonic.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/Nep-sleepover.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/neptunia-etc/Nep-white-HD.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad-squares-green.jpg
+# exec nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad\ diving.jpg
 # exec nitrogen --head=-1 --set-scaled ~/Pictures/Florida/homes_condos_townhouses/a3ur023uvr.jpg    &&   nitrogen --head=0 --set-scaled ~/Pictures/Florida/homes_condos_townhouses/a3ur023uvr.jpg
 # exec nitrogen --restore
 
@@ -194,9 +194,9 @@ set $ibrowser google-chrome-stable
 
     # start vlc w/ playlist
 		bindsym $mod+v exec vlc --loop --random --no-repeat
-    bindsym Ctrl+Shift+7 exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
-		bindsym Ctrl+Shift+8 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
-		bindsym Ctrl+Shift+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/sonic-playlist.m3u
+		bindsym Ctrl+Shift+7 exec vlc --loop file:///home/cameron/Music/1-Playlists/rain-playlist.m3u
+    bindsym Ctrl+Shift+8 exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
+		bindsym Ctrl+Shift+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
 		bindsym Ctrl+Shift+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
 
     # kill vlc

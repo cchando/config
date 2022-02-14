@@ -154,8 +154,13 @@
 	 ["Cf" "C.f. "]
 
 	 ["cant" "can't "]
+	 ["wont" "won't "]
 	 ["didnt" "didn't "]
 	 ["dont" "don't "]
+	 ["aint" "ain't "]
+	 ["doesnt" "doesn't"]
+
+	 ["couldnt" "couldn't"]
 
 	 ;; english word abbrev
 	 ["ann" "announcement "]
@@ -418,9 +423,9 @@
 
   ;; J language
   ["sl" "["] ; square
-  ["sr" "]"] ; square
+  ["sr" "] "] ; square
   ["cl" "{"] ; curly
-  ["cr" "}"] ; curly
+  ["cr" "} "] ; curly
   ["jd" "%"] ; J divide
   ["jc" "NB. "] ; J comment
   ["nb" "NB. "] ; J comment
@@ -1003,7 +1008,7 @@
   ["3/4" "¾ "]
   ["1/2" "½ "]
   ["1/4" "¼ "]
-  ["..." "…"]
+  ["..." "… "]
   ["fdash" "‒ "]
   ["wdash" "〜 "]
   ;; ["--" "— "]

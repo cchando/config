@@ -449,21 +449,21 @@
 (: find : Dir String -> (Option (Listof (Listof String))))
 (define (find d fname)
   (define M_rss (letrec ([vsss (filter-map (lambda (Dir) (find Dir fname))
-                                           (Dir-dirs d))]
-                         [vss  (foldr append null vsss)])
-                  (if (empty? vss) ; no successful paths
-                      #false
-                      vss)))
+                                      (Dir-dirs d))]
+                    [vss  (foldr append null vsss)])
+             (if (empty? vss) ; no successful paths
+                #false
+                vss)))
   (define here? (member fname (map File-name (Dir-files d))))
   ;; (: prepend-to-all : Dir (Listof (Listof Dir)) -> (Listof (Listof Dir)))
   (define (prepend-to-all d xss) (map (curry cons (Dir-name d))  xss))
   (cond [(or  (empty? (Dir-dirs d))  (false? M_rss))
          (if here?
-             `((,(Dir-name d) ,fname))
-             #false)]
-     ; subtree contains file...
+            `((,(Dir-name d) ,fname))
+            #false)]
+        ; subtree contains file...
         [(not here?)  (prepend-to-all d M_rss)]
-     ; File is here...
+        ; File is here...
         [else  (prepend-to-all d (cons (list fname) M_rss))]))
 
 
