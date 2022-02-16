@@ -177,8 +177,8 @@ set $ibrowser google-chrome-stable
     # start internet browser (chrome)
     bindsym $mod+i exec $ibrowser
 
-    # start firefox
-    bindsym $alt+$mod+i exec firefox
+    # # start firefox
+    # bindsym $alt+$mod+i exec firefox
 
     # screenshot using shotgun
     bindsym $mod+s exec shotgun
@@ -195,6 +195,8 @@ set $ibrowser google-chrome-stable
     # start vlc w/ playlist
 		bindsym $mod+p mode playlist
 		mode playlist {
+				bindsym v exec vlc --loop --random --no-repeat
+				bindsym K exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)" # kill vlc
 		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u
 		    bindsym A exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u
 		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u
@@ -206,21 +208,30 @@ set $ibrowser google-chrome-stable
 				bindsym space mode "default"
 		}
 
-		bindsym $mod+v exec vlc --loop --random --no-repeat
+    # systemctl commands
+		bindsym $alt+$mod+s mode systemctl
+		mode systemctl {
+        bindsym $alt+Shift+s exec systemctl suspend
+				bindsym $alt+Shift+r exec systemctl reboot
+				bindsym $alt+Shift+u exec shutdown now
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
 
-    # kill vlc
-		bindsym $alt+$mod+v exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
+    # i3 commands
+		bindsym $alt+$mod+i mode i3
+		mode i3 {
+				bindsym c reload # reload the configuration file
+				bindsym r restart # restart i3
+				bindsym $mod+Shift+e exit # exit i3 (logs you out of your X session)
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
 
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
 
-    # exit i3 (logs you out of your X session)
-    bindsym $mod+Shift+e exit
-
-    # restart i3
-    bindsym $mod+Shift+r restart
-
-    # start emacs (full-height, full-width)
+		# start emacs (full-height, full-width)
     bindsym $mod+e exec emacs -mm
 
     # start spacemacs w/ (modded) default config
@@ -269,17 +280,6 @@ set $ibrowser google-chrome-stable
     # # TODO: install similar screenshot program... "import" not in Nix repo
     # # Take a screenshot upon pressing $mod+x (select an area)
     # bindsym --release $mod+x exec --no-startup-id import /home/cameron/tmp/latest-screenshot.png
-
-
-    # suspend system
-		bindsym $alt+Shift+s exec systemctl suspend
-
-    # reboot system
-		bindsym $alt+Shift+r exec systemctl reboot
-
-    # shutdown system
-		bindsym $alt+Shift+u exec shutdown now
-
 
 
 
