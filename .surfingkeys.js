@@ -329,9 +329,9 @@ mapkey('<Ctrl-/>', '#12Open Vimium C Settings', function() {
 /* omnibar controls */
 cmap('<Ctrl-j>', '<Tab>'); // up
 cmap('<Ctrl-k>', '<Shift-Tab>'); // down
-// cmap('<Ctrl-q>', '<Ctrl-d>'); // remove selected item from bookmarks
-// cmap('<Ctrl-[>', '<Shift-,>'); // page up
-// cmap('<Ctrl-]>', '<Shift-.>'); // page down
+// NOTE: use <Ctrl-d> to remove given entry from bookmarks while in omnibar
+// NOTE: input '<' to change omnibar mode from "search bookmarks" to "search bookmark folders"
+
 
 
 
@@ -339,6 +339,9 @@ cmap('<Ctrl-k>', '<Shift-Tab>'); // down
 vmap('mm', 'zz'); // center the display
 vmap('J', '<Ctrl-d>'); // scroll 20 lines down
 vmap('K', '<Ctrl-u>'); // scroll 20 lines up
+vmap('gl', '$'); // line end
+vmap('gh', '^'); // first non-whitespace on line
+vmap('ga', '0'); // line beginning
 
 
 /* map keys for setting escape */
@@ -383,9 +386,6 @@ aceVimMap('gl', '$', 'normal'); // line end
 aceVimMap('gh', '^', 'normal'); // first non-whitespace on line
 aceVimMap('ga', '0', 'normal'); // line beginning
 aceVimMap('gi', 'A', 'normal'); // insert at line end
-aceVimMap('ygh', 'y^', 'normal'); // yank to first non-whitespace char on line
-aceVimMap('yga', 'y0', 'normal'); // yank to beginning of line
-aceVimMap('ygl', 'y$', 'normal'); // yank to line end
 
 
 
@@ -423,7 +423,7 @@ mapkey(':s', '#5Save session', function() {
 				name: 'LAST',
 				quitAfterSaved: false
 		});
-		Front.showPopup('Session saved');
+		Front.showBanner('Session saved');
 });
 
 // mapkey(':dH', '#14Delete history newer than 2 hours', function(){

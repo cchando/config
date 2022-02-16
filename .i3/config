@@ -187,13 +187,15 @@ set $ibrowser google-chrome-stable
     bindsym $alt$mod+g [class="^Google-chrome$"] kill
 
     # start password manager
-    bindsym $mod+p exec encryptr
+    # bindsym $mod+p exec encryptr
 
     # start wallpaper manager
     bindsym $mod+w exec nitrogen
 
     # start vlc w/ playlist
 		bindsym $mod+v exec vlc --loop --random --no-repeat
+		bindsym Ctrl+Shift+1 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime-playlist.m3u
+		bindsym Ctrl+Shift+2 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level-playlist.m3u
 		bindsym Ctrl+Shift+7 exec vlc --loop file:///home/cameron/Music/1-Playlists/rain-playlist.m3u
     bindsym Ctrl+Shift+8 exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
 		bindsym Ctrl+Shift+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
