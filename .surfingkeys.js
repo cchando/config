@@ -283,6 +283,10 @@ mapkey('D', '#3Move current tab to rightmost', function() {
 map('F', 'cf'); // open multiple links in new tabs
 unmap('cf');
 
+map('C', 'af'); // open link in active new tab
+// unmap('af');
+
+
 // map(',', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 // map('<', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 unmap('[[');
@@ -503,7 +507,7 @@ unmap('@'); // Vimium_C toggleMuteTab all
 unmap('$'); // Vimium_C toggleMuteTab other
 unmap('om'); // open url from marks
 unmap('gf'); // redundant since <Shift> after 'f' does the same thing
-unmap('C'); // same as 'gf' above
+// unmap('C'); // same as 'gf' above
 unmap('M'); // not sure if mapped; Vimium_C toggleMuteTab all
 unmap('<Ctrl-d>');
 unmap('<Ctrl-u>');
@@ -511,7 +515,6 @@ unmap('<Shift-Tab>');
 unmap('<Tab>');
 unmap('cc'); // open selected link, or link from clipboard
 // unmap('ya'); // copy a link url to the clipboard
-// unmap('af'); // open link in active new tab
 
 
 
