@@ -284,7 +284,7 @@ map('F', 'cf'); // open multiple links in new tabs
 unmap('cf');
 
 map('C', 'af'); // open link in active new tab
-// unmap('af');
+unmap('af');
 
 
 // map(',', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
@@ -562,6 +562,7 @@ addSearchAlias('pur_', 'pursuit', 'https://pursuit.purescript.org/search?q=');
 addSearchAlias('sp_', 'startpage', 'https://startpage.com/sp/search/?q=');
 addSearchAlias('so_', 'stack overflow', 'http://stackoverflow.com/search?q=');
 addSearchAlias('se_', 'stack exchange', 'http://stackexchange.com/search?q=');
+addSearchAlias('alw_', 'arch-linux wiki', 'https://wiki.archlinux.org/index.php?search=');
 addSearchAlias('az_', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
 addSearchAlias('go_', 'google', 'https://www.google.com/search?q=');
 addSearchAlias('go_~', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
@@ -588,6 +589,9 @@ addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
 mapkey('sw', '#8Search Wikipedia', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "wi_"});
 });
+mapkey('sa', '#8Search Arch-Linux Wiki', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "alw_"});
+});
 mapkey('sg', '#8Search with Google', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "go_"});
 });
@@ -597,7 +601,7 @@ mapkey('sG', '#8Search with Google on current site only', function() {
 mapkey('sy', '#8Search Youtube', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "yo_"});
 });
-mapkey('sa', '#8Search Amazon', function() {
+mapkey('sA', '#8Search Amazon', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "az_"});
 });
 mapkey('sm', '#8Search MELPA', function() {
