@@ -286,7 +286,6 @@ unmap('cf');
 map('C', 'af'); // open link in active new tab
 unmap('af');
 
-
 // map(',', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 // map('<', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 unmap('[[');
@@ -312,8 +311,6 @@ unmap(';e');
 mapkey('gE', '#12Open Chrome extension shortcuts', function() {
     tabOpenLink("chrome://extensions/shortcuts");
 });
-// map('gE', 'ge');
-// unmap('ge');
 
 map('gS', 'gs'); // view page source
 mapkey('gs', '#12Open Chrome settings', function() {
@@ -410,7 +407,7 @@ aceVimMap('gi', 'A', 'normal'); // insert at line end
 unmap('<Alt-m>');
 
 
-// !!! must unmap this BEFORE any new bindings prefixed by ':'
+// !!! must unmap ':' BEFORE any new bindings prefixed by it
 // map('A', ':'); // open Omnibar for commands -- doesn't work somewhy
 mapkey('\"', '#8Open commands', function() {
     Front.openOmnibar({type: "Commands"});
@@ -420,6 +417,8 @@ map(':dh', ';dh'); // delete history older than 30 days
 unmap(';dh');
 map(':db', ';db'); // delete bookmark for current tab
 unmap(';db');
+map(':di', ';di'); // download image
+unmap(';di');
 
 
 mapkey(':s', '#5Save session', function() {
@@ -458,7 +457,10 @@ map('<Alt-p>', ';s'); // toggle pdf viewer
 unmap(';s');
 
 map('gH', 'g#'); // open current url without the hash fragment  // shadows default "go to history" binding
-unmap('g#');
+// unmap('g#');
+
+map('gq', 'g?'); // open current url without the hash fragment  // shadows default "go to history" binding
+// unmap('g?');
 
 map(':u', ';U'); // edit current url w/ vim editor and reload
 unmap(';U');
@@ -468,13 +470,13 @@ unmap(';u');
 map('B', 'ab'); // add bookmark
 unmap('ab'); // add bookmark
 
-// map('yu', 'yy'); // copy url of current tab
-// unmap('yy');
+map('yA', 'yma'); // copy urls from multiple links
+unmap('yma');
 
-map(':l', ';ql'); // show last command
+// map(':l', ';ql'); // show last command
 
 // !!! must put this AFTER all mappings based on ';'-prefixed default bindings
-map(';', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map('⍵', ';_')")
+map(';', '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
 // map('<Ctrl-;>', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map('⍵', ';_')")
 unmap('<Ctrl-6>');
 
@@ -550,27 +552,29 @@ removeSearchAlias('y'); // youtube
 	includes "nix pills" in the page name. Otherwise said key sequence would bring up
 	"nixpkgs➤ pills" in the omnibar. If we name the search alias "nIX" instead of "nix", then
 	we'd have to do "T nix_ pills" to get the same accidental result, so we can now safely type
-	"T nix pills".
+	"T nix pills". Or you can just make them one or two letters, in which case it shouldn't be a problem,
+  and which has the added benefit of being easy to type as a suffix for a visual-mode search (e.g.,
+  "sg" to search the with Google for the text that's selected in visual mode) -- useful for copying
+  something that's unwieldy to type, e.g., `source ~/.nix-profile/etc/profile.d/nix.sh`.
 */
-addSearchAlias('nr_', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
-addSearchAlias('nix_', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
-addSearchAlias('mel_', 'melpa', 'https://melpa.org/#/?q=');
-addSearchAlias('ra_', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
-addSearchAlias('tr_', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
-addSearchAlias('ha_', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
-addSearchAlias('pur_', 'pursuit', 'https://pursuit.purescript.org/search?q=');
-addSearchAlias('sp_', 'startpage', 'https://startpage.com/sp/search/?q=');
-addSearchAlias('so_', 'stack overflow', 'http://stackoverflow.com/search?q=');
-addSearchAlias('se_', 'stack exchange', 'http://stackexchange.com/search?q=');
-addSearchAlias('alw_', 'arch-linux wiki', 'https://wiki.archlinux.org/index.php?search=');
-addSearchAlias('az_', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
-addSearchAlias('go_', 'google', 'https://www.google.com/search?q=');
-addSearchAlias('go_~', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
-addSearchAlias('gm_', 'google maps', 'https://www.google.com/maps?q=');
-addSearchAlias('yo_', 'youtube', 'https://www.youtube.com/results?search_query=');
-addSearchAlias('wi_', 'wikipedia', 'https://en.wikipedia.org/wiki/');
-addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
-// addSearchAlias('go_~', 'google', 'https://www.google.com/search?q=site%3A' + window.location.href.replace(/\?)+'%20'); // search pages only from current site --> replace everything after hostname, e.g., after '*.com' or '*.net'
+addSearchAlias('N', 'nix revision', 'https://lazamar.co.uk/nix-versions/?channel=nixos-unstable&package=');
+addSearchAlias('n', 'nixpkgs', 'https://search.nixos.org/packages?from=0&size=60&sort=relevance&channel=unstable&query=');
+addSearchAlias('m', 'melpa', 'https://melpa.org/#/?q=');
+addSearchAlias('r', 'racket docs', 'https://docs.racket-lang.org/search/index.html?q=');
+addSearchAlias('t', 'typed-racket docs', 'https://docs.racket-lang.org/search/index.html?q=L%3Atyped%2Fracket%20');
+addSearchAlias('h', 'hoogle', 'https://hoogle.haskell.org/?hoogle=');
+addSearchAlias('p', 'pursuit', 'https://pursuit.purescript.org/search?q=');
+addSearchAlias('o', 'stack overflow', 'http://stackoverflow.com/search?q=');
+addSearchAlias('e', 'stack exchange', 'http://stackexchange.com/search?q=');
+addSearchAlias('a', 'arch-linux wiki', 'https://wiki.archlinux.org/index.php?search=');
+addSearchAlias('A', 'amazon', 'https://www.amazon.com/s/?field-keywords=');
+addSearchAlias('y', 'youtube', 'https://www.youtube.com/results?search_query=');
+addSearchAlias('w', 'wikipedia', 'https://en.wikipedia.org/wiki/');
+addSearchAlias('u', 'github', 'https://github.com/search?q=');
+addSearchAlias('M', 'google maps', 'https://www.google.com/maps?q=');
+addSearchAlias('g', 'google', 'https://www.google.com/search?q=');
+addSearchAlias('G', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
+// addSearchAlias('G', 'google', 'https://www.google.com/search?q=site%3A' + window.location.href.replace(/\?)+'%20'); // search pages only from current site --> replace everything after hostname, e.g., after '*.com' or '*.net'
 // window.location.href = window.location.href.replace(/\?[^\?]*$/, ''); --> 'g?' for reference
 
 /*
@@ -581,64 +585,61 @@ addSearchAlias('hub_', 'github', 'https://github.com/search?q=');
 	----------------------------------------------------------------------
 */
 /*
-	We want our search mappings to prefix our search aliases (e.g., the 'w' in 'sw' prefixes the "wI"
+	We want our search mappings to prefix our search aliases (e.g., the 'w' in 'sw' prefixes the "wi_"
 	alias used by the 'sw' command) in order to shadow the "search selected (i.e., clipboard text)
-	with search alias 'wI'" that would otherwise be *implicitly* created upon defining said search alias.
+	with search alias 'wi_'" that would otherwise be *implicitly* created upon defining said search alias.
 */
 
 mapkey('sw', '#8Search Wikipedia', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "wi_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "w"});
 });
 mapkey('sa', '#8Search Arch-Linux Wiki', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "alw_"});
+		Front.openOmnibar({type: "SearchEngine", extra: "a"});
 });
 mapkey('sg', '#8Search with Google', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "go_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "g"});
 });
 mapkey('sG', '#8Search with Google on current site only', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "go_~"});
+		Front.openOmnibar({type: "SearchEngine", extra: "G"});
 });
 mapkey('sy', '#8Search Youtube', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "yo_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "y"});
 });
 mapkey('sA', '#8Search Amazon', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "az_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "A"});
 });
 mapkey('sm', '#8Search MELPA', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "mel_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "m"});
 });
 mapkey('sM', '#8Search with Google Maps', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "gm_"});
+		Front.openOmnibar({type: "SearchEngine", extra: "M"});
 });
 mapkey('sh', '#8Search Hoogle', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "ha_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "h"});
 });
 mapkey('sp', '#8Search Pursuit', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "pur_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "p"});
 });
 mapkey('so', '#8Search Stack Overflow', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "so_"});
+  Front.openOmnibar({type: "SearchEngine", extra: "o"});
 });
 mapkey('se', '#8Search Stack Exchange', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "se_"});
-});
-mapkey('ss', '#8Search with StartPage', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "sp_"});
+		Front.openOmnibar({type: "SearchEngine", extra: "e"});
 });
 mapkey('sn', '#8Search Nixpkgs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "nix_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "n"});
 });
 mapkey('sN', '#8Find Nix revision for given package', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "nr_"});
+		Front.openOmnibar({type: "SearchEngine", extra: "N"});
 });
 mapkey('st', '#8Search Typed-Racket Docs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "tr_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "t"});
 });
 mapkey('sr', '#8Search Racket Docs', function() {
-   Front.openOmnibar({type: "SearchEngine", extra: "ra_"});
+   Front.openOmnibar({type: "SearchEngine", extra: "r"});
 });
 mapkey('su', '#8Search GitHub', function() {
-  Front.openOmnibar({type: "SearchEngine", extra: "hub_"});
+  Front.openOmnibar({type: "SearchEngine", extra: "u"});
 });
 
 
