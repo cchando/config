@@ -5,8 +5,8 @@
 
 ! NOTE: Before assignment, the relevant modifier keys need to be cleared. This applies to both modifiers you intend to assign AND modifiers on keys that you intend to use. For example, if you intend to assign Caps_Lock to your A key and B to your NumLock key, you need to first clear the modifiers for both Caps_Lock and Num_Lock, then assign the keysyms, and finally add back the modifiers.
 
-! NOTE: All "clear" commands must happen first!
-! NOTE: All "add" commands must happen last!
+! NOTE: All "clear" commands should happen first! (personal heuristic; I'm unclear about how this actually works since the manpage seems wrong)
+! NOTE: All "add" commands should happen last! (personal heuristic; I'm unclear about how this actually works since the manpage seems wrong)
 
 ! here's the default setting on special keys:
 !  xmodmap -pke | grep '(Control|Super|Alt|Menu)'
@@ -15,7 +15,7 @@
 ! keycode   9 = Escape NoSymbol Escape
 ! keycode  37 = Control_L NoSymbol Control_L  -- left Control key
 ! keycode  50 = Shift_L NoSymbol Shift_L      -- left Shift key
-! keycode  62 = Shift_R NoSymbol Shift_R      -- left Shift key
+! keycode  62 = Shift_R NoSymbol Shift_R      -- right Shift key
 ! keycode  64 = Alt_L Meta_L Alt_L Meta_L     -- left Alt key
 ! keycode  66 = Caps_Lock NoSymbol Caps_Lock  -- Caps Lock key
 ! keycode 105 = Control_R NoSymbol Control_R  -- right Control key
@@ -27,10 +27,11 @@
 ! keycode 204 = NoSymbol Alt_L NoSymbol Alt_L
 ! keycode 206 = NoSymbol Super_L NoSymbol Super_L
 
-! clear relevant modifier maps
+! clear relevant modifier maps:
 clear Lock
 clear Control
 clear Mod4
+clear Shift
 
 
 
@@ -44,13 +45,15 @@ keycode 9 = Caps_Lock NoSymbol Caps_Lock
 ! Ctrl_R ← Logo Key
 keycode 105 = Super_R NoSymbol Super_R
 
+! ! Shift_R ← Shift_L (just an experiment) -- not working somewhy
+! keycode 62 = Shift_L NoSymbol Shift_L
 
 
-
-! update relevant modifier maps
+! update relevant modifier maps:
 add Lock = Caps_Lock
 add Control = Control_L Control_R
 add Mod4 = Super_L Super_R
+add Shift = Shift_L Shift_R
 
 
 

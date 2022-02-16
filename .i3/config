@@ -181,10 +181,10 @@ set $ibrowser google-chrome-stable
     bindsym $alt+$mod+i exec firefox
 
     # screenshot using shotgun
-    bindsym $alt+$mod+s exec shotgun
+    bindsym $mod+s exec shotgun
 
     # close all google-chrome-stable windows
-    bindsym $alt$mod+g [class="^Google-chrome$"] kill
+    bindsym $alt+$mod+g [class="^Google-chrome$"] kill
 
     # start password manager
     # bindsym $mod+p exec encryptr
@@ -193,13 +193,20 @@ set $ibrowser google-chrome-stable
     bindsym $mod+w exec nitrogen
 
     # start vlc w/ playlist
+		bindsym $mod+p mode playlist
+		mode playlist {
+		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u
+		    bindsym A exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u
+		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u
+		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u
+		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u
+		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
 		bindsym $mod+v exec vlc --loop --random --no-repeat
-		bindsym Ctrl+Shift+1 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime-playlist.m3u
-		bindsym Ctrl+Shift+2 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level-playlist.m3u
-		bindsym Ctrl+Shift+7 exec vlc --loop file:///home/cameron/Music/1-Playlists/rain-playlist.m3u
-    bindsym Ctrl+Shift+8 exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/all-playlist.m3u
-		bindsym Ctrl+Shift+9 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus-playlist.m3u
-		bindsym Ctrl+Shift+0 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical-playlist.m3u
 
     # kill vlc
 		bindsym $alt+$mod+v exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
@@ -214,7 +221,7 @@ set $ibrowser google-chrome-stable
     bindsym $mod+Shift+r restart
 
     # start emacs (full-height, full-width)
-    bindsym $mod+s exec emacs -mm
+    bindsym $mod+e exec emacs -mm
 
     # start spacemacs w/ (modded) default config
 		# TODO: find out how to do this correctly
@@ -248,18 +255,10 @@ set $ibrowser google-chrome-stable
     # bindsym Ctrl+Shift+5 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3000
     # bindsym Ctrl+Shift+6 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 2500
 
-    # # # adjust brightness -- need sudo permission
+    # # adjust brightness -- need sudo permission
 		# bindsym $mod+u brightnessctl set +10%
 		# bindsym $mod+d brightnessctl set -10%
 
-    # suspend system
-    bindsym $alt+Shift+s exec systemctl suspend
-
-    # reboot system
-    bindsym $alt+Shift+r exec systemctl reboot
-
-    # shutdown system
-    bindsym $alt+Shift+u exec shutdown now
 
     # enable touchpad
     bindsym $alt+Shift+m exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1
@@ -270,6 +269,17 @@ set $ibrowser google-chrome-stable
     # # TODO: install similar screenshot program... "import" not in Nix repo
     # # Take a screenshot upon pressing $mod+x (select an area)
     # bindsym --release $mod+x exec --no-startup-id import /home/cameron/tmp/latest-screenshot.png
+
+
+    # suspend system
+		bindsym $alt+Shift+s exec systemctl suspend
+
+    # reboot system
+		bindsym $alt+Shift+r exec systemctl reboot
+
+    # shutdown system
+		bindsym $alt+Shift+u exec shutdown now
+
 
 
 
