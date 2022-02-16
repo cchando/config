@@ -162,6 +162,48 @@ set $ibrowser google-chrome-stable
 
     bindsym Shift+$mod+bracketright exec xrandr --output DP-1-3 --rotate normal
 
+    # start vlc w/ playlist
+		bindsym $mod+p mode playlist
+		mode playlist {
+				bindsym v exec vlc --loop --random --no-repeat
+				bindsym K exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
+        # kill vlc
+		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u
+		    bindsym A exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u
+		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u
+		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u
+		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u
+		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+    # systemctl commands
+		bindsym $alt+$mod+s mode system
+		mode system {
+        bindsym $alt+Shift+s exec systemctl suspend
+				bindsym $alt+Shift+r exec systemctl reboot
+				bindsym $alt+Shift+u exec shutdown now
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+    # i3 commands
+		bindsym $alt+$mod+i mode i3
+		mode i3 {
+        # reload the configuration file
+				bindsym c reload
+				# restart i3
+				bindsym r restart
+				# exit i3 (logs you out of your X session)
+				bindsym $mod+Shift+e exit
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
     # start a terminal
     bindsym $mod+t exec $term #-1 --listen-on unix:/tmp/kitty  #$term  #kitty  #konsole --hide-menubar
 
@@ -191,45 +233,6 @@ set $ibrowser google-chrome-stable
 
     # start wallpaper manager
     bindsym $mod+w exec nitrogen
-
-    # start vlc w/ playlist
-		bindsym $mod+p mode playlist
-		mode playlist {
-				bindsym v exec vlc --loop --random --no-repeat
-				bindsym K exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)" # kill vlc
-		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u
-		    bindsym A exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u
-		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u
-		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u
-		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u
-		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u
-				bindsym Escape mode "default"
-				bindsym Return mode "default"
-				bindsym space mode "default"
-		}
-
-    # systemctl commands
-		bindsym $alt+$mod+s mode systemctl
-		mode systemctl {
-        bindsym $alt+Shift+s exec systemctl suspend
-				bindsym $alt+Shift+r exec systemctl reboot
-				bindsym $alt+Shift+u exec shutdown now
-				bindsym Escape mode "default"
-				bindsym Return mode "default"
-				bindsym space mode "default"
-		}
-
-    # i3 commands
-		bindsym $alt+$mod+i mode i3
-		mode i3 {
-				bindsym c reload # reload the configuration file
-				bindsym r restart # restart i3
-				bindsym $mod+Shift+e exit # exit i3 (logs you out of your X session)
-				bindsym Escape mode "default"
-				bindsym Return mode "default"
-				bindsym space mode "default"
-		}
-
 
 		# start emacs (full-height, full-width)
     bindsym $mod+e exec emacs -mm
