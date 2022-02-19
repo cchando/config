@@ -46,38 +46,38 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     haskell
-     purescript
-  	 html
+	 haskell
+	 purescript
+	 html
 	   vimscript
-  	 racket
-  	 ruby
-  	 asciidoc
-     javascript
-     clojure
+	 racket
+	 ruby
+	 asciidoc
+	 javascript
+	 clojure
 		 ;; themes-megapack
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     helm
-     evil-snipe
-     auto-completion
-     ;; better-defaults
-     emacs-lisp
-     git
-     ;; markdown
-     ;; org
-     (shell :variables
+	 ;; ----------------------------------------------------------------
+	 ;; Example of useful layers you may want to use right away.
+	 ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+	 ;; <M-m f e R> (Emacs style) to install them.
+	 ;; ----------------------------------------------------------------
+	 helm
+	 evil-snipe
+	 auto-completion
+	 ;; better-defaults
+	 emacs-lisp
+	 git
+	 ;; markdown
+	 ;; org
+	 (shell :variables
 						shell-default-shell 'ansi-term ; eshell shell term ansi-term (default on Linux/macOS) multi-term vterm
 						close-window-with-terminal t
-            shell-default-height 20
-            shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
-     )
+			shell-default-height 20
+			shell-default-position 'bottom)
+	 ;; spell-checking
+	 ;; syntax-checking
+	 ;; version-control
+	 )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -147,7 +147,7 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+								(projects . 7))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -183,7 +183,7 @@ values."
 												 ;; --- Colored themes ---
 												 ;; moe-light ;; colorful
 												 ;; underwater ;; medium-dark blue
-                         ;; alect-light
+						 ;; alect-light
 												 ;; ample-light
 												 ;; occidental
 												 ;; base16-greenscreen
@@ -226,10 +226,10 @@ values."
 															 ;;       Also, [("Fira Code" :size 12)] gives Fira Code size 13. Go figure.
 
 															 ;; ("Hasklig"
-															 ;; 	:size 13
-															 ;; 	:weight normal
-															 ;; 	:width normal
-															 ;; 	:powerline-scale 1.1)
+															 ;;		:size 13
+															 ;;		:weight normal
+															 ;;		:width normal
+															 ;;		:powerline-scale 1.1)
 
 															 ("Fira Code"
 																:size 12
@@ -424,9 +424,8 @@ you should place your code here."
 	(remove-hook 'prog-mode-hook 'global-highlight-parentheses-mode)
 	(remove-hook 'prog-mode-hook 'highlight-parentheses-mode)
 	;; (remove-hook 'prog-mode-hook 'line-number-mode)
-	(add-hook 'adoc-mode-hook 'smartparens-mode)
-	(add-hook 'adoc-mode-hook 'smartparens-mode)
-	(add-hook 'prog-mode-hook 'smartparens-mode)
+	;; (add-hook 'adoc-mode-hook 'smartparens-mode)
+	;; (add-hook 'prog-mode-hook 'smartparens-mode)
 	(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 	;; Fira Code    diaeresis
@@ -586,44 +585,44 @@ you should place your code here."
   (defvar composition-ligature-table (make-char-table nil))
   :hook
   (((prog-mode conf-mode nxml-mode markdown-mode help-mode)
-    . (lambda () (setq-local composition-function-table composition-ligature-table))))
+	. (lambda () (setq-local composition-function-table composition-ligature-table))))
   :config
   ;; support ligatures, some toned down to prevent hang (originally removed are 42-2, 43-2, 46-2, 47-2, 92)
   (when (version<= "27.0" emacs-version) ; when using 27.0 or newer
-    (let ((alist
-           '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
-             (35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
-             (36 . ".\\(?:\\(>\\)>?\\)")
-             (37 . ".\\(?:\\(%\\)%?\\)")
-             (38 . ".\\(?:\\(&\\)&?\\)")
-             (42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
-             ;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
-             (43 . ".\\(?:\\([>]\\)>?\\)")
-             ;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
-             (45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
-             (46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
-             ;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
-             (47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
-             ;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
-             (48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
-             (58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
-             (59 . ".\\(?:\\(;\\);?\\)")
-             (60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
-             (61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
-             (62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
-             (63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
-             (91 . ".\\(?:\\(|\\)[]|]?\\)")
-             ;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
-             (94 . ".\\(?:\\(=\\)=?\\)")
-             (95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
-             (119 . ".\\(?:\\(ww\\)w?\\)")
-             (123 . ".\\(?:\\(|\\)[|}]?\\)")
-             (124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
-             (126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
-      (dolist (char-regexp alist)
-        (set-char-table-range composition-ligature-table (car char-regexp)
-                              `([,(cdr char-regexp) 0 font-shape-gstring]))))
-    (set-char-table-parent composition-ligature-table composition-function-table))
+	(let ((alist
+		   '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
+			 (35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
+			 (36 . ".\\(?:\\(>\\)>?\\)")
+			 (37 . ".\\(?:\\(%\\)%?\\)")
+			 (38 . ".\\(?:\\(&\\)&?\\)")
+			 (42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
+			 ;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
+			 (43 . ".\\(?:\\([>]\\)>?\\)")
+			 ;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
+			 (45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
+			 (46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
+			 ;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
+			 (47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
+			 ;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
+			 (48 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
+			 (58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
+			 (59 . ".\\(?:\\(;\\);?\\)")
+			 (60 . ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
+			 (61 . ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
+			 (62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
+			 (63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
+			 (91 . ".\\(?:\\(|\\)[]|]?\\)")
+			 ;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
+			 (94 . ".\\(?:\\(=\\)=?\\)")
+			 (95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
+			 (119 . ".\\(?:\\(ww\\)w?\\)")
+			 (123 . ".\\(?:\\(|\\)[|}]?\\)")
+			 (124 . ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
+			 (126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
+	  (dolist (char-regexp alist)
+		(set-char-table-range composition-ligature-table (car char-regexp)
+							  `([,(cdr char-regexp) 0 font-shape-gstring]))))
+	(set-char-table-parent composition-ligature-table composition-function-table))
   )
 
 
@@ -669,9 +668,9 @@ you should place your code here."
 	;; (pretty-deactivate-groups
   ;;   ;; operator, equality and arrow groups interfere with Fira Code operators
 	;;   ;; logic group interferes with prettify-symbols
-  ;; 	 '(:equality :ordering :ordering-double :ordering-triple
-	;; 						 :arrows :arrows-twoheaded :punctuation
-	;; 						 :logic :sets))
+  ;;	 '(:equality :ordering :ordering-double :ordering-triple
+	;;						 :arrows :arrows-twoheaded :punctuation
+	;;						 :logic :sets))
 	;; (pretty-activate-groups
 	;;  '(:sub-and-superscripts :greek :arithmetic-nary))
 
@@ -805,7 +804,7 @@ you should place your code here."
 						 ;; ("powerset" .    "℘")
 						 ;; ("cross" .    "⨯")
 						 ;; ("del" .  "∇")
- 						 ;; ("nabla" .  "∇")
+						 ;; ("nabla" .  "∇")
 						 ;; ("-o" .  "⊸")
 						 ;; ("++" .      "◇")
 						 ;; ("<*>" .   "⊛")
@@ -814,7 +813,7 @@ you should place your code here."
 						 ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
 						 ;; ("join" .   "⨝") ; µ ⨝
 						 ;; ("bind" .   "η")
- 						 ;; ("yield" .   "⮨")
+						 ;; ("yield" .   "⮨")
 						 ;; ("divide" .    "÷")
 						 ("for-each" .      "∀")
 						 ;; ("sub" .      "-")
@@ -1088,7 +1087,7 @@ you should place your code here."
 ;;                      visual-line-mode)))
 ;;     (when fwd (forward-char))
 ;;     (let ((case-fold-search nil)
-;; 					(ks (evil-snipe--collect-keys 2)))
+;;					(ks (evil-snipe--collect-keys 2)))
 ;;       (unless (prog1
 ;;                   (re-search-forward (concat "[^[:alnum:]]" ks) ; modified this line
 ;;                                   nil
@@ -1127,8 +1126,8 @@ you should place your code here."
 
 ;; (evil-define-motion vile-append-WORD (count) ; error somewhy
 ;;   "Jump to end of the word under the cursor and switch to insert mode"
-;; 	(evil-forward-WORD-end)
-;; 	(evil-append))
+;;	(evil-forward-WORD-end)
+;;	(evil-append))
 
 
 (defun open-typed-racket-docs ()
@@ -1143,15 +1142,15 @@ you should place your code here."
 
 (defun keymap+ (&rest bindings)
   (if (stringp (car bindings))
-      (progn (setq k (pop bindings) f (pop bindings))
-             (while k
-               (global-set-key (kbd k) f)
-               (setq k (pop bindings) f (pop bindings))))
-    (let ((m (pop bindings)))
-      (setq k (pop bindings) f (pop bindings))
-      (while k
-        (define-key m (kbd k) f)
-        (setq k (pop bindings) f (pop bindings))))))
+	  (progn (setq k (pop bindings) f (pop bindings))
+			 (while k
+			   (global-set-key (kbd k) f)
+			   (setq k (pop bindings) f (pop bindings))))
+	(let ((m (pop bindings)))
+	  (setq k (pop bindings) f (pop bindings))
+	  (while k
+		(define-key m (kbd k) f)
+		(setq k (pop bindings) f (pop bindings))))))
 
 
 
@@ -1160,7 +1159,7 @@ you should place your code here."
   "Jump to a word start on the current line only."
   (interactive)
   (avy-with avy-goto-word-0
-    (avy-goto-word-0 nil (line-beginning-position) (line-end-position))))
+	(avy-goto-word-0 nil (line-beginning-position) (line-end-position))))
 ;; optional evil integration example:
    ;; (declare-function 'avy-goto-word-crt-line "avy")
    ;; (evil-define-avy-motion avy-goto-word-crt-line inclusive)
@@ -1196,6 +1195,7 @@ you should place your code here."
 		 "SPC H K"  'describe-key-briefly
 		 "SPC H v"  'describe-variable
 		 "SPC '"   'spacemacs/shell-pop-ansi-term
+		 "SPC W"   'whitespace-cleanup
 		 ;; "SPC '"   'spacemacs/shell-pop-eshell ; no aliases
 		 ;; "SPC '"   'spacemacs/shell-pop-shell ; no highlighting
 		 ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
@@ -1221,6 +1221,7 @@ you should place your code here."
 		 )
 
 ;; normal state mappings
+;; ;; "SPC-;-<motion>" for e.g., comment-to-end-of-line (evilnc-comment-operator)
 (keymap+ evil-normal-state-map
 		 ;; "C-d"    'vile-scroll-down
 		 ;; "C-u"    'vile-scroll-up
@@ -1234,6 +1235,9 @@ you should place your code here."
 		 ;; "gd"   'racket-jump-visit-definition
 		 ;; "A"    'evil-insert-line
 		 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
+		 "C-r"  nil ;; unmap C-r from unto-tree-redo
+		 "r"  'evil-replace  ; was originally evil-replace-state
+		 "R"  'undo-tree-redo
 		 "e"  'evil-forward-WORD-end
 		 "E"  'evil-forward-word-end
 		 "C-e"  'iedit-mode
@@ -1250,6 +1254,7 @@ you should place your code here."
 		 "W"    'evil-forward-word-begin
 		 "B"    'evil-backward-word-begin
 		 "go"   'isearch-forward-word
+		 "gc"   'evil-invert-char
 		 "gu"   'evil-upcase
 		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph
@@ -1339,31 +1344,31 @@ you should place your code here."
 	;; ;; magit mode mappings
 	;; (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
 	;; (add-hook 'magit-log-mode-hook
-	;; 		  (lambda ()
-	;; 			(map (lambda (pair)
-	;; 				   (define-key magit-log-mode-map (kdb (car pair)) (cdr pair))))
-	;; 			'(
-	;; 			  ("K" . 'vile-scroll-up)
-	;; 			  ;; ("C-k" . 'magit-file-untrack)
-	;; 			  )))
+	;;		  (lambda ()
+	;;			(map (lambda (pair)
+	;;				   (define-key magit-log-mode-map (kdb (car pair)) (cdr pair))))
+	;;			'(
+	;;			  ("K" . 'vile-scroll-up)
+	;;			  ;; ("C-k" . 'magit-file-untrack)
+	;;			  )))
 	;; (add-hook 'magit-diff-mode-hook
-	;; 		  (lambda ()
-	;; 			(map (lambda (pair)
-	;; 				   (define-key magit-diff-mode-map (kdb (car pair)) (cdr pair))))
-	;; 			'(
-	;; 			  ("K" . 'vile-scroll-up)
-	;; 			  ;; ("C-k" . 'magit-file-untrack)
-	;; 			  )))
+	;;		  (lambda ()
+	;;			(map (lambda (pair)
+	;;				   (define-key magit-diff-mode-map (kdb (car pair)) (cdr pair))))
+	;;			'(
+	;;			  ("K" . 'vile-scroll-up)
+	;;			  ;; ("C-k" . 'magit-file-untrack)
+	;;			  )))
 
 
 
 ;; ;; ;; vimscript-like commands
-;; ;; 	TODO: write vile motion-command similar to "ds(" that, when executed inside a set of parenthesis, deletes everything only in the immediately-surrounding set of parentheses. Just like with evil-surround, have two options,one of which keeps the surrounding parentheses themselves, and one of which discards them. This is very helpful when you add e.g. a cast statement like
-;; ;;     	(cast (hash-ref stockmap stock) (Listof Candle))
+;; ;;	TODO: write vile motion-command similar to "ds(" that, when executed inside a set of parenthesis, deletes everything only in the immediately-surrounding set of parentheses. Just like with evil-surround, have two options,one of which keeps the surrounding parentheses themselves, and one of which discards them. This is very helpful when you add e.g. a cast statement like
+;; ;;		(cast (hash-ref stockmap stock) (Listof Candle))
 	;; ;; except it's a longer expression that wraps to the next line, and you later want to remove the surrounding expression. See how evil-surround finds out what comprises the outer expr. Basically, the logic is to keep going forward, "collecting" parenthesis, until you have one more right-parentheses than left ones, and then delete that one. And do the same thing for left-parens, but while going backward.
 	;; ;; `[(` and `])` move to previous/next paren, resp., even if it's on a different line.
 
-;; 	 (define-key evil-normal-state-map (kbd "mdl") "2[(dt(%ldf)") ;; doesn't work for above example, nor for multi-line exprs
+;;	 (define-key evil-normal-state-map (kbd "mdl") "2[(dt(%ldf)") ;; doesn't work for above example, nor for multi-line exprs
 
 
 
@@ -1375,7 +1380,7 @@ you should place your code here."
 	(interactive)
 	(if (boundp 'org-timer-done-hook)
 			(if (memql 'timer-bell org-timer-done-hook)
-          (progn (message "removed \"timer done\" bell") (remove-hook 'org-timer-done-hook 'timer-bell))
+		  (progn (message "removed \"timer done\" bell") (remove-hook 'org-timer-done-hook 'timer-bell))
 				(progn (message "added \"timer done\" bell") (add-hook 'org-timer-done-hook 'timer-bell)))
 		(error "org-timer-done-hook does not exist. you need to start a timer first")))
 
@@ -1389,11 +1394,11 @@ you should place your code here."
 
 
   (defadvice ido-find-file (after find-file-sudo activate) ;; doesn't work for counsel-find-file somewhy
-    ;; so use C-x C-f for ido-find-file
-    "open file as root as needed."
-    (unless (and buffer-file-name
-                 (file-writable-p buffer-file-name))
-      (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+	;; so use C-x C-f for ido-find-file
+	"open file as root as needed."
+	(unless (and buffer-file-name
+				 (file-writable-p buffer-file-name))
+	  (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 
   ;; ido everywhere
@@ -1407,7 +1412,7 @@ you should place your code here."
 
 
 ;; ;; enable easymotion bindings w/ given key prefix
-;; 	(evilem-default-keybindings ",")
+;;	(evilem-default-keybindings ",")
 
 
 
@@ -1426,7 +1431,7 @@ you should place your code here."
 
 	;; ;; enable snipe replacements of 'f' and 't'
 	;; (setq-default dotspacemacs-configuration-layers
-	;; 							'((evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)))
+	;;							'((evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)))
 
 	;; Disable evil search persistent highlighting
   (global-evil-search-highlight-persist 0)
@@ -1434,16 +1439,16 @@ you should place your code here."
   ;; ;; Disable evil-snipe-override for , and ; keys (doing "(define-key evil-snipe-mode-map (kbd ",") nil)" doesn't work )
   ;; (setq evil-snipe-override-evil-repeat-keys nil)
   ;; (setq evil-snipe-override-local-mode-map
-	;; 			(let ((map (make-sparse-keymap)))
-	;; 				(evil-define-key* 'motion map
-	;; 													"s" #'evil-snipe-s
-	;; 													"S" #'evil-snipe-S)
-	;; 				map))
+	;;			(let ((map (make-sparse-keymap)))
+	;;				(evil-define-key* 'motion map
+	;;													"s" #'evil-snipe-s
+	;;													"S" #'evil-snipe-S)
+	;;				map))
   ;; (setq evil-snipe-parent-transient-map
-	;; 			(let ((map (make-sparse-keymap)))
-	;; 				(define-key map ";" #'evil-snipe-repeat)
-	;; 				(define-key map "," #'evil-snipe-repeat-reverse)
-	;; 				map))
+	;;			(let ((map (make-sparse-keymap)))
+	;;				(define-key map ";" #'evil-snipe-repeat)
+	;;				(define-key map "," #'evil-snipe-repeat-reverse)
+	;;				map))
 
 
 	;; Enable evil-snipe to do a longer n-char search using TAB
@@ -1459,14 +1464,14 @@ you should place your code here."
 
 
 	;; (defun cac-toggle-fold ()
-	;; 	"Toggle fold all lines larger than indentation on current line"
-	;; 	(interactive)
-	;; 	(let ((col 1))
-	;; 		(save-excursion
-	;; 			(back-to-indentation)
-	;; 			(setq col (+ 1 (current-column)))
-	;; 			(set-selective-display
-	;; 			 (if selective-display nil (or col 1))))))
+	;;	"Toggle fold all lines larger than indentation on current line"
+	;;	(interactive)
+	;;	(let ((col 1))
+	;;		(save-excursion
+	;;			(back-to-indentation)
+	;;			(setq col (+ 1 (current-column)))
+	;;			(set-selective-display
+	;;			 (if selective-display nil (or col 1))))))
 	;; (global-set-key (kbd "M-C-i") 'cac-toggle-fold)
 
 
@@ -1477,18 +1482,18 @@ you should place your code here."
 
 ;; Set indent levels
   (defun my-setup-indent (n)
-    ;; java/c/c++
-    (setq c-basic-offset n)
-    ;; web development
-    (setq coffee-tab-width n) ; coffeescript
-    (setq javascript-indent-level n) ; javascript-mode
-    (setq js-indent-level n) ; js-mode
-    (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-    (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
-    (setq web-mode-css-indent-offset n) ; web-mode, css in html file
-    (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
-    (setq css-indent-offset n) ; css-mode
-    )
+	;; java/c/c++
+	(setq c-basic-offset n)
+	;; web development
+	(setq coffee-tab-width n) ; coffeescript
+	(setq javascript-indent-level n) ; javascript-mode
+	(setq js-indent-level n) ; js-mode
+	(setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+	(setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+	(setq web-mode-css-indent-offset n) ; web-mode, css in html file
+	(setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+	(setq css-indent-offset n) ; css-mode
+	)
   (my-setup-indent 4) ;
 
 
@@ -1554,51 +1559,51 @@ you should place your code here."
    '("e8349abfd1c6513e40322ccce5652b5ef6b6665d3fed6e2d9447617c3cf35ee9" "702b04f42e51ad9889fd34b9fd065e79ec33f5fc4b17334cba9e49729a6d59d7" "65f35d1e0d0858947f854dc898bfd830e832189d5555e875705a939836b53054" "5c75e3fa3c2153e149bea54ef5324bdafea4e7ba9ae4b12314dd3ad13211e89e" "c2efd2e2e96b052dd91940b100d86885337a37be1245167642451cf6da5b924a" "6271fc9740379f8e2722f1510d481c1df1fcc43e48fa6641a5c19e954c21cc8f" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "cba5ebfabc6456e4bbd68e0394d176161e1db063c6ca24c23b9828af0bdd7411" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "13880fa28757754bc40c85b05689c801ddaa877f2fe65abf1779f37776281ef1" "bbb521edff9940ba05aeeb49f9b247e95e1cb03bd78de18122f13500bda6514f" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(ensime-sem-high-faces
    '((var :foreground "#000000" :underline
-          (:style wave :color "yellow"))
-     (val :foreground "#000000")
-     (varField :foreground "#600e7a" :slant italic)
-     (valField :foreground "#600e7a" :slant italic)
-     (functionCall :foreground "#000000" :slant italic)
-     (implicitConversion :underline
-                         (:color "#c0c0c0"))
-     (implicitParams :underline
-                     (:color "#c0c0c0"))
-     (operator :foreground "#000080")
-     (param :foreground "#000000")
-     (class :foreground "#20999d")
-     (trait :foreground "#20999d" :slant italic)
-     (object :foreground "#5974ab" :slant italic)
-     (package :foreground "#000000")
-     (deprecated :strike-through "#000000")))
+		  (:style wave :color "yellow"))
+	 (val :foreground "#000000")
+	 (varField :foreground "#600e7a" :slant italic)
+	 (valField :foreground "#600e7a" :slant italic)
+	 (functionCall :foreground "#000000" :slant italic)
+	 (implicitConversion :underline
+						 (:color "#c0c0c0"))
+	 (implicitParams :underline
+					 (:color "#c0c0c0"))
+	 (operator :foreground "#000080")
+	 (param :foreground "#000000")
+	 (class :foreground "#20999d")
+	 (trait :foreground "#20999d" :slant italic)
+	 (object :foreground "#5974ab" :slant italic)
+	 (package :foreground "#000000")
+	 (deprecated :strike-through "#000000")))
  '(evil-snipe-enable-highlight nil)
  '(evil-snipe-enable-incremental-highlight nil)
  '(evil-surround-pairs-alist
    '((113 "`" . "'")
-     (80 "+++" . "+++")
-     (112 "+" . "+")
-     (68 "``" . "''")
-     (100 "${" . "}")
-     (108 "(" . ")")
-     (76 "( " . " )")
-     (115 "[" . "]")
-     (40 "( " . " )")
-     (83 "[ " . " ]")
-     (67 "{ " . " }")
-     (41 "(" . ")")
-     (93 "[" . "]")
-     (125 "{" . "}")
-     (104 "#{" . "}")
-     (72 "#{ " . " }")
-     (117 "_" . "_")
-     (98 "`" . "`")
-     (59 "`" . "`")
-     (99 "{" . "}")
-     (67 "{ " . " }")
-     (97 "<" . ">")
-     (65 "< " . " >")
-     (116 . evil-surround-read-tag)
-     (60 . evil-surround-read-tag)
-     (102 . evil-surround-function)))
+	 (80 "+++" . "+++")
+	 (112 "+" . "+")
+	 (68 "``" . "''")
+	 (100 "${" . "}")
+	 (108 "(" . ")")
+	 (76 "( " . " )")
+	 (115 "[" . "]")
+	 (40 "( " . " )")
+	 (83 "[ " . " ]")
+	 (67 "{ " . " }")
+	 (41 "(" . ")")
+	 (93 "[" . "]")
+	 (125 "{" . "}")
+	 (104 "#{" . "}")
+	 (72 "#{ " . " }")
+	 (117 "_" . "_")
+	 (98 "`" . "`")
+	 (59 "`" . "`")
+	 (99 "{" . "}")
+	 (67 "{ " . " }")
+	 (97 "<" . ">")
+	 (65 "< " . " >")
+	 (116 . evil-surround-read-tag)
+	 (60 . evil-surround-read-tag)
+	 (102 . evil-surround-function)))
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#010F1D" t)
  '(global-evil-search-highlight-persist nil)
@@ -1607,13 +1612,13 @@ you should place your code here."
  '(highlight-changes-colors '("#EF5350" "#7E57C2"))
  '(highlight-tail-colors
    '(("#010F1D" . 0)
-     ("#B44322" . 20)
-     ("#34A18C" . 30)
-     ("#3172FC" . 50)
-     ("#B49C34" . 60)
-     ("#B44322" . 70)
-     ("#8C46BC" . 85)
-     ("#010F1D" . 100)))
+	 ("#B44322" . 20)
+	 ("#34A18C" . 30)
+	 ("#3172FC" . 50)
+	 ("#B49C34" . 60)
+	 ("#B44322" . 70)
+	 ("#8C46BC" . 85)
+	 ("#010F1D" . 100)))
  '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
@@ -1626,42 +1631,42 @@ you should place your code here."
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#C792EA")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#FFEB95")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#F78C6C")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#7FDBCA")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#82AAFF")))
+	 (40 . "#CF4F1F")
+	 (60 . "#C26C0F")
+	 (80 . "#FFEB95")
+	 (100 . "#AB8C00")
+	 (120 . "#A18F00")
+	 (140 . "#989200")
+	 (160 . "#8E9500")
+	 (180 . "#F78C6C")
+	 (200 . "#729A1E")
+	 (220 . "#609C3C")
+	 (240 . "#4E9D5B")
+	 (260 . "#3C9F79")
+	 (280 . "#7FDBCA")
+	 (300 . "#299BA6")
+	 (320 . "#2896B5")
+	 (340 . "#2790C3")
+	 (360 . "#82AAFF")))
  '(vc-annotate-color-↦
    '((20 . "#C792EA")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#FFEB95")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#F78C6C")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#7FDBCA")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#82AAFF")))
+	 (40 . "#CF4F1F")
+	 (60 . "#C26C0F")
+	 (80 . "#FFEB95")
+	 (100 . "#AB8C00")
+	 (120 . "#A18F00")
+	 (140 . "#989200")
+	 (160 . "#8E9500")
+	 (180 . "#F78C6C")
+	 (200 . "#729A1E")
+	 (220 . "#609C3C")
+	 (240 . "#4E9D5B")
+	 (260 . "#3C9F79")
+	 (280 . "#7FDBCA")
+	 (300 . "#299BA6")
+	 (320 . "#2896B5")
+	 (340 . "#2790C3")
+	 (360 . "#82AAFF")))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
    '(unspecified "#011627" "#010F1D" "#DC2E29" "#EF5350" "#D76443" "#F78C6C" "#D8C15E" "#FFEB95" "#5B8FFF" "#82AAFF" "#AB69D7" "#C792EA" "#AFEFE2" "#7FDBCA" "#D6DEEB" "#FFFFFF")))
