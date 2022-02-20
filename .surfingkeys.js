@@ -263,7 +263,6 @@ unmap('gxT');
 
 
 /* move tab left/right */
-
 map('u', '<<');
 unmap('<<');
 map('d', '>>');
@@ -280,11 +279,16 @@ mapkey('D', '#3Move current tab to rightmost', function() {
 });
 
 /* open links */
-map('F', 'cf'); // open multiple links in new tabs
-unmap('cf');
+
+map('F', 'gf'); // open link in non-active new tab
+unmap('gf');
 
 map('C', 'af'); // open link in active new tab
 unmap('af');
+
+map('A', 'cf'); // open multiple links in new tabs
+unmap('cf');
+
 
 // map(',', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
 // map('<', '[['); // prev -- replace w/ Vimium's prevPage/nextPage
@@ -331,7 +335,7 @@ mapkey('<Ctrl-/>', '#12Open Vimium C Settings', function() {
 cmap('<Ctrl-j>', '<Tab>'); // up
 cmap('<Ctrl-k>', '<Shift-Tab>'); // down
 // NOTE: use <Ctrl-d> to remove given entry from bookmarks while in omnibar
-// NOTE: input '<' to change omnibar mode from "search bookmarks" to "search bookmark folders"
+// NOTE: input '<' to change omnibar mode from "search bookmarks" to "search bookmark folders", and/or to start from "bookmarks➤" rather than a particular cached folder, e.g. "Surfing Keys➤"
 
 
 
@@ -490,7 +494,7 @@ unmap('<Ctrl-6>');
 	unmap unused bindings
 	-----------------------------------------------------------------
 */
-unmap('_'); // unmap all temp bindings, which are prefixed with '_'
+unmap('_'); // unmap all temp bindings; these are prefixed with '_'
 unmap('.'); // repeat last command
 unmap(','); // prefix key
 // unmap(';'); // was prefix key, now tab-back-and-forth
