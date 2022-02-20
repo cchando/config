@@ -47,7 +47,7 @@ exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec xbanish  # banish mouse cursor upon any key press
 exec unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec compton  # compositor to enable window transparency
-exec redshift -l 32.96:-96.67 -t 6500:2500
+# exec redshift -l 32.96:-96.67 -t 6500:2500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
@@ -140,7 +140,7 @@ new_float none
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
-				bindsym k exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
+				bindsym k exec killall .vlc-wrapped
 		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
 		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
 		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
@@ -159,6 +159,7 @@ new_float none
 				bindsym d mode "dual screens"
 				bindsym l mode "laptop screen"
 				bindsym a mode "all screens"
+        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -173,7 +174,6 @@ new_float none
         # laptop screen on, dual monitors off
         bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto; mode "default"
         # set up dual screens correctly
-        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -281,11 +281,31 @@ new_float none
 				bindsym space mode "default"
 		}
 
+    # redshift commands
+				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
+				## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
+		bindsym $mod+g mode "redshift"
+		mode "redshift" {
+				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
+        bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500
+        # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
+        bindsym x exec "killall .redshift-wrapp; redshift -x"
+        bindsym a exec "killall .redshift-wrapp; redshift -x"
+        bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 4000"
+        bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 3500"
+        bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
+        bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 2500"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
     # set wallpaper
     bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
 
-    # start a terminal
-    bindsym $mod+t exec $term #-1 --listen-on unix:/tmp/kitty  #$term  #kitty  #konsole --hide-menubar
+    # start a terminal (#$term  #kitty  #konsole --hide-menubar)
+    bindsym $mod+t exec $term
+    # bindsym $mod+t exec kitty -1 --listen-on unix:/tmp/kitty
 
     # kill focused window
     bindsym Ctrl+Shift+q kill
@@ -339,15 +359,6 @@ new_float none
 
     # # start stretchly
     # bindsym $alt+$mod+b exec stretchly
-
-    # # # redshift commands:
-		#   # former version broke, out of the blue. now all lines give same color
-    # bindsym Ctrl+Shift+1 exec redshift -x # redshift off
-    # bindsym Ctrl+Shift+2 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500
-    # bindsym Ctrl+Shift+3 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 4000
-    # bindsym Ctrl+Shift+4 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3500
-    # bindsym Ctrl+Shift+5 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 3000
-    # bindsym Ctrl+Shift+6 exec redshift -x && redshift -l 32.96:-96.67 -t 6500:2500 -o 2500
 
     # # adjust brightness -- need sudo permission
 		# bindsym $mod+u brightnessctl set +10%
