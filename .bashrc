@@ -68,7 +68,8 @@ alias cp='cp -i'
 alias sudo='sudo '
 alias kill='kill -9'
 alias xflux='xflux -z 75044'
-alias redshift='redshift -l 32.96:-96.67 -t 6500:2000'
+alias rs='redshift'
+alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
 # wifi
 alias scan='iw wlp1s0 scan | grep SSID'

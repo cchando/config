@@ -1123,6 +1123,13 @@ you should place your code here."
   (evil-forward-paragraph)
 	(evil-previous-line))
 
+(evil-define-operator vile-invert-char (beg end type)
+  "Invert case of character."
+  :motion evil-forward-char
+  (if (eq type 'block)
+      (evil-apply-on-block #'evil-invert-case beg end nil)
+    (evil-invert-case beg end)))
+
 
 ;; (evil-define-motion vile-append-WORD (count) ; error somewhy
 ;;   "Jump to end of the word under the cursor and switch to insert mode"
@@ -1254,7 +1261,7 @@ you should place your code here."
 		 "W"    'evil-forward-word-begin
 		 "B"    'evil-backward-word-begin
 		 "go"   'isearch-forward-word
-		 "gc"   'evil-invert-char
+		 "gc"   'vile-invert-char
 		 "gu"   'evil-upcase
 		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph
