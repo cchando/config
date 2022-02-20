@@ -6,21 +6,23 @@
 
 # i3 config file (v4)     # ensure that this file is read using the i3 v4.0+ format
 
+# other programs that use global keybinds (may compete with i3):
+  # vlc:
+     # (NOTE: seems to only recognize Meta when mapped along with Alt)
+     # <A-M-,>, <A-M-.>, <A-M-p>, <A-M-y>, <A-M-d>,  <A-M-u>, <A-M-m>, <C-S-,>, <C-S-.>
 
-# exec stretchly
+
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec xbanish  # banish mouse cursor upon any key press
 exec unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec compton  # compositor to enable window transparency
 exec redshift -l 32.96:-96.67 -t 6500:2500
-
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
-
 # disable mouse stick:
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
-
-exec nitrogen --set-zoom-fill ~/Pictures/neptunia/tavern.png
+# set wallpaper:
+exec_always nitrogen --set-zoom-fill ~/Pictures/neptunia/tavern.png
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-1.png
 # exec nitrogen --head=-1 --set-zoom-fill ~/Pictures/wallpapers/Egg-Carrier-Bridge-Sonic.jpg    &&   nitrogen --head=0 --set-scaled ~/Pictures/Wallpapers/Egg-Carrier-Bridge-Sonic.jpg
 # exec nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
@@ -35,10 +37,6 @@ exec nitrogen --set-zoom-fill ~/Pictures/neptunia/tavern.png
 # exec nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad\ diving.jpg
 # exec nitrogen --head=-1 --set-scaled ~/Pictures/Florida/homes_condos_townhouses/a3ur023uvr.jpg    &&   nitrogen --head=0 --set-scaled ~/Pictures/Florida/homes_condos_townhouses/a3ur023uvr.jpg
 # exec nitrogen --restore
-
-
-# Start internet browser on workspace 3, then switch back to workspace 1
-# bindsym $mod+q exec --no-startup-id i3-msg workspace 1; exec $term; workspace 9
 
 
 # --- Syntax: ---
@@ -91,7 +89,19 @@ set $menu dmenu_path | dmenu | xargs i3-msg exec
 set $fbrowser dolphin
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
+# current wallpaper
+set $bg ~/Pictures/neptunia/tavern.jpeg
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/basilicom.png
+# set $bg ~/Pictures/neptunia/Nep-sleepover.jpg
+# set $bg ~/Pictures/wallpapers/rainy-birds.jpg
+# set $bg ~/Pictures/wallpapers/WallpaperStudio10-176516-1280x800.jpg
+# set $bg ~/Pictures/wallpapers/vlad-squares-green.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/image-27.png
+# set $bg ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
 
+exec nitrogen --set-zoom-fill $bg
 
 ### Output configuration
 #
@@ -137,36 +147,20 @@ set $ibrowser google-chrome-stable
 # Read `man 5 sway-input` for more information about this section.
 
 
-### Key bindings
-#
-# Basics:
-#
-		# set up dual screens correctly
-    bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/tavern.jpeg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-1.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/backgrounds/nep-mk2-bg/basilicom.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/neptunia/Nep-sleepover.jpg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/WallpaperStudio10-176516-1280x800.jpg" # rain w/ birds
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad-squares-green.jpg"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"
-    # bindsym $mod+Shift+p exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4; nitrogen --set-zoom-fill ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg"
-
+### Key bindings:
 
     # start vlc w/ playlist
 		bindsym $mod+p mode "playlist"
 		mode "playlist" {
-				bindsym v exec vlc --loop --random --no-repeat
+				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
 				bindsym k exec kill "$(ps -A | grep vlc | grep -oE '[[:digit:]]+' | cut -d$'\n' -f 1)"
-		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u
-		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u
-		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u
-		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u
-		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u
-		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u
+		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
+		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
+		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
+		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u; mode "default"
+		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
+		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -188,10 +182,12 @@ set $ibrowser google-chrome-stable
 		# only reachable from "outputs" mode
 		mode "all screens" {
         # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
-        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off
-        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off
+        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
+        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
         # laptop screen on, dual monitors off
-        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto
+        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto; mode "default"
+        # set up dual screens correctly
+        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -211,14 +207,14 @@ set $ibrowser google-chrome-stable
 		    # right monitor rotate wide
 				bindsym Shift+bracketright exec xrandr --output DP-1-3 --rotate normal
 				# both monitors on
-        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto
-        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto
+        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
+        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
 				# turn on left monitor
-        bindsym l exec xrandr --output DP-1-3 --auto
+        bindsym $left exec xrandr --output DP-1-3 --auto
 				# turn on right monitor
-        bindsym r exec xrandr --output HDMI-1 --auto
+        bindsym $right exec xrandr --output HDMI-1 --auto
 				# both monitors off
-        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off
+        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -228,10 +224,10 @@ set $ibrowser google-chrome-stable
 		# only reachable from "outputs" mode
 		mode "laptop screen" {
 		    # laptop screen on
-        bindsym e exec xrandr --output eDP-1 --auto
-        bindsym u exec xrandr --output eDP-1 --auto
+        bindsym e exec xrandr --output eDP-1 --auto; mode "default"
+        bindsym u exec xrandr --output eDP-1 --auto; mode "default"
 		    # laptop screen off
-        bindsym d exec xrandr --output eDP-1 --off
+        bindsym d exec xrandr --output eDP-1 --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -254,7 +250,7 @@ set $ibrowser google-chrome-stable
     # systemctl commands
 		bindsym $alt+$mod+s mode "system"
 		mode "system" {
-        bindsym $alt+Shift+s exec systemctl suspend
+        bindsym $alt+Shift+s exec systemctl suspend; mode "default"
 				bindsym $alt+Shift+r exec systemctl reboot
 				bindsym $alt+Shift+u exec shutdown now
 				bindsym Escape mode "default"
@@ -276,10 +272,10 @@ set $ibrowser google-chrome-stable
 		# only reachable from "devices" mode
 		mode "touchpad" {
         # enable touchpad
-        bindsym e exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1
-        bindsym u exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1
+        bindsym e exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+        bindsym u exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
 				# disable touchpad
-				bindsym d exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+				bindsym d exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -290,14 +286,17 @@ set $ibrowser google-chrome-stable
 		mode "mouse stick" {
         # enable mouse dot
 				# enable mouse stick:
-				bindsym e exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1
-				bindsym u exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1
+				bindsym e exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+				bindsym u exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
 				# disable mouse stick:
-				bindsym d exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+				bindsym d exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
+    # set wallpaper
+    bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
 
     # start a terminal
     bindsym $mod+t exec $term #-1 --listen-on unix:/tmp/kitty  #$term  #kitty  #konsole --hide-menubar
@@ -603,6 +602,8 @@ bar {
     # bindsym button1 nop    # disable clicking on workspace buttons
     # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
     status_command i3status #--config ~/.i3status.conf
+    # status_command .config/i3/weather.sh
+    # status_command i3blocks # -c ~/.i3status.conf
 
     colors {
         #
