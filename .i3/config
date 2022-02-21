@@ -44,10 +44,10 @@ set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
 
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
-exec xbanish  # banish mouse cursor upon any key press
-exec unclutter -idle 1 -root  # banish mouse cursor when not in use
-exec compton  # compositor to enable window transparency
-# exec redshift -l 32.96:-96.67 -t 6500:2500
+exec_always xbanish  # banish mouse cursor upon any key press
+exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
+exec_always compton  # compositor to enable window transparency
+exec redshift -l 32.96:-96.67 -t 6500:2500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
@@ -185,12 +185,12 @@ new_float none
         # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
 		mode "dual screens" {
 		    # right monitor rotate tall
-		    bindsym $bracketleft exec xrandr --output HDMI-1 --rotate normal
+		    bindsym bracketleft exec xrandr --output HDMI-1 --rotate right
 		    # right monitor rotate wide
-				bindsym $bracketright exec xrandr --output HDMI-1 --rotate right
-		    # right monitor rotate tall
+				bindsym bracketright exec xrandr --output HDMI-1 --rotate normal
+		    # left monitor rotate tall
 				bindsym Shift+bracketleft exec xrandr --output DP-1-3 --rotate left
-		    # right monitor rotate wide
+		    # left monitor rotate wide
 				bindsym Shift+bracketright exec xrandr --output DP-1-3 --rotate normal
 				# both monitors on
         bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
@@ -284,7 +284,7 @@ new_float none
     # redshift commands
 				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
 				## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
-		bindsym $mod+g mode "redshift"
+		bindsym $mod+y mode "redshift"
 		mode "redshift" {
 				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
         bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500
@@ -300,8 +300,8 @@ new_float none
 				bindsym space mode "default"
 		}
 
-    # set wallpaper
-    bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
+    # # set wallpaper
+    # bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
 
     # start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
@@ -381,7 +381,7 @@ new_float none
     show_marks no
 
     # read 1 char and mark the current window with this char
-    bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+    bindsym Shift+$mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
     # read 1 char and go to the window with the char
     bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
@@ -412,7 +412,7 @@ new_float none
     workspace 3 output DP-1-3 HDMI-1 eDP-1
     workspace 4 output DP-1-3 HDMI-1 eDP-1
     workspace 5 output DP-1-3 HDMI-1 eDP-1
-    workspace 6 output DP-1-3 HDMI-1 eDP-1
+    workspace 6 output HDMI-1 DP-1-3 eDP-1
     workspace 7 output HDMI-1 DP-1-3 eDP-1
     workspace 8 output HDMI-1 DP-1-3 eDP-1
     workspace 9 output HDMI-1 DP-1-3 eDP-1
@@ -425,29 +425,58 @@ new_float none
     bindsym $mod+semicolon workspace back_and_forth
 
     # switch to workspace
-		  # assumes that Ctrl_R ← Super_R
-		bindsym $mod+1 workspace 1
-		bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
+		bindsym $mod+g mode "go"
+		mode "go" {
+		    bindsym a workspace 1; mode "default"
+				bindsym s workspace 2; mode "default"
+				bindsym d workspace 3; mode "default"
+				bindsym f workspace 4; mode "default"
+				bindsym g workspace 5; mode "default"
+				bindsym h workspace 6; mode "default"
+				bindsym j workspace 7; mode "default"
+				bindsym k workspace 8; mode "default"
+				bindsym l workspace 9; mode "default"
+				bindsym semicolon workspace 10; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
     # move focused container to workspace
-		  # assumes that Ctrl_R ← Super_R
-    bindsym $alt+$mod+1 move container to workspace 1
-    bindsym $alt+$mod+2 move container to workspace 2
-    bindsym $alt+$mod+3 move container to workspace 3
-    bindsym $alt+$mod+4 move container to workspace 4
-    bindsym $alt+$mod+5 move container to workspace 5
-    bindsym $alt+$mod+6 move container to workspace 6
-    bindsym $alt+$mod+7 move container to workspace 7
-    bindsym $alt+$mod+8 move container to workspace 8
-    bindsym $alt+$mod+9 move container to workspace 9
-    bindsym $alt+$mod+0 move container to workspace 10
+		bindsym $mod+m mode "move"
+		mode "move" {
+        bindsym a move container to workspace 1; mode "default"
+				bindsym s move container to workspace 2; mode "default"
+				bindsym d move container to workspace 3; mode "default"
+				bindsym f move container to workspace 4; mode "default"
+				bindsym g move container to workspace 5; mode "default"
+				bindsym h move container to workspace 6; mode "default"
+				bindsym j move container to workspace 7; mode "default"
+				bindsym k move container to workspace 8; mode "default"
+				bindsym l move container to workspace 9; mode "default"
+				bindsym semicolon move container to workspace 10; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+    # move focused container to workspace and switch to it
+		bindsym $mod+n mode "move/go"
+		mode "move/go" {
+        bindsym a move container to workspace 1; mode "default"; workspace 1
+				bindsym s move container to workspace 2; mode "default"; workspace 2
+				bindsym d move container to workspace 3; mode "default"; workspace 3
+				bindsym f move container to workspace 4; mode "default"; workspace 4
+				bindsym g move container to workspace 5; mode "default"; workspace 5
+				bindsym h move container to workspace 6; mode "default"; workspace 6
+				bindsym j move container to workspace 7; mode "default"; workspace 7
+				bindsym k move container to workspace 8; mode "default"; workspace 8
+				bindsym l move container to workspace 9; mode "default"; workspace 9
+				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
 
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default. Non-number names must be quoted as strings.
@@ -477,7 +506,6 @@ new_float none
     no_focus [window_role="pop-up"]
 
 # for_window [class="^vlc$"] floating_minimum_size 150 x 100
-# for_window [class="^vlc$"] floating_maximum_size 151 x 101
 
 
 # center vlc at a certain size and move to scratchpad
@@ -551,30 +579,19 @@ for_window [window_role="vlc-main"] floating enable , \
 #
 # Resizing containers:
 #
+bindsym $mod+r mode "resize"
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize shrink height 10px
-    bindsym $up resize grow height 10px
-    bindsym $right resize grow width 10px
-
-    # # ditto, with arrow keys
-    # bindsym Left resize shrink width 10px
-    # bindsym Down resize shrink height 10px
-    # bindsym Up resize grow height 10px
-    # bindsym Right resize grow width 10px
-
-    # return to default mode
+    bindsym $left resize shrink width 20px
+    bindsym $down resize shrink height 20px
+    bindsym $up resize grow height 20px
+    bindsym $right resize grow width 20px
     bindsym $mod+r mode "default"
     bindsym space mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
+# whether to warp mouse cursor to center of active screen after shifting focus
 mouse_warping none
 
 #
