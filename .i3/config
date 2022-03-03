@@ -141,6 +141,7 @@ new_float none
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
 				bindsym k exec killall .vlc-wrapped
+				bindsym Shift+k exec killall .vlc-wrapped; mode "default"
 		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
 		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
 		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
@@ -295,6 +296,16 @@ new_float none
         bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 3500"
         bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
         bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 2500"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+    # mplayer commands
+		bindsym $mod+a mode "mplayer"
+		mode "mplayer" {
+		    bindsym r exec mplayer -loop 0 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym k exec killall mplayer; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"

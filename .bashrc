@@ -53,6 +53,7 @@ alias e='exit'
 alias c='clear'
 alias s='spago'
 alias j='jconsole'
+alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
 alias u='cd ..'
 alias ref='source $HOME/.bashrc'  # refresh
 alias sqlite='sqlite3'
