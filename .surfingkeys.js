@@ -238,7 +238,9 @@ unmap('D');
 
 
 // /* marks */
-// map('ma', 'm'); // create mark -- replace with Vimium C's marks
+map('_m', 'm');
+unmap('m');
+map('ma', '_m'); // create mark -- replace with Vimium C's marks
 
 
 
@@ -503,8 +505,7 @@ unmap('gx'); // prefix key
 unmap('<');
 unmap('>');
 iunmap(':'); // disable emoji suggestions
-unmap('m'); // replaced by Vimium C's marks since the popup looks better and we can use '' with it
-unmap("'"); // replaced by Vimium C's marks since it can use '' to toggle prev mark
+// unmap('m'); // replaced by Vimium C's marks since the popup looks better and we can use '' with it
 unmap(';m'); // mouse-out last element (?)
 unmap('go'); // replaced by 'o'
 unmap('cs'); // change scroll target (use 'e' for scroll hints instead)
@@ -661,15 +662,15 @@ mapkey('su', '#8Search GitHub', function() {
 settings.scrollStepSize = 200;
 settings.hintAlign = "left";
 settings.focusAfterClosed = "last";
-settings.prevLinkRegex = '/(([Bb]ack|[Oo]lder|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
-settings.nextLinkRegex = '/(([Mm]ore|[Nn]ewer|>|›|→|»|≫|>>|[Nn]ext)+)/i'; // TODO: adjust to account for "* ->", "* |>", etc.
+// settings.prevLinkRegex = '/(([Bb]ack|[Oo]lder|<|‹|←|«|≪|<<|[Pp]rev(ious)?)+)/i';
+// settings.nextLinkRegex = '/(([Mm]ore|[Nn]ewer|>|›|→|»|≫|>>|[Nn]ext)+)/i'; // TODO: adjust to account for "* ->", "* |>", etc.
 settings.digitForRepeat	= true; // can never set to false if using e.g., ⍺ ← navigateToLeftmostTab, since ⍺ is implemented as 99[navigateToTabLeft] under-the-hood
 settings.hintShiftNonActive	= true;
 settings.hintExplicit = true;
 settings.omnibarMaxResults = 10;
 settings.omnibarPosition = "middle";
 settings.focusFirstCandidate = true; // for omnibar
-settings.focusOnSaved = false; // do not focus the text input after quitting from vim editor
+settings.focusOnSaved = true; // do not focus the text input after quitting from vim editor
 settings.tabsThreshold = 0; // threshold at/above which to show tabs in omnibar instead of in overlay
 settings.interceptedErrors = ["*"]; // allow SurfingKeys on all error pages
 Hints.numericHints = false; // type text to filter hints
