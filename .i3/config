@@ -32,7 +32,8 @@ set $fbrowser dolphin
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
 # current wallpaper
-set $bg ~/Pictures/neptunia/tavern.jpeg
+set $bg ~/Pictures/Florida/homes_condos_townhouses/b6bcbf2249863197182d997972dfc3bb.jpg
+# set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/basilicom.png
@@ -146,6 +147,7 @@ new_float none
 		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
 		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
 		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u; mode "default"
+		    bindsym g exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u; mode "default"
 		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
 		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
 				bindsym Escape mode "default"
@@ -161,6 +163,7 @@ new_float none
 				bindsym l mode "laptop screen"
 				bindsym a mode "all screens"
         bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        # bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -175,6 +178,7 @@ new_float none
         # laptop screen on, dual monitors off
         bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto; mode "default"
         # set up dual screens correctly
+        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -201,6 +205,7 @@ new_float none
 				# turn on right monitor
         bindsym $right exec xrandr --output HDMI-1 --auto
 				# both monitors off
+        bindsym s exec "xrandr --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
         bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -288,9 +293,8 @@ new_float none
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
 				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
-        bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500
+        bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500; mode "default"
         # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
-        bindsym x exec "killall .redshift-wrapp; redshift -x"
         bindsym a exec "killall .redshift-wrapp; redshift -x"
         bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 4000"
         bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 3500"

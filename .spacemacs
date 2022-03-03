@@ -1201,6 +1201,7 @@ you should place your code here."
 		 "SPC H c"  'describe-char
 		 "SPC H K"  'describe-key-briefly
 		 "SPC H v"  'describe-variable
+		 "SPC b b"  'helm-buffers-list ; was helm-mini
 		 "SPC '"   'spacemacs/shell-pop-ansi-term
 		 "SPC W"   'whitespace-cleanup
 		 ;; "SPC '"   'spacemacs/shell-pop-eshell ; no aliases
@@ -1261,7 +1262,7 @@ you should place your code here."
 		 "W"    'evil-forward-word-begin
 		 "B"    'evil-backward-word-begin
 		 "go"   'isearch-forward-word
-		 "gc"   'vile-invert-char
+		 "gk"   'vile-invert-char
 		 "gu"   'evil-upcase
 		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph

@@ -240,7 +240,7 @@ unmap('D');
 // /* marks */
 map('_m', 'm');
 unmap('m');
-map('ma', '_m'); // create mark -- replace with Vimium C's marks
+map('ma', '_m'); // create mark
 
 
 
