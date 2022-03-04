@@ -349,6 +349,8 @@ vmap('K', '<Ctrl-u>'); // scroll 20 lines up
 vmap('gl', '$'); // line end
 vmap('gh', '^'); // first non-whitespace on line
 vmap('ga', '0'); // line beginning
+vmap('t', 'f'); // move forward to given char
+vmap('T', 'F'); // move backward to given char
 
 
 /* map keys for setting escape */
@@ -472,6 +474,12 @@ map(':u', ';U'); // edit current url w/ vim editor and reload
 unmap(';U');
 map(':U', ';u'); // edit current url w/ vim editor and open in new tab
 unmap(';u');
+
+map('V', 'v'); // enter visual mode
+unmap('v');
+
+map('v', 'zv'); // enter visual mode and select whole element
+unmap('zv');
 
 map('B', 'ab'); // add bookmark
 unmap('ab'); // add bookmark
