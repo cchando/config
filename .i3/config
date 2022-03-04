@@ -8,7 +8,7 @@
 
 # other programs that use global keybinds (may compete with i3):
   # vlc:
-     # (NOTE: seems to only recognize Meta when mapped along with Alt)
+     # (NOTE: seems to only recognize Meta when mapped along with Alt). Confirmed to not be due to i3 keybind shadowings.
      # <A-M-,>, <A-M-.>, <A-M-p>, <A-M-y>, <A-M-d>,  <A-M-u>, <A-M-m>, <C-S-,>, <C-S-.>
 
 
@@ -296,10 +296,10 @@ new_float none
         bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500; mode "default"
         # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
         bindsym a exec "killall .redshift-wrapp; redshift -x"
-        bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 4000"
-        bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 3500"
-        bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
-        bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 2500"
+        bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 5000"
+        bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 4500"
+        bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 4000"
+        bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -308,7 +308,7 @@ new_float none
     # mplayer commands
 		bindsym $mod+a mode "mplayer"
 		mode "mplayer" {
-		    bindsym r exec mplayer -loop 0 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym r exec mplayer -loop 0 -softvol -volume 50 /home/cameron/Music/sleeprain.ogg; mode "default"
 		    bindsym k exec killall mplayer; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -469,6 +469,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
+        bindsym e move scratchpad; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -588,9 +589,10 @@ for_window [window_role="vlc-main"] floating enable , \
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $alt+$mod+minus move scratchpad
+    bindsym $mod+9 move scratchpad
 
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+0 scratchpad show
+    bindsym $mod+c scratchpad show
 #
 # Resizing containers:
 #
@@ -627,7 +629,9 @@ bar {
 # # hidden_state hide|show
 		mode hide
 		hidden_state hide
-		modifier $mod
+		# modifier $mod
+		# modifier $alt
+		modifier Ctrl+Shift
     # bindsym button1 nop    # disable clicking on workspace buttons
     # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
     status_command i3status #--config ~/.i3status.conf

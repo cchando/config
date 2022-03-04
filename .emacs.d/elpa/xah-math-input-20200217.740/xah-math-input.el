@@ -189,8 +189,14 @@
 	 ["ipa" "IP address "]
 	 ["jvm" "Java Virtual Machine "]
 	 ["rsi" "repetitive-strain injury "]
+	 ["dir" "directory "]
+	 ["dirs" "directories "]
 	 ["subdir" "sub-directory "]
+	 ["sdir" "sub-directory "]
+	 ["subdirs" "sub-directories "]
+	 ["sdirs" "sub-directories "]
 	 ["subf" "sub-folder "]
+	 ["attr" "attribute "]
 	 ["wd" "web development "]
 
 	 ["db" "database "]
@@ -423,7 +429,7 @@
 
   ;; J language
   ["sl" "["] ; square
-  ["sr" "] "] ; square
+  ["sr" "]"] ; square
   ["cl" "{"] ; curly
   ["cr" "} "] ; curly
   ["jd" "%"] ; J divide
@@ -500,9 +506,9 @@
 	["lcm" "∧"] ; lowest common denomenator
 	["gcd" "∨"] ; greatest common divisor
 	;; ["neg" "¯"] ; negate
-	["nega" "¯"] ; negate
-	["dire" "×"] ; direction
-	["dir" "×"] ; direction
+	;; ["nega" "¯"] ; negate
+	;; ["dire" "×"] ; direction
+	;; ["dir" "×"] ; direction
 	["mag" "∣"] ; magnitude
 	["norm" "∣"] ; magnitude
 	["res" "∣"] ; residue

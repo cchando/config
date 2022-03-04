@@ -3795,13 +3795,13 @@ global-key-play-pause=Alt+Meta+p
 #key-rate-slower-fine=[
 
 # Next (string)
-global-key-next=Alt+Meta+.
+global-key-next=Ctrl+.
 
 # Next (string)
 #key-next=n	Media Next Track
 
 # Previous (string)
-global-key-prev=Alt+Meta+,
+global-key-prev=Ctrl+,
 
 # Previous (string)
 #key-prev=p	Media Prev Track
