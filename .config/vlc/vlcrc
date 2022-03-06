@@ -3747,7 +3747,7 @@ hotkeys-x-wheel-mode=-1
 key-leave-fullscreen=Shift+f
 
 # Play/Pause (string)
-global-key-play-pause=Alt+Meta+p
+global-key-play-pause=Alt+p
 
 # Play/Pause (string)
 #key-play-pause=Space	Media Play Pause
@@ -3795,13 +3795,13 @@ global-key-play-pause=Alt+Meta+p
 #key-rate-slower-fine=[
 
 # Next (string)
-global-key-next=Ctrl+.
+global-key-next=Alt+.
 
 # Next (string)
 #key-next=n	Media Next Track
 
 # Previous (string)
-global-key-prev=Ctrl+,
+global-key-prev=Alt+,
 
 # Previous (string)
 #key-prev=p	Media Prev Track
@@ -3939,19 +3939,19 @@ key-nav-activate=
 #key-quit=Ctrl+q
 
 # Volume up (string)
-global-key-vol-up=Alt+Meta+u
+global-key-vol-up=Alt+u
 
 # Volume up (string)
 key-vol-up=
 
 # Volume down (string)
-global-key-vol-down=Alt+Meta+d
+global-key-vol-down=Alt+d
 
 # Volume down (string)
 key-vol-down=
 
 # Mute (string)
-global-key-vol-mute=Alt+Meta+m
+global-key-vol-mute=Alt+m
 
 # Mute (string)
 key-vol-mute=m
@@ -4197,7 +4197,7 @@ key-intf-show=
 #key-uncrop-right=Alt+Shift+f
 
 # Random (string)
-global-key-random=Alt+Meta+y
+global-key-random=Alt+y
 
 # Random (string)
 #key-random=r

@@ -413,10 +413,10 @@ new_float none
     show_marks no
 
     ## read 1 char and mark the current window with this char
-    ## also available from "move" mode as "m,", purely based on mnemonic
     bindsym $mod+9 exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
     ## read 1 char and go to the window with the char
+    ## buggy; will sometimes jump to designated mark, sometimes not.
     bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 
@@ -594,7 +594,7 @@ for_window [window_role="vlc-main"] floating enable , \
     floating_modifier $mod
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+f focus mode_toggle
+    bindsym $mod+$alt+f focus mode_toggle
 
     # # move focus to the parent container
     # bindsym $mod+a focus parent
