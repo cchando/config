@@ -1250,8 +1250,8 @@ you should place your code here."
 		 "e"  'evil-forward-WORD-end
 		 "E"  'evil-forward-word-end
 		 "C-e"  'iedit-mode
-		 "C-'"  'evil-indent
-		 "C-;"  'evil-switch-to-windows-last-buffer
+		 "C-;"  'evil-indent
+		 "s-;"  'evil-switch-to-windows-last-buffer
 		 "t"    'evil-find-char
 		 "T"    'evil-find-char-backward
 		 "f"    'vile-goto-word-by-first-char
@@ -1264,6 +1264,7 @@ you should place your code here."
 		 "B"    'evil-backward-word-begin
 		 "go"   'isearch-forward-word
 		 "gk"   'vile-invert-char
+		 "gc"   'evil-invert-case
 		 "gu"   'evil-upcase
 		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph

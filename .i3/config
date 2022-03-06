@@ -32,7 +32,8 @@ set $fbrowser dolphin
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
 # current wallpaper
-set $bg ~/Pictures/Florida/homes_condos_townhouses/b6bcbf2249863197182d997972dfc3bb.jpg
+set $bg ~/Pictures/wallpapers/new1/Rainy\ Day\ wallpapers\ and\ images\ \ \ wallpapers\ pictures\ photos.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/b6bcbf2249863197182d997972dfc3bb.jpg
 # set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
@@ -149,11 +150,13 @@ new_float none
 		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u; mode "default"
 		    bindsym g exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u; mode "default"
 		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
+		    bindsym n exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
 		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # screen setup commands
 		bindsym $alt+$mod+o mode "outputs"
@@ -168,6 +171,7 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # setup commands for all screens at once
 		# only reachable from "outputs" mode
@@ -212,6 +216,7 @@ new_float none
 				bindsym space mode "default"
 		}
 
+
     # laptop screen setup commands
 		# only reachable from "outputs" mode
 		mode "laptop screen" {
@@ -224,6 +229,7 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # i3 commands
 		bindsym $alt+$mod+i mode "i3"
@@ -239,8 +245,9 @@ new_float none
 				bindsym space mode "default"
 		}
 
+
     # systemctl commands
-		bindsym $alt+$mod+s mode "system"
+		bindsym $mod+s mode "system"
 		mode "system" {
         bindsym $alt+Shift+s exec systemctl suspend; mode "default"
 				bindsym $alt+Shift+r exec systemctl reboot
@@ -249,6 +256,7 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # device commands
 		bindsym $mod+slash mode "devices"
@@ -259,6 +267,7 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # touchpad commands
 		# only reachable from "devices" mode
@@ -273,6 +282,7 @@ new_float none
 				bindsym space mode "default"
 		}
 
+
     # mouse stick commands
 		# only reachable from "devices" mode
 		mode "mouse stick" {
@@ -286,6 +296,7 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
     # redshift commands
 				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
@@ -305,33 +316,39 @@ new_float none
 				bindsym space mode "default"
 		}
 
+
     # mplayer commands
 		bindsym $mod+a mode "mplayer"
 		mode "mplayer" {
-		    bindsym r exec mplayer -loop 0 -softvol -volume 50 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym Shift+r exec mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    # bindsym r exec mplayer -loop 0 -softvol -volume 90 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym r exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 		    bindsym k exec killall mplayer; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
 
-    # # set wallpaper
+
+    ## set wallpaper
     # bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
 
-    # start a terminal (#$term  #kitty  #konsole --hide-menubar)
+    ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
     # bindsym $mod+t exec kitty -1 --listen-on unix:/tmp/kitty
 
-    # kill focused window
+    ## kill focused window
     bindsym Ctrl+Shift+q kill
+    ## right hand
+    # bindsym $mod+backslash kill
 
     # start program launcher
     bindsym $mod+o exec $menu
 
-    # start file browser
+    ## start file browser
     bindsym $mod+b exec $fbrowser
 
-    # start internet browser
+    ## start internet browser
     bindsym $mod+i exec $ibrowser
 
     # # start firefox
@@ -346,21 +363,21 @@ new_float none
     # start password manager
     # bindsym $mod+Shift+p exec encryptr
 
-    # start wallpaper manager
+    ## start wallpaper manager
     bindsym $mod+w exec nitrogen
 
-		# start emacs (full-height, full-width)
+		## start emacs (full-height, full-width)
     bindsym $mod+e exec emacs -mm
 
-    # start spacemacs w/ (modded) default config
+    ## start spacemacs w/ (modded) default config
 		# TODO: find out how to do this correctly
     # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
 
-    # toggle-mute pulseaudio
+    ## toggle-mute pulseaudio
     bindsym $mod+Return exec pulseaudio-ctl mute
-    # vol up
+    ## vol up
     bindsym $mod+u exec pulseaudio-ctl up
-    # vol down
+    ## vol down
     bindsym $mod+d exec pulseaudio-ctl down
 
     # # system volume control
@@ -395,10 +412,11 @@ new_float none
 #
     show_marks no
 
-    # read 1 char and mark the current window with this char
-    bindsym Shift+$mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+    ## read 1 char and mark the current window with this char
+    ## also available from "move" mode as "m,", purely based on mnemonic
+    bindsym $mod+9 exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
-    # read 1 char and go to the window with the char
+    ## read 1 char and go to the window with the char
     bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 
@@ -437,7 +455,8 @@ new_float none
 
     bindsym $mod+comma workspace prev_on_output
     bindsym $mod+period workspace next_on_output
-    bindsym $mod+semicolon workspace back_and_forth
+		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
+    bindsym $mod+0 workspace back_and_forth
 
     # switch to workspace
 		bindsym $mod+g mode "go"
@@ -459,6 +478,7 @@ new_float none
     # move focused container to workspace
 		bindsym $mod+m mode "move"
 		mode "move" {
+        # read 1 char and mark the current window with this char
         bindsym a move container to workspace 1; mode "default"
 				bindsym s move container to workspace 2; mode "default"
 				bindsym d move container to workspace 3; mode "default"
@@ -497,7 +517,6 @@ new_float none
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default. Non-number names must be quoted as strings.
     # bindsym Ctrl+1 workspace 1: mail
-    # bindsym Ctrl+Shift+0 move container to workspace " "
 
 
 #
@@ -589,19 +608,20 @@ for_window [window_role="vlc-main"] floating enable , \
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+9 move scratchpad
-
-    bindsym $mod+0 scratchpad show
+    bindsym $mod+v move scratchpad
     bindsym $mod+c scratchpad show
+
 #
 # Resizing containers:
 #
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym $left resize shrink width 20px
+		bindsym $left resize shrink width 20px
     bindsym $down resize shrink height 20px
     bindsym $up resize grow height 20px
     bindsym $right resize grow width 20px
+    # for vlc after restarting i3
+    bindsym e resize set 1070 700, move position center; mode "default"
     bindsym $mod+r mode "default"
     bindsym space mode "default"
     bindsym Return mode "default"
@@ -629,9 +649,7 @@ bar {
 # # hidden_state hide|show
 		mode hide
 		hidden_state hide
-		# modifier $mod
-		# modifier $alt
-		modifier Ctrl+Shift
+		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons
     # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
     status_command i3status #--config ~/.i3status.conf
