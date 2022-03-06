@@ -32,8 +32,8 @@ set $fbrowser dolphin
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
 # current wallpaper
-set $bg ~/Pictures/wallpapers/new1/Rainy\ Day\ wallpapers\ and\ images\ \ \ wallpapers\ pictures\ photos.jpg
-# set $bg ~/Pictures/Florida/homes_condos_townhouses/b6bcbf2249863197182d997972dfc3bb.jpg
+set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
 # set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
@@ -49,7 +49,8 @@ exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
-exec redshift -l 32.96:-96.67 -t 6500:2500
+# exec redshift -l 32.96:-96.67 -t 6500:2500
+# exec gammastep -l 32.96:-96.67 -t 6500:2500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
@@ -304,13 +305,13 @@ new_float none
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
 				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
-        bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500; mode "default"
+        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:2500; mode "default"
         # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
         bindsym a exec "killall .redshift-wrapp; redshift -x"
-        bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 5000"
-        bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 4500"
-        bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 4000"
-        bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
+        bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
+        bindsym d exec "killall redshift-wrapp; redshift -PO 4500"
+        bindsym f exec "killall redshift-wrapp; redshift -PO 4000"
+        bindsym g exec "killall redshift-wrapp; redshift -PO 3000"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -329,9 +330,6 @@ new_float none
 				bindsym space mode "default"
 		}
 
-
-    ## set wallpaper
-    # bindsym Shift+$mod+w exec nitrogen --set-zoom-fill $bg
 
     ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
@@ -413,7 +411,7 @@ new_float none
     show_marks no
 
     ## read 1 char and mark the current window with this char
-    bindsym $mod+9 exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+    bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
     ## read 1 char and go to the window with the char
     ## buggy; will sometimes jump to designated mark, sometimes not.
@@ -456,7 +454,7 @@ new_float none
     bindsym $mod+comma workspace prev_on_output
     bindsym $mod+period workspace next_on_output
 		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
-    bindsym $mod+0 workspace back_and_forth
+    bindsym $mod+9 workspace back_and_forth
 
     # switch to workspace
 		bindsym $mod+g mode "go"
@@ -476,9 +474,8 @@ new_float none
 				bindsym space mode "default"
 		}
     # move focused container to workspace
-		bindsym $mod+m mode "move"
+		bindsym $alt+m mode "move"
 		mode "move" {
-        # read 1 char and mark the current window with this char
         bindsym a move container to workspace 1; mode "default"
 				bindsym s move container to workspace 2; mode "default"
 				bindsym d move container to workspace 3; mode "default"
@@ -489,7 +486,6 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
-        bindsym e move scratchpad; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -645,6 +641,8 @@ bar {
 # only yes|no  # when using e.g., "1:mail"
     strip_workspace_numbers no
     separator_symbol "   "
+    ## height in pixels
+    # height 23
 # # mode dock|hide|invisible
 # # hidden_state hide|show
 		mode hide

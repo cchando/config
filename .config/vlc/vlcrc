@@ -3951,7 +3951,7 @@ global-key-vol-down=Alt+d
 key-vol-down=
 
 # Mute (string)
-global-key-vol-mute=Alt+m
+#global-key-vol-mute=
 
 # Mute (string)
 key-vol-mute=m

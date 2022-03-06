@@ -1,33 +1,94 @@
-# Config file for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#   
-# Read `man 5 sway` for a complete reference.
+# Config file for i3 window manager
 
-xwayland enable
-exec_always swaymsg output LVDS-1 disable
-exec swaymsg workspace 1
-#exec redshift -l 32.96:-96.67 -t 4000:1300   
-exec_always xrdb -merge .Xdefaults
-default_border none
+
+#
+# Read `man i3` for a complete reference.
+
+# i3 config file (v4)     # ensure that this file is read using the i3 v4.0+ format
+
+# other programs that use global keybinds (may compete with i3):
+  # vlc:
+     # (NOTE: seems to only recognize Meta when mapped along with Alt). Confirmed to not be due to i3 keybind shadowings.
+     # <A-M-,>, <A-M-.>, <A-M-p>, <A-M-y>, <A-M-d>,  <A-M-u>, <A-M-m>, <C-S-,>, <C-S-.>
+
+
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
+# Logo key is Mod4. <Alt> is Mod1. For complete list of such keysyms, use xev(1).
 set $mod Mod4
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term konsole #termite
+set $term kitty  #konsole  #termite  #konsole  #kitty
 # Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec
+# Note: it's recommended that you pass the final command to i3-msg
+set $menu dmenu_path | dmenu | xargs i3-msg exec
 # Your preferred file browser
-set $fbrowser dolphin 
+set $fbrowser dolphin
 # Your preferred internet browser
-set $ibrowser google-chrome-stable 
+set $ibrowser google-chrome-stable
+# current wallpaper
+set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
+# set $bg ~/Pictures/neptunia/tavern.jpeg
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
+# set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/basilicom.png
+# set $bg ~/Pictures/neptunia/Nep-sleepover.jpg
+# set $bg ~/Pictures/wallpapers/rainy-birds.jpg
+# set $bg ~/Pictures/wallpapers/WallpaperStudio10-176516-1280x800.jpg
+# set $bg ~/Pictures/wallpapers/vlad-squares-green.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/image-27.png
+# set $bg ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
+
+exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
+exec_always xbanish  # banish mouse cursor upon any key press
+exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
+exec_always compton  # compositor to enable window transparency
+exec redshift -l 32.96:-96.67 -t 6500:2500
+# disable touchpad:
+exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+# disable mouse stick:
+exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+# set wallpaper:
+exec_always nitrogen --set-zoom-fill $bg
+
+
+# --- Syntax: ---
+# default_border normal|none|pixel   # pixel eliminates title bars
+# default_border normal|pixel <px>
+# default_floating_border normal|none|pixel
+# default_floating_border normal|pixel <px>
+# hide_edge_borders none|vertical|horizontal|both|smart
+
+    default_border none
+    # default_border pixel 3
+    hide_edge_borders smart
+    # hide_edge_borders none|vertical|horizontal|both|smart
+
+    # class                 border  backgr. text    indicator child_border
+    client.focused          #4c7899 #285577 #ffffff #2e9ef4   #757e82
+    client.focused_inactive #000000 #5f676a #ffffff #484e50   #000000
+    client.unfocused        #000000 #222222 #888888 #292d2e   #000000
+    client.urgent           #2f343a #900000 #ffffff #900000   #900000
+    client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+    client.background       #ffffff
+
+
+# Hide the window bars
+new_window none
+new_float none
+
+
+# font -ADBO-Hasklig-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1
+# font pango: Hasklig 12
+# font pango: Fira Code 12
+
+
 
 
 ### Output configuration
@@ -40,8 +101,8 @@ set $ibrowser google-chrome-stable
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-bindsym $mod+d exec swaymsg output LVDS-1 disable
-bindsym $mod+Shift+d exec swaymsg output LVDS-1 enable
+
+
 
 
 ### Idle configuration
@@ -57,9 +118,6 @@ bindsym $mod+Shift+d exec swaymsg output LVDS-1 enable
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle -w \
-         timeout 1000 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
 
 
 ### Input configuration
@@ -75,46 +133,291 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-input "1423:37904:KINESIS_FREESTYLE_KB800_KB800_Kinesis_Freestyle" {
-    xkb_layout us
-}
 
 
+### Key bindings:
 
-### Key bindings
-#
-# Basics:
-#
-    # start a terminal
-    bindsym $mod+t exec konsole --hide-menubar #$term 
+    # start vlc w/ playlist
+		bindsym $mod+p mode "playlist"
+		mode "playlist" {
+				bindsym v exec vlc --loop --random --no-repeat; mode "default"
+        # kill vlc
+				bindsym k exec killall .vlc-wrapped
+				bindsym Shift+k exec killall .vlc-wrapped; mode "default"
+		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
+		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
+		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
+		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u; mode "default"
+		    bindsym g exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u; mode "default"
+		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
+		    bindsym n exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
+		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
 
-    # kill focused window
-    bindsym Ctrl+q kill
 
-    # start your launcher
+    # screen setup commands
+		bindsym $alt+$mod+o mode "outputs"
+		mode "outputs" {
+				# laptop screen on
+				bindsym d mode "dual screens"
+				bindsym l mode "laptop screen"
+				bindsym a mode "all screens"
+        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        # bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # setup commands for all screens at once
+		# only reachable from "outputs" mode
+		mode "all screens" {
+        # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
+        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
+        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
+        # laptop screen on, dual monitors off
+        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto; mode "default"
+        # set up dual screens correctly
+        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # dual monitors setup commands
+		# only reachable from "outputs" mode
+        # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
+		mode "dual screens" {
+		    # right monitor rotate tall
+		    bindsym bracketleft exec xrandr --output HDMI-1 --rotate right
+		    # right monitor rotate wide
+				bindsym bracketright exec xrandr --output HDMI-1 --rotate normal
+		    # left monitor rotate tall
+				bindsym Shift+bracketleft exec xrandr --output DP-1-3 --rotate left
+		    # left monitor rotate wide
+				bindsym Shift+bracketright exec xrandr --output DP-1-3 --rotate normal
+				# both monitors on
+        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
+        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
+				# turn on left monitor
+        bindsym $left exec xrandr --output DP-1-3 --auto
+				# turn on right monitor
+        bindsym $right exec xrandr --output HDMI-1 --auto
+				# both monitors off
+        bindsym s exec "xrandr --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # laptop screen setup commands
+		# only reachable from "outputs" mode
+		mode "laptop screen" {
+		    # laptop screen on
+        bindsym e exec xrandr --output eDP-1 --auto; mode "default"
+        bindsym u exec xrandr --output eDP-1 --auto; mode "default"
+		    # laptop screen off
+        bindsym d exec xrandr --output eDP-1 --off; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # i3 commands
+		bindsym $alt+$mod+i mode "i3"
+		mode "i3" {
+        # reload the config file
+				bindsym c reload
+				# restart i3
+				bindsym r restart
+				# exit i3 (logs you out of your X session)
+				bindsym $mod+Shift+e exit
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # systemctl commands
+		bindsym $mod+s mode "system"
+		mode "system" {
+        bindsym $alt+Shift+s exec systemctl suspend; mode "default"
+				bindsym $alt+Shift+r exec systemctl reboot
+				bindsym $alt+Shift+u exec shutdown now
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # device commands
+		bindsym $mod+slash mode "devices"
+		mode "devices" {
+		    bindsym t mode "touchpad"
+		    bindsym m mode "mouse stick"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # touchpad commands
+		# only reachable from "devices" mode
+		mode "touchpad" {
+        # enable touchpad
+        bindsym e exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+        bindsym u exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+				# disable touchpad
+				bindsym d exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # mouse stick commands
+		# only reachable from "devices" mode
+		mode "mouse stick" {
+        # enable mouse dot
+				# enable mouse stick:
+				bindsym e exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+				bindsym u exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 1; mode "default"
+				# disable mouse stick:
+				bindsym d exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # redshift commands
+				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
+				## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
+		bindsym $mod+y mode "redshift"
+		mode "redshift" {
+				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
+        bindsym t exec redshift -l 32.96:-96.67 -t 6500:2500; mode "default"
+        # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
+        bindsym a exec "killall .redshift-wrapp; redshift -x"
+        bindsym s exec "killall .redshift-wrapp; redshift -x; redshift -O 5000"
+        bindsym d exec "killall redshift-wrapp; redshift -x; redshift -O 4500"
+        bindsym f exec "killall redshift-wrapp; redshift -x; redshift -O 4000"
+        bindsym g exec "killall redshift-wrapp; redshift -x; redshift -O 3000"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    # mplayer commands
+		bindsym $mod+a mode "mplayer"
+		mode "mplayer" {
+		    bindsym Shift+r exec mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    # bindsym r exec mplayer -loop 0 -softvol -volume 90 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym r exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
+		    bindsym k exec killall mplayer; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+    ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
+    bindsym $mod+t exec $term
+    # bindsym $mod+t exec kitty -1 --listen-on unix:/tmp/kitty
+
+    ## kill focused window
+    bindsym Ctrl+Shift+q kill
+    ## right hand
+    # bindsym $mod+backslash kill
+
+    # start program launcher
     bindsym $mod+o exec $menu
 
-    # start file browser
-    bindsym $mod+Return exec $fbrowser
+    ## start file browser
+    bindsym $mod+b exec $fbrowser
 
-    # start internet browser
+    ## start internet browser
     bindsym $mod+i exec $ibrowser
-    
-    # start encryptr
-    bindsym $mod+e exec encryptr
 
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+    # # start firefox
+    # bindsym $mod+Shift+i exec firefox
 
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
+    # # screenshot using shotgun (replace w/ maim)
+    # bindsym $mod+s exec shotgun
 
-    # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec sway exit
+    # close all google-chrome-stable windows
+    bindsym $alt+$mod+g [class="^Google-chrome$"] kill
+
+    # start password manager
+    # bindsym $mod+Shift+p exec encryptr
+
+    ## start wallpaper manager
+    bindsym $mod+w exec nitrogen
+
+		## start emacs (full-height, full-width)
+    bindsym $mod+e exec emacs -mm
+
+    ## start spacemacs w/ (modded) default config
+		# TODO: find out how to do this correctly
+    # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
+
+    ## toggle-mute pulseaudio
+    bindsym $mod+Return exec pulseaudio-ctl mute
+    ## vol up
+    bindsym $mod+u exec pulseaudio-ctl up
+    ## vol down
+    bindsym $mod+d exec pulseaudio-ctl down
+
+    # # system volume control
+    # bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
+
+    # # start kcolorchooser
+    # bindsym $mod+c exec kcolorchooser
+
+    # # start charmap
+    # bindsym $alt+$mod+c exec gucharmap
+
+    # # start stretchly
+    # bindsym $alt+$mod+b exec stretchly
+
+    # # adjust brightness -- need sudo permission
+		# bindsym $mod+u brightnessctl set +10%
+		# bindsym $mod+d brightnessctl set -10%
+
+
+
+    # # TODO: install similar screenshot program... "import" not in Nix repo
+    # # Take a screenshot upon pressing $mod+x (select an area)
+    # bindsym --release $mod+x exec --no-startup-id import /home/cameron/tmp/latest-screenshot.png
+
+
+
 #
+# Marks:
+# mark [--add|--replace] [--toggle] <identifier>
+# [con_mark="identifier"] focus
+# unmark <identifier>
+#
+    show_marks no
+
+    ## read 1 char and mark the current window with this char
+    bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+    ## read 1 char and go to the window with the char
+    ## buggy; will sometimes jump to designated mark, sometimes not.
+    bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+
+
+
 # Moving around:
 #
     # Move your focus around
@@ -122,61 +425,159 @@ input "1423:37904:KINESIS_FREESTYLE_KB800_KB800_Kinesis_Freestyle" {
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # or use arrow keys
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
-    # _move_ the focused window 
-    bindsym Ctrl+Shift+$left move left
-    bindsym Ctrl+Shift+$down move down
-    bindsym Ctrl+Shift+$up move up
-    bindsym Ctrl+Shift+$right move right
-    # ditto, with arrow keys
-    bindsym Ctrl+Shift+Left move left
-    bindsym Ctrl+Shift+Down move down
-    bindsym Ctrl+Shift+Up move up
-    bindsym Ctrl+Shift+Right move right
-#
-# Workspaces:
-#
+
+    # Focus different outputs (screens)
+    bindsym Shift+$mod+$left focus output left
+    bindsym Shift+$mod+$right focus output right
+
+    # _move_ the focused window
+    bindsym $alt+$mod+$left move left
+    bindsym $alt+$mod+$down move down
+    bindsym $alt+$mod+$up move up
+    bindsym $alt+$mod+$right move right
+
+# Assign given workspace to given screen. 1st screen is tried first, etc.
+    workspace 1 output DP-1-3 HDMI-1 eDP-1
+    workspace 2 output DP-1-3 HDMI-1 eDP-1
+    workspace 3 output DP-1-3 HDMI-1 eDP-1
+    workspace 4 output DP-1-3 HDMI-1 eDP-1
+    workspace 5 output DP-1-3 HDMI-1 eDP-1
+    workspace 6 output HDMI-1 DP-1-3 eDP-1
+    workspace 7 output HDMI-1 DP-1-3 eDP-1
+    workspace 8 output HDMI-1 DP-1-3 eDP-1
+    workspace 9 output HDMI-1 DP-1-3 eDP-1
+    workspace 10 output HDMI-1 DP-1-3 eDP-1
+
+    # workspace_auto_back_and_forth yes
+
+    bindsym $mod+comma workspace prev_on_output
+    bindsym $mod+period workspace next_on_output
+		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
+    bindsym $mod+0 workspace back_and_forth
+
     # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
+		bindsym $mod+g mode "go"
+		mode "go" {
+		    bindsym a workspace 1; mode "default"
+				bindsym s workspace 2; mode "default"
+				bindsym d workspace 3; mode "default"
+				bindsym f workspace 4; mode "default"
+				bindsym g workspace 5; mode "default"
+				bindsym h workspace 6; mode "default"
+				bindsym j workspace 7; mode "default"
+				bindsym k workspace 8; mode "default"
+				bindsym l workspace 9; mode "default"
+				bindsym semicolon workspace 10; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
     # move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
+		bindsym $alt+m mode "move"
+		mode "move" {
+        bindsym a move container to workspace 1; mode "default"
+				bindsym s move container to workspace 2; mode "default"
+				bindsym d move container to workspace 3; mode "default"
+				bindsym f move container to workspace 4; mode "default"
+				bindsym g move container to workspace 5; mode "default"
+				bindsym h move container to workspace 6; mode "default"
+				bindsym j move container to workspace 7; mode "default"
+				bindsym k move container to workspace 8; mode "default"
+				bindsym l move container to workspace 9; mode "default"
+				bindsym semicolon move container to workspace 10; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+    # move focused container to workspace and switch to it
+		bindsym $mod+n mode "move/go"
+		mode "move/go" {
+        bindsym a move container to workspace 1; mode "default"; workspace 1
+				bindsym s move container to workspace 2; mode "default"; workspace 2
+				bindsym d move container to workspace 3; mode "default"; workspace 3
+				bindsym f move container to workspace 4; mode "default"; workspace 4
+				bindsym g move container to workspace 5; mode "default"; workspace 5
+				bindsym h move container to workspace 6; mode "default"; workspace 6
+				bindsym j move container to workspace 7; mode "default"; workspace 7
+				bindsym k move container to workspace 8; mode "default"; workspace 8
+				bindsym l move container to workspace 9; mode "default"; workspace 9
+				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+
     # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+    # We just use 1-10 as the default. Non-number names must be quoted as strings.
+    # bindsym Ctrl+1 workspace 1: mail
+
+
+#
+# Window focus
+# focus_on_window_activation smart|urgent|focus|none
+#
+    focus_on_window_activation none
+    force_display_urgency_hint 500 ms
+
+#focus_wrapping yes|no|force|workspace
+    focus_wrapping no
+
+
+# # Don't focus on a window by hovering the mouse over it
+    focus_follows_mouse no
+
+
+    # # testing purposes
+    # bindsym $mod+q "workspace 3; exec $term; exec i3-msg border none; workspace 10"
+
+# Prevent popup windows from stealing the focus
+    no_focus [window_role="pop-up"]
+
+# for_window [class="^vlc$"] floating_minimum_size 150 x 100
+
+
+# center vlc at a certain size and move to scratchpad
+for_window [window_role="vlc-main"] floating enable , \
+    resize set 1070 700, move position center, move scratchpad
+
+
+# floating_minimum_size 1200 x 500
+# # # unconstrained floating window size unless otherwise specified for individual apps
+# floating_maximum_size -1 x -1
+
+
+# Assign google-chrome-stable to workspace 7
+    # assign [class="^Google-chrome$"] → 1
+    # assign [class="^Emacs$"] → 6
+# assign [instance="^google-chrome" class="^Google-chrome$"] → 1
+
+# - To get the class and instance, you can use    "xprop | grep 'CLASS'".
+# - After clicking on the window, you will see the following output:
+#     xprop:
+#     WM_CLASS(STRING) = "irssi", "URxvt"
+# - The first part of the WM_CLASS is the instance ("irssi" in this example), the second part is the class ("URxvt" in this example).
+# - Should you have any problems with assignments, make sure to check the i3 logfile first (see https://i3wm.org/docs/debugging.html). It includes more details about the matching process and the window’s actual class, instance and title when starting up.
+
+
+
+
+
+
 #
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+x layout toggle split
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+x layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+space fullscreen
@@ -184,11 +585,17 @@ input "1423:37904:KINESIS_FREESTYLE_KB800_KB800_Kinesis_Freestyle" {
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+f focus mode_toggle
+    # Hold the mod key and click on a floating window to drag it
+    floating_modifier $mod
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+$alt+f focus mode_toggle
+
+    # # move focus to the parent container
+    # bindsym $mod+a focus parent
+
+    # # move focus to the child container
+    # bindsym $mod+d focus child
 #
 # Scratchpad:
 #
@@ -196,56 +603,96 @@ input "1423:37904:KINESIS_FREESTYLE_KB800_KB800_Kinesis_Freestyle" {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+v move scratchpad
+    bindsym $mod+c scratchpad show
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
+bindsym $mod+r mode "resize"
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # return to default mode
+		bindsym $left resize shrink width 20px
+    bindsym $down resize shrink height 20px
+    bindsym $up resize grow height 20px
+    bindsym $right resize grow width 20px
+    # for vlc after restarting i3
+    bindsym e resize set 1070 700, move position center; mode "default"
+    bindsym $mod+r mode "default"
+    bindsym space mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+
+# whether to warp mouse cursor to center of active screen after shifting focus
+mouse_warping none
 
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    tray_output none
+## tray_output none|primary|<output>
+  ## whether to display icons, e.g., for instances of vlc
+	## outputs: DP-1-3, HDMI-1
+    # tray_output none
+## position top|bottom
     position top
-    separator_symbol "   "  
-    # disable clicking on workspace buttons
-    bindsym button1 nop
-    # Take a screenshot by right clicking on the bar
-    bindsym --release button3 exec --no-startup-id import /tmp/latest-screenshot.png
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
+# only yes|no  # when using e.g., "1:mail"
+    strip_workspace_numbers no
+    separator_symbol "   "
+# # mode dock|hide|invisible
+# # hidden_state hide|show
+		mode hide
+		hidden_state hide
+		modifier $mod
+    # bindsym button1 nop    # disable clicking on workspace buttons
+    # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
+    status_command i3status #--config ~/.i3status.conf
+    # status_command .config/i3/weather.sh
+    # status_command i3blocks # -c ~/.i3status.conf
 
     colors {
-        statusline #ffffff
-        background #323232
+        #
+        # # Syntax:
+        # # <colorclass> <border> <background> <text>
+        #
+
+        #---- night-owl ----
+        statusline #888888   ###text   ###addb67 --green
+        background #011627
         inactive_workspace #32323200 #32323200 #5c5c5c
+
+        # #---- default ----
+        # statusline #ffffff
+        # background #323232
+        # inactive_workspace #32323200 #32323200 #5c5c5c
+
+        #
+				# Supported configurable colors:
+
+        ## focused_background
+        ## Background color of the bar on the currently focused monitor output. If not used, the color will be taken from background.
+
+        ## focused_statusline
+        ## Text color to be used for the statusline on the currently focused monitor output. If not used, the color will be taken from statusline.
+
+        ## focused_separator
+        ## Text color to be used for the separator on the currently focused monitor output. If not used, the color will be taken from separator.
+
+        ## focused_workspace
+        ## Border, background and text color for a workspace button when the workspace has focus.
+
+        ## active_workspace
+        ## Border, background and text color for a workspace button when the workspace is active (visible) on some output, but the focus is on another one. You can only tell this apart from the focused workspace when you are using multiple monitors.
+
+        ## inactive_workspace
+        ## Border, background and text color for a workspace button when the workspace does not have focus and is not active (visible) on any output. This will be the case for most workspaces.
+
+        ## urgent_workspace
+        ## Border, background and text color for a workspace button when the workspace contains a window with the urgency hint set.
+
+        ## binding_mode
+        ## Border, background and text color for the binding mode indicator. If not used, the colors will be taken from urgent_workspace.
+
     }
 }
-
