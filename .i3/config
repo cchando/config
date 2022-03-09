@@ -62,8 +62,8 @@ exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # set wallpaper:
 exec_always nitrogen --set-zoom-fill $bg
-exec pulseaudio-ctl set 35
 exec pulseaudio-ctl mute no
+exec pulseaudio-ctl set 35
 exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
 exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 
@@ -167,7 +167,6 @@ new_float none
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
-
 
 
     # screen setup commands
