@@ -31,6 +31,10 @@ set $menu dmenu_path | dmenu | xargs i3-msg exec
 set $fbrowser dolphin
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
+## outputs
+set $HDMI HDMI-1
+set $VGA DP-1-3
+set $LAP eDP-1
 # current wallpaper
 set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 # set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
@@ -45,19 +49,23 @@ set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 # set $bg ~/Pictures/Florida/homes_condos_townhouses/image-27.png
 # set $bg ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
 
+
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
-# exec redshift -l 32.96:-96.67 -t 6500:2500
-# exec gammastep -l 32.96:-96.67 -t 6500:2500
+exec redshift -l 32.96:-96.67 -t 6500:3500
+# exec gammastep -l 32.96:-96.67 -t 6500:3500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # set wallpaper:
 exec_always nitrogen --set-zoom-fill $bg
-
+exec pulseaudio-ctl set 35
+exec pulseaudio-ctl mute no
+exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
+exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 
 # --- Syntax: ---
 # default_border normal|none|pixel   # pixel eliminates title bars
@@ -101,9 +109,8 @@ new_float none
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-
+## need to put "*" in quotes? unclear from manpage
+# You can get the names of your outputs by running: swaymsg -t get_outputs, output * bg $bg
 
 
 ### Idle configuration
@@ -138,7 +145,7 @@ new_float none
 
 ### Key bindings:
 
-    # start vlc w/ playlist
+    # start vlc or mplayer w/ playlist
 		bindsym $mod+p mode "playlist"
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
@@ -148,15 +155,21 @@ new_float none
 		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
 		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
 		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
-		    bindsym r exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/rain.m3u; mode "default"
 		    bindsym g exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u; mode "default"
 		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
 		    bindsym n exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
+		    bindsym p exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u; mode "default"
 		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
+		    bindsym r exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg
+		    bindsym Shift+r exec mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg
+		    bindsym e exec killall mplayer
+		    bindsym Shift+e exec killall mplayer; mode "default"
+		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
 
 
     # screen setup commands
@@ -166,8 +179,8 @@ new_float none
 				bindsym d mode "dual screens"
 				bindsym l mode "laptop screen"
 				bindsym a mode "all screens"
-        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
-        # bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3 ; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
+        bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        # bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA ; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -178,12 +191,12 @@ new_float none
 		# only reachable from "outputs" mode
 		mode "all screens" {
         # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
-        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
-        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto --output eDP-1 --off; mode "default"
+        bindsym e exec xrandr --output $HDMI --auto --output $VGA --auto --output $LAP --off; mode "default"
+        bindsym u exec xrandr --output $HDMI --auto --output $VGA --auto --output $LAP --off; mode "default"
         # laptop screen on, dual monitors off
-        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off --output eDP-1 --auto; mode "default"
+        bindsym d exec xrandr --output $VGA --off --output $HDMI --off --output $LAP --auto; mode "default"
         # set up dual screens correctly
-        bindsym s exec "xrandr --output eDP-1 --off --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -195,23 +208,23 @@ new_float none
         # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
 		mode "dual screens" {
 		    # right monitor rotate tall
-		    bindsym bracketleft exec xrandr --output HDMI-1 --rotate right
+		    bindsym bracketleft exec xrandr --output $HDMI --rotate right
 		    # right monitor rotate wide
-				bindsym bracketright exec xrandr --output HDMI-1 --rotate normal
+				bindsym bracketright exec xrandr --output $HDMI --rotate normal
 		    # left monitor rotate tall
-				bindsym Shift+bracketleft exec xrandr --output DP-1-3 --rotate left
+				bindsym Shift+bracketleft exec xrandr --output $VGA --rotate left
 		    # left monitor rotate wide
-				bindsym Shift+bracketright exec xrandr --output DP-1-3 --rotate normal
+				bindsym Shift+bracketright exec xrandr --output $VGA --rotate normal
 				# both monitors on
-        bindsym e exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
-        bindsym u exec xrandr --output HDMI-1 --auto --output DP-1-3 --auto; mode "default"
+        bindsym e exec xrandr --output $HDMI --auto --output $VGA --auto; mode "default"
+        bindsym u exec xrandr --output $HDMI --auto --output $VGA --auto; mode "default"
 				# turn on left monitor
-        bindsym $left exec xrandr --output DP-1-3 --auto
+        bindsym $left exec xrandr --output $VGA --auto
 				# turn on right monitor
-        bindsym $right exec xrandr --output HDMI-1 --auto
+        bindsym $right exec xrandr --output $HDMI --auto
 				# both monitors off
-        bindsym s exec "xrandr --output DP-1-3 --rotate left --output HDMI-1 --rotate right --right-of DP-1-3; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
-        bindsym d exec xrandr --output DP-1-3 --off --output HDMI-1 --off; mode "default"
+        bindsym s exec "xrandr --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        bindsym d exec xrandr --output $VGA --off --output $HDMI --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -222,10 +235,10 @@ new_float none
 		# only reachable from "outputs" mode
 		mode "laptop screen" {
 		    # laptop screen on
-        bindsym e exec xrandr --output eDP-1 --auto; mode "default"
-        bindsym u exec xrandr --output eDP-1 --auto; mode "default"
+        bindsym e exec xrandr --output $LAP --auto; mode "default"
+        bindsym u exec xrandr --output $LAP --auto; mode "default"
 		    # laptop screen off
-        bindsym d exec xrandr --output eDP-1 --off; mode "default"
+        bindsym d exec xrandr --output $LAP --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -305,26 +318,15 @@ new_float none
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
 				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
-        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:2500; mode "default"
+        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
         # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
         bindsym a exec "killall .redshift-wrapp; redshift -x"
         bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
         bindsym d exec "killall redshift-wrapp; redshift -PO 4500"
         bindsym f exec "killall redshift-wrapp; redshift -PO 4000"
-        bindsym g exec "killall redshift-wrapp; redshift -PO 3000"
-				bindsym Escape mode "default"
-				bindsym Return mode "default"
-				bindsym space mode "default"
-		}
-
-
-    # mplayer commands
-		bindsym $mod+a mode "mplayer"
-		mode "mplayer" {
-		    bindsym Shift+r exec mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg; mode "default"
-		    # bindsym r exec mplayer -loop 0 -softvol -volume 90 /home/cameron/Music/sleeprain.ogg; mode "default"
-		    bindsym r exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
-		    bindsym k exec killall mplayer; mode "default"
+        bindsym g exec "killall redshift-wrapp; redshift -PO 3500"
+        bindsym h exec "killall redshift-wrapp; redshift -PO 3000"
+        bindsym j exec "killall redshift-wrapp; redshift -PO 2500"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -432,22 +434,22 @@ new_float none
     bindsym Shift+$mod+$right focus output right
 
     # _move_ the focused window
-    bindsym $alt+$mod+$left move left
-    bindsym $alt+$mod+$down move down
-    bindsym $alt+$mod+$up move up
-    bindsym $alt+$mod+$right move right
+    bindsym $alt+$left move left
+    bindsym $alt+$down move down
+    bindsym $alt+$up move up
+    bindsym $alt+$right move right
 
 # Assign given workspace to given screen. 1st screen is tried first, etc.
-    workspace 1 output DP-1-3 HDMI-1 eDP-1
-    workspace 2 output DP-1-3 HDMI-1 eDP-1
-    workspace 3 output DP-1-3 HDMI-1 eDP-1
-    workspace 4 output DP-1-3 HDMI-1 eDP-1
-    workspace 5 output DP-1-3 HDMI-1 eDP-1
-    workspace 6 output HDMI-1 DP-1-3 eDP-1
-    workspace 7 output HDMI-1 DP-1-3 eDP-1
-    workspace 8 output HDMI-1 DP-1-3 eDP-1
-    workspace 9 output HDMI-1 DP-1-3 eDP-1
-    workspace 10 output HDMI-1 DP-1-3 eDP-1
+    workspace 1 output $VGA $HDMI $LAP
+    workspace 2 output $VGA $HDMI $LAP
+    workspace 3 output $VGA $HDMI $LAP
+    workspace 4 output $VGA $HDMI $LAP
+    workspace 5 output $VGA $HDMI $LAP
+    workspace 6 output $HDMI $VGA $LAP
+    workspace 7 output $HDMI $VGA $LAP
+    workspace 8 output $HDMI $VGA $LAP
+    workspace 9 output $HDMI $VGA $LAP
+    workspace 10 output $HDMI $VGA $LAP
 
     # workspace_auto_back_and_forth yes
 
@@ -469,6 +471,16 @@ new_float none
 				bindsym k workspace 8; mode "default"
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
+		    bindsym $mod+a workspace 1; mode "default"
+				bindsym $mod+s workspace 2; mode "default"
+				bindsym $mod+d workspace 3; mode "default"
+				bindsym $mod+f workspace 4; mode "default"
+				bindsym $mod+g workspace 5; mode "default"
+				bindsym $mod+h workspace 6; mode "default"
+				bindsym $mod+j workspace 7; mode "default"
+				bindsym $mod+k workspace 8; mode "default"
+				bindsym $mod+l workspace 9; mode "default"
+				bindsym $mod+semicolon workspace 10; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -486,6 +498,16 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
+        bindsym $mod+a move container to workspace 1; mode "default"
+				bindsym $mod+s move container to workspace 2; mode "default"
+				bindsym $mod+d move container to workspace 3; mode "default"
+				bindsym $mod+f move container to workspace 4; mode "default"
+				bindsym $mod+g move container to workspace 5; mode "default"
+				bindsym $mod+h move container to workspace 6; mode "default"
+				bindsym $mod+j move container to workspace 7; mode "default"
+				bindsym $mod+k move container to workspace 8; mode "default"
+				bindsym $mod+l move container to workspace 9; mode "default"
+				bindsym $mod+semicolon move container to workspace 10; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -503,6 +525,16 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"; workspace 8
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
+        bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
+				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
+				bindsym $mod+d move container to workspace 3; mode "default"; workspace 3
+				bindsym $mod+f move container to workspace 4; mode "default"; workspace 4
+				bindsym $mod+g move container to workspace 5; mode "default"; workspace 5
+				bindsym $mod+h move container to workspace 6; mode "default"; workspace 6
+				bindsym $mod+j move container to workspace 7; mode "default"; workspace 7
+				bindsym $mod+k move container to workspace 8; mode "default"; workspace 8
+				bindsym $mod+l move container to workspace 9; mode "default"; workspace 9
+				bindsym $mod+semicolon move container to workspace 10; mode "default"; workspace 10
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -634,7 +666,7 @@ mouse_warping none
 bar {
 ## tray_output none|primary|<output>
   ## whether to display icons, e.g., for instances of vlc
-	## outputs: DP-1-3, HDMI-1
+	## outputs: $VGA, $HDMI
     # tray_output none
 ## position top|bottom
     position top
@@ -642,7 +674,7 @@ bar {
     strip_workspace_numbers no
     separator_symbol "   "
     ## height in pixels
-    # height 23
+    height 24
 # # mode dock|hide|invisible
 # # hidden_state hide|show
 		mode hide

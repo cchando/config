@@ -2,6 +2,7 @@
 adoptopenjdk-jre-openj9-bin-11.0.5
 audacity-2.3.2
 autokey-0.94.1
+bemenu-0.6.4
 blueman-2.1.1
 bluez-5.50
 bluez-tools-2016-12-12
@@ -24,6 +25,7 @@ ffmpeg-3.4.7
 fira-code-1.207
 flameshot-0.6.0
 fontforge-20190413
+fzf-0.29.0
 gammastep-2.0.8
 gimp-2.10.12
 gnu-apl-1.8
@@ -48,6 +50,7 @@ lsof-4.93.2
 maim-5.6.3
 massren-1.5.4
 mpd-0.22.6
+mutt-2.1.5
 Naperian-0.1.1.0
 neovim-0.3.8
 nitrogen-1.6.1
@@ -68,6 +71,7 @@ python3.7-scipy-1.3.1
 qscreenshot-1.0
 r-languageR-1.5.0
 racket-7.8
+ranger-1.9.3
 rbenv-1.1.2
 redshift-1.12
 RStudio-1.2.1335-wrapper
@@ -92,5 +96,6 @@ weather-2.4.1
 weather-icons-2.0.10
 xdotool-3.20160805.1
 xmodmap-1.0.10
+xwayland-21.1.4
 youtube-dl-2020.09.20
 zenity-3.32.0

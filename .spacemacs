@@ -158,12 +158,14 @@ values."
    dotspacemacs-themes '(
 
 												 ;; --- Dark themes ---
-												 spacemacs-dark
-												 night-owl-cac
+												 spacemacs-dark-cac
+												 base16-atelier-cave ;; rabi-ribi
 												 moe-dark ;; colorful
+												 night-owl-cac
+												 harmonic-dark-cac ;; like night-owl but a bit lighter
+												 spacemacs-dark
 												 ;; base16-solarflare
 												 ;; flucui-dark ;; based off of lab-dark
-												 ;; base16-atelier-cave ;; rabi-ribi
 												 ;; base16-snazzy ;; similar-ish to atelier-cave
 												 ;; lab-dark ;; medium pale blue w/ greens and orange
 												 ;; base16-atelier-plateau ;; similar to cave
@@ -173,7 +175,6 @@ values."
 												 ;; misterioso ;; light-blue bar, gray bg
 												 ;; tango-dark ;; yellow bar, gray bg
 												 ;; outrun-dark ;; very dark purple-blue w/ bright contrasts
-												 harmonic-dark-cac ;; like night-owl but a bit lighter
 												 ;; harmonic-dark ;; like night-owl but a bit lighter
 												 ;; night-owl ;; midnight blue
 												 ;; heetch ;; deep purple w/ magenta, red
@@ -183,7 +184,7 @@ values."
 												 ;; --- Colored themes ---
 												 ;; moe-light ;; colorful
 												 ;; underwater ;; medium-dark blue
-						 ;; alect-light
+												 ;; alect-light
 												 ;; ample-light
 												 ;; occidental
 												 ;; base16-greenscreen
@@ -198,6 +199,7 @@ values."
 
 												 ;; --- Light themes ---
 												 lab-light
+												 ;; intellij
 												 ;; spacemacs-light
 												 ;; cupertino
 												 ;; flucui-light ;; based off of lab-light
@@ -210,7 +212,6 @@ values."
 												 ;; unikitty-light ;; white-purple w/ magenta, vim med purple, aqua, gold
 												 ;; apropospriate-light
 												 ;; harmonic-light
-												 ;; intellij
 
 												 )
 
@@ -1610,6 +1611,7 @@ you should place your code here."
      (105 "_" . "_")
      (73 "__" . "__")
      (59 "`" . "`")
+     (58 "`" . "`")
      (99 "{" . "}")
      (67 "{ " . " }")
      (97 "<" . ">")

@@ -434,7 +434,7 @@
   ["cr" "} "] ; curly
   ["jd" "%"] ; J divide
   ["jc" "NB. "] ; J comment
-  ["nb" "NB. "] ; J comment
+  ["nb" "N.B. "] ; J comment
 
 ])
 

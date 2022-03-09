@@ -8,6 +8,9 @@
 # If running in tty1, run startx
 if [ "$(tty)" = "/dev/tty1" ]; then startx; fi
 
+# ## If running from tty1 start sway
+# [ "$(tty)" = "/dev/tty1" ] && exec sway
+
 shopt -s extglob dotglob globstar
 
 function conda-shell {
@@ -194,6 +197,8 @@ alias ltracked='git ls-tree -r --name-only' #list tracked files in given branch
 alias ltr='git ls-tree -r --name-only' #list tracked files in given branch
 alias tag="git tag"
 
+
+export EDITOR=vim
 
 
 PS1='[\u@\h \W]\$ '

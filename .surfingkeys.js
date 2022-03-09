@@ -206,6 +206,7 @@ unmap('ox');
 map('w', 'oh'); // open from history
 unmap('oh');
 
+
 // complex dependencies block
 map('_t', 't'); // temp key
 unmap('t'); // make '⍵_' space available; said space will be preemtively shadowed otherwise
@@ -427,6 +428,9 @@ map(':db', ';db'); // delete bookmark for current tab
 unmap(';db');
 map(':di', ';di'); // download image
 unmap(';di');
+map(':v', 'om'); // open from vim-like marks
+unmap('om');
+
 
 
 mapkey(':s', '#5Save session', function() {

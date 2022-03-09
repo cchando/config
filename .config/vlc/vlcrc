@@ -3636,7 +3636,7 @@ vod-server=any
 #rt-offset=0
 
 # Play files randomly forever (boolean)
-random=1
+#random=0
 
 # Repeat all (boolean)
 #loop=0
@@ -3951,7 +3951,7 @@ global-key-vol-down=Alt+d
 key-vol-down=
 
 # Mute (string)
-#global-key-vol-mute=
+global-key-vol-mute=Alt+Enter
 
 # Mute (string)
 key-vol-mute=m
@@ -4197,7 +4197,7 @@ key-intf-show=
 #key-uncrop-right=Alt+Shift+f
 
 # Random (string)
-global-key-random=Alt+y
+global-key-random=Alt+r
 
 # Random (string)
 #key-random=r
