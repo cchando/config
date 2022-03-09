@@ -150,20 +150,18 @@ new_float none
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
-				bindsym k exec killall .vlc-wrapped
-				bindsym Shift+k exec killall .vlc-wrapped; mode "default"
-		    bindsym a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u; mode "default"
-		    bindsym Shift+a exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u; mode "default"
-		    bindsym l exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u; mode "default"
-		    bindsym g exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u; mode "default"
-		    bindsym f exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u; mode "default"
-		    bindsym n exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
-		    bindsym p exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u; mode "default"
-		    bindsym c exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u; mode "default"
-		    bindsym r exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg
-		    bindsym Shift+r exec mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg
-		    bindsym e exec killall mplayer
-		    bindsym Shift+e exec killall mplayer; mode "default"
+				bindsym k exec killall .vlc-wrapped; mode "default"
+		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
+		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
+		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u"; mode "default"
+		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u"; mode "default"
+		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u"; mode "default"
+		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
+		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"
+		    bindsym e exec killall mplayer; mode "default"
 		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
