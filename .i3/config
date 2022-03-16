@@ -36,8 +36,8 @@ set $HDMI HDMI-1
 set $VGA DP-1-3
 set $LAP eDP-1
 # current wallpaper
-set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
-# set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
+# set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
+set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
 # set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
@@ -151,16 +151,16 @@ new_float none
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
 				bindsym k exec killall .vlc-wrapped; mode "default"
-		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
-		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
+		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
+		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
 		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u"; mode "default"
 		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u"; mode "default"
 		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u"; mode "default"
 		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
 		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
 		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"; mode "default"
 		    bindsym e exec killall mplayer; mode "default"
 		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
 				bindsym Escape mode "default"
@@ -272,7 +272,7 @@ new_float none
     # device commands
 		bindsym $mod+slash mode "devices"
 		mode "devices" {
-		    bindsym t mode "touchpad"
+		    bindsym p mode "touchpad"
 		    bindsym m mode "mouse stick"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -310,20 +310,16 @@ new_float none
 
 
     # redshift commands
-				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
-				## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
-				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
         bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
-        # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
         bindsym a exec "killall .redshift-wrapp; redshift -x"
         bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
-        bindsym d exec "killall redshift-wrapp; redshift -PO 4500"
-        bindsym f exec "killall redshift-wrapp; redshift -PO 4000"
-        bindsym g exec "killall redshift-wrapp; redshift -PO 3500"
-        bindsym h exec "killall redshift-wrapp; redshift -PO 3000"
-        bindsym j exec "killall redshift-wrapp; redshift -PO 2500"
+        bindsym d exec "killall .redshift-wrapp; redshift -PO 4500"
+        bindsym f exec "killall .redshift-wrapp; redshift -PO 4000"
+        bindsym g exec "killall .redshift-wrapp; redshift -PO 3500"
+        bindsym h exec "killall .redshift-wrapp; redshift -PO 3000"
+        bindsym j exec "killall .redshift-wrapp; redshift -PO 2500"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -372,10 +368,14 @@ new_float none
 
     ## toggle-mute pulseaudio
     bindsym $mod+Return exec pulseaudio-ctl mute
-    ## vol up
-    bindsym $mod+u exec pulseaudio-ctl up
     ## vol down
-    bindsym $mod+d exec pulseaudio-ctl down
+    bindsym $mod+9 exec pulseaudio-ctl down
+    bindsym $mod+3 exec pulseaudio-ctl down
+    bindsym $mod+bracketleft exec pulseaudio-ctl down
+    ## vol up
+    bindsym $mod+0 exec pulseaudio-ctl up
+    bindsym $mod+4 exec pulseaudio-ctl up
+    bindsym $mod+bracketright exec pulseaudio-ctl up
 
     # # system volume control
     # bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
@@ -427,14 +427,14 @@ new_float none
     bindsym $mod+$right focus right
 
     # Focus different outputs (screens)
-    bindsym Shift+$mod+$left focus output left
-    bindsym Shift+$mod+$right focus output right
+    # bindsym Ctrl+Shift+$left focus output left
+    # bindsym Ctrl+Shift+$right focus output right
 
     # _move_ the focused window
-    bindsym $alt+$left move left
-    bindsym $alt+$down move down
-    bindsym $alt+$up move up
-    bindsym $alt+$right move right
+    bindsym $alt+$mod+$left move left
+    bindsym $alt+$mod+$down move down
+    bindsym $alt+$mod+$up move up
+    bindsym $alt+$mod+$right move right
 
 # Assign given workspace to given screen. 1st screen is tried first, etc.
     workspace 1 output $VGA $HDMI $LAP
@@ -453,7 +453,7 @@ new_float none
     bindsym $mod+comma workspace prev_on_output
     bindsym $mod+period workspace next_on_output
 		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
-    bindsym $mod+9 workspace back_and_forth
+    bindsym $mod+backslash workspace back_and_forth
 
     # switch to workspace
 		bindsym $mod+g mode "go"

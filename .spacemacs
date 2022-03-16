@@ -427,6 +427,8 @@ you should place your code here."
 	;; (remove-hook 'prog-mode-hook 'line-number-mode)
 	;; (add-hook 'adoc-mode-hook 'smartparens-mode)
 	;; (add-hook 'prog-mode-hook 'smartparens-mode)
+	(remove-hook 'adoc-mode-hook 'smartparens-mode)
+	(remove-hook 'prog-mode-hook 'smartparens-mode)
 	(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 	;; Fira Code    diaeresis
@@ -1211,24 +1213,24 @@ you should place your code here."
 		 ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
 		 )
 
-;; user prefix mappings
-(define-prefix-command 'cm) ;; prefix key map, "cac's m"
-(define-key evil-normal-state-map (kbd "m") cm)
-(keymap+ cm
-		 "a"   'evil-set-marker
-		 "m"   'evil-scroll-line-to-center
-		 "t"   'evil-scroll-line-to-top
-		 ;; "t"   "zt3K3J"  ; not working somewhy
-		 "b"   'evil-scroll-line-to-bottom
-		 ;; "b"   "zb3J3K"  ; not working somewhy
-		 "e"   'vile-backward-paragraph
-		 "r"   'vile-forward-paragraph
-		 "f"   'avy-goto-word-crt-line
-		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
-		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
-		 "n"   'org-timer-set-timer
-		 "N"   'toggle-timer-bell
-		 )
+;; ;; user prefix mappings
+;; (define-prefix-command 'cm) ;; prefix key map, "cac's m"
+;; (define-key evil-normal-state-map (kbd "m") cm)
+;; (keymap+ cm
+;; 		 "a"   'evil-set-marker
+;; 		 "m"   'evil-scroll-line-to-center
+;; 		 "t"   'evil-scroll-line-to-top
+;; 		 ;; "t"   "zt3K3J"  ; not working somewhy
+;; 		 "b"   'evil-scroll-line-to-bottom
+;; 		 ;; "b"   "zb3J3K"  ; not working somewhy
+;; 		 "e"   'vile-backward-paragraph
+;; 		 "r"   'vile-forward-paragraph
+;; 		 "f"   'avy-goto-word-crt-line
+;; 		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
+;; 		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
+;; 		 "n"   'org-timer-set-timer
+;; 		 "N"   'toggle-timer-bell
+;; 		 )
 
 ;; normal state mappings
 ;; ;; "SPC-;-<motion>" for e.g., comment-to-end-of-line (evilnc-comment-operator)
@@ -1252,7 +1254,8 @@ you should place your code here."
 		 "E"  'evil-forward-word-end
 		 "C-e"  'iedit-mode
 		 "C-;"  'evil-indent
-		 "s-;"  'evil-switch-to-windows-last-buffer
+		 "\\"  'evil-switch-to-windows-last-buffer
+		 ;; "s-;"  'evil-switch-to-windows-last-buffer
 		 "t"    'evil-find-char
 		 "T"    'evil-find-char-backward
 		 "f"    'vile-goto-word-by-first-char

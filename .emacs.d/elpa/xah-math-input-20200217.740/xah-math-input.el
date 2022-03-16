@@ -111,9 +111,9 @@
 	 ["ESC" "++++++"] ; escaped -> adoc use
 
 
-	 ["s" "[] "] ; square
-	 ["c" "{} "] ; curly
-	 ["dol" "${} "]
+	 ["s" "[]"] ; square
+	 ["c" "{}"] ; curly
+	 ["dol" "${}"]
 	 ["ti" "∼"]
 	 ["til" "∼"]
 	 ["ex" "!"]

@@ -214,8 +214,8 @@ output * bg $bg fill
 		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
 		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
 		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"; mode "default"
 		    bindsym e exec killall mplayer; mode "default"
 		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
 				bindsym Escape mode "default"
@@ -322,7 +322,7 @@ output * bg $bg fill
     # # device commands
 		# bindsym $mod+slash mode "devices"
 		# mode "devices" {
-		#     bindsym t mode "touchpad"
+		#     bindsym p mode "touchpad"
 		#     bindsym m mode "mouse stick"
 		# 		bindsym Escape mode "default"
 		# 		bindsym Return mode "default"
@@ -361,23 +361,23 @@ output * bg $bg fill
 		# }
 
 
-    # redshift commands
-				## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
-				## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
-		bindsym $mod+y mode "gammastep"
-		mode "gammastep" {
-				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
-        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
-        # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
-        bindsym a exec "killall .redshift-wrapp; redshift -x"
-        bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
-        bindsym d exec "killall redshift-wrapp; redshift -PO 4500"
-        bindsym f exec "killall redshift-wrapp; redshift -PO 4000"
-        bindsym g exec "killall redshift-wrapp; redshift -PO 3500"
-				bindsym Escape mode "default"
-				bindsym Return mode "default"
-				bindsym space mode "default"
-		}
+    # # redshift commands
+		# 		## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
+		# 		## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
+		# bindsym $mod+y mode "gammastep"
+		# mode "gammastep" {
+		# 		## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
+    #     bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
+    #     # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
+    #     bindsym a exec "killall .redshift-wrapp; redshift -x"
+    #     bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
+    #     bindsym d exec "killall .redshift-wrapp; redshift -PO 4500"
+    #     bindsym f exec "killall .redshift-wrapp; redshift -PO 4000"
+    #     bindsym g exec "killall .redshift-wrapp; redshift -PO 3500"
+		# 		bindsym Escape mode "default"
+		# 		bindsym Return mode "default"
+		# 		bindsym space mode "default"
+		# }
 
 
     ## start a terminal (#$term  #kitty  #konsole --hide-menubar)

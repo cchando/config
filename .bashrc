@@ -56,6 +56,7 @@ alias e='exit'
 alias c='clear'
 alias s='spago'
 alias j='jconsole'
+alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
 alias vlch='vlc --longhelp --advanced | less'
 alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
 alias wttra='curl wttr.in/?format=v2'

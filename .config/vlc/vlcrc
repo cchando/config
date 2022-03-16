@@ -854,7 +854,7 @@ qt-notification=0
 #qt-video-autoresize=1
 
 # Show playing item name in window title (boolean)
-#qt-name-in-title=1
+qt-name-in-title=0
 
 # Show a controller in fullscreen mode (boolean)
 #qt-fs-controller=1
@@ -875,7 +875,7 @@ qt-continue=0
 #qt-advanced-pref=0
 
 # Show unimportant error and warnings dialogs (boolean)
-#qt-error-dialogs=1
+qt-error-dialogs=0
 
 # Define the colors of the volume slider (string)
 #qt-slider-colours=153;210;153;20;210;20;255;199;15;245;39;29
@@ -3639,10 +3639,10 @@ vod-server=any
 #random=0
 
 # Repeat all (boolean)
-#loop=0
+loop=1
 
 # Repeat current item (boolean)
-repeat=1
+#repeat=0
 
 # Play and exit (boolean)
 #play-and-exit=0
@@ -3660,7 +3660,7 @@ repeat=1
 #playlist-autostart=1
 
 # Pause on audio communication (boolean)
-#playlist-cork=1
+playlist-cork=0
 
 # Allow only one running instance (boolean)
 #one-instance=0
@@ -3939,13 +3939,13 @@ key-nav-activate=
 #key-quit=Ctrl+q
 
 # Volume up (string)
-global-key-vol-up=Alt+u
+global-key-vol-up=Alt+0
 
 # Volume up (string)
 key-vol-up=
 
 # Volume down (string)
-global-key-vol-down=Alt+d
+global-key-vol-down=Alt+9
 
 # Volume down (string)
 key-vol-down=
@@ -4413,7 +4413,7 @@ key-loop=Ctrl+Shift+i
 #key-subtitle-text-scale-down=Ctrl+Mouse Wheel Down
 
 # Playlist bookmark 1 (string)
-bookmark1=file:///home/cameron/Music/Night%20in%20the%20Woods%20OST/Snack%20Falcon.mp3
+bookmark1=file:///home/cameron/dwhelper/tagged/6/KIS/Watch%2022.%20Dana%20Vespoli%20and%20Kimberly%20Kane%20Give%20Eachother%20Rimj.mp4
 
 # Playlist bookmark 2 (string)
 #bookmark2=
