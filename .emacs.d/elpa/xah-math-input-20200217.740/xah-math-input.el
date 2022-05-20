@@ -96,6 +96,7 @@
 
 	 ;; AsciiDoc
 	 ["t" "    "] ; 4 spaces
+	 ["dl" "----"]
 	 ["hh" "== "] ; header — adoc
 	 ["hhh" "=== "] ; header — adoc
 	 ["hhhh" "==== "] ; header — adoc

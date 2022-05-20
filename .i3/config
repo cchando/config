@@ -37,7 +37,15 @@ set $VGA DP-1-3
 set $LAP eDP-1
 # current wallpaper
 # set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
-set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
+
+
+# set $bg ~/Pictures/Florida/RV Parks/IMG_1790.jpg
+# set $bg ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg
+# set $bg ~/Pictures/Florida/RV Parks/riptide-rv-marina-4.jpg
+# set $bg ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg
+set $bg ~/Pictures/wallpapers/new1/3346135.jpg
+# set $bg ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg
+# set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
 # set $bg ~/Pictures/neptunia/tavern.jpeg
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/datacenter-2.png
 # set $bg ~/Pictures/neptunia/backgrounds/nep-mk2-bg/planeptune-square.png
@@ -64,8 +72,8 @@ exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:di
 exec_always nitrogen --set-zoom-fill $bg
 exec pulseaudio-ctl mute no
 exec pulseaudio-ctl set 35
-exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u; mode "default"
-exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
+exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/doki.m3u; mode "default"
+# exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 
 # --- Syntax: ---
 # default_border normal|none|pixel   # pixel eliminates title bars
@@ -145,22 +153,58 @@ new_float none
 
 ### Key bindings:
 
+
+    # set wallpaper
+		bindsym $mod+w mode "wallpaper"
+		mode "wallpaper" {
+        # TODO: create function to cycle through wallpapers
+		    bindsym g exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/7371738.jpg"; mode "default"
+		    bindsym r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
+		    bindsym Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
+		    bindsym Shift+r exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg"; mode "default"
+		    bindsym y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
+		    bindsym u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/research_center.jpg"; mode "default"
+		    bindsym i exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/master-frame-26-FINAL-LOGO.jpg"; mode "default"
+		    bindsym o exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/d29d22bff42ca805b208faa3df88df57.jpg"; mode "default"
+		    bindsym p exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/75c2e9dbc0496847cb71a98fb814c4e7.jpg"; mode "default"
+		    bindsym h exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
+		    bindsym Shift+g exec "nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"; mode "default"
+		    bindsym f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
+		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
+		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
+
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+    }
+
+
     # start vlc or mplayer w/ playlist
 		bindsym $mod+p mode "playlist"
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
 				bindsym k exec killall .vlc-wrapped; mode "default"
-		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
-		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
-		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u"; mode "default"
-		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u"; mode "default"
-		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u"; mode "default"
-		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
-		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
-		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"; mode "default"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"; mode "default"
+
+		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
+		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
+		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
+		    bindsym d exec "killall .vlc-wrapped; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
+		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
+		    bindsym Shift+f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
+		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
+		    bindsym Shift+g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
+		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
+		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
+		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		    bindsym s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
+		    bindsym Shift+s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
+		    bindsym t exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 ~/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+m exec "mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+
 		    bindsym e exec killall mplayer; mode "default"
 		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
 				bindsym Escape mode "default"
@@ -349,6 +393,8 @@ new_float none
 
     # # screenshot using shotgun (replace w/ maim)
     # bindsym $mod+s exec shotgun
+    # bindsym $mod+Shift+s exec ksnip
+    bindsym $mod+Shift+s exec shutter --select
 
     # close all google-chrome-stable windows
     bindsym $alt+$mod+g [class="^Google-chrome$"] kill
@@ -357,7 +403,7 @@ new_float none
     # bindsym $mod+Shift+p exec encryptr
 
     ## start wallpaper manager
-    bindsym $mod+w exec nitrogen
+    bindsym Shift+$mod+w exec nitrogen
 
 		## start emacs (full-height, full-width)
     bindsym $mod+e exec emacs -mm
@@ -410,7 +456,7 @@ new_float none
     show_marks no
 
     ## read 1 char and mark the current window with this char
-    bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+    bindsym $alt+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
     ## read 1 char and go to the window with the char
     ## buggy; will sometimes jump to designated mark, sometimes not.
@@ -453,7 +499,7 @@ new_float none
     bindsym $mod+comma workspace prev_on_output
     bindsym $mod+period workspace next_on_output
 		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
-    bindsym $mod+backslash workspace back_and_forth
+    bindsym $mod+8 workspace back_and_forth
 
     # switch to workspace
 		bindsym $mod+g mode "go"
@@ -483,7 +529,7 @@ new_float none
 				bindsym space mode "default"
 		}
     # move focused container to workspace
-		bindsym $alt+m mode "move"
+		bindsym $mod+m mode "move"
 		mode "move" {
         bindsym a move container to workspace 1; mode "default"
 				bindsym s move container to workspace 2; mode "default"
@@ -674,7 +720,7 @@ bar {
     height 24
 # # mode dock|hide|invisible
 # # hidden_state hide|show
-		mode hide
+		mode dock
 		hidden_state hide
 		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons

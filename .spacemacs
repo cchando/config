@@ -158,12 +158,12 @@ values."
    dotspacemacs-themes '(
 
 												 ;; --- Dark themes ---
-												 spacemacs-dark-cac
-												 base16-atelier-cave ;; rabi-ribi
-												 moe-dark ;; colorful
-												 night-owl-cac
-												 harmonic-dark-cac ;; like night-owl but a bit lighter
 												 spacemacs-dark
+												 spacemacs-dark-cac
+												 ;; base16-atelier-cave ;; rabi-ribi
+												 moe-dark ;; colorful
+												 ;; night-owl-cac
+												 ;; harmonic-dark-cac ;; like night-owl but a bit lighter
 												 ;; base16-solarflare
 												 ;; flucui-dark ;; based off of lab-dark
 												 ;; base16-snazzy ;; similar-ish to atelier-cave
@@ -182,7 +182,7 @@ values."
 												 ;; graham ;; dark-blue w/ bright orange-gold
 
 												 ;; --- Colored themes ---
-												 ;; moe-light ;; colorful
+												 moe-light ;; colorful
 												 ;; underwater ;; medium-dark blue
 												 ;; alect-light
 												 ;; ample-light
@@ -198,8 +198,8 @@ values."
 												 ;; word-perfect ;; bright blue, Win95 style
 
 												 ;; --- Light themes ---
-												 lab-light
-												 ;; intellij
+												 ;; lab-light
+												 intellij
 												 ;; spacemacs-light
 												 ;; cupertino
 												 ;; flucui-light ;; based off of lab-light
@@ -699,6 +699,8 @@ you should place your code here."
 	(add-hook 'lisp-mode-hook 'prettify-symbols-mode)
 	(add-hook 'c-mode-hook 'prettify-symbols-mode)
 	(add-hook 'prog-mode-hook 'toggle-word-wrap)
+	(custom-set-variables
+	 '(gnutls-algorithm-priority "normal:-vers-tls1.3"))
 
 
 	(add-hook
@@ -1213,24 +1215,26 @@ you should place your code here."
 		 ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
 		 )
 
-;; ;; user prefix mappings
-;; (define-prefix-command 'cm) ;; prefix key map, "cac's m"
-;; (define-key evil-normal-state-map (kbd "m") cm)
-;; (keymap+ cm
-;; 		 "a"   'evil-set-marker
-;; 		 "m"   'evil-scroll-line-to-center
-;; 		 "t"   'evil-scroll-line-to-top
-;; 		 ;; "t"   "zt3K3J"  ; not working somewhy
-;; 		 "b"   'evil-scroll-line-to-bottom
-;; 		 ;; "b"   "zb3J3K"  ; not working somewhy
-;; 		 "e"   'vile-backward-paragraph
-;; 		 "r"   'vile-forward-paragraph
-;; 		 "f"   'avy-goto-word-crt-line
-;; 		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
-;; 		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
-;; 		 "n"   'org-timer-set-timer
-;; 		 "N"   'toggle-timer-bell
-;; 		 )
+;; user prefix mappings
+(define-prefix-command 'cm) ;; prefix key map, "cac's m"
+(define-key evil-normal-state-map (kbd "m") cm)
+(keymap+ cm
+		 "a"   'evil-set-marker
+		 "m"   'evil-scroll-line-to-center
+		 "t"   'evil-scroll-line-to-top
+		 "k"   'evil-scroll-line-to-top
+		 ;; "t"   "zt3K3J"  ; not working somewhy
+		 "b"   'evil-scroll-line-to-bottom
+		 "j"   'evil-scroll-line-to-bottom
+		 ;; "b"   "zb3J3K"  ; not working somewhy
+		 "e"   'vile-backward-paragraph
+		 "r"   'vile-forward-paragraph
+		 "f"   'avy-goto-word-crt-line
+		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
+		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
+		 "n"   'org-timer-set-timer
+		 "N"   'toggle-timer-bell
+		 )
 
 ;; normal state mappings
 ;; ;; "SPC-;-<motion>" for e.g., comment-to-end-of-line (evilnc-comment-operator)
@@ -1255,7 +1259,7 @@ you should place your code here."
 		 "C-e"  'iedit-mode
 		 "C-;"  'evil-indent
 		 "\\"  'evil-switch-to-windows-last-buffer
-		 ;; "s-;"  'evil-switch-to-windows-last-buffer
+		 "s-;"  'evil-switch-to-windows-last-buffer
 		 "t"    'evil-find-char
 		 "T"    'evil-find-char-backward
 		 "f"    'vile-goto-word-by-first-char
@@ -1491,7 +1495,7 @@ you should place your code here."
 
 
   (setq tab-width 4)
-	(setq-default indent-tabs-mode t)
+	(setq-default indent-tabs-mode nil)
 	(setq standard-indent 4)
 
 ;; Set indent levels

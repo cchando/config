@@ -13,11 +13,11 @@ if [ "$(tty)" = "/dev/tty1" ]; then startx; fi
 
 shopt -s extglob dotglob globstar
 
-function conda-shell {
+conda-shell () {
     nix-shell ~/.conda-shell.nix
 }
 
-function ps-shell {
+ps-shell () {
 		nix-shell ~/programs/easy-purescript-nix/ci.nix
 }
 
@@ -39,23 +39,64 @@ alias crd='nix-env -qaP --description | grep'   # check nixpkgs repo
 alias rb='sudo nixos-rebuild switch'  # rebuild NixOS
 alias clean='nix-collect-garbage -d'
 alias chupd='nix-channel --update'
-alias upgr='nix-env --upgrade'
+alias upgr='nix-env -u'
+alias lstbin='ls ~/.nix-profile/bin'
 # alias upgv='nix-env --upgrade --always'
 alias rollback='nix-env --rollback'
 alias inst='nix-env -iA'
 alias lgen='nix-env --list-generations'
 alias sgen='nix-env --switch-generation'
 alias deletegen='nix-env --delete-generations'
+alias cleanupdups='nix-store --optimiZe'
 alias unin='nix-env --uninstall'
 alias lhave='nix-env -q'
 alias linst='nix-env -q --installed'
+deriver () {
+    nix-store -qd $(which $1)
+}
+rtdeps () {
+    nix-store -qR $(which $1)
+}
+btdeps () {
+    nix-store -qR $(nix-store -qd $(which $1))
+}
+btdeps-tree () {
+    nix-store -q --tree $(nix-store -qd $(which $1))
+}
+btenv () {
+    nix-store --print-env $(nix-instantiate '<nixpkgs>' -A $1)
+}
+depsgraph () {
+    nix-store -q --graph $(which $1) | dot -Tsvg > deps.svg
+}
+pkg-info-full () {
+    nix-env --meta --json -qaA "nixpkgs.$1"
+}
+nix-what-attr () {
+    nix-env -qa $1 --json | jq keys
+}
+pkg-info () {
+    # nix-env -qaA "nixpkgs.$1" --description
+    nix-env -qaA "nixpkgs.$1" --json \
+        | jq -r '.[] | .name + " " + .meta.description,
+           "",
+           (.meta.longDescription | rtrimstr("\n"))'
+}
 # alias anp='nix-env -f '<nixpkgs>' -iA'   # nodePackages.searchterm
+cdir () {
+    mkdir $1 && cd $1
+}
+findd () {
+    find $1 -name $2 2> /dev/null
+}
+
 
 # program aliases
+alias ls='ls --color=never -hF'
 alias e='exit'
 alias c='clear'
 alias s='spago'
-alias j='jconsole'
+alias jlang='jconsole'
 alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
 alias vlch='vlc --longhelp --advanced | less'
 alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
@@ -67,33 +108,51 @@ alias rm='command mv -t /home/cameron/.trash'
 alias rm='command mv -t /home/cameron/.trash'
 alias rmu='command rm' # remove unsafe
 alias rmdir='command rm -r' # remove recursive
-alias ls='ls --color=auto'
 alias charmap='gucharmap'
 alias grep='egrep'
 alias mv='mv -i'
 alias cp='cp -i'
 alias sudo='sudo '
 alias kill='kill -9'
+alias rain1='killall mplayer; mplayer -loop 0 -softvol -volume 20 ~/Music/sleeprain.ogg'
+alias rain2='killall mplayer; mplayer -loop 0 -softvol -volume 30 ~/Music/sleeprain.ogg'
+alias rain3='killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg'
 alias xflux='xflux -z 75044'
-alias rs='redshift'
-alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
+# alias rs='redshift'
+# alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
-# wifi
+
+# wifi -- generic
 alias scan='iw wlp1s0 scan | grep SSID'
 alias scanb='iw wlp1s0 scan | grep BSS'
-alias checki='ip a | grep "inet '
-alias logi='systemctl status wpa_supplicant'
 alias logiv='dmesg wlp1s0'
-alias wpaoff='systemctl stop wpa_supplicant'
-alias wpaon='systemctl restart wpa_supplicant'
-
-alias conh='sudo nmcli device wifi connect Frontier4704 password 21422325889218' #5148275597
-alias con='nmcli device wifi connect'
-alias wifi='nmcli device wifi' # list wifi networks
-alias wpabg='sudo wpa_supplicant -i wlp1s0 -c f -B'  # (-d for debugging, -B for background/daemon)
+alias checki='ip a | grep "inet '
 alias ipsu='sudo ip link set wlp1s0 up'
 alias aip='sudo ip addr add 10.0.0.1/8 dev enp0s31f6'
+
+# wifi -- wpa_supplicant
+alias wpaoff='systemctl stop wpa_supplicant'
+alias wpaon='systemctl restart wpa_supplicant'
+alias logi='systemctl status wpa_supplicant'
+alias wpabg='sudo wpa_supplicant -i wlp1s0 -c f -B'  # (-d for debugging, -B for background/daemon)
+conn () {
+	  iw wlp1s0 connect -w $1
+}
+conn-check () {
+	  ip a | grep "inet "
+}
+conn-save () {
+	  ip a | grep "inet "
+}
+
+
 # alias wpastart='sudo systemctl start wpa_supplicant' # I think this doesn't work -- wpa is controlled by systemd
+
+# wifi -- network manager
+# alias conh='sudo nmcli device wifi connect Frontier4704 password 21422325889218' #5148275597
+# alias con='nmcli device wifi connect'
+# alias wifi='nmcli device wifi' # list wifi networks
+
 
 # Misc
 
@@ -123,6 +182,7 @@ alias defaultkeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
 alias xme='xmodmap -pke > ~/.Xmodmap-fallback-tmp'  # export current keymap to holding file
 alias xmexportpermanent='xmodmap -pke > ~/.Xmodmap-fallback'  # export current keymap to holding file
 alias key='xev'
+alias mch='mplayer -loop 0 -softvol -volume 70 $HOME/Music/Chicken\ Police\ OST/*'
 alias wifioff='sudo rfkill block all'
 alias wifion='sudo rfkill unblock all'
 alias size='du -sh'

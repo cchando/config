@@ -97,13 +97,22 @@
     };
   };
 
-  environment.systemPackages = ((import ./packages.nix) pkgs);
+  environment.systemPackages = ((import ./pkgs.nix) pkgs);
+
+  # for i3-blocks
+  environment.pathsToLink = [ "/libexec" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
+  ## for redshift, gammastep, etc.
+  location = {
+    provider = "manual";
+    latitude = 32.96;
+    longitude = -96.67;
+  };
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -161,6 +170,7 @@
         enable = true;
         xkbVariant = "dvp";
         xkbOptions = "caps:shift";
+        windowManager.i3.package = pkgs.i3-gaps;
         autorun = false;
         exportConfiguration = true; # link X config to /etc, so that X config is like in most Linux distros
         synaptics = { #affects only after reboot (or maybe logging-out then in again?) maybe same for libinput

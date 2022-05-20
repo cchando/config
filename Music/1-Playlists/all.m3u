@@ -35,9 +35,9 @@ file:///home/cameron/Music/Neptunia/Extended/Hyperdimension%20Neptunia%20ReBirth
 file:///home/cameron/Music/Neptunia/Extended/A%20NEWBIE%20HOPE%20[Extended]%20Cyberdimension%20Neptunia%20OST.mp3
 #EXTINF:3600,Megadimension Neptunia VII -  Let's Bake The Cookie! [Extended][HD].mp3
 file:///home/cameron/Music/Neptunia/Extended/Megadimension%20Neptunia%20VII%20-%20%20Let's%20Bake%20The%20Cookie!%20[Extended][HD].mp3
-#EXTINF:1005,Is This... Lastation - Super Neptunia RPG OST Extended.mp3
+#EXTINF:1005,Is This... Lastation - Is This... Lastation - Extended.mp3
 file:///home/cameron/Music/Neptunia/Extended/Is%20This...%20Lastation%20-%20Super%20Neptunia%20RPG%20OST%20Extended.mp3
-#EXTINF:913,Exploring the Forest - Super Neptunia RPG OST Extended.mp3
+#EXTINF:913,Exploring the Forest - Exploring the Forest - Extended.mp3
 file:///home/cameron/Music/Neptunia/Extended/Exploring%20the%20Forest%20-%20Super%20Neptunia%20RPG%20OST%20Extended.mp3
 #EXTINF:599,Hyperdimension Neptunia ReBirth 2 OST 25.100$ (Extended).mp3
 file:///home/cameron/Music/Neptunia/Extended/Hyperdimension%20Neptunia%20ReBirth%202%20OST%2025.100$%20(Extended).mp3
@@ -117,7 +117,7 @@ file:///home/cameron/Music/nick-focus-playlist/paulleonrdmorgn-1i/limtlssorignlm
 file:///home/cameron/Music/nick-focus-playlist/trentreznrndattcsross-9y/thesoclnetwrksoundtrckfrmth-1r/05intrgngpossblts-9b.mp3
 #EXTINF:256,Trent Reznor and Atticus Ross - Pieces Form the Whole
 file:///home/cameron/Music/nick-focus-playlist/trentreznrndattcsross-9y/thesoclnetwrksoundtrckfrmth-1r/08piecsformthwhol-8z.mp3
-#EXTINF:297,02 In Motion - The Social Network - OST Soundtrack.mp3
+#EXTINF:297,02 In Motion - In Motion
 file:///home/cameron/Music/Tech/02%20In%20Motion%20-%20The%20Social%20Network%20-%20OST%20Soundtrack.mp3
 #EXTINF:106,[Gokukoku no Brynhildr OST] 21 - Analyze.mp3
 file:///home/cameron/Music/Tech/%5BGokukoku%20no%20Brynhildr%20OST%5D%2021%20-%20Analyze.mp3
@@ -127,8 +127,6 @@ file:///home/cameron/Music/nick-focus-playlist/%5BDoki%5D%20Clannad%20Original%2
 file:///home/cameron/Music/nick-focus-playlist/%5BDoki%5D%20Clannad%20Original%20Soundtrack%20%28MP3%29/Clannad%20Original%20Soundtrack%20-%20Disk%201/15%20-%20Dam.mp3
 #EXTINF:220,Key Sounds Label - Kaijin ni Kaesu
 file:///home/cameron/Music/nick-focus-playlist/%5BDoki%5D%20Clannad%20Original%20Soundtrack%20%28MP3%29/Clannad%20Original%20Soundtrack%20-%20Disk%201/17%20-%20Kaijin%20ni%20Kaesu.mp3
-#EXTINF:232,Key Sounds Label - Tsuki no Isou
-file:///home/cameron/Music/nick-focus-playlist/%5BDoki%5D%20Clannad%20Original%20Soundtrack%20%28MP3%29/Clannad%20Original%20Soundtrack%20-%20Disk%201/19%20-%20Tsuki%20no%20Isou.mp3
 #EXTINF:62,Nicholas Britell - Shorting the Aa
 file:///home/cameron/Music/nick-focus-playlist/updated_itunes_music-us/Nicholas%20Britell/The%20Big%20Short%20%28Music%20from%20the%20Motion%20Pic/12%20Shorting%20the%20Aa.m4a
 #EXTINF:103,Nicholas Britell - Redemption at the Roulette Table
@@ -195,8 +193,6 @@ file:///home/cameron/Music/nick%20anime%20playlist/%5BOST%5D%20Flying%20Witch%20
 file:///home/cameron/Music/nick%20anime%20playlist/%5BOST%5D%20Flying%20Witch%20%28Dewa%20Yoshiaki%29/25%20-%20Nigeru.mp3
 #EXTINF:93,26 - Chito-san.mp3
 file:///home/cameron/Music/nick%20anime%20playlist/%5BOST%5D%20Flying%20Witch%20%28Dewa%20Yoshiaki%29/26%20-%20Chito-san.mp3
-#EXTINF:114,33 - Ane Majo.mp3
-file:///home/cameron/Music/nick%20anime%20playlist/%5BOST%5D%20Flying%20Witch%20%28Dewa%20Yoshiaki%29/33%20-%20Ane%20Majo.mp3
 #EXTINF:92,35 - Inukai-san.mp3
 file:///home/cameron/Music/nick%20anime%20playlist/%5BOST%5D%20Flying%20Witch%20%28Dewa%20Yoshiaki%29/35%20-%20Inukai-san.mp3
 #EXTINF:90,Hayashi Yuuzou - Pantsu wa?
@@ -381,7 +377,25 @@ file:///home/cameron/Music/nick%20anime%20playlist/dr-8a.%20Dissonance/unknwnalb
 file:///home/cameron/Music/Sonic%20Adventure/Pleasure_Castle_for_Twinkle_Park_Sonic_Adventure_Music_Extended.mp3
 #EXTINF:1803,Chao Garden (Neutral) - Chao Garden (Neutral)
 file:///home/cameron/Music/Sonic%20Adventure%202/Chao%20Garden%20(Neutral)%20-%20Sonic%20Adventure%202%20Music%20Extended.mp3
-#EXTINF:1803,Chao Kindergarten - Chao Kindergarten
-file:///home/cameron/Music/Sonic%20Adventure%202/Chao%20Kindergarten%20-%20Sonic%20Adventure%202%20Music%20Extended.mp3
 #EXTINF:1803,Chao Garden (Hero) - Chao Garden (Hero)
 file:///home/cameron/Music/Sonic%20Adventure%202/Chao%20Garden%20(Hero)%20-%20Sonic%20Adventure%202%20Music%20Extended.mp3
+#EXTINF:1803,Chao Kindergarten - Chao Kindergarten
+file:///home/cameron/Music/Sonic%20Adventure%202/Chao%20Kindergarten%20-%20Sonic%20Adventure%202%20Music%20Extended.mp3
+#EXTINF:881,Doki Doki Literature Club OST - Ohayou Sayori [Extended].mp3
+file:///home/cameron/Music/Doki%20Doki%20Literature%20Club/Extended/Doki%20Doki%20Literature%20Club%20OST%20-%20Ohayou%20Sayori%20[Extended].mp3
+#EXTINF:869,Doki Doki Literature Club OST - Dreams Of Love And Literature [Extended].mp3
+file:///home/cameron/Music/Doki%20Doki%20Literature%20Club/Extended/Doki%20Doki%20Literature%20Club%20OST%20-%20Dreams%20Of%20Love%20And%20Literature%20[Extended].mp3
+#EXTINF:766,Doki Doki Literature Club OST - Main Theme [Extended].mp3
+file:///home/cameron/Music/Doki%20Doki%20Literature%20Club/Extended/Doki%20Doki%20Literature%20Club%20OST%20-%20Main%20Theme%20[Extended].mp3
+#EXTINF:934,Doki Doki Literature Club OST - Just a Little Bit [Extended].mp3
+file:///home/cameron/Music/Doki%20Doki%20Literature%20Club/Extended/Doki%20Doki%20Literature%20Club%20OST%20-%20Just%20a%20Little%20Bit%20[Extended].mp3
+#EXTINF:771,Doki Doki Literature Club OST - Play With Me [Extended].mp3
+file:///home/cameron/Music/Doki%20Doki%20Literature%20Club/Extended/Doki%20Doki%20Literature%20Club%20OST%20-%20Play%20With%20Me%20[Extended].mp3
+#EXTINF:1975,Ratchet & Clank - Veldin - Kyzil Plateau Soundtrack Extended.mp3
+file:///home/cameron/Music/Ratchet%20&%20Clank/Extended/Ratchet%20&%20Clank%20-%20Veldin%20-%20Kyzil%20Plateau%20Soundtrack%20Extended.mp3
+#EXTINF:1943,Ratchet & Clank Going Commando   Maktar Nebula   Jamming Array Soundtrack Extended.mp3
+file:///home/cameron/Music/Ratchet%20&%20Clank/Extended/Ratchet%20&%20Clank%20Going%20Commando%20%20%20Maktar%20Nebula%20%20%20Jamming%20Array%20Soundtrack%20Extended.mp3
+#EXTINF:1913,Ratchet & Clank Going Commando - Dobbo - Inside The Facility Soundtrack Extended.mp3
+file:///home/cameron/Music/Ratchet%20&%20Clank/Extended/Ratchet%20&%20Clank%20Going%20Commando%20-%20Dobbo%20-%20Inside%20The%20Facility%20Soundtrack%20Extended.mp3
+#EXTINF:1927,Ratchet & Clank Going Commando - Joba - Megacorp Games Soundtrack Extended.mp3
+file:///home/cameron/Music/Ratchet%20&%20Clank/Extended/Ratchet%20&%20Clank%20Going%20Commando%20-%20Joba%20-%20Megacorp%20Games%20Soundtrack%20Extended.mp3
