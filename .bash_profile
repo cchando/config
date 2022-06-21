@@ -9,6 +9,7 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* (.*)/(1)/'
 }
 
+
 export PS1="[33[00m]u@h[33[01;34m] W [33[31m]$(parse_git_branch) [33[00m]$[33[00m] "
 
 export PATH="$PATH:$HOME:$HOME/.local/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/programs/search-nixpkgs"
@@ -20,3 +21,12 @@ export EDITOR="vim"
 export GIT_EDITOR="vim"
 export VISUAL="vim"
 export NIXPKGS_ALLOW_UNFREE=1
+export DOCUMENTS="$HOME/Documents"
+export MUSIC="$HOME/Music"
+export PICTURES="$HOME/Pictures"
+export PROGRAMS="$HOME/Programs"
+export VIDEOS="$HOME/Videos"
+
+eval "$(rbenv init - bash)"
+
+source ~/.bashrc

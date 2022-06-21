@@ -363,6 +363,12 @@ mapkey('ZB', '#5Restore backup session', function() {
         name: 'BACKUP'
     });
 });
+
+// mapkey(';A', '#5APL language bar', function(d) {
+//     let e=d.createElement("script");
+//     e.src="https://abrudz.github.io/lb/lb.js";
+//     d.body.appendChild(e)}(document));
+
 // mapkey(':dH', '#14Delete history newer than 2 hours', function(){
 // 		var nor=(newDate).getTime();
 // 		chrome.history.deleteRange({startTime: now -2*1e3*3600, endTime: now})

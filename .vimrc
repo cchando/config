@@ -161,18 +161,21 @@ set nomodeline                  " don't use modeline (security)
 set pastetoggle=<C-a>       " paste mode: avoid auto indent, treat chars
                                 "   as literal.
 
+noremap R <C-r>
 noremap , m
 nnoremap f :call search('\<' . nr2char(getchar()), 'W', line('.'))<cr>
 " Split line (dual to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing
 nnoremap S i<cr><esc><right>
-nnoremap I a
 " Clear the search highlight
 nnoremap <silent> \ :silent nohlsearch<CR>
-noremap a _<left>
-noremap A _i
+noremap J 10j
+noremap K 10k
+noremap ga 0
 noremap gl $
-noremap gL $i<right>
+noremap gh ^
+noremap gm %
+noremap gi $i<right>
 noremap <C-e> :q!<CR>
 noremap <C-s> :split<CR>
 inoremap fd <Esc>l

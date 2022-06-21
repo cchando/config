@@ -5,11 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# If running in tty1, run startx
-if [ "$(tty)" = "/dev/tty1" ]; then startx; fi
-
-# ## If running from tty1 start sway
-# [ "$(tty)" = "/dev/tty1" ] && exec sway
+# # If running in tty1, run startx
+# if [ "$(tty)" = "/dev/tty1" ]; then startx; fi
 
 shopt -s extglob dotglob globstar
 
@@ -47,7 +44,7 @@ alias inst='nix-env -iA'
 alias lgen='nix-env --list-generations'
 alias sgen='nix-env --switch-generation'
 alias deletegen='nix-env --delete-generations'
-alias cleanupdups='nix-store --optimiZe'
+alias cleanupdups='nix-store --optimize'
 alias unin='nix-env --uninstall'
 alias lhave='nix-env -q'
 alias linst='nix-env -q --installed'
@@ -86,12 +83,19 @@ pkg-info () {
 cdir () {
     mkdir $1 && cd $1
 }
+mkdirc () {
+    mkdir $1 && cd $1
+}
 findd () {
-    find $1 -name $2 2> /dev/null
+    find $1 -name $2 2>/dev/null
 }
 
 
 # program aliases
+alias wpastart='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf '
+alias al='alias'
+alias s='sway'
+alias 7zip='7za'
 alias ls='ls --color=never -hF'
 alias e='exit'
 alias c='clear'
@@ -102,10 +106,9 @@ alias vlch='vlc --longhelp --advanced | less'
 alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
 alias wttra='curl wttr.in/?format=v2'
 alias u='cd ..'
-alias ref='source $HOME/.bashrc'  # refresh
+alias src='source $HOME/.bashrc'  # refresh
 alias sqlite='sqlite3'
-alias rm='command mv -t /home/cameron/.trash'
-alias rm='command mv -t /home/cameron/.trash'
+# alias rm='command mv -t /home/cameron/.trash'
 alias rmu='command rm' # remove unsafe
 alias rmdir='command rm -r' # remove recursive
 alias charmap='gucharmap'
@@ -114,16 +117,18 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias sudo='sudo '
 alias kill='kill -9'
+alias mp='mplayer -loop 0 -softvol -volume 60'
 alias rain1='killall mplayer; mplayer -loop 0 -softvol -volume 20 ~/Music/sleeprain.ogg'
 alias rain2='killall mplayer; mplayer -loop 0 -softvol -volume 30 ~/Music/sleeprain.ogg'
 alias rain3='killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg'
 alias xflux='xflux -z 75044'
-# alias rs='redshift'
 # alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
 
 # wifi -- generic
-alias scan='iw wlp1s0 scan | grep SSID'
+alias pingg='ping 8.8.8.8'
+alias rd='systemctl restart dhcpcd'
+alias scan='sudo iw wlp1s0 scan | grep SSID'
 alias scanb='iw wlp1s0 scan | grep BSS'
 alias logiv='dmesg wlp1s0'
 alias checki='ip a | grep "inet '
@@ -131,9 +136,10 @@ alias ipsu='sudo ip link set wlp1s0 up'
 alias aip='sudo ip addr add 10.0.0.1/8 dev enp0s31f6'
 
 # wifi -- wpa_supplicant
-alias wpaoff='systemctl stop wpa_supplicant'
-alias wpaon='systemctl restart wpa_supplicant'
-alias logi='systemctl status wpa_supplicant'
+alias wpaon='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf'
+#alias wpaoff='systemctl stop wpa_supplicant'
+#alias wpaon='systemctl restart wpa_supplicant'
+alias wpastatus='systemctl status wpa_supplicant'
 alias wpabg='sudo wpa_supplicant -i wlp1s0 -c f -B'  # (-d for debugging, -B for background/daemon)
 conn () {
 	  iw wlp1s0 connect -w $1
@@ -161,6 +167,8 @@ conn-save () {
 # alias ydlv='nohup "youtube-dl --no-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"" &>/dev/null &'
 # alias ydlpv='nohup "youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"" &>/dev/null &'
 
+alias rs='systemctl --user enable --now wireplumber && systemctl --user restart pipewire' #restart sound
+alias p='pamix'
 alias ydl='youtube-dl -x --no-playlist -o "~/Music/youtube-dl/%(title)s.%(ext)s" --audio-format mp3'
 alias ydlp='youtube-dl -cix --yes-playlist -o "~/Music/youtube-dl/%(playlist)s/%(title)s.%(ext)s" --audio-format mp3'
 alias ydlv='youtube-dl --no-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
@@ -182,16 +190,16 @@ alias defaultkeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
 alias xme='xmodmap -pke > ~/.Xmodmap-fallback-tmp'  # export current keymap to holding file
 alias xmexportpermanent='xmodmap -pke > ~/.Xmodmap-fallback'  # export current keymap to holding file
 alias key='xev'
-alias mch='mplayer -loop 0 -softvol -volume 70 $HOME/Music/Chicken\ Police\ OST/*'
 alias wifioff='sudo rfkill block all'
+alias wd='sudo rfkill block all'
 alias wifion='sudo rfkill unblock all'
+alias we='sudo rfkill unblock all'
 alias size='du -sh'
 alias lmon='xrandr --current' # list monitors
 alias findp='find . -ipath'
-alias r='command' # "raw"
+alias cmd='command' # "raw"
 alias show='alias'
 alias ir='i3-msg reload'
-alias et='emacs -nw'
 alias vimode='set -o vi'
 alias tr='racket -I typed/racket'
 alias ra='racket'
@@ -201,8 +209,15 @@ alias lst='ps -A | grep'
 alias xr='xrdb -merge ~/.Xdefaults'
 alias bat='acpi'    # or 'upower ...'
 # alias music='cmuse'
-alias zip='7z a' # zip <NAME>.7z <SOURCE>   # yes, the ".7z" is needed, even though it's semantically redundant
-alias unzip='7z x'
+# alias zip='7z a' # zip <NAME>.7z <SOURCE>   # yes, the ".7z" is needed, even though it's semantically redundant
+# alias unzip='7z x'
+alias zip='tar czf'
+alias unzip='tar xf'
+alias wpa='wpa_supplicant'
+alias sys='systemctl'
+alias status='systemctl status'
+alias restart='systemctl restart'
+alias stop='systemctl stop'
 alias bhi='sudo brightnessctl set 100%'
 alias bmhi='sudo brightnessctl set 75%'
 alias bmed='sudo brightnessctl set 50%'
@@ -259,9 +274,30 @@ alias ltr='git ls-tree -r --name-only' #list tracked files in given branch
 alias tag="git tag"
 
 
-export EDITOR=vim
-
+export wifi="wlp1s0"
+export N="/dev/null"
+export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:$HOME:$HOME/.local/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/programs/search-nixpkgs"
+export AVOUTPUT="$HOME/AVOutput"
+export XDG_CONFIG_HOME="$HOME/.config"
+export TERM="kitty" #termite
+export BROWSER="google-chrome-stable"
+export EDITOR="vim"
+export GIT_EDITOR="vim"
+export VISUAL="vim"
+export conf="$HOME/.config/"
+export h="$HOME"
+export docs="$HOME/Documents"
+export dl="$HOME/Downloads"
+export mus="$HOME/Music"
+export pic="$HOME/Pictures"
+export prog="$HOME/Programs"
+export vids="$HOME/Videos"
+# export NIXPKGS_ALLOW_UNFREE=1
 
 PS1='[\u@\h \W]\$ '
 
 stty -ixon
+
+eval "$(rbenv init - bash)"
+eval "$(rbenv init -)"
