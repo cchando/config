@@ -28,7 +28,8 @@ set $term kitty  #konsole  #termite  #konsole  #kitty
 # Note: it's recommended that you pass the final command to i3-msg
 set $menu dmenu_path | dmenu | xargs i3-msg exec
 # Your preferred file browser
-set $fbrowser dolphin
+# set $fbrowser dolphin
+set $fbrowser nautilus
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
 ## outputs
@@ -36,14 +37,14 @@ set $HDMI HDMI-1
 set $VGA DP-1-3
 set $LAP eDP-1
 # current wallpaper
-# set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
+set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 
 
+# set $bg ~/Pictures/wallpapers/new1/3346135.jpg
 # set $bg ~/Pictures/Florida/RV Parks/IMG_1790.jpg
 # set $bg ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg
 # set $bg ~/Pictures/Florida/RV Parks/riptide-rv-marina-4.jpg
 # set $bg ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg
-set $bg ~/Pictures/wallpapers/new1/3346135.jpg
 # set $bg ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg
 # set $bg ~/Pictures/Florida/homes_condos_townhouses/modern-house-202.jpg
 # set $bg ~/Pictures/neptunia/tavern.jpeg
@@ -58,21 +59,24 @@ set $bg ~/Pictures/wallpapers/new1/3346135.jpg
 # set $bg ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg
 
 
+## Autostart
+# exec_always kitty --listen-on=unix:@kitty, move scratchpad && kitty @ --to unix:@kitty "pamix"
+exec_always systemctl --user enable --now wireplumber
+exec_always systemctl --user restart pipewire
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
 exec redshift -l 32.96:-96.67 -t 6500:3500
-# exec gammastep -l 32.96:-96.67 -t 6500:3500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
 exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # set wallpaper:
 exec_always nitrogen --set-zoom-fill $bg
-exec pulseaudio-ctl mute no
-exec pulseaudio-ctl set 35
-exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/doki.m3u; mode "default"
+# exec pulseaudio-ctl mute no
+# exec pulseaudio-ctl set 35
+# exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/doki.m3u; mode "default"
 # exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 
 # --- Syntax: ---
@@ -86,6 +90,23 @@ exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/doki.m3u; mod
     # default_border pixel 3
     hide_edge_borders smart
     # hide_edge_borders none|vertical|horizontal|both|smart
+
+		smart_gaps on
+		gaps inner 10
+		gaps outer 1
+
+    # class                 border  backgr. text    indicator child_border
+    client.focused          #4c7899 #285577 #ffffff #2e9ef4   #757e82
+    client.focused_inactive #000000 #5f676a #ffffff #484e50   #000000
+    client.unfocused        #000000 #222222 #888888 #292d2e   #000000
+    client.urgent           #2f343a #900000 #ffffff #900000   #900000
+    client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+    client.background       #ffffff
+
+
+# Hide the window title bars
+default_border none
+default_floating_border none
 
     # class                 border  backgr. text    indicator child_border
     client.focused          #4c7899 #285577 #ffffff #2e9ef4   #757e82
@@ -153,6 +174,35 @@ new_float none
 
 ### Key bindings:
 
+    ## adjust gaps between windows
+		bindsym $alt+g mode "gaps"
+    mode "gaps" {
+        bindsym o      mode "gaps outer"
+        bindsym i      mode "gaps inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+				bindsym space mode "default"
+    }
+    mode "gaps outer" {
+        bindsym h gaps outer all set 0
+        bindsym j gaps outer all minus 5
+        bindsym k gaps outer all plus 5
+        bindsym t gaps outer all toggle 10
+        bindsym i      mode "gaps inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+				bindsym space mode "default"
+    }
+    mode "gaps inner" {
+        bindsym h gaps inner all set 0
+        bindsym j gaps inner all minus 5
+        bindsym k gaps inner all plus 5
+        bindsym t gaps inner all toggle 10
+        bindsym o      mode "gaps outer"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+				bindsym space mode "default"
+    }
 
     # set wallpaper
 		bindsym $mod+w mode "wallpaper"
@@ -173,11 +223,41 @@ new_float none
 		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
 		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
-
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
     }
+
+
+    # # start vlc or mplayer w/ playlist
+		# bindsym $mod+p mode "playlist"
+		# mode "playlist" {
+		# 		bindsym v exec vlc --loop --random --no-repeat; mode "default"
+    #     # kill vlc
+		# 		bindsym k exec killall .vlc-wrapped; mode "default"
+		#     bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
+		#     bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
+		#     bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
+		#     bindsym d exec "killall .vlc-wrapped; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
+		#     bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
+		#     bindsym Shift+f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
+		#     bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
+		#     bindsym Shift+g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
+		#     bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
+		#     bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
+		#     bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		#     bindsym s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
+		#     bindsym Shift+s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
+		#     bindsym t exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
+		#     bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 ~/Music/sleeprain.ogg"; mode "default"
+		#     bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+		#     bindsym Shift+m exec "mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+		#     bindsym e exec killall mplayer; mode "default"
+		#     bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
+		# 		bindsym Escape mode "default"
+		# 		bindsym Return mode "default"
+		# 		bindsym space mode "default"
+		# }
 
 
     # start vlc or mplayer w/ playlist
@@ -185,33 +265,30 @@ new_float none
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
-				bindsym k exec killall .vlc-wrapped; mode "default"
-
-		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
-		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
-		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
-		    bindsym d exec "killall .vlc-wrapped; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
-		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
-		    bindsym Shift+f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
-		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
-		    bindsym Shift+g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
-		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
-		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
-		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
-		    bindsym s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
-		    bindsym Shift+s exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
-		    bindsym t exec "killall .vlc-wrapped; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 ~/Music/sleeprain.ogg"; mode "default"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+				bindsym k exec killall vlc; mode "default"
+		    bindsym a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
+		    bindsym Shift+a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
+		    bindsym c exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
+		    bindsym d exec "killall vlc; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
+		    bindsym f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
+		    bindsym Shift+f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
+		    bindsym g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
+		    bindsym Shift+g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
+		    bindsym l exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
+		    bindsym n exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
+		    bindsym p exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		    bindsym s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
+		    bindsym Shift+s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
+		    bindsym t exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/sleeprain.ogg"; mode "default"
 		    bindsym Shift+m exec "mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
-
 		    bindsym e exec killall mplayer; mode "default"
-		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
+		    bindsym 9 exec killall mplayer vlc; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
-
 
     # screen setup commands
 		bindsym $alt+$mod+o mode "outputs"
@@ -220,8 +297,9 @@ new_float none
 				bindsym d mode "dual screens"
 				bindsym l mode "laptop screen"
 				bindsym a mode "all screens"
-        bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA ; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
-        # bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA ; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
+        bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        bindsym Shift+s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --right-of $VGA; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+        # bindsym s exec "xrandr --output $LAP --off --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA; sleep 4"; exec nitrogen --set-tiled $bg; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -248,14 +326,6 @@ new_float none
 		# only reachable from "outputs" mode
         # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
 		mode "dual screens" {
-		    # right monitor rotate tall
-		    bindsym bracketleft exec xrandr --output $HDMI --rotate right
-		    # right monitor rotate wide
-				bindsym bracketright exec xrandr --output $HDMI --rotate normal
-		    # left monitor rotate tall
-				bindsym Shift+bracketleft exec xrandr --output $VGA --rotate left
-		    # left monitor rotate wide
-				bindsym Shift+bracketright exec xrandr --output $VGA --rotate normal
 				# both monitors on
         bindsym e exec xrandr --output $HDMI --auto --output $VGA --auto; mode "default"
         bindsym u exec xrandr --output $HDMI --auto --output $VGA --auto; mode "default"
@@ -370,6 +440,18 @@ new_float none
 		}
 
 
+	  # restart sound (pipewire)
+	  bindsym $mod+equal exec systemctl --user enable --now wireplumber && systemctl --user restart pipewire
+
+	  # right monitor rotate tall
+	  bindsym $mod+bracketleft exec xrandr --output $HDMI --rotate right
+	  # right monitor rotate wide
+  	bindsym $mod+bracketright exec xrandr --output $HDMI --rotate normal
+	  # left monitor rotate tall
+	  bindsym $mod+$alt+bracketleft exec xrandr --output $VGA --rotate left
+	  # left monitor rotate wide
+		bindsym $mod+$alt+bracketright exec xrandr --output $VGA --rotate normal
+
     ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
     # bindsym $mod+t exec kitty -1 --listen-on unix:/tmp/kitty
@@ -388,8 +470,8 @@ new_float none
     ## start internet browser
     bindsym $mod+i exec $ibrowser
 
-    # # start firefox
-    # bindsym $mod+Shift+i exec firefox
+    # start firefox
+    bindsym $mod+Shift+i exec firefox
 
     # # screenshot using shotgun (replace w/ maim)
     # bindsym $mod+s exec shotgun
@@ -412,19 +494,31 @@ new_float none
 		# TODO: find out how to do this correctly
     # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
 
-    ## toggle-mute pulseaudio
-    bindsym $mod+Return exec pulseaudio-ctl mute
-    ## vol down
-    bindsym $mod+9 exec pulseaudio-ctl down
-    bindsym $mod+3 exec pulseaudio-ctl down
-    bindsym $mod+bracketleft exec pulseaudio-ctl down
-    ## vol up
-    bindsym $mod+0 exec pulseaudio-ctl up
-    bindsym $mod+4 exec pulseaudio-ctl up
-    bindsym $mod+bracketright exec pulseaudio-ctl up
+    # ## pulseaudio (volume control)
+    # ## toggle mute
+    # bindsym $mod+Return exec pulseaudio-ctl mute
+    # ## vol down
+    # bindsym $mod+9 exec pulseaudio-ctl down
+    # bindsym $mod+3 exec pulseaudio-ctl down
+    # ## vol up
+    # bindsym $mod+0 exec pulseaudio-ctl up
+    # bindsym $mod+4 exec pulseaudio-ctl up
+
+    # ## pamix (volume control)
+    # ## toggle mute
+    # bindsym $mod+Return exec pamix toggle-mute
+    # ## vol down
+    # bindsym $mod+9 exec pamix add-volume -0.05
+    # bindsym $mod+3 exec pamix add-volume -0.05
+    # ## vol up
+    # bindsym $mod+0 exec pamix add-volume +0.05
+    # bindsym $mod+4 exec pamix add-volume +0.05
+
+    # ## pamix (volume control)
+    # bindsym $mod+Return exec pamix
 
     # # system volume control
-    # bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
+    bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
 
     # # start kcolorchooser
     # bindsym $mod+c exec kcolorchooser
@@ -437,7 +531,7 @@ new_float none
 
     # # adjust brightness -- need sudo permission
 		# bindsym $mod+u brightnessctl set +10%
-		# bindsym $mod+d brightnessctl set -10%
+		# bindsym $mod+d brightnessctl set 10%-
 
 
 
@@ -493,6 +587,7 @@ new_float none
     workspace 8 output $HDMI $VGA $LAP
     workspace 9 output $HDMI $VGA $LAP
     workspace 10 output $HDMI $VGA $LAP
+    workspace 11 output $LAP $HDMI $VGA
 
     # workspace_auto_back_and_forth yes
 
@@ -514,6 +609,7 @@ new_float none
 				bindsym k workspace 8; mode "default"
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
+				bindsym minus workspace 11; mode "default"
 		    bindsym $mod+a workspace 1; mode "default"
 				bindsym $mod+s workspace 2; mode "default"
 				bindsym $mod+d workspace 3; mode "default"
@@ -541,6 +637,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
+				bindsym minus move container to workspace 11; mode "default"
         bindsym $mod+a move container to workspace 1; mode "default"
 				bindsym $mod+s move container to workspace 2; mode "default"
 				bindsym $mod+d move container to workspace 3; mode "default"
@@ -568,6 +665,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"; workspace 8
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
+				bindsym minus move container to workspace 11; mode "default"; workspace 11
         bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
 				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
 				bindsym $mod+d move container to workspace 3; mode "default"; workspace 3
@@ -657,6 +755,7 @@ for_window [window_role="vlc-main"] floating enable , \
 
     # Make the current focus fullscreen
     bindsym $mod+space fullscreen
+    bindsym $alt+$mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle

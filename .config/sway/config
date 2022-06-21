@@ -27,13 +27,14 @@ set $term kitty  #konsole  #termite  #konsole  #kitty
 # Note: it's recommended that you pass the final command to i3-msg
 set $menu dmenu_path | dmenu | xargs i3-msg exec
 # Your preferred file browser
-set $fbrowser dolphin
+# set $fbrowser dolphin
+set $fbrowser nautilus
 # Your preferred internet browser
 set $ibrowser google-chrome-stable
 set $screenshot grim ~/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 ## outputs
-set $HDMI HDMI-1
-set $VGA DP-1-3
+set $HDMI HDMI-A-1
+set $VGA DP-4
 set $LAP eDP-1
 # current wallpaper
 set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
@@ -51,15 +52,15 @@ set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 
 
 ## Autostart
+exec_always systemctl --user enable --now wireplumber
+exec_always systemctl --user restart pipewire
 exec_always seat * hide_cursor when-typing when-typing enable  # banish mouse cursor upon any key press
 exec_always seat * hide_cursor 1000  # banish mouse cursor when not in use
-exec_always compton  # compositor to enable window transparency
-exec redshift -l 32.96:-96.67 -t 6500:3500
-# exec gammastep -l 32.96:-96.67 -t 6500:3500
+exec gammastep -l 32.96:-96.67 -t 6500:3500
 # disable touchpad:
-exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+# exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
-exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
+# exec xinput set-prop "$(xinput list | grep -i stick | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # set wallpaper:
 exec_always nitrogen --set-zoom-fill $bg
 exec pulseaudio-ctl mute no
@@ -82,7 +83,7 @@ exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode
     # hide_edge_borders none|vertical|horizontal|both|smart
 		smart_gaps on
 		gaps inner 10
-		# gaps outer 10
+		gaps outer 5
 
     # class                 border  backgr. text    indicator child_border
     client.focused          #4c7899 #285577 #ffffff #2e9ef4   #757e82
@@ -122,16 +123,16 @@ default_floating_border none
 # output $LAP disable, output $VGA mode 0x0 pos 0,0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080,0 transform "90" clockwise, output * bg $bg fill
 # output $VGA mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0 transform "90" clockwise, output * bg $bg fill
 
-output $LAP disable
+# output $LAP disable
 output $VGA {
     mode 0x0
 		pos 0 0
-		transform "90" anticlockwise
+		# transform "90" anticlockwise
 }
 output $HDMI {
     mode 0x0
 		pos 1080 0
-		transform "90" clockwise
+		# transform "90" clockwise
 }
 output * bg $bg fill
 
@@ -175,54 +176,111 @@ output * bg $bg fill
     ## adjust gaps between windows
 		bindsym $alt+g mode "gaps"
     mode "gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "$mode_gaps"
+        bindsym o      mode "gaps outer"
+        bindsym i      mode "gaps inner"
+        bindsym Return mode "default"
         bindsym Escape mode "default"
 				bindsym space mode "default"
     }
-    mode "$mode_gaps_outer" {
-        bindsym j gaps outer all plus 5
-        bindsym k gaps outer all minus 5
+    mode "gaps outer" {
         bindsym h gaps outer all set 0
+        bindsym j gaps outer all minus 5
+        bindsym k gaps outer all plus 5
         bindsym t gaps outer all toggle 10
-        bindsym Return mode "$mode_gaps"
+        bindsym i      mode "gaps inner"
+        bindsym Return mode "default"
         bindsym Escape mode "default"
 				bindsym space mode "default"
     }
-    mode "$mode_gaps_inner" {
-        bindsym j gaps inner all plus 5
-        bindsym k gaps inner all minus 5
+    mode "gaps inner" {
         bindsym h gaps inner all set 0
+        bindsym j gaps inner all minus 5
+        bindsym k gaps inner all plus 5
         bindsym t gaps inner all toggle 10
-        bindsym Return mode "$mode_gaps"
+        bindsym o      mode "gaps outer"
+        bindsym Return mode "default"
         bindsym Escape mode "default"
 				bindsym space mode "default"
     }
+
+
+    # set wallpaper
+		bindsym $mod+w mode "wallpaper"
+		mode "wallpaper" {
+        # TODO: create function to cycle through wallpapers
+		    bindsym g exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/7371738.jpg"; mode "default"
+		    bindsym r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
+		    bindsym Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
+		    bindsym Shift+r exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg"; mode "default"
+		    bindsym y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
+		    bindsym u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/research_center.jpg"; mode "default"
+		    bindsym i exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/master-frame-26-FINAL-LOGO.jpg"; mode "default"
+		    bindsym o exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/d29d22bff42ca805b208faa3df88df57.jpg"; mode "default"
+		    bindsym p exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/75c2e9dbc0496847cb71a98fb814c4e7.jpg"; mode "default"
+		    bindsym h exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
+		    bindsym Shift+g exec "nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"; mode "default"
+		    bindsym f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
+		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
+		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+    }
+
+    # # start vlc or mplayer w/ playlist
+		# bindsym $mod+p mode "playlist"
+		# mode "playlist" {
+		# 		bindsym v exec vlc --loop --random --no-repeat; mode "default"
+    #     # kill vlc
+		# 		bindsym k exec killall .vlc-wrapped; mode "default"
+		#     bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
+		#     bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
+		#     bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u"; mode "default"
+		#     bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u"; mode "default"
+		#     bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u"; mode "default"
+		#     bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
+		#     bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		#     bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
+		#     bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"; mode "default"
+		#     bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"; mode "default"
+		#     bindsym e exec killall mplayer; mode "default"
+		#     bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
+		# 		bindsym Escape mode "default"
+		# 		bindsym Return mode "default"
+		# 		bindsym space mode "default"
+		# }
+
 
     # start vlc or mplayer w/ playlist
 		bindsym $mod+p mode "playlist"
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
-				bindsym k exec killall .vlc-wrapped; mode "default"
-		    bindsym a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/all.m3u"; mode "default"
-		    bindsym Shift+a exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/anime.m3u"; mode "default"
-		    bindsym l exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/level.m3u"; mode "default"
-		    bindsym g exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/games.m3u"; mode "default"
-		    bindsym f exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/focus.m3u"; mode "default"
-		    bindsym n exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir.m3u"; mode "default"
-		    bindsym p exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/playful-tech.m3u"; mode "default"
-		    bindsym c exec "killall .vlc-wrapped; vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/classical.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg"; mode "default"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 /home/cameron/Music/sleeprain.ogg"; mode "default"
+				bindsym k exec killall vlc; mode "default"
+		    bindsym a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
+		    bindsym Shift+a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
+		    bindsym c exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
+		    bindsym d exec "killall vlc; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
+		    bindsym f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
+		    bindsym Shift+f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
+		    bindsym g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
+		    bindsym Shift+g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
+		    bindsym l exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
+		    bindsym n exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
+		    bindsym p exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		    bindsym s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
+		    bindsym Shift+s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
+		    bindsym t exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 60 ~/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
+		    bindsym Shift+m exec "mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
 		    bindsym e exec killall mplayer; mode "default"
-		    bindsym 9 exec killall mplayer .vlc-wrapped; mode "default"
+		    bindsym 9 exec killall mplayer vlc; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
-
 
     # screen setup commands
 		bindsym $alt+$mod+o mode "outputs"
@@ -233,6 +291,7 @@ output * bg $bg fill
 				bindsym a mode "all screens"
         # bindsym s exec swaymsg output $LAP disable, output $VGA transform "90" anticlockwise, output $HDMI transform "90" clockwise, output * bg $bg
         bindsym s exec swaymsg output $LAP disable, output $VGA mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0 transform "90" clockwise, output * bg $bg
+        bindsym Shift+s exec swaymsg output $LAP disable, output $VGA mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0, output * bg $bg
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -242,9 +301,10 @@ output * bg $bg fill
     # setup commands for all screens at once
 		# only reachable from "outputs" mode
 		mode "all screens" {
-        bindsym t exec swaymsg output $VGA toggle, output $HDMI toggle, output $LAP toggle; mode "default"
+        bindsym t exec swaymsg output $VGA toggle, output $HDMI toggle, output $LAP toggle
         # set up dual screens correctly
         bindsym s exec swaymsg output $LAP disable, output $VGA mode 0x0 pos 0,0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080,0 transform "90" clockwise, output * bg $bg
+        bindsym Shift+s exec swaymsg output $LAP disable, output $VGA mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0, output * bg $bg
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -253,16 +313,8 @@ output * bg $bg fill
 
     # dual monitors setup commands
 		# only reachable from "outputs" mode
-        # dual monitors on, laptop screen off; TODO: sometimes works, sometimes doesn't. keybind works but xrandr command is flaky. results vary depending on order in which we tell it to turn the screens on.
 		mode "dual screens" {
-		    # right monitor rotate tall
-		    bindsym bracketleft exec swaymsg output $HDMI transform "90" clockwise
-		    # right monitor rotate wide
-				bindsym bracketright exec swaymsg output $HDMI transform "90" anticlockwise
-		    # left monitor rotate tall
-				bindsym Shift+bracketleft exec swaymsg output $VGA transform "90" anticlockwise
-		    # left monitor rotate wide
-				bindsym Shift+bracketright exec swaymsg output $VGA transform "90" clockwise
+        ## NOTE: keybinds for screen rotation are outside of any particular mode
 				# both monitors on
         bindsym t exec swaymsg output $VGA toggle mode 0x0 pos 0 0, output $HDMI toggle mode 0x0 pos 1080 0, output * bg $bg
         bindsym e exec swaymsg output $VGA enable mode 0x0 pos 0 0, output $HDMI enable mode 0x0 pos 1080 0, output * bg $bg
@@ -273,6 +325,7 @@ output * bg $bg fill
         bindsym $right exec swaymsg output $HDMI enable
 				# both monitors off
         bindsym s exec swaymsg output $VGA enable mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0 transform "90" clockwise, output * bg $bg; mode "default"
+        bindsym Shift+s exec swaymsg output $VGA mode 0x0 pos 0 0 transform "90" anticlockwise, output $HDMI mode 0x0 pos 1080 0, output * bg $bg
         bindsym d exec xrandr --output $VGA --off --output $HDMI --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -283,7 +336,10 @@ output * bg $bg fill
     # laptop screen setup commands
 		# only reachable from "outputs" mode
 		mode "laptop screen" {
-        bindsym t exec swaymsg output $LAP toggle; mode "default"
+        bindsym t exec swaymsg output $LAP toggle
+        bindsym e exec swaymsg output $LAP enable
+        bindsym u exec swaymsg output $LAP enable
+        bindsym d exec swaymsg output $LAP disable
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -293,12 +349,11 @@ output * bg $bg fill
     # sway commands
 		bindsym $alt+$mod+i mode "sway"
 		mode "sway" {
-        # reload the config file
+        # reload the config file (sway has no "restart" command, unlike i3)
 				bindsym c reload
-				# restart sway
-				bindsym r restart
+				bindsym r reload
 				# lock sway
-				bindsym l exec swaylock -ui $bg
+				# bindsym l exec swaylock -ui $bg
 				# exit sway (logs you out of your Wayland session)
 				bindsym $mod+Shift+e exit
 				bindsym Escape mode "default"
@@ -361,24 +416,50 @@ output * bg $bg fill
 		# }
 
 
-    # # redshift commands
-		# 		## NOTE: Yes, the "killall" is necessary for the "x" to work after having done a "t" (time-based warming) command. This is redshift's glitchiness; nothing to do with i3.
-		# 		## NOTE: i3 also has a glitch in how it passes things to "exec", requiring us to (if we want to do any "one-shot" any time after the time-based-warmth command) either do "x" command first (even though it's included in the "one-shot commands here!), or include a "sleep 1" command within the "one-shot" command (after the "killall" part), since apparently the actual "one-shot" part gets executed before the "killall" part takes effect.
+    # # gammastep commands
 		# bindsym $mod+y mode "gammastep"
 		# mode "gammastep" {
 		# 		## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
-    #     bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
-    #     # bindsym t exec "killall redshift-wrapp; redshift -x; redshift -l 32.96:-96.67 -t 6500:2500"
-    #     bindsym a exec "killall .redshift-wrapp; redshift -x"
-    #     bindsym s exec "killall .redshift-wrapp; redshift -PO 5000"
-    #     bindsym d exec "killall .redshift-wrapp; redshift -PO 4500"
-    #     bindsym f exec "killall .redshift-wrapp; redshift -PO 4000"
-    #     bindsym g exec "killall .redshift-wrapp; redshift -PO 3500"
+    #     bindsym t exec gammastep -l 32.96:-96.67 -Prt 6500:3500; mode "default"
+    #     # bindsym t exec "killall gammastep-wrapp; gammastep -x; gammastep -l 32.96:-96.67 -t 6500:2500"
+    #     bindsym a exec "killall .gammastep-wrapp; gammastep -x"
+    #     bindsym s exec "killall .gammastep-wrapp; gammastep -PO 5000"
+    #     bindsym d exec "killall .gammastep-wrapp; gammastep -PO 4500"
+    #     bindsym f exec "killall .gammastep-wrapp; gammastep -PO 4000"
+    #     bindsym g exec "killall .gammastep-wrapp; gammastep -PO 3500"
 		# 		bindsym Escape mode "default"
 		# 		bindsym Return mode "default"
 		# 		bindsym space mode "default"
 		# }
 
+    # gammastep commands
+		bindsym $mod+y mode "gammastep"
+		mode "gammastep" {
+				## need to experiment w/ the "t" keybind when system time is around 6pm; if it applies extra warmth on top of the warmth already created by {1, 2, 3, 4} commands, then try 2nd version below
+        bindsym t exec gammastep -l 32.96:-96.67 -Prt 6500:3500; mode "default"
+        # bindsym t exec "killall gammastep-wrapp; gammastep -x; gammastep -l 32.96:-96.67 -t 6500:2500"
+        bindsym a exec "gammastep -x"
+        bindsym s exec "gammastep -PO 5000"
+        bindsym d exec "gammastep -PO 4500"
+        bindsym f exec "gammastep -PO 4000"
+        bindsym g exec "gammastep -PO 3500"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
+
+	  # restart sound (pipewire)
+	  bindsym $mod+equal exec systemctl --user enable --now wireplumber && systemctl --user restart pipewire
+
+    # right monitor rotate tall
+    bindsym $mod+bracketleft exec swaymsg output $HDMI transform "90" clockwise
+    # right monitor rotate wide
+		bindsym $mod+bracketright exec swaymsg output $HDMI transform "90" anticlockwise
+    # left monitor rotate tall
+		bindsym $mod+$alt+bracketleft exec swaymsg output $VGA transform "90" anticlockwise
+    # left monitor rotate wide
+		bindsym $mod+$alt+bracketright exec swaymsg output $VGA transform "90" clockwise
 
     ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
@@ -397,9 +478,10 @@ output * bg $bg fill
 
     ## start internet browser
     bindsym $mod+i exec $ibrowser
+    # bindsym $mod+i exec vivaldi-stable
 
     # # start firefox
-    # bindsym $mod+Shift+i exec firefox
+    bindsym $mod+Shift+i exec firefox
 
     # # screenshot using shotgun (replace w/ maim)
     # bindsym $mod+s exec shotgun
@@ -420,15 +502,17 @@ output * bg $bg fill
 		# TODO: find out how to do this correctly
     # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
 
-    ## toggle-mute pulseaudio
-    bindsym $mod+Return exec pulseaudio-ctl mute
-    ## vol up
-    bindsym $mod+u exec pulseaudio-ctl up
-    ## vol down
-    bindsym $mod+d exec pulseaudio-ctl down
+    # ## toggle-mute pulseaudio
+    # bindsym $mod+Return exec pulseaudio-ctl mute
+    # ## vol up
+    # bindsym $mod+4 exec pulseaudio-ctl up
+    # bindsym $mod+0 exec pulseaudio-ctl up
+    # ## vol down
+    # bindsym $mod+3 exec pulseaudio-ctl down
+    # bindsym $mod+9 exec pulseaudio-ctl down
 
     # # system volume control
-    # bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
+    bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
 
     # # start kcolorchooser
     # bindsym $mod+c exec kcolorchooser
@@ -439,9 +523,9 @@ output * bg $bg fill
     # # start stretchly
     # bindsym $alt+$mod+b exec stretchly
 
-    # # adjust brightness -- need sudo permission
-		# bindsym $mod+u brightnessctl set +10%
-		# bindsym $mod+d brightnessctl set -10%
+    # adjust brightness -- need sudo permission
+		bindsym $mod+u brightnessctl set +10%
+		bindsym $mod+d brightnessctl set 10%-
 
 
 
@@ -460,7 +544,7 @@ output * bg $bg fill
     show_marks no
 
     ## read 1 char and mark the current window with this char
-    bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+    bindsym $alt+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 
     ## read 1 char and go to the window with the char
     ## buggy; will sometimes jump to designated mark, sometimes not.
@@ -481,10 +565,10 @@ output * bg $bg fill
     bindsym Shift+$mod+$right focus output right
 
     # _move_ the focused window
-    bindsym $alt+$left move left
-    bindsym $alt+$down move down
-    bindsym $alt+$up move up
-    bindsym $alt+$right move right
+    bindsym $alt+$mod+$left move left
+    bindsym $alt+$mod+$down move down
+    bindsym $alt+$mod+$up move up
+    bindsym $alt+$mod+$right move right
 
 # Assign given workspace to given screen. 1st screen is tried first, etc.
     workspace 1 output $VGA $HDMI $LAP
@@ -497,6 +581,7 @@ output * bg $bg fill
     workspace 8 output $HDMI $VGA $LAP
     workspace 9 output $HDMI $VGA $LAP
     workspace 10 output $HDMI $VGA $LAP
+    workspace 11 output $LAP
 
     # workspace_auto_back_and_forth yes
 
@@ -518,6 +603,7 @@ output * bg $bg fill
 				bindsym k workspace 8; mode "default"
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
+				bindsym minus workspace 11; mode "default"
 		    bindsym $mod+a workspace 1; mode "default"
 				bindsym $mod+s workspace 2; mode "default"
 				bindsym $mod+d workspace 3; mode "default"
@@ -533,7 +619,7 @@ output * bg $bg fill
 				bindsym space mode "default"
 		}
     # move focused container to workspace
-		bindsym $alt+m mode "move"
+		bindsym $mod+m mode "move"
 		mode "move" {
         bindsym a move container to workspace 1; mode "default"
 				bindsym s move container to workspace 2; mode "default"
@@ -545,6 +631,7 @@ output * bg $bg fill
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
+				bindsym minus move container to workspace 11; mode "default"
         bindsym $mod+a move container to workspace 1; mode "default"
 				bindsym $mod+s move container to workspace 2; mode "default"
 				bindsym $mod+d move container to workspace 3; mode "default"
@@ -572,6 +659,7 @@ output * bg $bg fill
 				bindsym k move container to workspace 8; mode "default"; workspace 8
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
+				bindsym minus move container to workspace 11; mode "default"; workspace 11
         bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
 				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
 				bindsym $mod+d move container to workspace 3; mode "default"; workspace 3
@@ -661,6 +749,7 @@ for_window [window_role="vlc-main"] floating enable , \
 
     # Make the current focus fullscreen
     bindsym $mod+space fullscreen
+    bindsym $alt+$mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle
@@ -725,12 +814,12 @@ bar {
     # height 23
 # # mode dock|hide|invisible
 # # hidden_state hide|show
-		mode hide
+		mode dock
 		hidden_state hide
 		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons
     # status_command while date +'%Y-%m-%d %l:%M %p  '; do sleep 1; done
-    status_command i3status #--config ~/.i3status.conf
+    # status_command i3status #--config ~/.i3status.conf
     # status_command .config/i3/weather.sh
     # status_command i3blocks # -c ~/.i3status.conf
 
@@ -741,7 +830,7 @@ bar {
         #
 
         #---- night-owl ----
-        statusline #888888   ###text   ###addb67 --green
+        # statusline #888888   ###text   ###addb67 --green
         background #011627
         inactive_workspace #32323200 #32323200 #5c5c5c
 
