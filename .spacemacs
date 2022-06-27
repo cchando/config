@@ -1226,6 +1226,7 @@ you should place your code here."
 		 "t"   'evil-scroll-line-to-top
 		 "k"   'evil-scroll-line-to-top
 		 ;; "t"   "zt3K3J"  ; not working somewhy
+		 "M"   'evil-scroll-line-to-bottom
 		 "b"   'evil-scroll-line-to-bottom
 		 "j"   'evil-scroll-line-to-bottom
 		 ;; "b"   "zb3J3K"  ; not working somewhy
@@ -1275,8 +1276,8 @@ you should place your code here."
 		 "go"   'isearch-forward-word
 		 "gk"   'vile-invert-char
 		 "gc"   'evil-invert-case
-		 "gu"   'evil-upcase
-		 "gU"   'evil-downcase
+		 ;; "gu"   'evil-upcase
+		 ;; "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph
 		 ")"    'evil-forward-paragraph
 		 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc

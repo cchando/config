@@ -4886,13 +4886,13 @@ key-nav-activate=
 global-key-vol-up=Alt+0
 
 # Volume up (string)
-key-vol-up=u
+key-vol-up=l
 
 # Volume down (string)
 global-key-vol-down=Alt+9
 
 # Volume down (string)
-key-vol-down=d
+key-vol-down=h
 
 # Mute (string)
 global-key-vol-mute=Alt+Enter
@@ -5141,10 +5141,10 @@ key-intf-show=
 #key-uncrop-right=Alt+Shift+f
 
 # Random (string)
-global-key-random=Alt+r
+global-key-random=Alt+s
 
 # Random (string)
-#key-random=r
+key-random=s
 
 # Normal/Loop/Repeat (string)
 #global-key-loop=
