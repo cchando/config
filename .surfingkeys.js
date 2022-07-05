@@ -364,6 +364,36 @@ mapkey('ZB', '#5Restore backup session', function() {
     });
 });
 
+mapkey(';A', '#5Save APL-related session', function() {
+		RUNTIME('createSession', {
+				name: 'APL',
+				quitAfterSaved: false
+		});
+		Front.showBanner('Backup session saved');
+});
+
+mapkey('ZA', '#5Restore APL-related session', function() {
+    RUNTIME('openSession', {
+        name: 'APL'
+    });
+});
+
+mapkey(';F', '#5Save free-time session', function() {
+		RUNTIME('createSession', {
+				name: 'FREE',
+				quitAfterSaved: false
+		});
+		Front.showBanner('Backup session saved');
+});
+
+mapkey('ZF', '#5Restore free-time session', function() {
+    RUNTIME('openSession', {
+        name: 'FREE'
+    });
+});
+
+
+
 // mapkey(';A', '#5APL language bar', function(d) {
 //     let e=d.createElement("script");
 //     e.src="https://abrudz.github.io/lb/lb.js";

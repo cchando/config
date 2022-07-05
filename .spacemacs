@@ -245,17 +245,17 @@ values."
 															 ;;  :width condensed
 															 ;;  :powerline-scale 1.1)
 
-															 ("STIX"
-															  :size 12
-															  :weight normal
-															  :width condensed
-															  :powerline-scale 1.1)
-
-															 ;; ("Code2000"
+															 ;; ("STIX"
 															 ;;  :size 12
-															 ;;  :weight normal
+															 ;;  :weight medium
 															 ;;  :width condensed
 															 ;;  :powerline-scale 1.1)
+
+															 ("Code2000"
+															  :size 12
+															  :weight semibold
+															  :width condensed
+															  :powerline-scale 1.1)
 
 															 )
    ;; The leader key
