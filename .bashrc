@@ -81,26 +81,44 @@ pkg-info () {
 }
 # alias anp='nix-env -f '<nixpkgs>' -iA'   # nodePackages.searchterm
 cdir () {
-    mkdir $1 && cd $1
+    mkdir "$1" && cd "$1"
 }
-mkdirc () {
-    mkdir $1 && cd $1
+mdcd () {
+    mkdir "$1" && cd "$1"
 }
 findd () {
-    find $1 -name $2 2>/dev/null
+    find "$1" -name "$2" 2>/dev/null
 }
-
+mdcp () {
+    mkdir "$1" && cp "$2" "$1"
+}
+mdmv () {
+    mkdir "$1" && mv "$2" "$1"
+}
+mvmd () {
+    mkdir "$2" && mv "$1" "$2"
+}
 
 # program aliases
 alias wpastart='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf '
 alias al='alias'
+alias h='history'
+alias dl='echo !' # use as 'dl !<prefix string>', i.e., still insert '!'
+alias show='echo'
+alias lsg='ls | grep'
+alias lg='ls | grep'
+alias lstin='dnf list --installed'
+alias osver='hostnamectl' # OS version (and hardware) info
+alias bt='blueman-manager'
+alias rpmx='rpm2cpio myrpmfile.rpm | cpio -idmv' #rpm extract
 alias s='sway'
 alias 7zip='7za'
 alias ls='ls --color=never -hF'
 alias e='exit'
 alias c='clear'
 alias s='spago'
-alias jlang='jconsole'
+alias jlang='$prog/j903/jconsole.sh'
+alias jl='$prog/j903/jconsole.sh'
 alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
 alias vlch='vlc --longhelp --advanced | less'
 alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
@@ -122,6 +140,8 @@ alias rain1='killall mplayer; mplayer -loop 0 -softvol -volume 20 ~/Music/sleepr
 alias rain2='killall mplayer; mplayer -loop 0 -softvol -volume 30 ~/Music/sleeprain.ogg'
 alias rain3='killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg'
 alias xflux='xflux -z 75044'
+alias apl='cd $prog/dzaima-APL/ && ./REPL'
+alias dya='dyalog'
 # alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
 
@@ -150,7 +170,9 @@ conn-check () {
 conn-save () {
 	  ip a | grep "inet "
 }
-
+rl () {
+	  readlink $1
+}
 
 # alias wpastart='sudo systemctl start wpa_supplicant' # I think this doesn't work -- wpa is controlled by systemd
 
@@ -278,6 +300,7 @@ export wifi="wlp1s0"
 export N="/dev/null"
 export PATH="$PATH:$HOME/.rbenv/bin"
 export PATH="$PATH:$HOME:$HOME/.local/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/programs/search-nixpkgs"
+export PATH="${PATH}:/usr/lib/jvm/java-6-open-jdk/bin"
 export AVOUTPUT="$HOME/AVOutput"
 export XDG_CONFIG_HOME="$HOME/.config"
 export TERM="kitty" #termite
@@ -289,10 +312,13 @@ export conf="$HOME/.config/"
 export h="$HOME"
 export docs="$HOME/Documents"
 export dl="$HOME/Downloads"
+export fonts="/usr/share/fonts"
 export mus="$HOME/Music"
 export pic="$HOME/Pictures"
-export prog="$HOME/Programs"
+export prog="$HOME/programs"
+export proj="$HOME/projects"
 export vids="$HOME/Videos"
+
 # export NIXPKGS_ALLOW_UNFREE=1
 
 PS1='[\u@\h \W]\$ '

@@ -1,10 +1,10 @@
-;; -*- mode: emacs-lisp -*-
+; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
 ;; /= ->> *** <<< <*> >>> >>- -<< ==> .. ... <$> <+> <* *> |> <| <-> >- -< :: :::
 ;; <=> =<< >>= <=< >=> <> ++ || !! && -> => \\ +++ <|> != !==
-;; ∀ ∃ ∈ ⋸ ∉ ∑ Π ¬ ⊼ ⊽ ⊻ ∅ ⊖ ⊕ ⊗ ⊃ ⊇ ⊉ ∩ ∪ ⋂ ⋃ ⋀ ⋁ ⋵ ⋹ ⋺ ⋻ ⋽ ∵ ∴ ⋙ ⨁ ⨂ ⨯ ⩽ ⩾ ⨌ ↰ ↦
+;; ∀ ∃ ∊ ∈ ⋸ ∉ ∑ Π ¬ ⊼ ⊽ ⊻ ∅ ⊖ ⊕ ⊗ ⊃ ⊇ ⊉ ∩ ∪ ⋂ ⋃ ⋀ ⋁ ⋵ ⋹ ⋺ ⋻ ⋽ ∵ ∴ ⋙ ⨁ ⨂ ⨯ ⩽ ⩾ ⨌ ↰ ↦
 ;; → ← ↑ ↓ ∆ ∇ ⍴ ∊ ⍳ ⍺ ⍵ ⍷ ⍸ ⍶ ⍹ ⌐ ∘ ⍛ ¨ ⍨ ⍤ ⍥ ⍩ ᑈ ⍡ ⍢ ⍫ ∧ ∨ ⍲ ⍱  ∩ ∪ ∼ ≡ ≢ ≤ ≥ ⊂ ⊃ ⊖ ⊢ ⊣ ⊤ ⊥ ⋄ ⌈ ⌊ ⌶ ⌷ ⌹ ⌽
 ;; ⌿ ⍀ ⍉ ⍋ ⍒ ⍎ ⍕ ⍝ ⍞ ⍪ ⎕ ○ × ÷
 ;; ⍬ ⍔ ⌻ ⍫ ⌾ ⍁ ⍍ ⍠ ⌼ ⍟ ⍏ ⍛ ⍓ ¨ ⍢ ⍤ ⍰ ⍂ ⍃ ⍅ ⍖ ⍘ ⍙ ⍯ ⍆ ⍌ ⍑ ⍦ ⍧ ⍚ ⍄ ⍊ ⍮ ⍭ ⍇ ⍐ ⍈ ⍗
@@ -12,9 +12,8 @@
 ;; ℕ ℤ ℝ ℍ ℚ
 ;; 𝐋  𝐙  𝑭
 ;; ⮢ ⬅ ⮈ ⮲ ⭅
-
-
-
+;; f⍥g⍤∘f
+;; ~R∊R∘.×R
 
 ;; spacemacs-dark: font-lock-comment-face:   fg: #2aa1ae   bg: #292e34
 
@@ -229,16 +228,34 @@ values."
 															 ;;       Also, [("Fira Code" :size 12)] gives Fira Code size 13. Go figure.
 
 															 ;; ("Hasklig"
-															 ;;		:size 13
-															 ;;		:weight normal
-															 ;;		:width normal
-															 ;;		:powerline-scale 1.1)
+															 ;;  	:size 13
+															 ;;  	:weight normal
+															 ;;  	:width normal
+															 ;;  	:powerline-scale 1.1)
 
-															 ("Fira Code"
-																:size 12
-																:weight normal
-																:width condensed
-																:powerline-scale 1.1)
+															 ;; ("Fira Code"
+															 ;;  :size 12
+															 ;;  :weight normal
+															 ;;  :width condensed
+															 ;;  :powerline-scale 1.1)
+
+															 ;; ("Iosevka"
+															 ;;  :size 12
+															 ;;  :weight normal
+															 ;;  :width condensed
+															 ;;  :powerline-scale 1.1)
+
+															 ("STIX"
+															  :size 12
+															  :weight normal
+															  :width condensed
+															  :powerline-scale 1.1)
+
+															 ;; ("Code2000"
+															 ;;  :size 12
+															 ;;  :weight normal
+															 ;;  :width condensed
+															 ;;  :powerline-scale 1.1)
 
 															 )
    ;; The leader key
@@ -459,33 +476,88 @@ you should place your code here."
 	;; NOTE: when this list is too long, the earlier ones get pushed off!!
 
 
+
 	;; ----------- For minimal font set -------------------------------------------------------------
-	(set-fontset-font "fontset-default" '(#x2336 . #x237A) "DejaVu Sans Mono") ; APL symbols
-	(set-fontset-font "fontset-default" #x233D "DejaVu Sans Mono") ; ⌽
-	(set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Math TeX Gyre") ; arrows
-	(set-fontset-font "fontset-default" '(#x1D400 . #x1D7FF) "DejaVu Math TeX Gyre") ; alphanumeric symbols
-	(set-fontset-font "fontset-default" '(#x2100 . #x214F) "DejaVu Math TeX Gyre") ; letterlike symbols
-	(set-fontset-font "fontset-default" '(#x2200 . #x22FF) "DejaVu Math TeX Gyre") ; math operators block
-	(set-fontset-font "fontset-default" '(#x22F2 . #x22FF) "DejaVu Sans") ; ⋸ ⋶ ⋽ ⋻ etc
-	(set-fontset-font "fontset-default" '(#x2308 . #x230B) "FreeSerif") ; left/right floor/ceiling  FreeMono (corners), FreeSerif
-	(set-fontset-font "fontset-default" #x222A "DejaVu Serif") ; union
-	(set-fontset-font "fontset-default" #x234b "DejaVu Sans Mono") ; ⍋
-	(set-fontset-font "fontset-default" #x2352 "DejaVu Sans Mono") ; ⍒
-	(set-fontset-font "fontset-default" #x2205 "Free Sans") ; empty set
-	(set-fontset-font "fontset-default" '(#x22D8 . #x22D9) "DejaVu Math TeX Gyre") ; ⋘ ⋙
-	(set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "FreeSans") ;; ⋀ ⋁ ⋂ ⋃  (medium-large)
-	(set-fontset-font "fontset-default" '(#x2282 . #x2294) "DejaVu Sans") ;; sub- / superset series
-	(set-fontset-font "fontset-default" '(#x2070 . #x209C) "DejaVu Sans") ; sub- & superscripts
-	(set-fontset-font "fontset-default" #x2319 "DejaVu Math TeX Gyre") ; ⌙
-	(set-fontset-font "fontset-default" '(#x2A00 . #x2AFF) "DejaVu Sans") ;; ⨁ ⨂ ⩽ ⩾ ⨌ etc
-	(set-fontset-font "fontset-default" '(#x2234 . #x2235) "DejaVu Sans") ;; ∴ ∵
-	(set-fontset-font "fontset-default" #x29FA "DejaVu Sans") ;; ⧺
-	;; (set-fontset-font "fontset-default" '(#x2234 . #x2235) "-PfEd-DejaVu Sans-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1") ; ∴ ∵
-	;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "DejaVu Sans") ;; ⋀ ⋁ ⋂ ⋃
-	;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C1) "FreeSans") ;; ⋀ ⋁
-	;; (set-fontset-font "fontset-default" '(#x22C2 . #x22C3) "DejaVu Sans") ;; ⋂ ⋃
-	;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "DejaVu Sans") ;; ⩽ ⩾
-	;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "TeX Gyre Bonum") ;; ⩽ ⩾
+
+	(set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code2000") ; math operators block
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "STIX") ; math operators block
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Iosevka") ; arrows
+	(set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Code2000") ; arrows
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX") ; arrows
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Sans Mono") ; arrows
+	(set-fontset-font "fontset-default" '(#x1D400 . #x214F) "STIX") ; mathematical alphanumeric and letterlike symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Iosevka") ; APL symbols
+	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
+
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code 2000") ; math operators block
+
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "DejaVu Sans Mono") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX Two Math") ; arrows
+	;; ;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Sans Mono") ; arrows
+	;; (set-fontset-font "fontset-default" '(#x1D400 . #x214F) "TeX Gyre") ; mathematical alphanumeric and letterlike symbols
+
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "TeX Gyre") ; math operators block
+	;; ;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code 2000") ; math operators block
+
+
+
+
+	;; (set-fontset-font "fontset-default" '(#x2336 . #x237A) "Code 2000") ; APL symbols
+	;; ;; (set-fontset-font "fontset-default" '(#x2336 . #x237A) "APL333") ; APL symbols
+	;; ;; (set-fontset-font "fontset-default" '(#x2336 . #x237A) "DejaVu Sans Mono") ; APL symbols
+	;; (set-fontset-font "fontset-default" #x233D "Code 2000") ; ⌽
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Code 2000") ; arrows
+	;; (set-fontset-font "fontset-default" '(#x1D400 . #x214F) "Code 2000") ; mathematical alphanumeric and letterlike symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code 2000") ; math operators block
+	;; (set-fontset-font "fontset-default" '(#x22F2 . #x22FF) "Code 2000") ; ⋸ ⋶ ⋽ ⋻ etc
+	;; (set-fontset-font "fontset-default" '(#x2308 . #x230B) "Code 2000") ; left/right floor/ceiling  FreeMono (corners), FreeSerif
+	;; (set-fontset-font "fontset-default" #x222A "Code 2000") ; union
+	;; (set-fontset-font "fontset-default" #x234b "Code 2000") ; ⍋
+	;; (set-fontset-font "fontset-default" #x2352 "Code 2000") ; ⍒
+	;; (set-fontset-font "fontset-default" #x2205 "Code 2000") ; empty set
+	;; (set-fontset-font "fontset-default" '(#x22D8 . #x22D9) "Code 2000") ; ⋘ ⋙
+	;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "Code 2000") ;; ⋀ ⋁ ⋂ ⋃  (medium-large)
+	;; (set-fontset-font "fontset-default" '(#x2282 . #x2294) "Code 2000") ;; sub- / superset series
+	;; (set-fontset-font "fontset-default" '(#x2070 . #x209C) "Code 2000") ; sub- & superscripts
+	;; (set-fontset-font "fontset-default" #x2319 "Code 2000") ; ⌙
+	;; (set-fontset-font "fontset-default" '(#x2A00 . #x2AFF) "Code 2000") ;; ⨁ ⨂ ⩽ ⩾ ⨌ etc
+	;; (set-fontset-font "fontset-default" '(#x2234 . #x2235) "Code 2000") ;; ∴ ∵
+	;; ;; (set-fontset-font "fontset-default" '(#x2234 . #x2235) "-PfEd-DejaVu Sans-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1") ; ∴ ∵
+	;; ;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "DejaVu Sans") ;; ⋀ ⋁ ⋂ ⋃
+	;; ;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C1) "FreeSans") ;; ⋀ ⋁
+	;; ;; (set-fontset-font "fontset-default" '(#x22C2 . #x22C3) "DejaVu Sans") ;; ⋂ ⋃
+	;; ;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "DejaVu Sans") ;; ⩽ ⩾
+	;; ;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "TeX Gyre Bonum") ;; ⩽ ⩾
+
+
+
+
+	;; ;; ----------- For minimal font set -------------------------------------------------------------
+	;; ;; (set-fontset-font "fontset-default" '(#x2336 . #x237A) "DejaVu Sans Mono") ; APL symbols
+	;; (set-fontset-font "fontset-default" #x233D "DejaVu Sans Mono") ; ⌽
+	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Math TeX Gyre") ; arrows
+	;; (set-fontset-font "fontset-default" '(#x1D400 . #x1D7FF) "DejaVu Math TeX Gyre") ; alphanumeric symbols
+	;; (set-fontset-font "fontset-default" '(#x2100 . #x214F) "DejaVu Math TeX Gyre") ; letterlike symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "DejaVu Math TeX Gyre") ; math operators block
+	;; (set-fontset-font "fontset-default" '(#x22F2 . #x22FF) "DejaVu Sans") ; ⋸ ⋶ ⋽ ⋻ etc
+	;; (set-fontset-font "fontset-default" '(#x2308 . #x230B) "FreeSerif") ; left/right floor/ceiling  FreeMono (corners), FreeSerif
+	;; (set-fontset-font "fontset-default" #x222A "DejaVu Serif") ; union
+	;; (set-fontset-font "fontset-default" #x234b "DejaVu Sans Mono") ; ⍋
+	;; (set-fontset-font "fontset-default" #x2352 "DejaVu Sans Mono") ; ⍒
+	;; (set-fontset-font "fontset-default" #x2205 "Free Sans") ; empty set
+	;; (set-fontset-font "fontset-default" '(#x22D8 . #x22D9) "DejaVu Math TeX Gyre") ; ⋘ ⋙
+	;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "FreeSans") ;; ⋀ ⋁ ⋂ ⋃  (medium-large)
+	;; (set-fontset-font "fontset-default" '(#x2282 . #x2294) "DejaVu Sans") ;; sub- / superset series
+	;; (set-fontset-font "fontset-default" '(#x2070 . #x209C) "DejaVu Sans") ; sub- & superscripts
+	;; (set-fontset-font "fontset-default" #x2319 "DejaVu Math TeX Gyre") ; ⌙
+	;; (set-fontset-font "fontset-default" '(#x2A00 . #x2AFF) "DejaVu Sans") ;; ⨁ ⨂ ⩽ ⩾ ⨌ etc
+	;; (set-fontset-font "fontset-default" '(#x2234 . #x2235) "DejaVu Sans") ;; ∴ ∵
+	;; ;; (set-fontset-font "fontset-default" '(#x2234 . #x2235) "-PfEd-DejaVu Sans-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1") ; ∴ ∵
+	;; ;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C3) "DejaVu Sans") ;; ⋀ ⋁ ⋂ ⋃
+	;; ;; (set-fontset-font "fontset-default" '(#x22C0 . #x22C1) "FreeSans") ;; ⋀ ⋁
+	;; ;; (set-fontset-font "fontset-default" '(#x22C2 . #x22C3) "DejaVu Sans") ;; ⋂ ⋃
+	;; ;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "DejaVu Sans") ;; ⩽ ⩾
+	;; ;; (set-fontset-font "fontset-default" '(#x2A7D . #x2A7E) "TeX Gyre Bonum") ;; ⩽ ⩾
 
 
 
@@ -712,7 +784,7 @@ you should place your code here."
 					 '(
 						 ;; --- Syntax ---
 						 ("define" .   "𝑓")
-						 ("defun" .    "𝑓")
+						 ;; ("defun" .    "𝑓")
 						 ("define-type" . "Ƒ")
 						 ("data" . "Ƒ")
 						 ("type" . "Ƒ")
@@ -729,12 +801,14 @@ you should place your code here."
 						 ;; (">=" .    "⩾")
 						 ("\\" .      "λ")
 						 ("lambda" .      "λ")
-						 ("list" .      "ε")
+						 ;; ("list" .      "ε")
 						 ("exact-ceiling" .     "⌈")
 						 ("exact-floor" .     "⌊")
 						 ("take" .     "↑") ;
 						 ("drop" .     "↓") ;
 						 ("car" .     "⊃") ;
+						 ("¯" .     "⁻") ; high-minus (macron) → superscript -
+						 ("~" .     "∼") ; tilde → tilde operator
 						 ("cdr" .     "↓") ;
 						 ;; ("modulo" .      "%")
 						 ("modulo" .      "|")
@@ -746,14 +820,13 @@ you should place your code here."
 						 ;; ("*" .    "∏")
 						 ("product" .    "∏") ; 𝚷
 						 ;; ("/" .    "÷")
-						 ("/" .    "%")
-						 ("sqrt" .    "√")
+						 ;; ("sqrt" .    "√")
 						 ;; --- decent-readability-to-others separater ---
 						 ;; ("list-ref" .     "‼")
-						 ("if" .     "?")
+						 ;; ("if" .     "?")
 						 ("let" .     "∴")
 						 ("let*" .     "∴")
-						 ("where" .     "∵")
+						 ;; ("where" .     "∵")
 						 ("cons" .     ":")
 						 ("head" .     "⊃")
 						 ("tail" .    "↓")
@@ -767,7 +840,7 @@ you should place your code here."
 						 ("compose" .  "⍛")
 						 ("log" .      "⍟")
 						 ("add1" .      "∆")
-						 ("select" .      "σ")
+						 ;; ("select" .      "σ")
 						 ("!!" .      "⊃")
 						 ("flip" .      "⍨")
 						 ("equal?" .      "≡")
@@ -792,8 +865,8 @@ you should place your code here."
 						 ("foldl" .  "⮢")
 						 ("foldr" .  "⮣")
 						 ("sort" .     "⍋")
-						 ("remove*" .      "∖")
-						 ("remove" .      "∖")
+						 ("remove*" .      "∼")
+						 ("remove" .      "∼")
 						 ("apply" .   "↥")
 						 ;; ("format" .    "⍕")
 						 ;; ("eval" .    "⍎")
@@ -950,10 +1023,10 @@ you should place your code here."
 						 ;; ("element" .      "∈")
 						 ("Union" .      "⋃")
 						 ("union" .      "⋃")
-						 ("∪" .      "⋃")
+						 ;; ("∪" .      "⋃")
 						 ("Intersection" .      "⋂")
 						 ("intersection" .      "⋂")
-						 ("∩" .      "⋂")
+						 ;; ("∩" .      "⋂")
 						 ;; ("complement" .      "∁")
 						 ))))  ;ends add-hook for prettify-symbols-alist
 

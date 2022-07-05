@@ -78,7 +78,7 @@
 (xah-math-input--add-to-hash
  [
 
-	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["ID" "𝕀"] ["III" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SS" "𝕊"] ["TT" "𝕋"] ["UD" "𝕌"] ["UUU" "𝕌"] ["VV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
+	["AA" "𝔸"] ["BB" "𝔹"] ["CC" "ℂ"] ["DDD" "𝔻"] ["EE" "𝔼"] ["FF" "𝔽"] ["GG" "𝔾"] ["HH" "ℍ"] ["ID" "𝕀"] ["III" "𝕀"] ["JJ" "𝕁"] ["KK" "𝕂"] ["LL" "𝕃"] ["MM" "𝕄"] ["NN" "ℕ"] ["OO" "𝕆"] ["PP" "ℙ"] ["QQ" "ℚ"] ["RR" "ℝ"] ["SSS" "𝕊"] ["TT" "𝕋"] ["UD" "𝕌"] ["UUU" "𝕌"] ["VVV" "𝕍"] ["WW" "𝕎"] ["XX" "𝕏"] ["YY" "𝕐"] ["ZZ" "ℤ"]
 
 
 	["AAIS" "𝑨"] ["BBIS" "𝑩"] ["CCIS" "𝑪"] ["DDIS" "𝑫"] ["EEIS" "𝑬"] ["FFIS" "𝑭"] ["GGIS" "𝑮"] ["HHIS" "𝑯"] ["IIIS" "𝑰"] ["JJIS" "𝑱"] ["KKIS" "𝑲"] ["LLIS" "𝑳"] ["MMIS" "𝑴"] ["NNIS" "𝑵"] ["OOIS" "𝑶"] ["PPIS" "𝑷"] ["QQIS" "𝑸"] ["RRIS" "𝑹"] ["SSIS" "𝑺"] ["TTIS" "𝑻"] ["UUIS" "𝑼"] ["VVIS" "𝑽"] ["WWIS" "𝑾"] ["XXIS" "𝑿"] ["YYIS" "𝒀"] ["ZZIS" "𝒁"]
@@ -88,7 +88,7 @@
 
 	["AAS" "𝐀"] ["BBS" "𝐁"] ["CCS" "𝐂"] ["DDS" "𝐃"] ["EES" "𝐄"] ["FFS" "𝐅"] ["GGS" "𝐆"] ["HHS" "𝐇"] ["IIS" "𝐈"] ["JJS" "𝐉"] ["KKS" "𝐊"] ["LLS" "𝐋"] ["MMS" "𝐌"] ["NNS" "𝐍"] ["OOS" "𝐎"] ["PPS" "𝐏"] ["QQS" "𝐐"] ["RRS" "𝐑"] ["SSS" "𝐒"] ["TTS" "𝐓"] ["UUS" "𝐔"] ["VVS" "𝐕"] ["WWS" "𝐖"] ["XXS" "𝐗"] ["YYS" "𝐘"] ["ZZS" "𝐙"]
 
-	["dsd" "ⅆ"] ["ee" "ⅇ"] ["id" "ⅈ"] ["i2" "ⅈ"] ["jj" "ⅉ"] ["jd" "ⅉ"]
+	["dd" "ⅆ"] ["ee" "ⅇ"] ["id" "ⅈ"] ["jj" "ⅉ"] ["j" "ⅉ"]
 
   ;; TODO: add Greek mathematical capital bold letters
 
@@ -107,6 +107,7 @@
 	 ;; AsciiDoc
 	 ["t" "    "] ; 4 spaces
 	 ["dl" "----"]
+	 ["dldl" "------------------------------------"]
 	 ["hh" "== "] ; header — adoc
 	 ["hhh" "=== "] ; header — adoc
 	 ["hhhh" "==== "] ; header — adoc
@@ -122,27 +123,48 @@
 	 ["ESC" "++++++"] ; escaped -> adoc use
 
 
+   ;; digits
+   ["ze" "0"]
+   ["on" "1"]
+   ["tw" "2"]
+   ["th" "3"]
+   ["fo" "4"]
+   ["fi" "5"]
+   ["si" "6"]
+   ["se" "7"]
+   ["ei" "8"]
+   ["ni" "9"]
+   ["te" "10"]
+
 	 ["s" "[]"] ; square
 	 ["c" "{}"] ; curly
 	 ["dol" "${}"]
-	 ["ti" "∼"]
-	 ["til" "∼"]
+	 ["ti" "~"]
 	 ["ex" "!"]
 	 ["h" "#"]
 	 ["ha" "#"]
+	 ["po" "#"] ; pound
 	 ["do" "$"] ; dollar sign
+	 ["S" "$"] ; dollar sign
 	 ["pe" "%"] ; percent
+	 ["//" "%"] ; percent
 	 ["ca" "^"] ; carrot
 	 ["up" "^"] ; carrot
+	 ["u" "^"] ; carrot
 	 ["am" "&"]
-	 ["amp" "&"]
-	 ["andd" "&"]
+	 ["andd" "&&"]
+	 ["and'" "&&"]
+	 ["orr" "||"]
+	 ["or'" "||"]
 	 ["as" "*"] ; asterick
 	 ["st" "*"]
 	 ["mi" "-"]
+	 ["m" "-"]
 	 ["un" "_"]
 	 ["pl" "+"]
+	 ["p" "+"]
 	 ["eq" "="]
+ 	 ["e" "="]
 	 ["bs" "\\"] ; single backslash
 	 ["mc" "/**/"] ; multi-line comment
 
@@ -189,154 +211,185 @@
 	 ["Cf" "C.f. "]
 	 ["CF" "C.f. "]
 
-	 ["cant" "can't "]
-	 ["cnt" "can't "]
-	 ["wont" "won't "]
-	 ["wnt" "won't "]
-	 ["iv" "I've"]
-	 ["ive" "I've"]
-	 ["didnt" "didn't "]
-	 ["ddnt" "didn't "]
-	 ["dont" "don't "]
-	 ["wouldnt" "wouldn't "]
-	 ["wdnt" "wouldn't "]
-	 ["aint" "ain't "]
-	 ["doesnt" "doesn't "]
-	 ["dsnt" "doesn't "]
-	 ["dsnt" "doesn't "]
-	 ["couldnt" "couldn't "]
-	 ["cdnt" "couldn't "]
-	 ["ivnt" "I haven't "]
-	 ["idnt" "I didn't "]
-	 ["idntv" "I wouldn't have "]
-	 ["idntve" "I wouldn't have "]
-	 ["wevnt" "we haven't "]
-	 ["theyvnt" "they haven't "]
-	 ["youre" "you're "]
-	 ["ann" "announcement "]
-	 ["arg" "argument "]
-	 ["auto" "automatic "]
-	 ["bc" "because "]
-	 ["bg" "background "]
-	 ["bt" "between "]
-	 ["btn" "between "]
-	 ["math" "mathematical "]
-	 ["maths" "mathematics "]
-	 ["prop" "proposition "]
+	 ["cant" "can't"]
+	 ["cnt" "can't"]
+	 ["wont" "won't"]
+	 ["wnt" "won't"]
+	 ["iv" "I'v"]
+	 ["ive" "I'v"]
+	 ["didnt" "didn't"]
+	 ["ddnt" "didn't"]
+	 ["dont" "don't"]
+	 ["wouldnt" "wouldn't"]
+	 ["wdnt" "wouldn't"]
+	 ["aint" "ain't"]
+	 ["doesnt" "doesn't"]
+	 ["dsnt" "doesn't"]
+	 ["dsnt" "doesn't"]
+	 ["couldnt" "couldn't"]
+	 ["cdnt" "couldn't"]
+	 ["ivnt" "I haven't"]
+	 ["idnt" "I didn't"]
+	 ["idntv" "I wouldn't have"]
+	 ["idntve" "I wouldn't have"]
+	 ["wevnt" "we haven't"]
+	 ["theyvnt" "they haven't"]
+	 ["youre" "you're"]
+	 ["ann" "announcement"]
+	 ["arg" "argument"]
+	 ["auto" "automatic"]
+	 ["bc" "because"]
+	 ["bg" "background"]
+	 ["bt" "between"]
+	 ["btn" "between"]
+	 ["math" "mathematical"]
+	 ["maths" "mathematics"]
+	 ["prop" "proposition"]
 	 ["bywa" "by the way "]
 
 	 ;; computing
-	 ["gen" "generate "]
-	 ["cpt" "compute "]
-	 ["ans" "answer "]
-	 ["elg" "elegant "]
-	 ["alang" "array language "]
-	 ["slang" "stack language "]
-	 ["dept" "dependent typing "]
-	 ["dty" "dependent typing "]
-	 ["dtyp" "dependent typing "]
-	 ["ahk" "AutoHotkey "]
-	 ["cfg" "context-free grammar "]
-	 ["cj" "Clojure "]
-	 ["cs" "computer science "]
-	 ["CS" "Computer Science "]
-	 ["oss" "open-source software "]
-	 ["osrc" "open-source "]
-	 ["bin" "binary "]
-	 ["cdg" "coding "]
-	 ["cdng" "coding "]
-	 ["logi" "logical "]
-	 ["cnss" "consistent "]
-	 ["cons" "consistent "]
-	 ["consti" "constituent "]
-	 ["cnstn" "constituent "]
-	 ["constt" "constitutes "]
-	 ["cnstt" "constitutes "]
-	 ["defi" "definition "]
-	 ["nota" "notation "]
-	 ["notal" "notational "]
-	 ["notl" "notational "]
-	 ["stmt" "statement "]
-	 ["expr" "expression "]
-	 ["exp" "expression "]
-	 ["exprs" "expressions "]
-	 ["exps" "expressions "]
-	 ["subexpr" "subexpression "]
-	 ["subexp" "subexpression "]
-	 ["subex" "subexpression "]
-	 ["subexprs" "subexpressions "]
-	 ["subexps" "subexpressions "]
-	 ["subexs" "subexpressions "]
-	 ["expo" "exponent "]
-	 ["char" "character "]
-	 ["chr" "character "]
-	 ["str" "string "]
-	 ["mtx" "matrix "]
-	 ["matr" "matrix "]
-	 ["arr" "array "]
-	 ["cjn" "conjunction "]
-	 ["op" "operator "]
-	 ["fn" "function "]
-	 ["der" "derivative "]
-	 ["drv" "derive "]
-	 ["par" "parentheses "]
-	 ["ppar" "pair of parentheses "]
-	 ["epar" "enclosing parentheses "]
-	 ["ebrac" "enclosing braces "]
-	 ["ebrak" "enclosing brackets "]
-	 ["outm" "outermost "]
-	 ["inm" "innermost "]
-	 ["ialo" "inner→outer "]
-	 ["iglo" "inner→outer "]
-	 ["oali" "outer→inner "]
-	 ["ogli" "outer→inner "]
-	 ["hask" "Haskell "]
-	 ["ml" "Standard ML "]
+	 ["gen" "generate"]
+	 ["imp" "implication"]
+	 ["cpt" "compute"]
+	 ["ans" "answer"]
+	 ["elg" "elegant"]
+	 ["alang" "array language"]
+	 ["slang" "stack language"]
+	 ["dept" "dependent typing"]
+	 ["dty" "dependent typing"]
+	 ["dtyp" "dependent typing"]
+	 ["ahk" "AutoHotkey"]
+	 ["cfg" "context-free grammar"]
+	 ["cj" "Clojure"]
+	 ["cs" "computer science"]
+	 ["CS" "Computer Science"]
+	 ["oss" "open-source software"]
+	 ["osrc" "open-source"]
+	 ["bin" "binary"]
+	 ["cdg" "coding"]
+	 ["cdng" "coding"]
+	 ["logi" "logical"]
+	 ["cnss" "consistent"]
+	 ["cons" "consistent"]
+	 ["consti" "constituent"]
+	 ["cnstn" "constituent"]
+	 ["constt" "constitutes"]
+	 ["cnstt" "constitutes"]
+	 ["defi" "definition"]
+	 ["nota" "notation"]
+	 ["notal" "notational"]
+	 ["notl" "notational"]
+	 ["stmt" "statement"]
+	 ["expr" "expression"]
+	 ["exp" "expression"]
+	 ["exprs" "expressions"]
+	 ["exps" "expressions"]
+	 ["subexpr" "subexpression"]
+	 ["subexp" "subexpression"]
+	 ["subex" "subexpression"]
+	 ["subexprs" "subexpressions"]
+	 ["subexps" "subexpressions"]
+	 ["subexs" "subexpressions"]
+	 ["expo" "exponent"]
+	 ["char" "character"]
+	 ["chr" "character"]
+	 ["str" "string"]
+	 ["mtx" "matrix"]
+	 ["matr" "matrix"]
+	 ["arr" "array"]
+	 ["conj" "conjunction"]
+	 ["cjn" "conjunction"]
+	 ["op" "operator"]
+	 ["opr" "operation"]
+	 ["fn" "function"]
+	 ["der" "derivative"]
+	 ["drv" "derive"]
+	 ["par" "parentheses"]
+	 ["pard" "parenthesized"]
+	 ["parend" "parenthesized"]
+	 ["ppar" "pair of parentheses"]
+	 ["epar" "enclosing parentheses"]
+	 ["ebrac" "enclosing braces"]
+	 ["ebrak" "enclosing brackets"]
+	 ["outm" "outermost"]
+	 ["inm" "innermost"]
+	 ["intdep" "interdependent"]
+	 ["intde" "interdependent"]
+	 ["intdp" "interdependent"]
+	 ["inde" "independent"]
+	 ["orth" "orthogonal"]
+	 ["ortho" "orthogonal"]
+	 ["ialo" "inner→outer"]
+	 ["iglo" "inner→outer"]
+	 ["oali" "outer→inner"]
+	 ["ogli" "outer→inner"]
+	 ["homoic" "homoiconic"]
+	 ["homo" "homomorphism"]
+	 ["homoc" "homomorphic"]
+	 ["isom" "isomorphism"]
+	 ["isomc" "isomorphic"]
+	 ["epimc" "epimorphic"]
+	 ["epims" "epimorphism"]
+	 ["epimsm" "epimorphism"]
+	 ["surjc" "epimorphism"]
+	 ["trad" "traditional"]
+	 ["metap" "metaprogramming"]
+	 ["hask" "Haskell"]
+	 ["ml" "Standard ML"]
+	 ["exd" "Extended Dyalog"]
+	 ["edy" "Extended Dyalog"]
+	 ["edya" "Extended Dyalog APL"]
+	 ["exda" "Extended Dyalog APL"]
+	 ["dza" "dzaima/APL"]
+	 ["ngn" "ngn/APL"]
+	 ["nars" "NARS2000"]
+	 ["narsa" "NARS2000 APL"]
+	 ["gnuapl" "GNU APL"]
 
 	 ;; tech company
-	 ["gc" "Google Chrome "]
-	 ["chrome" "Google Chrome "]
-	 ["ff" "Firefox"]
-	 ["ff" "Mozilla Firefox"]
-	 ["mz" "Mozilla"]
-	 ["gm" "Google Maps "]
-	 ["macos" "Mac OS "]
-	 ["mwin" "Microsoft Windows "]
-	 ["mw" "Microsoft Windows "]
-	 ["win" "Windows "]
+	 ["gc" "Google Chrome"]
+	 ["chrome" "Google Chrome"]
+	 ["ff" "Firefo"]
+	 ["ff" "Mozilla Firefo"]
+	 ["mz" "Mozill"]
+	 ["gm" "Google Maps"]
+	 ["macos" "Mac OS"]
+	 ["mwin" "Microsoft Windows"]
+	 ["mw" "Microsoft Windows"]
+	 ["win" "Windows"]
 
 	 ;; programing
-	 ["ev" "environment variable "]
-	 ["ipa" "IP address "]
-	 ["jvm" "Java Virtual Machine "]
-	 ["rsi" "repetitive-strain injury "]
-	 ["dir" "directory "]
-	 ["dirs" "directories "]
-	 ["subdir" "sub-directory "]
-	 ["sdir" "sub-directory "]
-	 ["subdirs" "sub-directories "]
-	 ["sdirs" "sub-directories "]
-	 ["subf" "sub-folder "]
-	 ["attr" "attribute "]
-	 ["wd" "web development "]
-	 ["db" "database "]
-	 ["gui" "GUI "]
-	 ["gnu" "GNU "]
-	 ["gui'" "graphical user interface "]
-	 ["oopf" "object oriented programing "]
-	 ["oop" "OOP "]
-
-	 ["OS" "operating system "]
+	 ["evar" "environment variable"]
+	 ["env" "environment"]
+	 ["ipa" "IP address"]
+	 ["jvm" "Java Virtual Machine"]
+	 ["rsi" "repetitive-strain injury"]
+	 ["dir" "directory"]
+	 ["dirs" "directories"]
+	 ["subdir" "sub-directory"]
+	 ["sdir" "sub-directory"]
+	 ["subdirs" "sub-directories"]
+	 ["sdirs" "sub-directories"]
+	 ["subf" "sub-folder"]
+	 ["attr" "attribute"]
+	 ["wd" "web development"]
+	 ["db" "database"]
+	 ["gui" "GUI"]
+	 ["gnu" "GNU"]
+	 ["gui'" "graphical user interface"]
+	 ["oopf" "object oriented programing"]
+	 ["oop" "OOP"]
+	 ["OS" "operating system"]
 
 	 ;; programming
 	 ["eqe" "=="]
-	 ["ret" "return "]
+	 ["ret" "return"]
 	 ["utf8" "-*- coding: utf-8 -*-"]
 
 	 ;; catch typos
-	 ["pwoer" "power "]
-	 ["lsit" "list "]
-	 ["csae" "case "]
+	 ["pwoer" "power"]
+	 ["lsit" "list"]
+	 ["csae" "case"]
 
 ))
 
@@ -404,6 +457,7 @@
 (xah-math-input--add-to-hash
  '(
 
+   ; Predicate logic
 	["bim" "<-->"]; bi-implication
 	["bimp" "<-->"]; bi-implication
 	["All" "∀"]
@@ -420,39 +474,40 @@
 	["nor" "⊽"]
 	["nand" "⊼"]
 	["xor" "⊻"]
-	["OR" "⋁ "]
-	["AND" "⋀ "]
-	["no" "¬"] ; not-sign
+	["OR" "⋁"]
+	["AND" "⋀"]
 	["not" "¬"] ; not-sign
-	["NOT" "⌙"] ; reversed not-sign
+	["fnot" "⌙"] ; (vertically) flipped not-sign
+	["fno" "⌙"] ; (vertically) flipped not-sign
+	["rnot" "⌐"] ; reversed not-sign
+	["rno" "⌐"] ; reversed not-sign
 	["let" "∴ "]
 	["wh" "∵ "]
 	["whe" "∵ "]
 	["where" "∵ "]
-	["end" "∎"]
 	["qed" "∎"]
+	["eop" "∎"]; "end of proof"
+
+	["proh" "🛇"]
+	["cannot" "🛇"]
+	["nallow" "🛇"]
 
 
+  ; Set logic
 	["U" "∪"]
 	["I" "∩"]
  	["UU" "⋃"]
 	["II" "⋂"]
  	["C/" "⊄"]
  	["c/" "⊄"]
- 	["Cs" "⊄"]
- 	["cs" "⊄"]
-	["Cn" "⊄"]
-	["CN" "⊄"]
-	["cn" "⊄"]
-	["n)" "⊅"]
-	["N)" "⊅"]
-	[")/" "⊉"]
-	[")s" "⊉"]
-	[")n" "⊉"]
-	[")N" "⊉"]
-	["n)" "⊉"]
-	["in'" "∈"]
-	["in" "∊"]
+	[")/" "⊅"]
+ 	["C/u" "⊈"]
+  ["c/u" "⊈"]
+ 	["C/b" "⊈"]
+  ["c/b" "⊈"]
+  [")/u" "⊉"]
+  [")/b" "⊉"]
+	["in'" "∈"] ; "in" reserved for small-elem-of (APL)
 	["nin" "∉"]
 	["con" "∋"]
 	["cont" "∋"]
@@ -461,21 +516,57 @@
 	["sc" "∁"] ; set complement
  	["comp" "∁"]
 	["scom" "∁"]
-	["powset" "℘"] ; powerset
 	["pset" "℘"] ; powerset
 	["ps" "℘"] ; powerset
-	["\\" "∖"] ; single backslash; escaped here by another backslash
-	["sm" "∖"] ; set minus
-	["setm" "∖"] ; set minus
-	["smin" "∖"] ; set minus
-	["set-" "∖"]
-	["em" "∅"]
+	["\\\\" "∖"] ; double backslash; each escaped here by another backslash
+	["smi" "∖"] ; set minus
+	["set-" "∖"] ; set minus
+	["s-" "∖"] ; set minus
 	["emp" "∅"]
-	["es" "∅"]
-	["bagl" "⟅"]
-	["bagr" "⟆"]
-	["inbag" "⋿ "]
-	["inb" "⋿ "]
+	["bagh" "⟅"]
+	["bagl" "⟆"]
+	["inbag" "⋿"]
+	["inb" "⋿"]; in bag
+
+	["Z-" "ℤ⁻ "]
+	["Z-0" "ℤ⁰⁻ "]
+	["Z+0" "ℤ⁰⁺ "]
+	["Z+" "ℤ⁺ "]
+	["R-" "ℝ⁻ "]
+	["R-0" "ℝ⁰⁻ "]
+	["R+0" "ℝ⁰⁺ "]
+	["R+" "ℝ⁺ "]
+	["Q-" "ℚ⁻ "]
+	["Q-0" "ℚ⁰⁻ "]
+	["Q+0" "ℚ⁰⁺ "]
+	["Q+" "ℚ⁺ "]
+	["Z-" "ℤ⁻ "]
+	["Z0-" "ℤ⁰⁻ "]
+	["Z0+" "ℤ⁰⁺ "]
+	["Z+" "ℤ⁺ "]
+	["R-" "ℝ⁻ "]
+	["R0-" "ℝ⁰⁻ "]
+	["R0+" "ℝ⁰⁺ "]
+	["R+" "ℝ⁺ "]
+	["Q-" "ℚ⁻ "]
+	["Q0-" "ℚ⁰⁻ "]
+	["Q0+" "ℚ⁰⁺ "]
+	["Q+" "ℚ⁺ "]
+	["ZN" "ℤ⁻ "]
+	["ZN0" "ℤ⁰⁻ "]
+	["Z" "ℤ "]
+	["ZP0" "ℤ⁰⁺ "]
+	["ZP" "ℤ⁺ "]
+	["RN" "ℝ⁻ "]
+	["RN0" "ℝ⁰⁻ "]
+	["RP0" "ℝ⁰⁺ "]
+	["RP" "ℝ⁺ "]
+	["QN" "ℚ⁻ "]
+	["QN0" "ℚ⁰⁻ "]
+	["QP0" "ℚ⁰⁺ "]
+	["QP" "ℚ⁺ "]
+
+
 
 
 	["." "∘"]
@@ -503,22 +594,21 @@
 
 	["cro" "⨯"]
   ["cross" "⨯"]
- 	["delt" "∆"]
+  ["delt" "∆"]
 	["delta" "∆"]
 	["del" "∇"]
 	["nab" "∇"] ; nabla
 
 
 	["G" "𝚪"]; gamma function
-	["l" "λ "]; lambda
+  ["lam" "λ"]; lambda
+  ["la" "λ"]; lambda
 	["pi" "π"]
 	["pib" "𝛑"] ; pi bold
 	["eul" "ℯ"]; euler
 	["eul'" "ℇ"]; euler
 	["pla" "ℎ"]; planck
-	["h" "ℎ"]; planck
-	["g" "𝛄"]; gamma
-	["y" "𝛄"]; gamma
+	["gam" "𝛾"]; gamma
 	["inf" "∞"]; infinity
 
 
@@ -550,14 +640,13 @@
   ;; ["ct" "⊗ "] ; circle times
   ;; ["cm" "⊖ "] ; circle minus
   ;; ["cd" "⊘ "] ; circle divide
-  ["'p" "′ "]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
-  ["p'" "′ "]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
-  ["pr" "′ "]  ; prime -- save ' for grave accent ` (adoc, etc)
-  ["pri" "′ "]  ; prime -- save ' for grave accent ` (adoc, etc)
-  ["prime" "′ "]  ; prime -- save ' for grave accent ` (adoc, etc)
-  ["''" "″ "] ; double prime
-  ["'''" "‴ "] ; triple prime
-  ["''''" "⁗ "] ; quad prime
+  ["'p" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
+  ["p'" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
+  ["pr" "′"]  ; prime -- save ' for grave accent ` (adoc, etc); more commonly used
+  ["pri" "′"]  ; prime -- save ' for grave accent ` (adoc, etc); more commonly used
+  ["''" "″"] ; double prime
+  ["'''" "‴"] ; triple prime
+  ["''''" "⁗"] ; quad prime
   [".m" "·"]
 
 
@@ -567,7 +656,6 @@
   ["mp" "∓"]
 
 
-  ["root" "√"]
   ["rt" "√"]
   ["rtt" "∛ "]
   ["rtc" "∛ "]
@@ -580,6 +668,10 @@
 
 
 
+  ["inv'" "¯¹"]
+  ["d" "∂"]
+  ["dd" "∂∂"]
+  ["ddd" "∂∂∂"]
   ["int" "∫"]
   ["ii" "∬"]
   ["iii" "∭"]
@@ -589,7 +681,6 @@
   ["iiio" "∰"]
   ["icl" "∱"]
   ["cli" "∱"]
-  ["ci" "∱"]
   ["iac" "⨑"]
   ["aci" "⨑"]
   ["aci" "⨑"]
@@ -597,14 +688,21 @@
   ["cio" "∲"]
   ["clio" "∲"]
   ["ioac" "∳"]
+  ["acio" "∳"]
   ["intf" "⨍"]
-  ["d" "∂"]
-  ["dd" "∂∂"]
-  ["ddd" "∂∂∂"]
+  ["ioap" "⨕"] ; integral around a point
+  ["int=" "⨎"] ; integral with double stroke
+  ["intu" "⨚"] ; integral with union
+  ["inti" "⨙"] ; integral with intersection
   ["fourier" "ℱ"]
-  ["ft" "ℱ"]
   ["fft" "ℱ"]
 
+  ["{{" "⦃"]
+  ["}}" "⦄"]
+  ["{{}}" "⦃⦄"]
+  ["[[" "〚"]
+  ["]]" "〛"]
+  ["[[]]" "〚〛"]
 
   ["o-" "⟜"]
   ["aft" "⟜"]; BQN's "after"
@@ -615,6 +713,7 @@
   [".-o" "⊷"]
   ;; ["cur" "⫶ "] ; curry
 
+
   ))
 
 
@@ -623,18 +722,29 @@
 (xah-math-input--add-to-hash
  [
 
-  ;; APL
+  ;; APL primitives
+  ["l" "{}"]; lambda
   ["ah" "←"]
   ["al" "→"]
   ["au" "↑"]
   ["ak" "↑"]
   ["ad" "↓"]
   ["aj" "↓"]
-  ["gl" "→"] ; arbitrary -- just seems mnemonic for me personally for whatever reason; "becomes"
-  ["gh" "←"] ; arbitrary -- just seems mnemonic for me personally for whatever reason; "becomes"
-  ["ga" "←"] ; arbitrary -- just seems mnemonic for me personally for whatever reason; "becomes"
+  ["ta" "↑"]; take
+  ["tk" "↑"]; take
+  ["dr" "↓"]; drop
+  ["dp" "↓"]; drop
+  ["is" "←"]
+  ["def" "←"]
+  ["df" "←"]
+  ["stt" "⍭"]
+  ["|t" "⍭"]
   [")" "⊃"]
+  ["he" "⊃"]; head
+  ["x" "×"]
   ["C" "⊂"]
+  ["encl" "⊂"]; enclose
+  ["box" "⊂"]; enclose
   ["(" "⊂"]
   [")u" "⊇"]
   [")U" "⊇"]
@@ -643,12 +753,12 @@
   ["CU" "⊆"]
   ["(u" "⊆"]
   ["(U" "⊆"]
-  ["vh" "⍅"] ; left vane
-  ["vl" "⍆"] ; right vane
-  ["vk" "⍏"] ; upward vane
-  ["vj" "⍖"] ; downward vane
-  ["vu" "⍏"] ; upward vane
-  ["vd" "⍖"] ; downward vane
+  ;; ["vh" "⍅"] ; left vane
+  ;; ["vl" "⍆"] ; right vane
+  ;; ["vk" "⍏"] ; upward vane
+  ;; ["vj" "⍖"] ; downward vane
+  ;; ["vu" "⍏"] ; upward vane
+  ;; ["vd" "⍖"] ; downward vane
   ["div" "÷"]; divide
   ["di" "÷"]; divide
   ["x'" "×"]
@@ -660,66 +770,63 @@
   ["lg" "⍟"]
   ["ee" "≡"]; triple-equals
   ["ma" "≡"]; match
-  ["mat" "≡"]; match
-  ["de" "≡"]; depth
   ["dep" "≡"]; depth
   ["tal" "≢"]; tally
-  ["ta" "≢"]; tally
-  ["mm" "≢"]; mismatch
-  ["mis" "≢"]; mismatch
   ["nat" "≢"]; not match "natch"
   ["na" "≢"]; not match "natch"
+  ["nm" "≢"]; not match
+  ["een" "≢"]
+  ["nee" "≢"]
+  ["ee/" "≢"]
   ["lcm" "∧"] ; lowest common multiple
   ["gcd" "∨"] ; lowest common multiple
-  ["p" "⍴"]
-  ["pp" "⍴⍴"]
+  ["r" "⍴"]
+  ["rr" "⍴⍴"]
   ["w" "⍵"]
   ["ww" "⍵⍵"]
-  ["www" "⍵⍵⍵"] ; hyperator operand in NARS2000 APL
+  ;; ["www" "⍵⍵⍵"] ; hyperator operand in NARS2000 APL
   ["w_" "⍹"]
   ["wwu" "⍹"]
-  ["i" "⍳"] ; iota
-  ["i_" "⍸"]
+  ["i" "⍳"]
   ["iu" "⍸"]
   ["a" "⍺"]
   ["aa" "⍺⍺"]
-  ["aaa" "⍺⍺⍺"] ; hyperator operand in NARS2000 APL
+  ;; ["aaa" "⍺⍺⍺"] ; hyperator operand in NARS2000 APL
   ["a_" "⍶"]
   ["aau" "⍶"]
-  ["e" "∊"] ; small element of; enlist
+  ["in" "∊"] ; small element of; enlist
   ["e'" "∊"] ; to avoid issue with e.g., "Xe"→'
-  ["e_" "⍷"]
   ["eu" "⍷"]
+	["to" "*"]; exponent
   ["flr" "⌊"] ; floor
   ["min" "⌊"]
   ["cei" "⌈"] ; ceiling
   ["max" "⌈"]
   ["mod" "∣"]
   ["mo" "∣"]
-  ["inc" "∆"] ; increment
+  ["inc'" "∆"] ; increment
   ["enc" "⊤"] ; encode -- enc already taken by enclose (more common)
   ["dec" "⊥"] ; decode
   ["lef" "⊣"] ; left
   ["lf" "⊣"] ; left
-  ;; ["tl" "⊣"] ; tack left
-  ;; ["tr" "⊢"] ; tack right ;; currently used for transpose
   ["ri" "⊢"] ; right
   ["rig" "⊢"] ; right
   ["mad" "⌺"] ; matrix divide
   ["md" "⌹"] ; matrix divide
   ["mdi" "⌹"] ; matrix divide
   ["mdiv" "⌹"] ; matrix divide
-  ["oo" "○"] ; pi-times, circular fns
+  ["minv" "⌹"] ; matrix inverse
+  ;; ["dom" "⌹"] ; domino
+  ["ci" "○"] ; pi-times, circular fns
+  ["cir" "○"] ; pi-times, circular fns
+  ["O" "○"] ; pi-times, circular fns
   ["o." "∘."] ; outer product
   ["out" "∘."] ; outer product
-  ["out'" "⌐"] ; table (outer product) -- BQN symbol
-  ["tbl" "⌐"] ; table (outer product) -- BQN symbol
+  ["out'" "⌾"] ; table (outer product)
+  ["tbl" "⌾"] ; table (outer product)
   ["!!" "‼"]
   ["ds" "‼"] ; double shriek
   ["xx" "‼"] ; exclamation exclamation
-  ["u" "μ"]
-  ["avg" "μ"];
-  ["av" "μ"];
   ["ro" "⌽"]
   ["rot" "⌽"]
   ["rof" "⊖"] ; rotate first
@@ -740,26 +847,36 @@
   [";b" "⍮"]
   [";u" "⍮"]
   ["fmt" "⍕"]
+  ["fm" "⍕"]
+  ["ft" "⍕"]
   ["exc" "⍎"]
+  ["xc" "⍎"]
+  ["ev" "⍎"]
+  ["eva" "⍎"]
   ["at" "@"]
   ["IB" "⌶"]
   ["ib" "⌶"]
   [":" "¨"] ; each
-  ["ea" "¨"] ; each
-  ["each" "¨"]
+  ["anan" "⍲"]
+  ["ana" "⍲"]
+  ["anor" "⍱"]
+  ["ano" "⍱"]
   ["pow" "⍣"]
   ["pwr" "⍣"]
-  ["se" "⍨"] ; selfie
+  ["pw" "⍣"]
   ["sel" "⍨"] ; selfie
+  ["sese" "⍨⍨"]
   ["ra" "⍤"] ; rank
-  ["ran" "⍤"] ; rank
   ["rnk" "⍤"] ; rank
   ["rk" "⍤"] ; rank
-  ["rank" "⍤"] ; rank
+  ["rn" "⍤"] ; rank
   ["dia" "⋄"]
   ["sep" "⋄"] ; separator
+  ["no" "~"]
+  ["wo" "~"]
   ["ov" "⍥"]
   ["ove" "⍥"] ; over
+	["o" "∘"]
   ["o_" "⍛"]
   ["oo" "∘"]
   ["ou" "⍛"]
@@ -774,11 +891,11 @@
   ["wi" "⍩"]
   ["wit" "⍩"] ; withe
   [">:" "⍩"]
-  ["er" "⍩"]; each-right
-  ["ear" "⍩"]; each-right
+  ["el" "ᑈ"]; each-right (vim keys)
+  ["eal" "ᑈ"]; each-right (vim keys)
   ["<:" "ᑈ"]
-  ["el" "ᑈ"]; each-left
-  ["eal" "ᑈ"]; each-left
+  ["eh" "ᐵ"]; each-left (vim keys)
+  ["eah" "ᐵ"]; each-left (vim keys)
   ["b:" "⍠"] ; variant
   ["B:" "⍠"] ; variant
   ["b;" "⍠"] ; variant
@@ -790,6 +907,7 @@
   ["ato" "⍤"]
   ["atop" "⍤"]
   ["ind" "⌷"]; index
+  ["mat" "⌷"]; materialize
   ["mate" "⌷"]; materialize
   ["key" "⌸"]
   ["ke" "⌸"]
@@ -802,30 +920,114 @@
   ["sten" "⌺"]
   ["ms" "⍦"]; multi-set in NARS2000
   ["symd" "§"]; NARS2000 symmetric set difference ("Section" symbol)
+  ["SS" "§"]
   ["syd" "§"]
   ["sym" "§"]
   ["sd" "§"]
+  ["ss" "§"]
+  ["sti" "⍭"]
+  ["mer" "⍈"]; merge in NARS2000 APL
+  ["mrg" "⍈"]; merge in NARS2000 APL
+  ["mr" "⍈"]; merge in NARS2000 APL
+  ["mg" "⍈"]; merge in NARS2000 APL
+  ["cou" "⍧"]; count-in in dzaima/APL
+  ["cin" "⍧"]; count-in in dzaima/APL
+  ["um" "⍧"]; unique mask in dzaima/APL
+  ["ns" "⍧"]; nub sieve
+  ["csti" "⍧"]
+  ["cst" "⍧"]
+  ["(st" "⍧"]
+  ["pri'" "⍭"]; primes in Extended Dyalog
+  ["tsti'" "⍭"]; primes in Extended Dyalog
+  ["tst'" "⍭"]; primes in Extended Dyalog
   ["und" "⍢"]; under
   ["D:" "⍢"]; del
   ["d:" "⍢"]; del
   ["T:" "⍡"]; cumulative repeat
   ["t:" "⍡"]
   ["t;" "⍡"]
-  ["cur" "⍡"]; cumulative repeat
+  ["cumul" "⍡"]; cumulative repeat
+  ["cmlt" "⍡"]; cumulative repeat
+  ["cml" "⍡"]; cumulative repeat
   ["cre" "⍡"]; cumulative repeat
+  ["t;" "⍡"]
+  ["tran" "⍑"]; transform
+  ["tb" "⍑"]; T bar
+  ["Tb" "⍑"]; T bar
   ["dt" "⍫"]; del tilde
-  ["inv" "⍫"]; inverse
   ["ob" "⍫"]; obverse
   ["obv" "⍫"]; obverse
+  ["inv" "⍣¯1"]; inverse
   ["rec" "∇"];
   ["re" "∇"]
-  ["r" "∇"]; recurse
-  ["rr" "∇∇"]
-  ["rrr" "∇∇∇"]
+  ["D" "∇"]; recurse
+  ["DD" "∇∇"]
+  ["V" "∇"]
+  ["VV" "∇∇"]
+  ;; ["DDD" "∇∇∇"]
   ["ac" "⍝ "] ; APL comment
-  ["co" "⍝ "] ; APL comment
-  ["com" "⍝ "] ; APL comment
-  ["la" "⍝ "] ; lamp
+  ["aco" "⍝ "] ; APL comment
+  ["ninf" "¯∞"]; neg. infinity
+  ["dfns" "⌂"]; dfns workspace
+  ["ho" "⌂"]
+  ["hou" "⌂"]
+  ["'b" "⍘"]
+  ["b/" "⍁"]
+  ["diag" "⍁"]
+  ["alpu" "⎕A"]; uppercase alphabet
+  ["alpl" "⎕LA"]; lowercase alphabet
+  ["dig" "⎕d"]; lowercase alphabet
+  ["off" "⎕OFF"]
+  ["IO" "⎕IO←0"]
+
+  ;; ---- idioms ------
+  ["tai" "1↓"]; tail (Haskell semantic)
+  ["tl" "1↓"]; tail (Haskell semantic)
+  ["beh" "1↓"]; behead
+  ["be" "1↓"]; behead
+  ["last" "¯1↑"]; last
+  ["la" "¯1↑"]; last
+  ["end" "¯1↑"]; last
+  ["curt" "¯1↓"]; curtail
+  ["cur" "¯1↓"]; curtail
+  ["drla" "¯1↓"]; "drop last"
+  ["sq" "*2"]; square
+  ["root" "*0.5"]
+  ["roo" "*0.5"]
+  ["dou" "×2"]; double
+  ["incr" "+1"]; increment
+  ["inc" "+1"]; increment
+  ["decr" "-1"]; decrement
+  ["halve" "÷2"]; halve
+  ["hal" "÷2"]; halve
+  ["tai'" "(1∘↓)"]; tail (Haskell semantic)
+  ["tl'" "(1∘↓)"]; tail (Haskell semantic)
+  ["beh'" "(1∘↓)"]; behead
+  ["be'" "(1∘↓)"]; behead
+  ["last'" "(¯1∘↑)"]; last
+  ["la'" "(¯1∘↑)"]; last
+  ["end'" "(¯1∘↑)"]; last
+  ["curt'" "(¯1∘↓)"]; curtail
+  ["cur'" "(¯1∘↓)"]; curtail
+  ["drla'" "(¯1∘↓)"]; "drop last"
+  ["sq'" "(*∘2)"]; square
+  ["root'" "(*∘0.5)"]
+  ["roo'" "(*∘0.5)"]
+  ["dou'" "(×∘2)"]; double
+  ["incr'" "(+∘1)"]; increment
+  ["inc'" "(+∘1)"]; increment
+  ["decr'" "(-∘1)"]; decrement
+  ["halve'" "(÷∘2)"]; halve
+  ["hal'" "(÷∘2)"]; halve
+  ["avg" "(+/÷≢)"]
+  ["mean" "(+/÷≢)"]
+  ["mea" "(+/÷≢)"]
+  ["pai" "{⍺⍵}"]; pair
+  ["pa" "{⍺⍵}"]; pair
+  ["⍮" "{⍺⍵}"]; pair
+  ["words" "{1↓¨(1+' '=⍵) ⊂⍵}"]
+  ["wor" "{1↓¨(1+' '=⍵) ⊂⍵}"]
+  ["⍘" "{1↓¨(1+' '=⍵) ⊂⍵}"]
 
 ])
 
@@ -849,11 +1051,11 @@
    ;; ["nand" "⊼ "]
    ;; ["nor" "⊽ "]
 
-   ["~" "≈ "]
-   [":=" "≔ "]
-   ["=:" "≕ "]
-   ["!=" "≠ "]
-   ["/=" "≠ "]
+   ["~" "≈"]
+   [":=" "≔"]
+   ["=:" "≕"]
+   ["!=" "≠"]
+   ["/=" "≠"]
    ["ne" "≠"]
 
    ;; ["fa" "∀ "] ["forall" "∀ "]
@@ -873,11 +1075,14 @@
 (xah-math-input--add-to-hash
  [
  	;; misc. unicode
-	["mda" "—"]
-	["nda" "–"]
+	["em" "—"]
+	["emda" "—"]
+	["en" "–"]
+	["enda" "–"]
 	["line" "———————————————"]
 	["bul" "• "]
 	["alb" "↤"]
+	["from" "↤"]
 	["adb" "↧"]
   ["b" "``"] ; back-ticks
   ["'" "`"] ; single back-tick
@@ -892,14 +1097,60 @@
  [
 
   ;; J language
+  ["ex." "!."]
+  ["ex;" "!:"]
+  ["at;" "@:"]
+  ["h." "#."]
+  ["h;" "#:"]
+  ["ha." "#."]
+  ["ha;" "#:"]
+  ["do." "$."]
+  ["do;" "$:"]
+  ["S." "$."]
+  ["S;" "$:"]
+  ["pe." "%."]
+  ["pe;" "%:"]
+  ["/" "%"]
+  ["/." "%."]
+  ["/;" "%:"]
+  ["ca." "^."]
+  ["ca;" "^:"]
+  ["u." "^."]
+  ["u;" "^:"]
+  ["up." "^."]
+  ["up;" "^:"]
+  ["am." "&."]
+  ["am;" "&:"]
+  ["am.;" "&.:"]
+  ["as." "*."]
+  ["as;" "*:"]
+  ["st." "*."]
+  ["st;" "*:"]
+  ["m." "-."]
+  ["m;" "-:"]
+  ["mi." "-."]
+  ["mi;" "-:"]
+  ["p." "+."]
+  ["p;" "+:"]
+  ["pl." "+."]
+  ["pl;" "+:"]
+  ["e." "=."]
+  ["e;" "=:"]
+  ["cl." "{."]
+  ["cl;" "{:"]
+  ["cr." "}."]
+  ["cr;" "}:"]
+  ["sl." "[."]
+  ["sl;" "[:"]
+  ["sr." "]."]
+  ["sr;" "]:"]
   ["bl" "["] ; bracket
   ["br" "]"]
   ["sl" "["] ; square bracket
   ["sr" "]"]
   ["cl" "{"] ; curly
-  ["cr" "} "] ; curly
-  ["jdi" "%"] ; J divide
-  ["jdiv" "%"] ; J divide
+  ["cr" "}"] ; curly
+  ["jd" "%"] ; J divide
   ["jc" "NB. "] ; J comment
   ["nb" "N.B. "] ; J comment
   ["NB" "N.B. "] ; J comment
@@ -912,15 +1163,10 @@
 (xah-math-input--add-to-hash
  [
 
-	;; elisp
-	("lam" "λ")
-
-
 	;; Racket
 	["ht" "#t"] ; t is taken by "    " for tabbing
 	["f" "#f"]
-	["em" "'()"]
-	["emp" "'()"]
+	;; ["emp" "'()"]
 	;; ["em" "empty"]
 	;; ["emp" "empty"]
 	["csae" "case"] ; catch typo
@@ -1093,7 +1339,7 @@
 	;; ["FLP" "Fl⁺ "]
 
 	;; overrides
-	["O" "Option "]
+	["OP" "Option "]
 	["M" "Maybe "]
 	["JU" "Just "]
 	["NO" "Nothing "]
@@ -1115,8 +1361,8 @@
 	["FL" "Float "]
 	["L" "Listof "]
 	["L'" "List "]
-	["V" "Vectorof "]
-	["V'" "Vector "]
+	["VE" "Vectorof "]
+	["VE'" "Vector "]
 	["PA" "Pair "]
 	["PS" "Path-String "]
 	["ST" "String "]
@@ -1194,7 +1440,7 @@
 	;; ["T" "True "]
 	;; ["F" "False "]
 	;; ["B" "Boolean "]
-	;; ["O" "Option "]
+	;; ["OP" "Option "]
 	;; ["N" "Natural "]
 	;; ["IN" "Index "]
 	;; ["In" "Index "]
@@ -1223,8 +1469,8 @@
 	;; ["Q+" "Positive-Exact-Rational "]
 	;; ["L" "Listof "]
 	;; ["L'" "List "]
-	;; ["V" "Vectorof "]
-	;; ["V'" "Vector "]
+	;; ["VE" "Vectorof "]
+	;; ["VE'" "Vector "]
 	;; ["PA" "Pair "]
 	;; ["ST" "String "]
 	;; ["SY" "Symbol "]
@@ -1281,37 +1527,33 @@
 
 (xah-math-input--add-to-hash
  [
-	["deg" "° "]
-  ["micro" "µ "]
-  ["mdot" "· "]
-  ["1/4" "¼ "]
-  ["1/2" "½ "]
-  ["3/4" "¾ "]
+	["deg" "°"]
+  ["micro" "µ"]
+  ["mdot" "·"]
+  ["1/4" "¼"]
+  ["1/2" "½"]
+  ["3/4" "¾"]
 
-  ["Theta" "Θ "] ["Lambda" "Λ "] ["Xi" "Ξ "] ["Phi" "Φ "] ["Psi" "Ψ "] ["Omega" "Ω "]
+  ["Theta" "Θ"] ["Lambda" "Λ"] ["Xi" "Ξ"] ["Phi" "Φ"] ["Psi" "Ψ"] ["Omega" "Ω"]
 
-  ["beta" "β "] ["delta" "δ "] ["epsilon" "ε "] ["zeta" "ζ "] ["eta" "η "] ["theta" "θ "] ["mu" "μ "] ["xi" "ξ "] ["sigmaf" "ς "] ["tau" "τ "] ["phi" "φ "] ["psi" "ψ "] ["theta2" "ϑ "] ["upsih" "ϒ "] ["piv" "ϖ "]
+  ["beta" "β"] ["delta" "δ"] ["epsilon" "ε"] ["zeta" "ζ"] ["eta" "η"] ["theta" "θ"] ["mu" "μ"] ["xi" "ξ"] ["sigmaf" "ς"] ["tau" "τ"] ["phi" "φ"] ["psi" "ψ"] ["theta'" "ϑ"] ["upsih" "ϒ"] ["piv" "ϖ"]
 
-  ["ndash" "– "] ["mdash" "— "]
+  ["ndash" "–"] ["mdash" "—"]
 
   ["times" "×"] ["divide" "÷"] ["minus" "− "] ["lowast" "∗ "] ["radic" "√"]
-	["x" "×"] ["/" "÷"]
-  ["oplus" "⊕ "] ["otimes" "⊗ "] ["ox" "⊗"]
-  ["oslash" "ø "]
-  ["fnof" "ƒ "]
+  ["oplus" "⊕"] ["otimes" "⊗"] ["ox" "⊗"]
+  ["oslash" "ø"]
+  ["fnof" "ƒ"]
 
-  ["partial" "∂ "]
-  ["dp" "∂ "]
+  ;; ["dp" "∂"] ;; already mapped to 'd'
 
-	["ang" "∠ "]
+	["ang" "∠"]
 
-  ["sub" "⊂ "] ["sup" "⊃ "] ["nsub" "⊄ "] ["sube" "⊆ "] ["supe" "⊇ "]
+  ["perp" "⊥"] ["bot" "⊥"] ["top" "⊤"] ["mdot" "⋅"]
 
-  ["perp" "⊥ "] ["bot" "⊥ "] ["top" "⊤"] ["mdot" "⋅ "]
+  ["ceih" "⌈"] ["ceil" "⌉"] ["flrh" "⌊"] ["flrl" "⌋"]
 
-  ["lceil" "⌈ "] ["rceil" "⌉ "] ["lfloor" "⌊ "] ["rfloor" "⌋ "]
-
-  ["lang" "〈 "] ["rang" "〉 "]
+  ["lang" "〈"] ["rang" "〉"]
 
   ]
  )
@@ -1320,17 +1562,18 @@
 (xah-math-input--add-to-hash
  [
   ;; misc non-math symbols
-  ["tm" "™ "]
-  ["3/4" "¾ "]
-  ["1/2" "½ "]
-  ["1/4" "¼ "]
+  ["tm" "™"]
+  ["3/4" "¾"]
+  ["1/2" "½"]
+  ["1/4" "¼"]
   ["..." "…"]
-  ["fdash" "‒ "]
-  ["wdash" "〜 "]
-  ;; ["--" "— "]
+  ["ran" "…"]
+  ["rng" "…"]
+  ["fdash" "‒"]
+  ["wdash" "〜"]
   ["----" "——"] ; double m-dash
-  ["---" "—"] ; m-dash
-  ["--" "–"] ; n-dash
+  ["---" "—"] ; em-dash
+  ["--" "–"] ; en-dash
   ;; ["??" "⁇ "]
   ;; ["?!" "⁈ "]
   ;; ["!?" "⁉ "]
@@ -1343,116 +1586,146 @@
 
 (xah-math-input--add-to-hash
  [
-  ["m2" "㎡ "]
-  ["cm" "㎝ "]
-  ["cm2" "㎠ "]
-  ["cm3" "㎤ "]
+  ["m2" "㎡"]
+  ["cm" "㎝"]
+  ["cm2" "㎠"]
+  ["cm3" "㎤"]
   ] )
 
 
 (xah-math-input--add-to-hash
  [
   ;; superscripts
-  ["^0" "⁰ "]
-  ["^1" "¹ "]
-  ["^2" "² "]
-  ["^3" "³ "]
-  ["^4" "⁴ "]
-  ["^5" "⁵ "]
-  ["^6" "⁶ "]
-  ["^7" "⁷ "]
-  ["^8" "⁸ "]
-  ["^9" "⁹ "]
-  ["^+" "⁺ "]
-  ["^-" "⁻ "]
-  ["^=" "⁼ "]
-  ["^(" "⁽ "]
-  ["^)" "⁾ "]
-  ["^n" "ⁿ "]
-  ["^i" "ⁱ "]
-  ["0up" "⁰ "]
-  ["1up" "¹ "]
-  ["2up" "² "]
-  ["3up" "³ "]
-  ["4up" "⁴ "]
-  ["5up" "⁵ "]
-  ["6up" "⁶ "]
-  ["7up" "⁷ "]
-  ["8up" "⁸ "]
-  ["9up" "⁹ "]
-  ["+up" "⁺ "]
-  ["-up" "⁻ "]
-  ["=up" "⁼ "]
-  ["nup" "ⁿ "]
+
+
+  ["0" "⁰"]
+  ["1" "¹"]
+  ["2" "²"]
+  ["3" "³"]
+  ["4" "⁴"]
+  ["5" "⁵"]
+  ["6" "⁶"]
+  ["7" "⁷"]
+  ["8" "⁸"]
+  ["9" "⁹"]
+
+  ["-1" "⁻¹"]
+  ["-2" "⁻²"]
+  ["-3" "⁻³"]
+  ["-4" "⁻⁴"]
+  ["-5" "⁻⁵"]
+  ["-6" "⁻⁶"]
+  ["-7" "⁻⁷"]
+  ["-8" "⁻⁸"]
+  ["-9" "⁻⁹"]
+
+  ["m1" "⁻¹"]
+  ["m2" "⁻²"]
+  ["m3" "⁻³"]
+  ["m4" "⁻⁴"]
+  ["m5" "⁻⁵"]
+  ["m6" "⁻⁶"]
+  ["m7" "⁻⁷"]
+  ["m8" "⁻⁸"]
+  ["m9" "⁻⁹"]
+
+  ["+up" "⁺"]
+  ["-up" "⁻"] ; "-" already taken by APL's high-minus ¯
+  ;; ["mm" "⁻"] ; "-" already taken by APL's high-minus ¯
+  ["=up" "⁼"]
+  ["(up" "⁽"]
+  [")up" "⁾"]
+  ["nup" "ⁿ"]
+  ["iup" "ⁱ"]
+
+
+
+
 
   ;; subscripts
-  ["_(" "₍ "]
-  ["_)" "₎ "]
-  ["_+" "₊ "]
-  ["_-" "₋ "]
-  ["_0" "₀ "]
-  ["_1" "₁ "]
-  ["_2" "₂ "]
-  ["_3" "₃ "]
-  ["_4" "₄ "]
-  ["_5" "₅ "]
-  ["_6" "₆ "]
-  ["_7" "₇ "]
-  ["_8" "₈ "]
-  ["_9" "₉ "]
-  ["_=" "₌ "]
-  ["_a" "ₐ "]
-  ["_e" "ₑ "]
-  ["_h" "ₕ "]
-  ["_i" "ᵢ "]
-  ["_j" "ⱼ "]
-  ["_k" "ₖ "]
-  ["_l" "ₗ "]
-  ["_m" "ₘ "]
-  ["_n" "ₙ "]
-  ["_o" "ₒ "]
-  ["_p" "ₚ "]
-  ["_r" "ᵣ "]
-  ["_s" "ₛ "]
-  ["_t" "ₜ "]
-  ["_u" "ᵤ "]
-  ["_v" "ᵥ "]
-  ["_x" "ₓ "]
-  ["_schwa" "ₔ "]
+  ["_(" "₍"]
+  ["_)" "₎"]
+  ["_+" "₊"]
+  ["_-" "₋"]
+  ["_0" "₀"]
+  ["_1" "₁"]
+  ["_2" "₂"]
+  ["_3" "₃"]
+  ["_4" "₄"]
+  ["_5" "₅"]
+  ["_6" "₆"]
+  ["_7" "₇"]
+  ["_8" "₈"]
+  ["_9" "₉"]
+  ["_=" "₌"]
+  ["_a" "ₐ"]
+  ["_e" "ₑ"]
+  ["_h" "ₕ"]
+  ["_i" "ᵢ"]
+  ["_j" "ⱼ"]
+  ["_k" "ₖ"]
+  ["_l" "ₗ"]
+  ["_m" "ₘ"]
+  ["_n" "ₙ"]
+  ["_o" "ₒ"]
+  ["_p" "ₚ"]
+  ["_r" "ᵣ"]
+  ["_s" "ₛ"]
+  ["_t" "ₜ"]
+  ["_u" "ᵤ"]
+  ["_v" "ᵥ"]
+  ["_x" "ₓ"]
+  ["_schwa" "ₔ"]
 
-  ["(do" "₍ "]
-  [")do" "₎ "]
-  ["+do" "₊ "]
-  ["-do" "₋ "]
-  ["0do" "₀ "]
-  ["1do" "₁ "]
-  ["2do" "₂ "]
-  ["3do" "₃ "]
-  ["4do" "₄ "]
-  ["5do" "₅ "]
-  ["6do" "₆ "]
-  ["7do" "₇ "]
-  ["8do" "₈ "]
-  ["9do" "₉ "]
-  ["=do" "₌ "]
-  ["ado" "ₐ "]
-  ["edo" "ₑ "]
-  ["hdo" "ₕ "]
-  ["ido" "ᵢ "]
-  ["jdo" "ⱼ "]
-  ["kdo" "ₖ "]
-  ["ldo" "ₗ "]
-  ["mdo" "ₘ "]
-  ["ndo" "ₙ "]
-  ["odo" "ₒ "]
-  ["pdo" "ₚ "]
-  ["rdo" "ᵣ "]
+  ["(d" "₍"] ; "down"
+  [")d" "₎"]
+  ["+d" "₊"]
+  ["-d" "₋"]
+  ["0d" "₀"]
+  ["1d" "₁"]
+  ["2d" "₂"]
+  ["3d" "₃"]
+  ["4d" "₄"]
+  ["5d" "₅"]
+  ["6d" "₆"]
+  ["7d" "₇"]
+  ["8d" "₈"]
+  ["9d" "₉"]
+  ["=d" "₌"]
+
+  ["(do" "₍"]
+  [")do" "₎"]
+  ["+do" "₊"]
+  ["-do" "₋"]
+  ["0do" "₀"]
+  ["1do" "₁"]
+  ["2do" "₂"]
+  ["3do" "₃"]
+  ["4do" "₄"]
+  ["5do" "₅"]
+  ["6do" "₆"]
+  ["7do" "₇"]
+  ["8do" "₈"]
+  ["9do" "₉"]
+  ["=do" "₌"]
+  ["ado" "ₐ"]
+  ["edo" "ₑ"]
+  ["hdo" "ₕ"]
+  ["ido" "ᵢ"]
+  ["jdo" "ⱼ"]
+  ["kdo" "ₖ"]
+  ["ldo" "ₗ"]
+  ["mdo" "ₘ"]
+  ["ndo" "ₙ"]
+  ["odo" "ₒ"]
+  ["pdo" "ₚ"]
+  ["rdo" "ᵣ"]
   ["sdo" "ₛ "]
-  ["td" "ₜ "]
-  ["udo" "ᵤ "]
-  ["vdo" "ᵥ "]
-  ["xdo" "ₓ "]
-  ["schwado" "ₔ "]
+  ["td" "ₜ"]
+  ["udo" "ᵤ"]
+  ["vdo" "ᵥ"]
+  ["xdo" "ₓ"]
+  ["schwado" "ₔ"]
 
   ])
 
@@ -1481,10 +1754,10 @@
 (xah-math-input--add-to-hash
  '(
    ;; letter-like forms
-   ["R2" "ℝ² "]
-   ["R3" "ℝ³ "]
-   ["r2" "ℝ² "]
-   ["r3" "ℝ³ "]
+   ["R2" "ℝ²"]
+   ["R3" "ℝ³"]
+   ["r2" "ℝ²"]
+   ["r3" "ℝ³"]
    ;; ["fn" "ƒ "]
    ))
 
@@ -1493,7 +1766,6 @@
 
    ["<-" "←"] ["->" "→"] ["<->" "↔"] ["!<-" "↚"] ["!->" "↛"] ["!<->" "↮"]
    ;; ["<=" "⇐"] ["=>" "⇒"]
-   ["to" "→"] ["tto" "⟶"]
     ["<=>" "⇔ "] ["!<=" "⇍ "] ["!=>" "⇏ "] ["!<=>" "⇎ "]
    ["<==" "⟸ "] ["==>" "⟹ "] ["<==>" "⟺ "]
    ["<-|" "↤"] ["|->" "↦"]

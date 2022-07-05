@@ -524,7 +524,7 @@ new_float none
     # bindsym $mod+c exec kcolorchooser
 
     # # start charmap
-    # bindsym $alt+$mod+c exec gucharmap
+    bindsym $alt+$mod+c exec gucharmap
 
     # # start stretchly
     # bindsym $alt+$mod+b exec stretchly
