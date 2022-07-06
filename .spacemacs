@@ -88,7 +88,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '(xah-math-input pretty-mode)
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(company-tern)
+   dotspacemacs-excluded-packages '(company-tern company-ghc ghc intero)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -233,11 +233,11 @@ values."
 															 ;;  	:width normal
 															 ;;  	:powerline-scale 1.1)
 
-															 ("Fira Code"
-															  :size 12
-															  :weight normal
-															  :width condensed
-															  :powerline-scale 1.1)
+															  ("Fira Code"
+															   :size 12
+															   :weight normal
+															   :width condensed
+															   :powerline-scale 1.1)
 
 															 ;; ("Iosevka"
 															 ;;  :size 12
@@ -466,7 +466,8 @@ you should place your code here."
 
 
   ;; --------- Mathematics: ---------
-  ;; DejaVu Math TeX Gyre
+  ;; TeX Gyre DejaVu Math
+  ;; DejaVu Serif
 	;; Latin Modern Math
 	;; XITS Math
 	;; STIX Two Math     ⍲ ⍱ ∆ ∇ ⍫  ≤ ≥ ⍎ ⍕ → ← ↑ ↓
@@ -482,7 +483,7 @@ you should place your code here."
 
 
   ;; --------- Mathematical Letter-like Symbols:---------
-  ;; DejaVu Math TeX Gyre
+  ;; TeX Gyre DejaVu Math
 	;; Latin Modern Math
 	;; XITS Math
 	;; STIX Two Math     ⍲ ⍱ ∆ ∇ ⍫  ≤ ≥ ⍎ ⍕ → ← ↑ ↓
@@ -506,9 +507,9 @@ you should place your code here."
 
 	;; ----------- For minimal font set -------------------------------------------------------------
 
-	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
-  (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code2000") ; math operators block
-	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "STIX") ; math operators block
+	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Noto Sans Mono") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
+  (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "DejaVu Serif") ; math operators block
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Iosevka") ; arrows
 	(set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Code2000") ; arrows
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX") ; arrows
