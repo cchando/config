@@ -195,21 +195,23 @@
 
 
 	 ;; english word abbrev
-	 ["ie" "i.e., "]
-	 ["Ie" "I.e., "]
-	 ["IE" "I.e., "]
+	 ["ie," "i.e., "]
+	 ["Ie," "I.e., "]
+	 ["IE," "I.e., "]
 	 ["ie'" "i.e. "]
 	 ["Ie'" "I.e. "]
 	 ["IE'" "I.e. "]
-	 ["eg" "e.g., "]
-	 ["Eg" "E.g., "]
-	 ["EG" "E.g., "]
+	 ["eg," "e.g., "]
+	 ["Eg," "E.g., "]
+	 ["EG," "E.g., "]
 	 ["eg'" "e.g. "]
 	 ["Eg'" "E.g. "]
 	 ["EG'" "E.g. "]
 	 ["cf" "c.f. "]
 	 ["Cf" "C.f. "]
 	 ["CF" "C.f. "]
+   ["nb" "N.B. "]
+   ["NB" "N.B. "]
 
 	 ["cant" "can't"]
 	 ["cnt" "can't"]
@@ -293,18 +295,13 @@
 	 ["expo" "exponent"]
 	 ["char" "character"]
 	 ["chr" "character"]
-	 ["str" "string"]
-	 ["mtx" "matrix"]
-	 ["matr" "matrix"]
-	 ["arr" "array"]
 	 ["conj" "conjunction"]
 	 ["cjn" "conjunction"]
 	 ["op" "operator"]
 	 ["opr" "operation"]
 	 ["fn" "function"]
-	 ["der" "derivative"]
-	 ["drv" "derive"]
 	 ["par" "parentheses"]
+	 ["paren" "parentheses"]
 	 ["pard" "parenthesized"]
 	 ["parend" "parenthesized"]
 	 ["ppar" "pair of parentheses"]
@@ -473,6 +470,7 @@
   ["or" "∨"]
 	["nor" "⊽"]
 	["nand" "⊼"]
+	["nan" "⊼"]
 	["xor" "⊻"]
 	["OR" "⋁"]
 	["AND" "⋀"]
@@ -489,6 +487,8 @@
 	["eop" "∎"]; "end of proof"
 
 	["proh" "🛇"]
+	["prohibit" "🛇"]
+	["prohibited" "🛇"]
 	["cannot" "🛇"]
 	["nallow" "🛇"]
 
@@ -496,17 +496,23 @@
   ; Set logic
 	["U" "∪"]
 	["I" "∩"]
- 	["UU" "⋃"]
-	["II" "⋂"]
+ 	["UNI" "⋃"]; n-ary
+	["INT" "⋂"]; n-ary
+ 	["(/" "⊄"]
  	["C/" "⊄"]
  	["c/" "⊄"]
 	[")/" "⊅"]
- 	["C/u" "⊈"]
-  ["c/u" "⊈"]
- 	["C/b" "⊈"]
-  ["c/b" "⊈"]
-  [")/u" "⊉"]
-  [")/b" "⊉"]
+ 	["(u/" "⊈"]
+ 	["CU/" "⊈"]
+ 	["Cu/" "⊈"]
+  ["cu/" "⊈"]
+  [")u/" "⊉"]
+ 	["9/" "⊄"]
+	["0/" "⊅"]
+ 	["9/" "⊄"]
+	["0/" "⊅"]
+ 	["9u/" "⊈"]
+  ["0u/" "⊉"]
 	["in'" "∈"] ; "in" reserved for small-elem-of (APL)
 	["nin" "∉"]
 	["con" "∋"]
@@ -642,8 +648,6 @@
   ;; ["cd" "⊘ "] ; circle divide
   ["'p" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
   ["p'" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
-  ["pr" "′"]  ; prime -- save ' for grave accent ` (adoc, etc); more commonly used
-  ["pri" "′"]  ; prime -- save ' for grave accent ` (adoc, etc); more commonly used
   ["''" "″"] ; double prime
   ["'''" "‴"] ; triple prime
   ["''''" "⁗"] ; quad prime
@@ -762,8 +766,8 @@
   ["div" "÷"]; divide
   ["di" "÷"]; divide
   ["x'" "×"]
-  ["-" "¯"] ; high minus
-  ["_" "¯"] ; high minus
+   ["-" "¯"] ; high minus
+  ;; ["_" "¯"] ; high minus
   ["n" "¯"] ; high minus
   ["lo" "⍟"]
   ["log" "⍟"]
@@ -785,14 +789,14 @@
   ["w" "⍵"]
   ["ww" "⍵⍵"]
   ;; ["www" "⍵⍵⍵"] ; hyperator operand in NARS2000 APL
-  ["w_" "⍹"]
+  ;; ["w_" "⍹"]
   ["wwu" "⍹"]
   ["i" "⍳"]
   ["iu" "⍸"]
   ["a" "⍺"]
   ["aa" "⍺⍺"]
   ;; ["aaa" "⍺⍺⍺"] ; hyperator operand in NARS2000 APL
-  ["a_" "⍶"]
+  ;; ["a_" "⍶"]
   ["aau" "⍶"]
   ["in" "∊"] ; small element of; enlist
   ["e'" "∊"] ; to avoid issue with e.g., "Xe"→'
@@ -811,6 +815,8 @@
   ["lf" "⊣"] ; left
   ["ri" "⊢"] ; right
   ["rig" "⊢"] ; right
+  ;; ["th" "⊣"] ; tack left (vim keys) TODO: activate after mapping kmonad
+  ;; ["tl" "⊢"] ; tack right (vim keys) TODO: activate after mapping kmonad
   ["mad" "⌺"] ; matrix divide
   ["md" "⌹"] ; matrix divide
   ["mdi" "⌹"] ; matrix divide
@@ -831,6 +837,8 @@
   ["rot" "⌽"]
   ["rof" "⊖"] ; rotate first
   ["rf" "⊖"] ; rotate first
+  ["rf" "⊖"] ; rotate first
+  ["fl" "⊖"] ; flip
   ["tr" "⍉"] ; transpose
   ["tra" "⍉"] ; transpose
   ["\\b" "⍀"] ; backslash bar; single backslash; escaped here
@@ -857,6 +865,7 @@
   ["IB" "⌶"]
   ["ib" "⌶"]
   [":" "¨"] ; each
+  ["ea" "¨"] ; each
   ["anan" "⍲"]
   ["ana" "⍲"]
   ["anor" "⍱"]
@@ -877,10 +886,10 @@
   ["ov" "⍥"]
   ["ove" "⍥"] ; over
 	["o" "∘"]
-  ["o_" "⍛"]
+  ;; ["o_" "⍛"]
   ["oo" "∘"]
   ["ou" "⍛"]
-  ["._" "⍛"]
+  ;; ["._" "⍛"]
   [".u" "⍛"]
   [".r" "⍛"]
   ["rh" "⍛"] ; reverse hook
@@ -934,12 +943,13 @@
   ["cin" "⍧"]; count-in in dzaima/APL
   ["um" "⍧"]; unique mask in dzaima/APL
   ["ns" "⍧"]; nub sieve
+  ["Cst" "⍧"]
+  ["Cs" "⍧"]
   ["csti" "⍧"]
   ["cst" "⍧"]
   ["(st" "⍧"]
-  ["pri'" "⍭"]; primes in Extended Dyalog
-  ["tsti'" "⍭"]; primes in Extended Dyalog
-  ["tst'" "⍭"]; primes in Extended Dyalog
+  ["pri" "⍭"]; primes in Extended Dyalog
+  ["pr" "⍭"]; primes in Extended Dyalog
   ["und" "⍢"]; under
   ["D:" "⍢"]; del
   ["d:" "⍢"]; del
@@ -982,10 +992,10 @@
 
   ;; ---- idioms ------
   ["tai" "1↓"]; tail (Haskell semantic)
-  ["tl" "1↓"]; tail (Haskell semantic)
   ["beh" "1↓"]; behead
   ["be" "1↓"]; behead
   ["last" "¯1↑"]; last
+  ["las" "¯1↑"]; last
   ["la" "¯1↑"]; last
   ["end" "¯1↑"]; last
   ["curt" "¯1↓"]; curtail
@@ -1113,6 +1123,7 @@
   ["/" "%"]
   ["/." "%."]
   ["/;" "%:"]
+  ["\\;" "\\:"]; escaped here
   ["ca." "^."]
   ["ca;" "^:"]
   ["u." "^."]
@@ -1136,24 +1147,22 @@
   ["pl;" "+:"]
   ["e." "=."]
   ["e;" "=:"]
-  ["cl." "{."]
-  ["cl;" "{:"]
-  ["cr." "}."]
-  ["cr;" "}:"]
-  ["sl." "[."]
-  ["sl;" "[:"]
-  ["sr." "]."]
-  ["sr;" "]:"]
-  ["bl" "["] ; bracket
-  ["br" "]"]
-  ["sl" "["] ; square bracket
-  ["sr" "]"]
-  ["cl" "{"] ; curly
-  ["cr" "}"] ; curly
+  ["ch." "{."]
+  ["ch;" "{:"]
+  ["cl." "}."]
+  ["cl;" "}:"]
+  ["sh." "[."]
+  ["sh;" "[:"]
+  ["sl." "]."]
+  ["sl;" "]:"]
+  ["bh" "["] ; bracket
+  ["bl" "]"]
+  ["sh" "["] ; square bracket
+  ["sl" "]"]
+  ["ch" "{"] ; curly
+  ["cl" "}"] ; curly
   ["jd" "%"] ; J divide
   ["jc" "NB. "] ; J comment
-  ["nb" "N.B. "] ; J comment
-  ["NB" "N.B. "] ; J comment
 
 ])
 
@@ -1164,8 +1173,8 @@
  [
 
 	;; Racket
-	["ht" "#t"] ; t is taken by "    " for tabbing
-	["f" "#f"]
+	;; ["ht" "#t"] ; t is taken by "    " for tabbing
+	;; ["f" "#f"]
 	;; ["emp" "'()"]
 	;; ["em" "empty"]
 	;; ["emp" "empty"]
@@ -1549,7 +1558,7 @@
 
 	["ang" "∠"]
 
-  ["perp" "⊥"] ["bot" "⊥"] ["top" "⊤"] ["mdot" "⋅"]
+  ["perp" "⊥"] ["bot" "⊥"] ["top" "⊤"] ["dop" "⋅"] ; dot operator
 
   ["ceih" "⌈"] ["ceil" "⌉"] ["flrh" "⌊"] ["flrl" "⌋"]
 
@@ -1569,6 +1578,7 @@
   ["..." "…"]
   ["ran" "…"]
   ["rng" "…"]
+  ["rg" "…"]
   ["fdash" "‒"]
   ["wdash" "〜"]
   ["----" "——"] ; double m-dash
@@ -1629,10 +1639,9 @@
   ["m8" "⁻⁸"]
   ["m9" "⁻⁹"]
 
-  ["+up" "⁺"]
-  ["-up" "⁻"] ; "-" already taken by APL's high-minus ¯
-  ;; ["mm" "⁻"] ; "-" already taken by APL's high-minus ¯
-  ["=up" "⁼"]
+  ["+" "⁺"]
+  ["-" "⁻"]
+  ["=" "⁼"]
   ["(up" "⁽"]
   [")up" "⁾"]
   ["nup" "ⁿ"]
@@ -1675,7 +1684,41 @@
   ["_u" "ᵤ"]
   ["_v" "ᵥ"]
   ["_x" "ₓ"]
-  ["_schwa" "ₔ"]
+  ["_sch" "ₔ"]; schwa
+
+  ["(_" "₍"]
+  [")_" "₎"]
+  ["+_" "₊"]
+  ["-_" "₋"]
+  ["0_" "₀"]
+  ["1_" "₁"]
+  ["2_" "₂"]
+  ["3_" "₃"]
+  ["4_" "₄"]
+  ["5_" "₅"]
+  ["6_" "₆"]
+  ["7_" "₇"]
+  ["8_" "₈"]
+  ["9_" "₉"]
+  ["=_" "₌"]
+  ["a_" "ₐ"]
+  ["e_" "ₑ"]
+  ["h_" "ₕ"]
+  ["i_" "ᵢ"]
+  ["j_" "ⱼ"]
+  ["k_" "ₖ"]
+  ["l_" "ₗ"]
+  ["m_" "ₘ"]
+  ["n_" "ₙ"]
+  ["o_" "ₒ"]
+  ["p_" "ₚ"]
+  ["r_" "ᵣ"]
+  ["s_" "ₛ"]
+  ["t_" "ₜ"]
+  ["u_" "ᵤ"]
+  ["v_" "ᵥ"]
+  ["x_" "ₓ"]
+  ["sch_" "ₔ"]; schwa
 
   ["(d" "₍"] ; "down"
   [")d" "₎"]
@@ -1725,7 +1768,7 @@
   ["udo" "ᵤ"]
   ["vdo" "ᵥ"]
   ["xdo" "ₓ"]
-  ["schwado" "ₔ"]
+  ["schdo" "ₔ"]; schwa
 
   ])
 

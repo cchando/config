@@ -233,11 +233,11 @@ values."
 															 ;;  	:width normal
 															 ;;  	:powerline-scale 1.1)
 
-															 ;; ("Fira Code"
-															 ;;  :size 12
-															 ;;  :weight normal
-															 ;;  :width condensed
-															 ;;  :powerline-scale 1.1)
+															 ("Fira Code"
+															  :size 12
+															  :weight normal
+															  :width condensed
+															  :powerline-scale 1.1)
 
 															 ;; ("Iosevka"
 															 ;;  :size 12
@@ -251,11 +251,17 @@ values."
 															 ;;  :width condensed
 															 ;;  :powerline-scale 1.1)
 
-															 ("Code2000"
-															  :size 12
-															  :weight semibold
-															  :width condensed
-															  :powerline-scale 1.1)
+															 ;; ("Code2000"
+															 ;;  :size 12
+															 ;;  :weight semibold
+															 ;;  :width condensed
+															 ;;  :powerline-scale 1.1)
+
+															 ;; ("Noto Sans Mono"
+															 ;;  :size 12
+															 ;;  :weight semibold
+															 ;;  :width condensed
+															 ;;  :powerline-scale 1.1)
 
 															 )
    ;; The leader key
@@ -452,7 +458,14 @@ you should place your code here."
 
 	;; Fira Code    diaeresis
 	;; Hasklig      diaeresis
+  ;; --------- APL: ---------
+  ;; Cambria Math
+  ;; Noto Sans Mono
+  ;; Code2000
 	;; DejaVu Sans Mono
+
+
+  ;; --------- Mathematics: ---------
   ;; DejaVu Math TeX Gyre
 	;; Latin Modern Math
 	;; XITS Math
@@ -460,10 +473,24 @@ you should place your code here."
 	;; Libertinus Math
 	;; TeX Gyre Bonum Math
 	;; TeX Gyre Schola Math
+
+  ;; --------- Arrows: ---------
 	;; Verdana     arrows
 	;; Liberation Sans     arrows
 	;; TeX Gyre Schola (Math)    arrows
 	;; FreeMono     ⍸ ⍷ ⍘ ⍚  (⍹ ⍜ ⍪ ⍤)
+
+
+  ;; --------- Mathematical Letter-like Symbols:---------
+  ;; DejaVu Math TeX Gyre
+	;; Latin Modern Math
+	;; XITS Math
+	;; STIX Two Math     ⍲ ⍱ ∆ ∇ ⍫  ≤ ≥ ⍎ ⍕ → ← ↑ ↓
+	;; Libertinus Math
+	;; TeX Gyre Bonum Math
+	;; TeX Gyre Schola Math
+	;; TeX Gyre Pagella Math
+
 	;; Hasklig:pixelsize=13:foundry=ADBO:weight=bold:slant=normal:width=normal:spacing=100:scalable=true
   ;; -ADBO-Hasklig-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1
 	;; -CTDB-Fira Code-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1
@@ -479,15 +506,16 @@ you should place your code here."
 
 	;; ----------- For minimal font set -------------------------------------------------------------
 
-	(set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code2000") ; math operators block
+	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
+  (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code2000") ; math operators block
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "STIX") ; math operators block
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Iosevka") ; arrows
 	(set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Code2000") ; arrows
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX") ; arrows
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Sans Mono") ; arrows
-	(set-fontset-font "fontset-default" '(#x1D400 . #x214F) "STIX") ; mathematical alphanumeric and letterlike symbols
+	(set-fontset-font "fontset-default" '(#x1D400 . #x214F) "TeX Gyre Pagella Math") ; mathematical alphanumeric and letterlike symbols
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Iosevka") ; APL symbols
-	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
 
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code 2000") ; math operators block
 
@@ -796,110 +824,113 @@ you should place your code here."
 						 ;; ("for_" .      "∀")
 						 ;; ("forM" .      "∀")
 						 ;; ("forM_" .      "∀")
-						 ;; --- Functional ---
-						 ;; ("<=" .    "⩽")
-						 ;; (">=" .    "⩾")
+						 ("for-each" .      "∀")
 						 ("\\" .      "λ")
 						 ("lambda" .      "λ")
-						 ;; ("list" .      "ε")
-						 ("exact-ceiling" .     "⌈")
-						 ("exact-floor" .     "⌊")
-						 ("take" .     "↑") ;
-						 ("drop" .     "↓") ;
-						 ("car" .     "⊃") ;
-						 ("¯" .     "⁻") ; high-minus (macron) → superscript -
-						 ("~" .     "∼") ; tilde → tilde operator
-						 ("cdr" .     "↓") ;
-						 ;; ("modulo" .      "%")
-						 ("modulo" .      "|")
-						 ;; ("mod" .      "%")
-						 ("mod" .      "|")
-						 ("abs" .      "|")
-						 ;; ("+" .    "∑")
-						 ("sum" .   "∑")
-						 ;; ("*" .    "∏")
-						 ("product" .    "∏") ; 𝚷
-						 ;; ("/" .    "÷")
-						 ;; ("sqrt" .    "√")
-						 ;; --- decent-readability-to-others separater ---
-						 ;; ("list-ref" .     "‼")
-						 ;; ("if" .     "?")
-						 ("let" .     "∴")
-						 ("let*" .     "∴")
-						 ;; ("where" .     "∵")
-						 ("cons" .     ":")
-						 ("head" .     "⊃")
-						 ("tail" .    "↓")
-						 ("first" .     "⊃")
-						 ("rest" .     "↓")
+
+
+
+						 ;; ;; --- Functional ---
+						 ;; ;; ("<=" .    "⩽")
+						 ;; ;; (">=" .    "⩾")
+						 ;; ;; ("list" .      "ε")
+						 ;; ("exact-ceiling" .     "⌈")
+						 ;; ("exact-floor" .     "⌊")
+						 ;; ("take" .     "↑") ;
+						 ;; ("drop" .     "↓") ;
+						 ;; ("car" .     "⊃") ;
+						 ;; ("¯" .     "⁻") ; high-minus (macron) → superscript -
+						 ;; ("~" .     "∼") ; tilde → tilde operator
+						 ;; ("cdr" .     "↓") ;
+						 ;; ;; ("modulo" .      "%")
+						 ;; ("modulo" .      "|")
+						 ;; ;; ("mod" .      "%")
+						 ;; ("mod" .      "|")
+						 ;; ("abs" .      "|")
+						 ;; ;; ("+" .    "∑")
+						 ;; ("sum" .   "∑")
+						 ;; ;; ("*" .    "∏")
+						 ;; ("product" .    "∏") ; 𝚷
+						 ;; ;; ("/" .    "÷")
+						 ;; ;; ("sqrt" .    "√")
+						 ;; ;; --- decent-readability-to-others separater ---
+						 ;; ;; ("list-ref" .     "‼")
+						 ;; ;; ("if" .     "?")
+						 ;; ("let" .     "∴")
+						 ;; ("let*" .     "∴")
+						 ;; ;; ("where" .     "∵")
+						 ;; ("cons" .     ":")
+						 ;; ("head" .     "⊃")
+						 ;; ("tail" .    "↓")
+						 ;; ("first" .     "⊃")
+						 ;; ("rest" .     "↓")
 						 ;; ("take" .      "↑")
 						 ;; ("drop" .      "↓")
-						 ("compose1" .  "∘")
-						 ("<<<" .  "∘")
-						 (">>>" .  "⋙")
-						 ("compose" .  "⍛")
-						 ("log" .      "⍟")
-						 ("add1" .      "∆")
-						 ;; ("select" .      "σ")
-						 ("!!" .      "⊃")
-						 ("flip" .      "⍨")
-						 ("equal?" .      "≡")
-						 ("eq?" .      "≡")
-						 ("not-equal?" .      "≢")
-						 ("map" .    "¨") ; ↦ ⮕ ⍈ ¨
-						 ("fmap" .    "¨") ; ↥ ↦ ¨
-						 ("max" .    "⌈")
-						 ("min" .    "⌊")
-						 ("length" .      "⍴")
-						 ("reverse" .      "⌽")
-						 ("build-list" .      "⍳")
-						 ("range" .      "⍳")
+						 ;; ("compose1" .  "∘")
+						 ;; ;; ("<<<" .  "∘")
+						 ;; ;; (">>>" .  "⋙")
+						 ;; ;; ("compose" .  "⍛")
+						 ;; ("log" .      "⍟")
+						 ;; ("add1" .      "∆")
+						 ;; ;; ("select" .      "σ")
+						 ;; ("!!" .      "⊃")
+						 ;; ("flip" .      "⍨")
+						 ;; ("equal?" .      "≡")
+						 ;; ("eq?" .      "≡")
+						 ;; ("not-equal?" .      "≢")
+						 ;; ;; ("map" .    "¨") ; ↦ ⮕ ⍈ ¨
+						 ;; ;; ("fmap" .    "¨") ; ↥ ↦ ¨
+						 ;; ("max" .    "⌈")
+						 ;; ("min" .    "⌊")
+						 ;; ("length" .      "⍴")
+						 ;; ("reverse" .      "⌽")
+						 ;; ("build-list" .      "⍳")
+						 ;; ("range" .      "⍳")
 						 ;; ("exact-floor" .    "⌊")
 						 ;; ("exact-ceiling" .    "⌈")
 						 ;; ("ceiling" .     "⌈")
 						 ;; ("floor" .     "⌊")
-						 ("exact-floor" .    "⌋")
-						 ("exact-ceiling" .    "⌉")
-						 ("ceiling" .     "⌉")
-						 ("floor" .     "⌋")
-						 ("foldl" .  "⮢")
-						 ("foldr" .  "⮣")
-						 ("sort" .     "⍋")
-						 ("remove*" .      "∼")
-						 ("remove" .      "∼")
-						 ("apply" .   "↥")
+						 ;; ("exact-floor" .    "⌋")
+						 ;; ("exact-ceiling" .    "⌉")
+						 ;; ;; ("ceiling" .     "⌉")
+						 ;; ;; ("floor" .     "⌋")
+						 ;; ;; ("foldl" .  "⮢")
+						 ;; ;; ("foldr" .  "⮣")
+						 ;; ("sort" .     "⍋")
+						 ;; ("remove*" .      "∼")
+						 ;; ("remove" .      "∼")
+						 ;; ("apply" .   "↥")
 						 ;; ("format" .    "⍕")
 						 ;; ("eval" .    "⍎")
-						 ("list-ref" .  "⊃")
-						 ("filter" .      "⊇")
-						 ("filter-not" .      "⊉")
-						 ("concat" .    ",")
-						 ("append" .      ",")
-						 ("append*" .      ",")
-						 ("string-append" .    ",")
-						 ("string-append*" .    ",")
-						 ("curry" .   "⫶") ; ⫶ ⋮ ⦙
-						 ;; ("compose1" .  "⋘")
-						 ;; ("compose" .  "⍛")
-						 ;; ("."  .   "∘") ; haskell infix use
-						 ;; ("powerset" .    "℘")
-						 ;; ("cross" .    "⨯")
-						 ;; ("del" .  "∇")
-						 ;; ("nabla" .  "∇")
-						 ;; ("-o" .  "⊸")
-						 ;; ("++" .      "◇")
-						 ;; ("<*>" .   "⊛")
-						 ;; ("mappend" .   "⊕")
-						 ;; ("`mappend`" .   "⊕")
-						 ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
-						 ;; ("join" .   "⨝") ; µ ⨝
-						 ;; ("bind" .   "η")
-						 ;; ("yield" .   "⮨")
-						 ;; ("divide" .    "÷")
-						 ("for-each" .      "∀")
-						 ;; ("sub" .      "-")
-						 ;; ("product" .    "∏")
-						 ;; ("coproduct" .    "∐")
+						 ;; ;; ("list-ref" .  "⊃")
+						 ;; ("filter" .      "⌿")
+						 ;; ;; ("concat" .    ",")
+						 ;; ;; ("append" .      ",")
+						 ;; ;; ("append*" .      ",")
+						 ;; ;; ("string-append" .    ",")
+						 ;; ;; ("string-append*" .    ",")
+						 ;; ;; ("curry" .   "⫶") ; ⫶ ⋮ ⦙
+						 ;; ;; ("compose1" .  "⋘")
+						 ;; ;; ("compose" .  "⍛")
+						 ;; ;; ("."  .   "∘") ; haskell infix use
+						 ;; ;; ("powerset" .    "℘")
+						 ;; ;; ("cross" .    "⨯")
+						 ;; ;; ("del" .  "∇")
+						 ;; ;; ("nabla" .  "∇")
+						 ;; ;; ("-o" .  "⊸")
+						 ;; ;; ("++" .      "◇")
+						 ;; ;; ("<*>" .   "⊛")
+						 ;; ;; ("mappend" .   "⊕")
+						 ;; ;; ("`mappend`" .   "⊕")
+						 ;; ("return" .   "⮩") ;⮩ ⮨ ⮡ ⤷ ⤶ ⏎ ⭅ ➥ ⟾ ⟻ ⟼ η
+						 ;; ;; ("join" .   "⨝") ; µ ⨝
+						 ;; ;; ("bind" .   "η")
+						 ;; ;; ("yield" .   "⮨")
+						 ;; ;; ("divide" .    "÷")
+						 ;; ;; ("sub" .      "-")
+						 ;; ;; ("product" .    "∏")
+						 ;; ;; ("coproduct" .    "∐")
+
 						 ;; --- Types ---
 						 ("Any" .      "𝔸")
 						 ("Integer" .      "ℤ")
@@ -1349,8 +1380,8 @@ you should place your code here."
 		 "go"   'isearch-forward-word
 		 "gk"   'vile-invert-char
 		 "gc"   'evil-invert-case
-		 ;; "gu"   'evil-upcase
-		 ;; "gU"   'evil-downcase
+		 "gu"   'evil-upcase
+		 "gU"   'evil-downcase
 		 "("    'evil-backward-paragraph
 		 ")"    'evil-forward-paragraph
 		 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
