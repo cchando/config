@@ -427,8 +427,8 @@ map('cd', ';j'); // close Downloads bar
 map('tj', ';gt'); // "tab join": [join into current window] filtered tabs from another window, filtered from Omnibar
 unmap(';gt');
 
-map('<Alt-p>', ';s'); // toggle pdf viewer
-// unmap(';s');
+// map('<Alt-p>', ';s'); // toggle pdf viewer
+// // unmap(';s');
 
 map('gH', 'g#'); // open current url without hash fragment
 // unmap('g#');
@@ -467,7 +467,7 @@ unmap('ymc');
 
 // !!! must put this AFTER all mappings based on ';'-prefixed default bindings
 map('<Ctrl-;>', '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
-// map('<Ctrl-;>', '<Ctrl-6>'); // toggle prev tab (must map AFTER any "map('⍵', ';_')")
+map("\\", '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
 unmap('<Ctrl-6>');
 
 
