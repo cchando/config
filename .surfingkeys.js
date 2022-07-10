@@ -124,9 +124,9 @@ map('_t', 't'); // temp key
 unmap('t'); // make '⍵_' space available; said space will be preemtively shadowed otherwise
 // map('tt', 'on'); // open new tab
 mapkey('tt', '#3Open newtab', function() {
-    tabOpenLink("https://startpage.com");
+    // tabOpenLink("https://startpage.com");
     // tabOpenLink("file:///home/cameron/.blank");
-    // tabOpenLink("https://google.com");
+    tabOpenLink("https://google.com");
 });
 
 map('_on', 'on');
