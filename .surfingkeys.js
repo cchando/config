@@ -551,7 +551,7 @@ addSearchAlias('w', 'wikipedia', 'https://en.wikipedia.org/wiki/');
 addSearchAlias('u', 'github', 'https://github.com/search?q=');
 addSearchAlias('M', 'google maps', 'https://www.google.com/maps?q=');
 addSearchAlias('g', 'google', 'https://www.google.com/search?q=');
-addSearchAlias('G', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
+addSearchAlias('s', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
 // addSearchAlias('G', 'google', 'https://www.google.com/search?q=site%3A' + window.location.href.replace(/\?)+'%20'); // search pages only from current site --> replace everything after hostname, e.g., after '*.com' or '*.net'
 // window.location.href = window.location.href.replace(/\?[^\?]*$/, ''); --> 'g?' for reference
 
@@ -577,8 +577,8 @@ mapkey('sa', '#8Search Arch-Linux Wiki', function() {
 mapkey('sg', '#8Search with Google', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "g"});
 });
-mapkey('sG', '#8Search with Google on current site only', function() {
-		Front.openOmnibar({type: "SearchEngine", extra: "G"});
+mapkey('ss', '#8Search with Google on current site only', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "s"});
 });
 mapkey('sy', '#8Search Youtube', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "y"});
