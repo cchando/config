@@ -417,7 +417,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -507,9 +507,9 @@ you should place your code here."
 
 	;; ----------- For minimal font set -------------------------------------------------------------
 
-	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Noto Sans Mono") ; APL symbols
+	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
-  (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "DejaVu Serif") ; math operators block
+  (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code2000") ; math operators block
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Iosevka") ; arrows
 	(set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Code2000") ; arrows
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX") ; arrows
@@ -1704,7 +1704,13 @@ you should place your code here."
  '(evil-snipe-enable-highlight nil)
  '(evil-snipe-enable-incremental-highlight nil)
  '(evil-surround-pairs-alist
-   '((113 "`" . "'")
+   '((48 "----
+" . "
+----")
+     (57 "----
+" . "
+----")
+     (113 "`" . "'")
      (80 "+++" . "+++")
      (112 "+" . "+")
      (68 "``" . "''")
@@ -1735,7 +1741,7 @@ you should place your code here."
      (60 . evil-surround-read-tag)
      (102 . evil-surround-function)))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#010F1D" t)
+ '(fci-rule-color "#010F1D")
  '(global-evil-search-highlight-persist nil)
  '(global-xah-math-input-mode t)
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")

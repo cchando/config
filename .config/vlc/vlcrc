@@ -5147,10 +5147,10 @@ global-key-random=Alt+s
 key-random=s
 
 # Normal/Loop/Repeat (string)
-#global-key-loop=
+global-key-loop=Alt+i
 
 # Normal/Loop/Repeat (string)
-key-loop=Ctrl+Shift+i
+key-loop=
 
 # Shrink the viewpoint field of view (360°) (string)
 #global-key-viewpoint-fov-in=

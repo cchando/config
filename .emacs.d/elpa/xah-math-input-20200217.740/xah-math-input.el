@@ -107,20 +107,20 @@
 	 ;; AsciiDoc
 	 ["t" "    "] ; 4 spaces
 	 ["dl" "----"]
-	 ["dldl" "------------------------------------"]
+	 ["so" "----\n\n----"]; source code (adoc)
+	 ["DL" "------------------------------------"]
 	 ["hh" "== "] ; header — adoc
 	 ["hhh" "=== "] ; header — adoc
 	 ["hhhh" "==== "] ; header — adoc
 	 ["hhhhh" "===== "]; header — adoc
-	 ["E" "===="] ; still 4 e's -> adoc use
-	 ["eee" "===="] ; still 4 e's -> adoc use
-	 ["eeee" "===="] ; adoc use
+	 ["E" "==== "] ; still 4 ='s -> adoc use
+	 ["H" "==== "] ; still 4 ='s -> adoc use
 	 ["pb" "++++"] ; passthrough block -> adoc use
 	 ["pass" "++++"] ; passthrough block -> adoc use
 	 ["lb" "...."] ; literal block -> adoc use
 	 ["lit" "...."] ; literal block -> adoc use
 	 ["esc" "+++"] ; escaped -> adoc use
-	 ["ESC" "++++++"] ; escaped -> adoc use
+	 ["ESC" "+++ +++"] ; escaped -> adoc use
 
 
    ;; digits
@@ -248,18 +248,32 @@
 	 ["maths" "mathematics"]
 	 ["prop" "proposition"]
 	 ["bywa" "by the way "]
+	 ["wo'" "without"]
+	 ["q" "question"]
+	 ["num" "number"]
+	 ["instr" "instruction"]
+	 ["instrs" "instructions"]
+	 ["tut" "tutorial"]
 
 	 ;; computing
 	 ["gen" "generate"]
+	 ["gena" "generative"]; adjective
+	 ["primrec" "primitive recursion"]
+	 ["linrec" "linear recursion"]
+	 ["binrec" "binary recursion"]
+	 ["genrec" "generative recursion"]
 	 ["imp" "implication"]
 	 ["cpt" "compute"]
+	 ["cmpt" "compute"]
 	 ["ans" "answer"]
 	 ["elg" "elegant"]
 	 ["alang" "array language"]
 	 ["slang" "stack language"]
-	 ["dept" "dependent typing"]
-	 ["dty" "dependent typing"]
-	 ["dtyp" "dependent typing"]
+	 ["arrl" "array language"]
+	 ["stackl" "stack language"]
+	 ["depts" "dependent types"]
+	 ["deptp" "dependent typing"]; present tense
+	 ["depting" "dependent typing"]; present tense
 	 ["ahk" "AutoHotkey"]
 	 ["cfg" "context-free grammar"]
 	 ["cj" "Clojure"]
@@ -283,7 +297,6 @@
 	 ["notl" "notational"]
 	 ["stmt" "statement"]
 	 ["expr" "expression"]
-	 ["exp" "expression"]
 	 ["exprs" "expressions"]
 	 ["exps" "expressions"]
 	 ["subexpr" "subexpression"]
@@ -295,6 +308,10 @@
 	 ["expo" "exponent"]
 	 ["char" "character"]
 	 ["chr" "character"]
+	 ["autho" "authorization"]
+	 ["authe" "authentication"]
+	 ["init" "initialize"]
+	 ["initn" "initialization"]
 	 ["conj" "conjunction"]
 	 ["cjn" "conjunction"]
 	 ["op" "operator"]
@@ -308,36 +325,48 @@
 	 ["epar" "enclosing parentheses"]
 	 ["ebrac" "enclosing braces"]
 	 ["ebrak" "enclosing brackets"]
+	 ["encbrac" "enclosing braces"]
+	 ["encbrak" "enclosing brackets"]
 	 ["outm" "outermost"]
 	 ["inm" "innermost"]
 	 ["intdep" "interdependent"]
-	 ["intde" "interdependent"]
-	 ["intdp" "interdependent"]
+	 ["interd" "interdependent"]
+	 ["interc" "interconnected"]
 	 ["inde" "independent"]
 	 ["orth" "orthogonal"]
 	 ["ortho" "orthogonal"]
+	 ["orthn" "orthogonalization"]; noun
+	 ["orthon" "orthogonalization"]; noun
 	 ["ialo" "inner→outer"]
 	 ["iglo" "inner→outer"]
 	 ["oali" "outer→inner"]
 	 ["ogli" "outer→inner"]
-	 ["homoic" "homoiconic"]
-	 ["homo" "homomorphism"]
+	 ["hashm" "hashmap"];
+	 ["hasht" "hashtable"];
+	 ["dic" "dictionary"];
+	 ["adj" "adjective"];
+	 ["homoa" "homoiconic"]; adjective
+	 ["homon" "homomorphism"]; noun
 	 ["homoc" "homomorphic"]
 	 ["isom" "isomorphism"]
 	 ["isomc" "isomorphic"]
-	 ["epimc" "epimorphic"]
-	 ["epims" "epimorphism"]
-	 ["epimsm" "epimorphism"]
-	 ["surjc" "epimorphism"]
+	 ["epia" "epimorphic"]; adjective
+	 ["epin" "epimorphism"]; noun
+	 ["surn" "surjection"]; noun
+	 ["sura" "surjective"]; adjective
 	 ["trad" "traditional"]
 	 ["metap" "metaprogramming"]
+	 ["metac" "metacognition"]
 	 ["hask" "Haskell"]
-	 ["ml" "Standard ML"]
+	 ["stdml" "Standard ML"]
+	 ["ml" "machine learning"]
+	 ["ai" "artificial intelligence"]
 	 ["exd" "Extended Dyalog"]
 	 ["edy" "Extended Dyalog"]
 	 ["edya" "Extended Dyalog APL"]
 	 ["exda" "Extended Dyalog APL"]
 	 ["dza" "dzaima/APL"]
+	 ["dapl" "dzaima/APL"]
 	 ["ngn" "ngn/APL"]
 	 ["nars" "NARS2000"]
 	 ["narsa" "NARS2000 APL"]
@@ -346,9 +375,9 @@
 	 ;; tech company
 	 ["gc" "Google Chrome"]
 	 ["chrome" "Google Chrome"]
-	 ["ff" "Firefo"]
-	 ["ff" "Mozilla Firefo"]
-	 ["mz" "Mozill"]
+	 ["ff" "Firefox"]
+	 ["ff" "Mozilla Firefox"]
+	 ["mz" "Mozilla"]
 	 ["gm" "Google Maps"]
 	 ["macos" "Mac OS"]
 	 ["mwin" "Microsoft Windows"]
@@ -494,10 +523,10 @@
 
 
   ; Set logic
-	["U" "∪"]
-	["I" "∩"]
- 	["UNI" "⋃"]; n-ary
-	["INT" "⋂"]; n-ary
+	["UN" "∪"]
+	["INT" "∩"]
+ 	["UNN" "⋃"]; n-ary
+	["INTN" "⋂"]; n-ary
  	["(/" "⊄"]
  	["C/" "⊄"]
  	["c/" "⊄"]
@@ -623,7 +652,7 @@
 	["succ" "≻"]
 	["prer" "⊰"] ; precedes under relation
 	["sucr" "⊱"] ; succeeds under relation
-	["::" "∷"]
+	[":::" "∷"]; "::" taken by APL 'each' (¨); just having ":" leads to easy mistakes why typing all-caps word followed by colon
 	["prop" "∝"]
 	["pro" "∝"]
 	["O+" "⊕"]
@@ -646,11 +675,10 @@
   ;; ["ct" "⊗ "] ; circle times
   ;; ["cm" "⊖ "] ; circle minus
   ;; ["cd" "⊘ "] ; circle divide
-  ["'p" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
   ["p'" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
-  ["''" "″"] ; double prime
-  ["'''" "‴"] ; triple prime
-  ["''''" "⁗"] ; quad prime
+  ["p''" "″"] ; double prime
+  ["p'''" "‴"] ; triple prime
+  ["p''''" "⁗"] ; quad prime
   [".m" "·"]
 
 
@@ -741,8 +769,6 @@
   ["is" "←"]
   ["def" "←"]
   ["df" "←"]
-  ["stt" "⍭"]
-  ["|t" "⍭"]
   [")" "⊃"]
   ["he" "⊃"]; head
   ["x" "×"]
@@ -751,12 +777,9 @@
   ["box" "⊂"]; enclose
   ["(" "⊂"]
   [")u" "⊇"]
-  [")U" "⊇"]
   ["cu" "⊆"]
   ["Cu" "⊆"]
-  ["CU" "⊆"]
   ["(u" "⊆"]
-  ["(U" "⊆"]
   ;; ["vh" "⍅"] ; left vane
   ;; ["vl" "⍆"] ; right vane
   ;; ["vk" "⍏"] ; upward vane
@@ -842,7 +865,14 @@
   ["tr" "⍉"] ; transpose
   ["tra" "⍉"] ; transpose
   ["\\b" "⍀"] ; backslash bar; single backslash; escaped here
+  ["exp" "⍀"] ; backslash bar; single backslash; escaped here
+  ["expa" "⍀"] ; backslash bar; single backslash; escaped here
   ["/b" "⌿"] ; slash bar
+  ["rp" "⌿"] ; slash bar
+  ["rep" "⌿"] ; replicate
+  ["com" "⌿"] ; compress
+  ["co" "⌿"] ; compress
+  ["cm" "⌿"] ; compress
   ["gu" "⍋"]
   ["gd" "⍒"]
   ["gru" "⍋"]
@@ -861,10 +891,9 @@
   ["xc" "⍎"]
   ["ev" "⍎"]
   ["eva" "⍎"]
-  ["at" "@"]
   ["IB" "⌶"]
   ["ib" "⌶"]
-  [":" "¨"] ; each
+  ["::" "¨"] ; each
   ["ea" "¨"] ; each
   ["anan" "⍲"]
   ["ana" "⍲"]
@@ -873,7 +902,7 @@
   ["pow" "⍣"]
   ["pwr" "⍣"]
   ["pw" "⍣"]
-  ["sel" "⍨"] ; selfie
+  ["sel" "⍨"] ; selfie TODO: change back to "se" once I'm using kmonad for home-row numbers
   ["sese" "⍨⍨"]
   ["ra" "⍤"] ; rank
   ["rnk" "⍤"] ; rank
@@ -908,6 +937,8 @@
   ["b:" "⍠"] ; variant
   ["B:" "⍠"] ; variant
   ["b;" "⍠"] ; variant
+  ["va" "⍠"] ; variant
+  ["var" "⍠"] ; variant
   ["bb" "⎕"]
   ["sys" "⎕"]
   ["box" "⎕"]
@@ -934,7 +965,6 @@
   ["sym" "§"]
   ["sd" "§"]
   ["ss" "§"]
-  ["sti" "⍭"]
   ["mer" "⍈"]; merge in NARS2000 APL
   ["mrg" "⍈"]; merge in NARS2000 APL
   ["mr" "⍈"]; merge in NARS2000 APL
@@ -943,11 +973,7 @@
   ["cin" "⍧"]; count-in in dzaima/APL
   ["um" "⍧"]; unique mask in dzaima/APL
   ["ns" "⍧"]; nub sieve
-  ["Cst" "⍧"]
-  ["Cs" "⍧"]
-  ["csti" "⍧"]
-  ["cst" "⍧"]
-  ["(st" "⍧"]
+  ["us" "⍧"]; unique sieve
   ["pri" "⍭"]; primes in Extended Dyalog
   ["pr" "⍭"]; primes in Extended Dyalog
   ["und" "⍢"]; under
@@ -957,6 +983,7 @@
   ["t:" "⍡"]
   ["t;" "⍡"]
   ["cumul" "⍡"]; cumulative repeat
+  ["cur" "⍡"]; cumulative repeat
   ["cmlt" "⍡"]; cumulative repeat
   ["cml" "⍡"]; cumulative repeat
   ["cre" "⍡"]; cumulative repeat
@@ -975,8 +1002,10 @@
   ["V" "∇"]
   ["VV" "∇∇"]
   ;; ["DDD" "∇∇∇"]
-  ["ac" "⍝ "] ; APL comment
-  ["aco" "⍝ "] ; APL comment
+  ["ac" "    ⍝ "] ; APL comment
+  ["ac'" "⍝ "] ; APL comment
+  ["aco" "    ⍝ "] ; APL comment
+  ["aco'" "⍝ "] ; APL comment
   ["ninf" "¯∞"]; neg. infinity
   ["dfns" "⌂"]; dfns workspace
   ["ho" "⌂"]
@@ -999,7 +1028,6 @@
   ["la" "¯1↑"]; last
   ["end" "¯1↑"]; last
   ["curt" "¯1↓"]; curtail
-  ["cur" "¯1↓"]; curtail
   ["drla" "¯1↓"]; "drop last"
   ["sq" "*2"]; square
   ["root" "*0.5"]
@@ -1094,8 +1122,8 @@
 	["alb" "↤"]
 	["from" "↤"]
 	["adb" "↧"]
-  ["b" "``"] ; back-ticks
-  ["'" "`"] ; single back-tick
+  [";" "`"] ; single back-tick
+  [";;" "``"] ; back-tick pair
 
 
 
@@ -1376,7 +1404,7 @@
 	["PS" "Path-String "]
 	["ST" "String "]
 	["SY" "Symbol "]
-	["H" "HashTable "]
+	["HT" "HashTable "]
 	["HA" "HashTable "]
 	["HI" "ImmutableHashTable "]
 	["HM" "MutableHashTable "]
@@ -1483,7 +1511,7 @@
 	;; ["PA" "Pair "]
 	;; ["ST" "String "]
 	;; ["SY" "Symbol "]
-	;; ["H" "HashTable "]
+	;; ["HT" "HashTable "]
 	;; ["HI" "ImmutableHashTable "]
 	;; ["HM" "MutableHashTable "]
 	;; ["L^" "Non-Empty-List "]
@@ -1597,7 +1625,7 @@
 (xah-math-input--add-to-hash
  [
   ["m2" "㎡"]
-  ["cm" "㎝"]
+  ["cm'" "㎝"]
   ["cm2" "㎠"]
   ["cm3" "㎤"]
   ] )
