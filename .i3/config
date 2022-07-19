@@ -277,6 +277,7 @@ new_float none
 		    bindsym g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
 		    bindsym Shift+g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
 		    bindsym l exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
+		    bindsym m exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/mixed-short.m3u"; mode "default"
 		    bindsym n exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
 		    bindsym p exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
 		    bindsym s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
@@ -364,7 +365,7 @@ new_float none
         # reload the config file
 				bindsym c reload
 				# restart i3
-				bindsym r restart
+				# bindsym r restart
 				# exit i3 (logs you out of your X session)
 				bindsym $mod+Shift+e exit
 				bindsym Escape mode "default"
@@ -496,28 +497,17 @@ new_float none
 		# TODO: find out how to do this correctly
     # bindsym $mod+Shift+s exec emacs -fs -q -l ~/.spacemacs-default-mod
 
-    # ## pulseaudio (volume control)
-    # ## toggle mute
-    # bindsym $mod+Return exec pulseaudio-ctl mute
-    # ## vol down
-    # bindsym $mod+9 exec pulseaudio-ctl down
-    # bindsym $mod+3 exec pulseaudio-ctl down
-    # ## vol up
-    # bindsym $mod+0 exec pulseaudio-ctl up
-    # bindsym $mod+4 exec pulseaudio-ctl up
-
-    # ## pamix (volume control)
-    # ## toggle mute
-    # bindsym $mod+Return exec pamix toggle-mute
-    # ## vol down
-    # bindsym $mod+9 exec pamix add-volume -0.05
-    # bindsym $mod+3 exec pamix add-volume -0.05
-    # ## vol up
-    # bindsym $mod+0 exec pamix add-volume +0.05
-    # bindsym $mod+4 exec pamix add-volume +0.05
-
-    # ## pamix (volume control)
-    # bindsym $mod+Return exec pamix
+    ## pulseaudio (volume control)
+    ## toggle mute
+    bindsym $mod+Return exec pulseaudio-ctl mute
+    ## vol down
+    bindsym $mod+9 exec pulseaudio-ctl down
+    bindsym $mod+3 exec pulseaudio-ctl down
+    bindsym $mod+d exec pulseaudio-ctl down
+    ## vol up
+    bindsym $mod+0 exec pulseaudio-ctl up
+    bindsym $mod+4 exec pulseaudio-ctl up
+    bindsym $mod+u exec pulseaudio-ctl up
 
     # # system volume control
     bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
@@ -821,7 +811,7 @@ bar {
     height 24
 # # mode dock|hide|invisible
 # # hidden_state hide|show
-		mode dock
+		mode hide
 		hidden_state hide
 		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons

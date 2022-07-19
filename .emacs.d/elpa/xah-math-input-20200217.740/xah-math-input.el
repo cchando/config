@@ -105,9 +105,12 @@
  '(
 
 	 ;; AsciiDoc
+	 ["??" "* ??? "]; personal notation for questions
+	 ["fill" "     -----------------------------------------------------"] ; replacement for empty lines in output to avoid blank lines for multi-line navigation purposes
 	 ["t" "    "] ; 4 spaces
-	 ["dl" "----"]
-	 ["so" "----\n\n----"]; source code (adoc)
+	 ["src" "[source]\n"] ; 4 spaces
+	 ["dl" "----"]; source code (adoc)
+	 ["dll" "----\n\n----"]; source code (adoc)
 	 ["DL" "------------------------------------"]
 	 ["hh" "== "] ; header — adoc
 	 ["hhh" "=== "] ; header — adoc
@@ -121,6 +124,7 @@
 	 ["lit" "...."] ; literal block -> adoc use
 	 ["esc" "+++"] ; escaped -> adoc use
 	 ["ESC" "+++ +++"] ; escaped -> adoc use
+	 ["note" "NOTE: "]
 
 
    ;; digits
@@ -135,6 +139,10 @@
    ["ei" "8"]
    ["ni" "9"]
    ["te" "10"]
+   ["fif" "15"]; time
+   ["thi" "30"]; time
+   ["fofi" "45"]; time
+   ["fof" "45"]; time
 
 	 ["s" "[]"] ; square
 	 ["c" "{}"] ; curly
@@ -198,15 +206,15 @@
 	 ["ie," "i.e., "]
 	 ["Ie," "I.e., "]
 	 ["IE," "I.e., "]
-	 ["ie'" "i.e. "]
-	 ["Ie'" "I.e. "]
-	 ["IE'" "I.e. "]
+	 ["ie" "i.e. "]
+	 ["Ie" "I.e. "]
+	 ["IE" "I.e. "]
 	 ["eg," "e.g., "]
 	 ["Eg," "E.g., "]
 	 ["EG," "E.g., "]
-	 ["eg'" "e.g. "]
-	 ["Eg'" "E.g. "]
-	 ["EG'" "E.g. "]
+	 ["eg" "e.g. "]
+	 ["Eg" "E.g. "]
+	 ["EG" "E.g. "]
 	 ["cf" "c.f. "]
 	 ["Cf" "C.f. "]
 	 ["CF" "C.f. "]
@@ -239,6 +247,7 @@
 	 ["youre" "you're"]
 	 ["ann" "announcement"]
 	 ["arg" "argument"]
+	 ["args" "arguments"]
 	 ["auto" "automatic"]
 	 ["bc" "because"]
 	 ["bg" "background"]
@@ -366,9 +375,15 @@
 	 ["edya" "Extended Dyalog APL"]
 	 ["exda" "Extended Dyalog APL"]
 	 ["dza" "dzaima/APL"]
+	 ["dza's" "dzaima/APL's"]
 	 ["dapl" "dzaima/APL"]
+	 ["dapl's" "dzaima/APL's"]
 	 ["ngn" "ngn/APL"]
+	 ["ngn's" "ngn/APL's"]
+	 ["apl" "APL"]
+	 ["apl's" "APL's"]
 	 ["nars" "NARS2000"]
+	 ["nars's" "NARS2000's"]
 	 ["narsa" "NARS2000 APL"]
 	 ["gnuapl" "GNU APL"]
 
@@ -400,6 +415,7 @@
 	 ["attr" "attribute"]
 	 ["wd" "web development"]
 	 ["db" "database"]
+	 ["dbs" "databases"]
 	 ["gui" "GUI"]
 	 ["gnu" "GNU"]
 	 ["gui'" "graphical user interface"]
@@ -770,6 +786,7 @@
   ["def" "←"]
   ["df" "←"]
   [")" "⊃"]
+  ["dis" "⊃"]; disclose
   ["he" "⊃"]; head
   ["x" "×"]
   ["C" "⊂"]
@@ -788,8 +805,9 @@
   ;; ["vd" "⍖"] ; downward vane
   ["div" "÷"]; divide
   ["di" "÷"]; divide
+
   ["x'" "×"]
-   ["-" "¯"] ; high minus
+  ["-" "¯"] ; high minus
   ;; ["_" "¯"] ; high minus
   ["n" "¯"] ; high minus
   ["lo" "⍟"]
@@ -797,6 +815,7 @@
   ["lg" "⍟"]
   ["ee" "≡"]; triple-equals
   ["ma" "≡"]; match
+  ["mat" "≡"]; match
   ["dep" "≡"]; depth
   ["tal" "≢"]; tally
   ["nat" "≢"]; not match "natch"
@@ -824,7 +843,7 @@
   ["in" "∊"] ; small element of; enlist
   ["e'" "∊"] ; to avoid issue with e.g., "Xe"→'
   ["eu" "⍷"]
-	["to" "*"]; exponent
+  ["to" "*"]; exponent
   ["flr" "⌊"] ; floor
   ["min" "⌊"]
   ["cei" "⌈"] ; ceiling
@@ -914,7 +933,7 @@
   ["wo" "~"]
   ["ov" "⍥"]
   ["ove" "⍥"] ; over
-	["o" "∘"]
+  ["o" "∘"]
   ;; ["o_" "⍛"]
   ["oo" "∘"]
   ["ou" "⍛"]
@@ -943,11 +962,9 @@
   ["sys" "⎕"]
   ["box" "⎕"]
   ["bo" "⎕"] ; box
-  ["dis" "⎕"] ; display
   ["ato" "⍤"]
   ["atop" "⍤"]
   ["ind" "⌷"]; index
-  ["mat" "⌷"]; materialize
   ["mate" "⌷"]; materialize
   ["key" "⌸"]
   ["ke" "⌸"]
@@ -981,7 +998,6 @@
   ["d:" "⍢"]; del
   ["T:" "⍡"]; cumulative repeat
   ["t:" "⍡"]
-  ["t;" "⍡"]
   ["cumul" "⍡"]; cumulative repeat
   ["cur" "⍡"]; cumulative repeat
   ["cmlt" "⍡"]; cumulative repeat
@@ -1117,6 +1133,7 @@
 	["emda" "—"]
 	["en" "–"]
 	["enda" "–"]
+	["mm" "——"]; double em-dash
 	["line" "———————————————"]
 	["bul" "• "]
 	["alb" "↤"]
@@ -1136,53 +1153,53 @@
 
   ;; J language
   ["ex." "!."]
-  ["ex;" "!:"]
-  ["at;" "@:"]
+  ["ex:" "!:"]
+  ["at:" "@:"]
   ["h." "#."]
-  ["h;" "#:"]
+  ["h:" "#:"]
   ["ha." "#."]
-  ["ha;" "#:"]
+  ["ha:" "#:"]
   ["do." "$."]
-  ["do;" "$:"]
+  ["do:" "$:"]
   ["S." "$."]
-  ["S;" "$:"]
+  ["S:" "$:"]
   ["pe." "%."]
-  ["pe;" "%:"]
+  ["pe:" "%:"]
   ["/" "%"]
   ["/." "%."]
-  ["/;" "%:"]
-  ["\\;" "\\:"]; escaped here
+  ["/:" "%:"]
+  ["\\:" "\\:"]; escaped here
   ["ca." "^."]
-  ["ca;" "^:"]
+  ["ca:" "^:"]
   ["u." "^."]
-  ["u;" "^:"]
+  ["u:" "^:"]
   ["up." "^."]
-  ["up;" "^:"]
+  ["up:" "^:"]
   ["am." "&."]
-  ["am;" "&:"]
-  ["am.;" "&.:"]
+  ["am:" "&:"]
+  ["am.:" "&.:"]
   ["as." "*."]
-  ["as;" "*:"]
+  ["as:" "*:"]
   ["st." "*."]
-  ["st;" "*:"]
+  ["st:" "*:"]
   ["m." "-."]
-  ["m;" "-:"]
+  ["m:" "-:"]
   ["mi." "-."]
-  ["mi;" "-:"]
+  ["mi:" "-:"]
   ["p." "+."]
-  ["p;" "+:"]
+  ["p:" "+:"]
   ["pl." "+."]
-  ["pl;" "+:"]
+  ["pl:" "+:"]
   ["e." "=."]
-  ["e;" "=:"]
+  ["e:" "=:"]
   ["ch." "{."]
-  ["ch;" "{:"]
+  ["ch:" "{:"]
   ["cl." "}."]
-  ["cl;" "}:"]
+  ["cl:" "}:"]
   ["sh." "[."]
-  ["sh;" "[:"]
+  ["sh:" "[:"]
   ["sl." "]."]
-  ["sl;" "]:"]
+  ["sl:" "]:"]
   ["bh" "["] ; bracket
   ["bl" "]"]
   ["sh" "["] ; square bracket

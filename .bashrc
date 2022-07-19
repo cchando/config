@@ -8,6 +8,10 @@
 # # If running in tty1, run startx
 # if [ "$(tty)" = "/dev/tty1" ]; then startx; fi
 
+# # If running in tty1, run sway
+# if [ "$(tty)" = "/dev/tty1" ]; then exec sway; fi
+
+
 shopt -s extglob dotglob globstar
 
 conda-shell () {
@@ -80,41 +84,47 @@ pkg-info () {
            (.meta.longDescription | rtrimstr("\n"))'
 }
 # alias anp='nix-env -f '<nixpkgs>' -iA'   # nodePackages.searchterm
-cdir () {
+cdir () { # make dir and go to it
     mkdir "$1" && cd "$1"
 }
-mdcd () {
+mdcd () { # make dir, and go to it
     mkdir "$1" && cd "$1"
+}
+mdcp () { # make dir, and copy file to it
+    mkdir "$1" && cp "$2" "$1"
+}
+mvmd () { # make dir and move file to it; specify file first
+    mkdir "$2" && mv "$1" "$2"
+}
+mvcd () {
+    mv "$1" "$2" && cd "$2"
+}
+cpcd () { # copy file to dir, and go there
+    cp "$1" "$2" && cd "$2"
 }
 findd () {
     find "$1" -name "$2" 2>/dev/null
 }
-mdcp () {
-    mkdir "$1" && cp "$2" "$1"
-}
-mdmv () {
-    mkdir "$1" && mv "$2" "$1"
-}
-mvmd () {
-    mkdir "$2" && mv "$1" "$2"
+rpmx () { # extract from rpm archive
+    rpm2cpio "$1" | cpio -idmv
 }
 
 # program aliases
 alias wpastart='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf '
 alias al='alias'
 alias h='history'
+alias g='grep'
 alias dl='echo !' # use as 'dl !<prefix string>', i.e., still insert '!'
 alias show='echo'
 alias lsg='ls | grep'
 alias lg='ls | grep'
 alias lstin='dnf list --installed'
+alias lsfonts='kitty list-fonts'
 alias lstfonts='kitty list-fonts'
-alias lf='kitty list-fonts'
 alias wh='which'
 alias ty='type'
 alias osver='hostnamectl' # OS version (and hardware) info
 alias bt='blueman-manager'
-alias rpmx='rpm2cpio myrpmfile.rpm | cpio -idmv' #rpm extract
 alias s='sway'
 alias 7zip='7za'
 alias ls='ls --color=never -hF'
@@ -144,10 +154,11 @@ alias rain1='killall mplayer; mplayer -loop 0 -softvol -volume 20 ~/Music/sleepr
 alias rain2='killall mplayer; mplayer -loop 0 -softvol -volume 30 ~/Music/sleeprain.ogg'
 alias rain3='killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg'
 alias egg="mplayer -loop 0 -softvol -volume 40 ~/Music/Level\ 1\ -\ Eggs\ of\ Steel_\ Charlie\'s\ Eggcellent\ Adventure.mp3"
-alias ht="mplayer -loop 0 -softvol -volume 40 ~/Music/Helltaker/Mittsies\ -\ Titanium.mp3"
-alias xflux='xflux -z 75044'
+alias ht="mplayer -loop 0 ~/Music/Helltaker/*"
 alias apl='cd $prog/dzaima-APL/ && ./REPL'
 alias dya='dyalog'
+# alias pg='sudo -u postgres psql postgres'
+alias pg=' psql -U cameron -d postgres'
 # alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
 
@@ -197,10 +208,11 @@ rl () {
 
 alias rs='systemctl --user enable --now wireplumber && systemctl --user restart pipewire' #restart sound
 alias p='pamix'
-alias ydl='youtube-dl -x --no-playlist -o "~/Music/youtube-dl/%(title)s.%(ext)s" --audio-format mp3'
+alias ydl='youtube-dl -cix --no-playlist -o "~/Music/youtube-dl/%(title)s.%(ext)s" --audio-format mp3'
 alias ydlp='youtube-dl -cix --yes-playlist -o "~/Music/youtube-dl/%(playlist)s/%(title)s.%(ext)s" --audio-format mp3'
 alias ydlv='youtube-dl --no-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
 alias ydlpv='youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(playlist)s/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
+alias ydlvp='ydlpv'
 
 # alias emacs-def='git stash push -m "push cac .spacemacs" && mkdir /home/cameron/tmp && mv /home/cameron/.spacemacs /home/cameron/tmp/ && mv -f /home/cameron/spacemacs-default /home/cameron/.spacemacs && emacs -mm'    # "emacs default"
 # alias emacs-cac='git stash pop'
@@ -218,10 +230,13 @@ alias defaultkeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
 alias xme='xmodmap -pke > ~/.Xmodmap-fallback-tmp'  # export current keymap to holding file
 alias xmexportpermanent='xmodmap -pke > ~/.Xmodmap-fallback'  # export current keymap to holding file
 alias key='xev'
+alias ipa='ip a | grep $wifi'
+alias wifist='ipa' # wifi status
 alias wifioff='sudo rfkill block all'
 alias wd='sudo rfkill block all'
 alias wifion='sudo rfkill unblock all'
 alias we='sudo rfkill unblock all'
+alias blocked='rfkill'
 alias size='du -sh'
 alias lmon='xrandr --current' # list monitors
 alias findp='find . -ipath'
@@ -229,10 +244,10 @@ alias cmd='command' # "raw"
 alias pgctl='pg_ctl'
 alias ir='i3-msg reload'
 alias vimode='set -o vi'
-alias tr='racket -I typed/racket'
-alias ra='racket'
-alias fonts='gucharmap'
-alias lfonts='gtk2fontsel'
+# alias tr='racket -I typed/racket'
+# alias ra='racket'
+# alias fonts='gucharmap'
+alias fonts='charmap'
 alias lst='ps -A | grep'
 alias xr='xrdb -merge ~/.Xdefaults'
 alias bat='acpi'    # or 'upower ...'
@@ -305,9 +320,11 @@ alias tag="git tag"
 
 export wifi="wlp1s0"
 export N="/dev/null"
+export n="/dev/null"
 export PATH="$PATH:$HOME/.rbenv/bin"
 export PATH="$PATH:$HOME:$HOME/.local/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/programs/search-nixpkgs"
 export PATH="${PATH}:/usr/lib/jvm/java-6-open-jdk/bin"
+export PATH="${PATH}:/usr/share/gems/gems"
 export AVOUTPUT="$HOME/AVOutput"
 export XDG_CONFIG_HOME="$HOME/.config"
 export TERM="kitty" #termite
@@ -316,6 +333,7 @@ export EDITOR="vim"
 export GIT_EDITOR="vim"
 export VISUAL="vim"
 export conf="$HOME/.config/"
+export cfg="$HOME/.config/"
 export h="$HOME"
 export doc="$HOME/Documents"
 export docs="$HOME/Documents"
@@ -327,17 +345,24 @@ export mus="$HOME/Music"
 export pic="$HOME/Pictures"
 export pics="$HOME/Pictures"
 export prog="$HOME/programs"
+export prg="$HOME/programs"
 export progs="$HOME/programs"
 export proj="$HOME/projects"
+export prj="$HOME/projects"
 export projs="$HOME/projects"
 export vid="$HOME/Videos"
 export vids="$HOME/Videos"
 
 # export NIXPKGS_ALLOW_UNFREE=1
 
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
+PS1='[\u \W] '
 
 stty -ixon
 
 eval "$(rbenv init - bash)"
 eval "$(rbenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
