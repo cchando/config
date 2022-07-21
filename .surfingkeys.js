@@ -114,7 +114,7 @@ map('_oh', 'oh');
 unmap('oh');
 
 map('_W', 'W');
-map('W', 'H'); // open from current tab's history
+map('W', 'H'); // open from tab history for current tab
 map('_H', 'H');
 // unmap('H');
 

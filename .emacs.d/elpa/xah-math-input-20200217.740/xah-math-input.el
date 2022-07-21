@@ -774,7 +774,7 @@
 (xah-math-input--add-to-hash
  [
 
-  ["re" "require "]
+  ["re" "require ''"]
   ["im" "import "]
 
  ])

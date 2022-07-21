@@ -91,7 +91,7 @@ exec_always nitrogen --set-zoom-fill $bg
     hide_edge_borders smart
     # hide_edge_borders none|vertical|horizontal|both|smart
 
-		smart_gaps on
+		# smart_gaps on
 		gaps inner 10
 		gaps outer 1
 
@@ -178,15 +178,21 @@ new_float none
 		bindsym $alt+g mode "gaps"
     mode "gaps" {
         bindsym o      mode "gaps outer"
-        bindsym i      mode "gaps inner"
+        # "gaps inner" basically means "all gaps"
+        bindsym i      mode "gaps inner" 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 				bindsym space mode "default"
     }
     mode "gaps outer" {
+        # "gaps outer" basically means "additional outer padding on top of [all symmetric gapping]"
         bindsym h gaps outer all set 0
+        bindsym n gaps outer all set 0
+        bindsym z gaps outer all set 0
         bindsym j gaps outer all minus 5
+        bindsym d gaps outer all minus 5
         bindsym k gaps outer all plus 5
+        bindsym u gaps outer all plus 5
         bindsym t gaps outer all toggle 10
         bindsym i      mode "gaps inner"
         bindsym Return mode "default"
@@ -194,9 +200,14 @@ new_float none
 				bindsym space mode "default"
     }
     mode "gaps inner" {
+        # "gaps inner" basically means "all gaps"
         bindsym h gaps inner all set 0
+        bindsym n gaps inner all set 0
+        bindsym z gaps inner all set 0
         bindsym j gaps inner all minus 5
+        bindsym d gaps inner all minus 5
         bindsym k gaps inner all plus 5
+        bindsym u gaps inner all plus 5
         bindsym t gaps inner all toggle 10
         bindsym o      mode "gaps outer"
         bindsym Return mode "default"
@@ -469,6 +480,9 @@ new_float none
 
     ## start file browser
     bindsym $mod+b exec $fbrowser
+
+    ## start blueman-manager
+    bindsym $alt+$mod+b exec blueman-manager
 
     ## start internet browser
     bindsym $mod+i exec $ibrowser

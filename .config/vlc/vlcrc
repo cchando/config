@@ -5120,7 +5120,7 @@ key-intf-show=
 #global-key-crop-bottom=
 
 # Crop one pixel from the bottom of the video (string)
-#key-crop-bottom=Alt+c
+key-crop-bottom=
 
 # Uncrop one pixel from the bottom of the video (string)
 #global-key-uncrop-bottom=
@@ -5147,7 +5147,7 @@ global-key-random=Alt+s
 key-random=s
 
 # Normal/Loop/Repeat (string)
-global-key-loop=Alt+i
+global-key-loop=Alt+c
 
 # Normal/Loop/Repeat (string)
 key-loop=

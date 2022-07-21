@@ -83,7 +83,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(evil-easymotion j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
+   dotspacemacs-additional-packages '(kbd-mode evil-easymotion j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
    ;; solarized-dark-theme tomorrow-blue-theme pheonix-dark-mono-theme apropospriate-light-theme adwaita-theme alect-light-theme
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '(xah-math-input pretty-mode)

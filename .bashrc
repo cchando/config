@@ -118,19 +118,24 @@ alias dl='echo !' # use as 'dl !<prefix string>', i.e., still insert '!'
 alias show='echo'
 alias lsg='ls | grep'
 alias lg='ls | grep'
+alias pacman='pacman -Syu && pacman --noconfirm'
+alias lsa='ls -a'
 alias lstin='dnf list --installed'
+alias lsinst='dnf list --installed'
 alias lsfonts='kitty list-fonts'
 alias lstfonts='kitty list-fonts'
 alias wh='which'
 alias ty='type'
 alias osver='hostnamectl' # OS version (and hardware) info
+alias osver2='uname -a' # OS version info
 alias bt='blueman-manager'
 alias s='sway'
 alias 7zip='7za'
 alias ls='ls --color=never -hF'
 alias e='exit'
 alias c='clear'
-alias s='spago'
+# alias sp='spago'
+alias s='sudo'
 alias jlang='$prog/j903/jconsole.sh'
 alias jl='$prog/j903/jconsole.sh'
 alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
@@ -357,6 +362,7 @@ export prj="$HOME/projects"
 export projs="$HOME/projects"
 export vid="$HOME/Videos"
 export vids="$HOME/Videos"
+export aa="$prj/app-academy/ruby-intro/" # current place in app academy curriculum
 
 # export NIXPKGS_ALLOW_UNFREE=1
 
