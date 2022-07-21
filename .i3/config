@@ -501,11 +501,11 @@ new_float none
     ## toggle mute
     bindsym $mod+Return exec pulseaudio-ctl mute
     ## vol down
-    bindsym $mod+9 exec pulseaudio-ctl down
+    # bindsym $mod+9 exec pulseaudio-ctl down
     bindsym $mod+3 exec pulseaudio-ctl down
     bindsym $mod+d exec pulseaudio-ctl down
     ## vol up
-    bindsym $mod+0 exec pulseaudio-ctl up
+    # bindsym $mod+0 exec pulseaudio-ctl up
     bindsym $mod+4 exec pulseaudio-ctl up
     bindsym $mod+u exec pulseaudio-ctl up
 

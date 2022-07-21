@@ -290,6 +290,11 @@ alias etm='emacs -nw ~/.tmux.conf -fs'
 alias est='emacs -nw ~/.config/stretchly/config.json -fs'
 # alias es='emacs -nw ~/.config/sway/config -fs'
 
+# lang-specific tools
+## ruby
+alias rbrepl='pry'
+alias rbbug='byebug'
+
 # git commands
 alias unstage='git restore' # "unstage"
 alias untrack='git rm --cached' # "untrack"
@@ -356,13 +361,14 @@ export vids="$HOME/Videos"
 # export NIXPKGS_ALLOW_UNFREE=1
 
 # PS1='[\u@\h \W]\$ '
-PS1='[\u \W] '
+PS1='[\u \W]-> '
 
 stty -ixon
 
 eval "$(rbenv init - bash)"
 eval "$(rbenv init -)"
 
+## needed for node and nvm
 export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -369,7 +369,7 @@ mapkey(';A', '#5Save APL-related session', function() {
 				name: 'APL',
 				quitAfterSaved: false
 		});
-		Front.showBanner('Backup session saved');
+		Front.showBanner('APL session saved');
 });
 
 mapkey('ZA', '#5Restore APL-related session', function() {
@@ -383,7 +383,7 @@ mapkey(';F', '#5Save free-time session', function() {
 				name: 'FREE',
 				quitAfterSaved: false
 		});
-		Front.showBanner('Backup session saved');
+		Front.showBanner('Free-time session saved');
 });
 
 mapkey('ZF', '#5Restore free-time session', function() {
@@ -392,6 +392,20 @@ mapkey('ZF', '#5Restore free-time session', function() {
     });
 });
 
+
+mapkey(';E', '#5Save entertainment session', function() {
+		RUNTIME('createSession', {
+				name: 'ENTERTAINMENT',
+				quitAfterSaved: false
+		});
+		Front.showBanner('Entertainment session saved');
+});
+
+mapkey('ZE', '#5Restore entertainment session', function() {
+    RUNTIME('openSession', {
+        name: 'ENTERTAINMENT'
+    });
+});
 
 
 // mapkey(';A', '#5APL language bar', function(d) {

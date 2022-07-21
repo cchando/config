@@ -105,7 +105,7 @@
  '(
 
 	 ;; AsciiDoc
-	 ["??" "* ??? "]; personal notation for questions
+	 ["?" "* ??? "]; personal notation for questions
 	 ["fill" "     -----------------------------------------------------"] ; replacement for empty lines in output to avoid blank lines for multi-line navigation purposes
 	 ["t" "    "] ; 4 spaces
 	 ["src" "[source]\n"] ; 4 spaces
@@ -265,6 +265,8 @@
 	 ["tut" "tutorial"]
 
 	 ;; computing
+	 ["fcc" "first-class citizens"]
+	 ["fccs" "first-class citizens"]
 	 ["gen" "generate"]
 	 ["gena" "generative"]; adjective
 	 ["primrec" "primitive recursion"]
@@ -539,9 +541,11 @@
 
 
   ; Set logic
+	["UNI" "∪"]
 	["UN" "∪"]
 	["INT" "∩"]
  	["UNN" "⋃"]; n-ary
+ 	["UNIN" "⋃"]; n-ary
 	["INTN" "⋂"]; n-ary
  	["(/" "⊄"]
  	["C/" "⊄"]
@@ -766,11 +770,21 @@
 
 
 
-
+;; general programming
 (xah-math-input--add-to-hash
  [
 
-  ;; APL primitives
+  ["re" "require "]
+  ["im" "import "]
+
+ ])
+
+
+
+;; APL primitives
+(xah-math-input--add-to-hash
+ [
+
   ["l" "{}"]; lambda
   ["ah" "←"]
   ["al" "→"]
@@ -1012,7 +1026,6 @@
   ["obv" "⍫"]; obverse
   ["inv" "⍣¯1"]; inverse
   ["rec" "∇"];
-  ["re" "∇"]
   ["D" "∇"]; recurse
   ["DD" "∇∇"]
   ["V" "∇"]
