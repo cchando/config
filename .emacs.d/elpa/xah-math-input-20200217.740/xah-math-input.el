@@ -105,8 +105,8 @@
  '(
 
 	 ;; AsciiDoc
-	 ["?" "* ??? "]; personal notation for questions
-	 ["fill" "     -----------------------------------------------------"] ; replacement for empty lines in output to avoid blank lines for multi-line navigation purposes
+	 ["?" "* ??? \n\n"]; personal notation for questions
+	 ["fill" "     -----------------------------------------------------"] ; replacement for empty lines in output to avoid blank lines, for multi-line navigation purposes
 	 ["t" "    "] ; 4 spaces
 	 ["src" "[source]\n"] ; 4 spaces
 	 ["dl" "----"]; source code (adoc)
@@ -126,6 +126,10 @@
 	 ["ESC" "+++ +++"] ; escaped -> adoc use
 	 ["note" "NOTE: "]
 
+
+   ;; misc.
+   ["NL" "\\n"] ; newline
+   ["CR" ""] ; carriage return
 
    ;; digits
    ["ze" "0"]
@@ -149,6 +153,8 @@
 	 ["dol" "${}"]
 	 ["ti" "~"]
 	 ["ex" "!"]
+	 ["at" "@"]
+	 ["At" "@"]
 	 ["h" "#"]
 	 ["ha" "#"]
 	 ["po" "#"] ; pound
@@ -328,6 +334,7 @@
 	 ["op" "operator"]
 	 ["opr" "operation"]
 	 ["fn" "function"]
+	 ["fns" "functions"]
 	 ["par" "parentheses"]
 	 ["paren" "parentheses"]
 	 ["pard" "parenthesized"]
@@ -369,6 +376,7 @@
 	 ["metap" "metaprogramming"]
 	 ["metac" "metacognition"]
 	 ["hask" "Haskell"]
+	 ["wrt" "with respect to "]
 	 ["stdml" "Standard ML"]
 	 ["ml" "machine learning"]
 	 ["ai" "artificial intelligence"]
@@ -388,6 +396,8 @@
 	 ["nars's" "NARS2000's"]
 	 ["narsa" "NARS2000 APL"]
 	 ["gnuapl" "GNU APL"]
+	 ["col" "column"]
+	 ["cols" "columns"]
 
 	 ;; tech company
 	 ["gc" "Google Chrome"]
@@ -563,6 +573,7 @@
  	["9u/" "⊈"]
   ["0u/" "⊉"]
 	["in'" "∈"] ; "in" reserved for small-elem-of (APL)
+  ["ele" "∈"] ; small element of; enlist
 	["nin" "∉"]
 	["con" "∋"]
 	["cont" "∋"]
@@ -801,10 +812,12 @@
   ["df" "←"]
   [")" "⊃"]
   ["dis" "⊃"]; disclose
+  ["unb" "⊃"]; unbox
   ["he" "⊃"]; head
   ["x" "×"]
   ["C" "⊂"]
   ["encl" "⊂"]; enclose
+  ["ec" "⊂"]; enclose
   ["box" "⊂"]; enclose
   ["(" "⊂"]
   [")u" "⊇"]
@@ -855,6 +868,7 @@
   ;; ["a_" "⍶"]
   ["aau" "⍶"]
   ["in" "∊"] ; small element of; enlist
+  ["ele" "∊"] ; small element of; enlist
   ["e'" "∊"] ; to avoid issue with e.g., "Xe"→'
   ["eu" "⍷"]
   ["to" "*"]; exponent
@@ -903,6 +917,7 @@
   ["/b" "⌿"] ; slash bar
   ["rp" "⌿"] ; slash bar
   ["rep" "⌿"] ; replicate
+  ["ref" "⌿"] ; replicate first
   ["com" "⌿"] ; compress
   ["co" "⌿"] ; compress
   ["cm" "⌿"] ; compress
@@ -974,12 +989,13 @@
   ["var" "⍠"] ; variant
   ["bb" "⎕"]
   ["sys" "⎕"]
-  ["box" "⎕"]
   ["bo" "⎕"] ; box
   ["ato" "⍤"]
   ["atop" "⍤"]
   ["ind" "⌷"]; index
   ["mate" "⌷"]; materialize
+  ["show" "⌷"]; materialize
+  ["disp" "⌷"]; materialize
   ["key" "⌸"]
   ["ke" "⌸"]
   ["b'" "⍞"];
@@ -1015,9 +1031,9 @@
   ["cumul" "⍡"]; cumulative repeat
   ["cur" "⍡"]; cumulative repeat
   ["cmlt" "⍡"]; cumulative repeat
+  ["cmlr" "⍡"]; cumulative repeat
   ["cml" "⍡"]; cumulative repeat
-  ["cre" "⍡"]; cumulative repeat
-  ["t;" "⍡"]
+  ["cmr" "⍡"]; cumulative repeat
   ["tran" "⍑"]; transform
   ["tb" "⍑"]; T bar
   ["Tb" "⍑"]; T bar
@@ -1047,6 +1063,13 @@
   ["dig" "⎕d"]; lowercase alphabet
   ["off" "⎕OFF"]
   ["IO" "⎕IO←0"]
+  ["apld" "⎕IO←0\n]box on -style=max\n]rows on\n"]
+  ["aplsetup" "⎕IO←0\n]box on -style=max\n]rows on\n"]
+  ["boxoff" "]box off"]
+  ["boxnon" "]box on -style=non"]
+  ["boxmin" "]box on -style=min"]
+  ["boxmid" "]box on -style=mid"]
+  ["boxmax" "]box on -style=max"]
 
   ;; ---- idioms ------
   ["tai" "1↓"]; tail (Haskell semantic)
@@ -1634,6 +1657,7 @@
   ["1/2" "½"]
   ["1/4" "¼"]
   ["..." "…"]
+  ["ell" "…"] ; ellipsis
   ["ran" "…"]
   ["rng" "…"]
   ["rg" "…"]

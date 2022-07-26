@@ -92,7 +92,7 @@ exec_always nitrogen --set-zoom-fill $bg
     # hide_edge_borders none|vertical|horizontal|both|smart
 
 		# smart_gaps on
-		gaps inner 10
+		gaps inner 15
 		gaps outer 1
 
     # class                 border  backgr. text    indicator child_border
@@ -469,6 +469,9 @@ new_float none
     ## start a terminal (#$term  #kitty  #konsole --hide-menubar)
     bindsym $mod+t exec $term
     # bindsym $mod+t exec kitty -1 --listen-on unix:/tmp/kitty
+
+    ## start alacritty terminal (allows variable-spaced fonts, unlike kitty term)
+    bindsym $alt+$mod+t exec alacritty
 
     ## kill focused window
     bindsym Ctrl+Shift+q kill

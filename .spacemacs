@@ -1309,6 +1309,7 @@ you should place your code here."
 		 "SPC t s"   'prettify-symbols-mode
 		 "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
 		 "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
+		 "SPC m w"   'spacemacs/toggle-maximize-buffer
 		 "SPC h w"   'helm-man-woman
 		 "SPC b H"   'spacemacs/home
 		 "SPC H k"  'describe-key
@@ -1407,6 +1408,8 @@ you should place your code here."
 		 "C-."  'call-last-kbd-macro ; q for evil-record-macro
 		 "C-o"  'evil-jump-forward
 		 "C-i"  'evil-jump-backward
+		 "C-0"  'evil-jump-forward
+		 "C-9"  'evil-jump-backward
 		 "C-p"  'evil-paste-pop-next
 		 "C-j"  'evil-join
 		 "C-n"  'electric-newline-and-maybe-indent ;; split-line
