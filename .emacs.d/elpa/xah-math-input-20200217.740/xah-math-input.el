@@ -105,7 +105,7 @@
  '(
 
 	 ;; AsciiDoc
-	 ["?" "* ??? \n\n"]; personal notation for questions
+	 ["??" "* ??? \n\n"]; personal notation for questions
 	 ["fill" "     -----------------------------------------------------"] ; replacement for empty lines in output to avoid blank lines, for multi-line navigation purposes
 	 ["t" "    "] ; 4 spaces
 	 ["src" "[source]\n"] ; 4 spaces
@@ -147,6 +147,7 @@
    ["thi" "30"]; time
    ["fofi" "45"]; time
    ["fof" "45"]; time
+   ["nn" "99"]; APL rank operator
 
 	 ["s" "[]"] ; square
 	 ["c" "{}"] ; curly
@@ -161,7 +162,7 @@
 	 ["do" "$"] ; dollar sign
 	 ["S" "$"] ; dollar sign
 	 ["pe" "%"] ; percent
-	 ["//" "%"] ; percent
+	 ;; ["//" "%"] ; percent
 	 ["ca" "^"] ; carrot
 	 ["up" "^"] ; carrot
 	 ["u" "^"] ; carrot
@@ -227,12 +228,22 @@
    ["nb" "N.B. "]
    ["NB" "N.B. "]
 
+   ; contractions
 	 ["cant" "can't"]
 	 ["cnt" "can't"]
 	 ["wont" "won't"]
 	 ["wnt" "won't"]
-	 ["iv" "I'v"]
-	 ["ive" "I'v"]
+	 ["iv" "I've"]
+	 ["ive" "I've"]
+	 ["ivnt" "I haven't"]
+	 ["ivent" "I haven't"]
+	 ["idnt" "I didn't"]
+	 ["idntv" "I wouldn't have"]
+	 ["idntve" "I wouldn't have"]
+	 ["idve" "I would've"]
+	 ["theydntve" "they wouldn't have"]
+	 ["wedntve" "we wouldn't have"]
+	 ["youdntve" "you wouldn't have"]
 	 ["didnt" "didn't"]
 	 ["ddnt" "didn't"]
 	 ["dont" "don't"]
@@ -244,10 +255,6 @@
 	 ["dsnt" "doesn't"]
 	 ["couldnt" "couldn't"]
 	 ["cdnt" "couldn't"]
-	 ["ivnt" "I haven't"]
-	 ["idnt" "I didn't"]
-	 ["idntv" "I wouldn't have"]
-	 ["idntve" "I wouldn't have"]
 	 ["wevnt" "we haven't"]
 	 ["theyvnt" "they haven't"]
 	 ["youre" "you're"]
@@ -255,7 +262,7 @@
 	 ["arg" "argument"]
 	 ["args" "arguments"]
 	 ["auto" "automatic"]
-	 ["bc" "because"]
+	 ["bc" "because "]
 	 ["bg" "background"]
 	 ["bt" "between"]
 	 ["btn" "between"]
@@ -351,6 +358,7 @@
 	 ["interd" "interdependent"]
 	 ["interc" "interconnected"]
 	 ["inde" "independent"]
+	 ["arb" "independent"]
 	 ["orth" "orthogonal"]
 	 ["ortho" "orthogonal"]
 	 ["orthn" "orthogonalization"]; noun
@@ -372,7 +380,13 @@
 	 ["epin" "epimorphism"]; noun
 	 ["surn" "surjection"]; noun
 	 ["sura" "surjective"]; adjective
+	 ["injn" "injection"]; noun
+	 ["inja" "injective"]; adjective
+	 ["bijn" "bijection"]; noun
+	 ["bija" "bijective"]; adjective
 	 ["trad" "traditional"]
+	 ["elem" "element"]
+	 ["elems" "elements"]
 	 ["metap" "metaprogramming"]
 	 ["metac" "metacognition"]
 	 ["hask" "Haskell"]
@@ -385,15 +399,10 @@
 	 ["edya" "Extended Dyalog APL"]
 	 ["exda" "Extended Dyalog APL"]
 	 ["dza" "dzaima/APL"]
-	 ["dza's" "dzaima/APL's"]
 	 ["dapl" "dzaima/APL"]
-	 ["dapl's" "dzaima/APL's"]
 	 ["ngn" "ngn/APL"]
-	 ["ngn's" "ngn/APL's"]
 	 ["apl" "APL"]
-	 ["apl's" "APL's"]
 	 ["nars" "NARS2000"]
-	 ["nars's" "NARS2000's"]
 	 ["narsa" "NARS2000 APL"]
 	 ["gnuapl" "GNU APL"]
 	 ["col" "column"]
@@ -512,8 +521,10 @@
  '(
 
    ; Predicate logic
-	["bim" "<-->"]; bi-implication
-	["bimp" "<-->"]; bi-implication
+	["bim" "⟷ "]; bi-implication
+	["bimp" "⟷ "]; bi-implication
+	["same" "⟷ "]
+	["⟷ " "<--> "]; for Wunderlist
 	["All" "∀"]
   ["all" "∀"]
   ["for" "∀"]; for x in X --> ∀x∈X
@@ -537,8 +548,7 @@
 	["rnot" "⌐"] ; reversed not-sign
 	["rno" "⌐"] ; reversed not-sign
 	["let" "∴ "]
-	["wh" "∵ "]
-	["whe" "∵ "]
+	["wher" "∵ "]
 	["where" "∵ "]
 	["qed" "∎"]
 	["eop" "∎"]; "end of proof"
@@ -557,21 +567,21 @@
  	["UNN" "⋃"]; n-ary
  	["UNIN" "⋃"]; n-ary
 	["INTN" "⋂"]; n-ary
+ 	["n(" "⊄"]
+	["n)" "⊅"]
+ 	["n(u" "⊈"]
+ 	["nCU" "⊈"]
+ 	["nCu" "⊈"]
+  ["ncu" "⊈"]
+  ["n)u" "⊉"]
+ 	["n(b" "⊈"]
+  ["n)b" "⊉"]
  	["(/" "⊄"]
- 	["C/" "⊄"]
- 	["c/" "⊄"]
 	[")/" "⊅"]
+ 	["(b/" "⊈"]
+  [")b/" "⊉"]
  	["(u/" "⊈"]
- 	["CU/" "⊈"]
- 	["Cu/" "⊈"]
-  ["cu/" "⊈"]
   [")u/" "⊉"]
- 	["9/" "⊄"]
-	["0/" "⊅"]
- 	["9/" "⊄"]
-	["0/" "⊅"]
- 	["9u/" "⊈"]
-  ["0u/" "⊉"]
 	["in'" "∈"] ; "in" reserved for small-elem-of (APL)
   ["ele" "∈"] ; small element of; enlist
 	["nin" "∉"]
@@ -814,7 +824,8 @@
   ["dis" "⊃"]; disclose
   ["unb" "⊃"]; unbox
   ["he" "⊃"]; head
-  ["x" "×"]
+  ["pic" "⊃"]; pick
+  ["x" "×"]; times
   ["C" "⊂"]
   ["encl" "⊂"]; enclose
   ["ec" "⊂"]; enclose
@@ -824,6 +835,8 @@
   ["cu" "⊆"]
   ["Cu" "⊆"]
   ["(u" "⊆"]
+  [")b" "⊇"]
+  ["(b" "⊆"]
   ;; ["vh" "⍅"] ; left vane
   ;; ["vl" "⍆"] ; right vane
   ;; ["vk" "⍏"] ; upward vane
@@ -862,6 +875,8 @@
   ["wwu" "⍹"]
   ["i" "⍳"]
   ["iu" "⍸"]
+	["wh" "⍸"]; where
+	["whe" "⍸"]; where
   ["a" "⍺"]
   ["aa" "⍺⍺"]
   ;; ["aaa" "⍺⍺⍺"] ; hyperator operand in NARS2000 APL
@@ -880,7 +895,15 @@
   ["mo" "∣"]
   ["inc'" "∆"] ; increment
   ["enc" "⊤"] ; encode -- enc already taken by enclose (more common)
-  ["dec" "⊥"] ; decode
+  ["To" "⊤"] ; encode -- enc already taken by enclose (more common)
+  ["TO" "⊤"] ; encode -- enc already taken by enclose (more common)
+  ["TO" "⊤"] ; encode -- enc already taken by enclose (more common)
+  ["ba" "⊤"] ; "base" -- encode -- enc already taken by enclose (more common)
+  ["bas" "⊤"] ; "base" -- encode -- enc already taken by enclose (more common)
+  ["dec" "⊥"] ; "from" -- decode
+  ["fr" "⊥"] ; "from" -- decode
+  ["fro" "⊥"] ; "from" -- decode
+  ["ant" "⊥"] ; "anti-base" -- decode
   ["lef" "⊣"] ; left
   ["lf" "⊣"] ; left
   ["ri" "⊢"] ; right
@@ -909,13 +932,16 @@
   ["rf" "⊖"] ; rotate first
   ["rf" "⊖"] ; rotate first
   ["fl" "⊖"] ; flip
+  ["Ob" "⊖"]
   ["tr" "⍉"] ; transpose
   ["tra" "⍉"] ; transpose
+  ["\\" "⍀"] ; backslash bar; single backslash; escaped here
   ["\\b" "⍀"] ; backslash bar; single backslash; escaped here
-  ["exp" "⍀"] ; backslash bar; single backslash; escaped here
-  ["expa" "⍀"] ; backslash bar; single backslash; escaped here
+  ["exp" "⍀"] ; expand
+  ["expa" "⍀"] ; expand
+  ["/" "⌿"] ; slash bar
   ["/b" "⌿"] ; slash bar
-  ["rp" "⌿"] ; slash bar
+  ["rp" "⌿"] ; replicate
   ["rep" "⌿"] ; replicate
   ["ref" "⌿"] ; replicate first
   ["com" "⌿"] ; compress
@@ -952,10 +978,9 @@
   ["pw" "⍣"]
   ["sel" "⍨"] ; selfie TODO: change back to "se" once I'm using kmonad for home-row numbers
   ["sese" "⍨⍨"]
-  ["ra" "⍤"] ; rank
-  ["rnk" "⍤"] ; rank
+  ;; ["ra" "⍤"] ; rank
   ["rk" "⍤"] ; rank
-  ["rn" "⍤"] ; rank
+  ["rnk" "⍤"] ; rank
   ["dia" "⋄"]
   ["sep" "⋄"] ; separator
   ["no" "~"]
@@ -994,6 +1019,7 @@
   ["atop" "⍤"]
   ["ind" "⌷"]; index
   ["mate" "⌷"]; materialize
+  ["sho" "⌷"]; materialize
   ["show" "⌷"]; materialize
   ["disp" "⌷"]; materialize
   ["key" "⌸"]
@@ -1660,6 +1686,7 @@
   ["ell" "…"] ; ellipsis
   ["ran" "…"]
   ["rng" "…"]
+  ["rn" "…"]
   ["rg" "…"]
   ["fdash" "‒"]
   ["wdash" "〜"]
@@ -1722,7 +1749,7 @@
   ["m9" "⁻⁹"]
 
   ["+" "⁺"]
-  ["-" "⁻"]
+  ["-" "¯"] ; macron, not actual superscript minus, since it looks better anyway and this stops us from making booboos in APL
   ["=" "⁼"]
   ["(up" "⁽"]
   [")up" "⁾"]
