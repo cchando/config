@@ -111,10 +111,13 @@ rpmx () { # extract from rpm archive
 catg () { # extract from rpm archive
     cat "$1" | grep "$2"
 }
+alias cg='catg'
 lsg () { # ls then grep
     ls "$1" | grep "$2"
 }
-alias cg='catg'
+lsag () { # ls -Al then grep
+    ls -Al "$1" | grep "$2"
+}
 trim () { # trim audio/video with ffmpeg
     # usage: trim input-filepath output-filepath <start-time in [HH:]MM:SS[m[m...]]> <end-time>
     'ffmpeg -i $1 -ss $3 -to $4 -c copy $2'
@@ -134,10 +137,10 @@ alias lsa='ls -A'
 alias lso='ls -1'
 alias lsoa='ls -A1'
 alias lsao='ls -A1'
-alias ll='ls -Al'
+alias l='ls -Al'
+alias ll='ls -l'
 alias lg='ls | grep'
 alias lag='ls -A | grep'
-alias lsag='ls -A | grep'
 alias wm='wavemon'
 alias pacman='pacman -Syu && pacman --noconfirm'
 alias pac='pacman -Syu && pacman --noconfirm'

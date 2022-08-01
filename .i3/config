@@ -218,7 +218,6 @@ new_float none
     # set wallpaper
 		bindsym $mod+w mode "wallpaper"
 		mode "wallpaper" {
-        # TODO: create function to cycle through wallpapers
 		    bindsym g exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/7371738.jpg"; mode "default"
 		    bindsym r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
 		    bindsym Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
@@ -234,6 +233,22 @@ new_float none
 		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
 		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
+        ###########
+		    bindsym $mod+g exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/7371738.jpg"; mode "default"
+		    bindsym $mod+r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
+		    bindsym $mod+Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
+		    bindsym $mod+Shift+r exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg"; mode "default"
+		    bindsym $mod+y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
+		    bindsym $mod+u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/research_center.jpg"; mode "default"
+		    bindsym $mod+i exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/master-frame-26-FINAL-LOGO.jpg"; mode "default"
+		    bindsym $mod+o exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/d29d22bff42ca805b208faa3df88df57.jpg"; mode "default"
+		    bindsym $mod+p exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/75c2e9dbc0496847cb71a98fb814c4e7.jpg"; mode "default"
+		    bindsym $mod+h exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
+		    bindsym $mod+Shift+g exec "nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"; mode "default"
+		    bindsym $mod+f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
+		    bindsym $mod+Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+		    bindsym $mod+q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
+		    bindsym $mod+b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -620,6 +635,7 @@ new_float none
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
 				bindsym minus workspace 11; mode "default"
+        ###########
 		    bindsym $mod+a workspace 1; mode "default"
 				bindsym $mod+s workspace 2; mode "default"
 				bindsym $mod+d workspace 3; mode "default"
@@ -630,6 +646,7 @@ new_float none
 				bindsym $mod+k workspace 8; mode "default"
 				bindsym $mod+l workspace 9; mode "default"
 				bindsym $mod+semicolon workspace 10; mode "default"
+				bindsym $mod+minus workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -648,6 +665,7 @@ new_float none
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
 				bindsym minus move container to workspace 11; mode "default"
+        ###########
         bindsym $mod+a move container to workspace 1; mode "default"
 				bindsym $mod+s move container to workspace 2; mode "default"
 				bindsym $mod+d move container to workspace 3; mode "default"
@@ -658,6 +676,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"
 				bindsym $mod+l move container to workspace 9; mode "default"
 				bindsym $mod+semicolon move container to workspace 10; mode "default"
+				bindsym $mod+minus move container to workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -676,6 +695,7 @@ new_float none
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
 				bindsym minus move container to workspace 11; mode "default"; workspace 11
+        ###########
         bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
 				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
 				bindsym $mod+d move container to workspace 3; mode "default"; workspace 3
@@ -686,6 +706,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"; workspace 8
 				bindsym $mod+l move container to workspace 9; mode "default"; workspace 9
 				bindsym $mod+semicolon move container to workspace 10; mode "default"; workspace 10
+				bindsym $mod+minus move container to workspace 11; mode "default"; workspace 11
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"

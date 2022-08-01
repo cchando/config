@@ -536,9 +536,9 @@
 	["an" "∧"]
 	["and" "∧"]
   ["or" "∨"]
-	["nor" "⊽"]
-	["nand" "⊼"]
-	["nan" "⊼"]
+	["nor" "⊽"]; original reserved for APL version
+	["nand'" "⊼"]; original reserved for APL version
+	["nan'" "⊼"]; original reserved for APL version
 	["xor" "⊻"]
 	["OR" "⋁"]
 	["AND" "⋀"]
@@ -813,10 +813,6 @@
   ["ak" "↑"]
   ["ad" "↓"]
   ["aj" "↓"]
-  ["ta" "↑"]; take
-  ["tk" "↑"]; take
-  ["dr" "↓"]; drop
-  ["dp" "↓"]; drop
   ["is" "←"]
   ["def" "←"]
   ["df" "←"]
@@ -969,10 +965,8 @@
   ["ib" "⌶"]
   ["::" "¨"] ; each
   ["ea" "¨"] ; each
-  ["anan" "⍲"]
-  ["ana" "⍲"]
-  ["anor" "⍱"]
-  ["ano" "⍱"]
+  ["nan" "⍲"]
+  ["nor" "⍱"]
   ["pow" "⍣"]
   ["pwr" "⍣"]
   ["pw" "⍣"]
