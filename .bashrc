@@ -108,6 +108,17 @@ findd () {
 rpmx () { # extract from rpm archive
     rpm2cpio "$1" | cpio -idmv
 }
+catg () { # extract from rpm archive
+    cat "$1" | grep "$2"
+}
+lsg () { # ls then grep
+    ls "$1" | grep "$2"
+}
+alias cg='catg'
+trim () { # trim audio/video with ffmpeg
+    # usage: trim input-filepath output-filepath <start-time in [HH:]MM:SS[m[m...]]> <end-time>
+    'ffmpeg -i $1 -ss $3 -to $4 -c copy $2'
+}
 
 # program aliases
 alias wpastart='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf '
@@ -116,11 +127,20 @@ alias h='history'
 alias g='grep'
 alias dl='echo !' # use as 'dl !<prefix string>', i.e., still insert '!'
 alias show='echo'
-alias lsg='ls | grep'
+alias psa='ps -A'
+alias ls='ls --color=auto -hF'
+alias lsn='ls --color=never -hF'
+alias lsa='ls -A'
+alias lso='ls -1'
+alias lsoa='ls -A1'
+alias lsao='ls -A1'
+alias ll='ls -Al'
 alias lg='ls | grep'
+alias lag='ls -A | grep'
+alias lsag='ls -A | grep'
+alias wm='wavemon'
 alias pacman='pacman -Syu && pacman --noconfirm'
-alias lsa='ls -a'
-alias psa='ps -a'
+alias pac='pacman -Syu && pacman --noconfirm'
 alias lstin='dnf list --installed'
 alias lsinst='dnf list --installed'
 alias lsfonts='kitty list-fonts'
@@ -132,7 +152,7 @@ alias osver2='uname -a' # OS version info
 alias bt='blueman-manager'
 alias s='sway'
 alias 7zip='7za'
-alias ls='ls --color=never -hF'
+# alias ls='ls --color=never -hF'
 alias e='exit'
 alias c='clear'
 # alias sp='spago'
@@ -140,7 +160,10 @@ alias s='sudo'
 alias jlang='$prog/j903/jconsole.sh'
 alias jl='$prog/j903/jconsole.sh'
 alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
-alias vlch='vlc --longhelp --advanced | less'
+alias vlch='vlc --longhelp --advanced' # vlc long-help
+alias vlclh='vlc --longhelp --advanced' # vlc long-help
+alias vlchl='vlc --longhelp --advanced | less' # vlc long-help
+alias vlclhl='vlc --longhelp --advanced | less' # vlc long-help
 alias wttr='curl wttr.in/?format="%c+%f+%p+%s\n"'
 alias wttra='curl wttr.in/?format=v2'
 alias u='cd ..'
@@ -255,6 +278,7 @@ alias vimode='set -o vi'
 # alias fonts='gucharmap'
 alias fonts='charmap'
 alias lst='ps -A | grep'
+alias lsl='lslocks'
 alias xr='xrdb -merge ~/.Xdefaults'
 alias bat='acpi'    # or 'upower ...'
 # alias music='cmuse'
@@ -345,11 +369,13 @@ export GIT_EDITOR="vim"
 export VISUAL="vim"
 export conf="$HOME/.config/"
 export cfg="$HOME/.config/"
+export shrc="$HOME/.bashrc"
+export ba="$HOME/.bashrc"
 export h="$HOME"
 export doc="$HOME/Documents"
 export docs="$HOME/Documents"
 export dl="$HOME/Downloads"
-export dls="$HOME/Downloads"
+export up="$HOME/Uploads"
 export font="/usr/share/fonts"
 export fonts="/usr/share/fonts"
 export mus="$HOME/Music"
@@ -363,6 +389,7 @@ export prj="$HOME/projects"
 export projs="$HOME/projects"
 export vid="$HOME/Videos"
 export vids="$HOME/Videos"
+export ydl="$mus/youtube-dl"
 export aa="$prj/app-academy/ruby-intro/" # current place in app academy curriculum
 
 # export NIXPKGS_ALLOW_UNFREE=1
