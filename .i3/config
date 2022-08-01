@@ -67,7 +67,7 @@ exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
-exec redshift -l 32.96:-96.67 -t 6500:3500
+# exec redshift -l 32.96:-96.67 -t 6500:3500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
@@ -281,7 +281,8 @@ new_float none
 		    bindsym Shift+a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
 		    bindsym c exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
 		    bindsym d exec "killall vlc; vlc --loop --no-repeat ~/Music/1-Playlists/doki.m3u"; mode "default"
-		    bindsym Shift+e exec "killall vlc; vlc --loop --no-repeat ~/Music/Level\ 1\ -\ Eggs\ of\ Steel_\ Charlie\'s\ Eggcellent\ Adventure.mp3"; mode "default"
+		    # bindsym Shift+e exec "killall vlc; vlc --repeat ~/Music/Level\ 1\ -\ Eggs\ of\ Steel_\ Charlie\'s\ Eggcellent\ Adventure.mp3"; mode "default"
+		    bindsym Shift+e exec "killall vlc; vlc --loop --random --repeat ~/Music/1-Playlists/focus-tech-extended.m3u"; mode "default"
 		    bindsym f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
 		    bindsym Shift+f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
 		    bindsym h exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/helltaker.m3u"; mode "default"
@@ -440,7 +441,7 @@ new_float none
     # redshift commands
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
-        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
+        # bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
         bindsym a exec "killall redshift .redshift-wrapp; redshift -x"
         bindsym s exec "killall redshift .redshift-wrapp; redshift -PO 5000"
         bindsym d exec "killall redshift .redshift-wrapp; redshift -PO 4500"
@@ -828,7 +829,7 @@ bar {
     height 24
 # # mode dock|hide|invisible
 # # hidden_state hide|show
-		mode hide
+		mode dock
 		hidden_state hide
 		modifier $mod
     # bindsym button1 nop    # disable clicking on workspace buttons

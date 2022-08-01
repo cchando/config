@@ -63,7 +63,7 @@ values."
 	 ;; <M-m f e R> (Emacs style) to install them.
 	 ;; ----------------------------------------------------------------
 	 helm
-	 evil-snipe
+	 ;; evil-snipe
 	 auto-completion
 	 ;; better-defaults
 	 emacs-lisp
@@ -83,7 +83,12 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(kbd-mode evil-easymotion j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
+   dotspacemacs-additional-packages '(evil-easymotion j-mode dyalog-mode gnu-apl-mode workgroups rebecca-theme nix-mode auto-sudoedit xah-math-input dyalog-mode hasklig-mode pretty-mode fira-code-mode moe-theme intellij-theme lab-themes flucui-themes base16-theme afternoon-theme color-theme-modern sublime-themes heroku-theme atom-one-dark-theme solarized-theme light-soap-theme color-theme-sanityinc-tomorrow apropospriate-theme underwater-theme occidental-theme ample-theme flatui-theme alect-themes night-owl-theme tldr parinfer disable-mouse highlight-indent-guides highlight-indentation
+(kbd-mode
+  :location
+  (recipe
+    :fetcher github
+    :repo "kmonad/kbd-mode"))) ;fira-code-mode doom-themes sudo-edit auto-sudoedit
    ;; solarized-dark-theme tomorrow-blue-theme pheonix-dark-mono-theme apropospriate-light-theme adwaita-theme alect-light-theme
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '(xah-math-input pretty-mode)
@@ -437,6 +442,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+
 
 	;; speed up emacs
 	(setq gc-cons-threshold 200000000)            ; 200MB
@@ -1277,15 +1284,15 @@ you should place your code here."
 
 
 
-(defun avy-goto-word-crt-line ()
+(defun avy-goto-word-curr-line ()
   "Jump to a word start on the current line only."
   (interactive)
   (avy-with avy-goto-word-0
 	(avy-goto-word-0 nil (line-beginning-position) (line-end-position))))
 ;; optional evil integration example:
-   ;; (declare-function 'avy-goto-word-crt-line "avy")
-   ;; (evil-define-avy-motion avy-goto-word-crt-line inclusive)
-	 ;; (define-key evil-motion-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
+   ;; (declare-function 'avy-goto-word-curr-line "avy")
+   ;; (evil-define-avy-motion avy-goto-word-curr-line inclusive)
+	 ;; (define-key evil-motion-state-map (kbd "w") #'evil-avy-goto-word-curr-line)
 
 
 
@@ -1294,142 +1301,142 @@ you should place your code here."
 
 ;; leader keys mappings
 (keymap+ evil-normal-state-local-map ;; c.f. (spacemacs/set-leader-keys (kdb "⍵") 'f) instead of <SPC ⍵>
-		 "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
-		 "SPC t p"   'smartparens-mode
-		 "SPC t P"   'pretty-mode
-		 "SPC T t"   'nil ; disable toggle-tool-bar
-		 "SPC f S"   'write-file ; "save as"
-		 "SPC f A"   'evil-write-all ; save all open files
-		 "SPC b h"   'previous-buffer
-		 "SPC b l"   'next-buffer
-		 "SPC g m"   'magit-dispatch ; replace obsolete magit-dispatch-popup
-		 "SPC w g"   'enlarge-window
-		 "SPC w G"   'shrink-window
-		 "SPC i c"   'insert-char
-		 "SPC t s"   'prettify-symbols-mode
-		 "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
-		 "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
-		 "SPC m w"   'spacemacs/toggle-maximize-buffer
-		 "SPC h w"   'helm-man-woman
-		 "SPC b H"   'spacemacs/home
-		 "SPC H k"  'describe-key
-		 "SPC H f"  'describe-function
-		 "SPC H c"  'describe-char
-		 "SPC H K"  'describe-key-briefly
-		 "SPC H v"  'describe-variable
-		 "SPC b b"  'helm-buffers-list ; was helm-mini
-		 "SPC t t"  'helm-buffers-list ; was helm-mini
-		 "SPC '"   'spacemacs/shell-pop-ansi-term
-		 "SPC W"   'whitespace-cleanup
-		 ;; "SPC '"   'spacemacs/shell-pop-eshell ; no aliases
-		 ;; "SPC '"   'spacemacs/shell-pop-shell ; no highlighting
-		 ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
-		 )
+         "SPC t w"   'toggle-word-wrap ; shadow toggle-whitespace
+         "SPC t p"   'smartparens-mode
+         "SPC t P"   'pretty-mode
+         "SPC T t"   'nil ; disable toggle-tool-bar
+         "SPC f S"   'write-file ; "save as"
+         "SPC f A"   'evil-write-all ; save all open files
+         "SPC b h"   'previous-buffer
+         "SPC b l"   'next-buffer
+         "SPC g m"   'magit-dispatch ; replace obsolete magit-dispatch-popup
+         "SPC w g"   'enlarge-window
+         "SPC w G"   'shrink-window
+         "SPC i c"   'insert-char
+         "SPC t s"   'prettify-symbols-mode
+         "SPC k w"   'evil-window-up ; shadow evil-lisp-state-wrap binding
+         "SPC j w"   'evil-window-down ; shadow evil-avy-goto-word-or-subword-1
+         "SPC m w"   'spacemacs/toggle-maximize-buffer
+         "SPC h w"   'helm-man-woman
+         "SPC b H"   'spacemacs/home
+         "SPC H k"  'describe-key
+         "SPC H f"  'describe-function
+         "SPC H c"  'describe-char
+         "SPC H K"  'describe-key-briefly
+         "SPC H v"  'describe-variable
+         "SPC b b"  'helm-buffers-list ; was helm-mini
+         "SPC t t"  'helm-buffers-list ; was helm-mini
+         "SPC '"   'spacemacs/shell-pop-ansi-term
+         "SPC W"   'whitespace-cleanup
+         ;; "SPC '"   'spacemacs/shell-pop-eshell ; no aliases
+         ;; "SPC '"   'spacemacs/shell-pop-shell ; no highlighting
+         ;; "SPC T c"  'try-theme ;; mnemonic: "try colors"
+         )
 
 ;; user prefix mappings
 (define-prefix-command 'cm) ;; prefix key map, "cac's m"
 (define-key evil-normal-state-map (kbd "m") cm)
 (keymap+ cm
-		 "a"   'evil-set-marker
-		 "m"   'evil-scroll-line-to-center
-		 "t"   'evil-scroll-line-to-top
-		 "k"   'evil-scroll-line-to-top
-		 ;; "t"   "zt3K3J"  ; not working somewhy
-		 "M"   'evil-scroll-line-to-bottom
-		 "b"   'evil-scroll-line-to-bottom
-		 "j"   'evil-scroll-line-to-bottom
-		 ;; "b"   "zb3J3K"  ; not working somewhy
-		 "e"   'vile-backward-paragraph
-		 "r"   'vile-forward-paragraph
-		 "f"   'avy-goto-word-crt-line
-		 "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
-		 "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
-		 "n"   'org-timer-set-timer
-		 "N"   'toggle-timer-bell
-		 )
+         "a"   'evil-set-marker
+         "b"   'evil-scroll-line-to-bottom
+         "e"   'vile-backward-paragraph
+         "f"    'vile-goto-word-by-first-char
+         "F"    'vile-goto-word-by-first-char-backward
+         "j"   'evil-scroll-line-to-bottom
+         "m"   'evil-scroll-line-to-center
+         "k"   'evil-scroll-line-to-top
+         ;; "t"   "zt3K3J"  ; not working somewhy
+         "M"   'evil-scroll-line-to-bottom
+         ;; "b"   "zb3J3K"  ; not working somewhy
+         "r"   'vile-forward-paragraph
+         "t"   'evil-scroll-line-to-top
+         "n"   'org-timer-set-timer
+         "N"   'toggle-timer-bell
+         )
 
 ;; normal state mappings
 ;; ;; "SPC-;-<motion>" for e.g., comment-to-end-of-line (evilnc-comment-operator)
 (keymap+ evil-normal-state-map
-		 ;; "C-d"    'vile-scroll-down
-		 ;; "C-u"    'vile-scroll-up
-		 ;; "C-f"    'evil-scroll-down
-		 ;; "C-b"    'evil-scroll-up
-		 ;; "~e"   'evil-forward-word-end ; temp key
-		 ;; "E"     "~ea" ; append at end of word
-		 ;; "~E"   'evil-forward-WORD-end ; temp key
-		 ;; "e"     "~Ea" ; append at end of WORD
-		 ;; "a"    'evil-append  ; default
-		 ;; "gd"   'racket-jump-visit-definition
-		 ;; "A"    'evil-insert-line
-		 "~"     nil ;; free-up prefix key -- shadows evil-invert-char
-		 "C-r"  nil ;; unmap C-r from unto-tree-redo
-		 "r"  'evil-replace  ; was originally evil-replace-state
-		 "R"  'undo-tree-redo
-		 "e"  'evil-forward-WORD-end
-		 "E"  'evil-forward-word-end
-		 "C-e"  'iedit-mode
-		 "C-;"  'evil-indent
-		 "\\"  'evil-switch-to-windows-last-buffer
-		 "s-;"  'evil-switch-to-windows-last-buffer
-		 "t"    'evil-find-char
-		 "T"    'evil-find-char-backward
-		 "f"    'vile-goto-word-by-first-char
-		 "F"    'vile-goto-word-by-first-char-backward
-		 "J"    'vile-scroll-down
-		 "K"    'vile-scroll-up ;; often gets overridden by other modes due to non-determinism
-		 "w"    'evil-forward-WORD-begin
-		 "b"    'evil-backward-WORD-begin
-		 "W"    'evil-forward-word-begin
-		 "B"    'evil-backward-word-begin
-		 "go"   'isearch-forward-word
-		 "gk"   'vile-invert-char
-		 "gc"   'evil-invert-case
-		 "gu"   'evil-upcase
-		 "gU"   'evil-downcase
-		 "("    'evil-backward-paragraph
-		 ")"    'evil-forward-paragraph
-		 "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
-		 "ga"   'evil-digit-argument-or-evil-beginning-of-line
-		 "gl"   'evil-end-of-line
-		 "gi"   'evil-append-line
-		 "gI"   'evil-insert-resume
-		 "gd"   'spacemacs/jump-to-definition
-		 "gm"   'evil-jump-item
-		 "gn"   'spacemacs/enter-ahs-forward
-		 "gN"   'spacemacs/enter-ahs-backward
-		 "ZQ"   'kill-current-buffer
-		 "gr"   'racket-run
-		 "gR"   'racket-run-and-switch-to-repl
-		 "C-h"  'previous-buffer
-		 "C-l"  'next-buffer
-		 "C-m"  'spacemacs/evil-insert-line-below
-		 ;; "S-C-m"  'spacemacs/evil-insert-line-above  ; how to do Shift-Ctrl bindings?
-		 "C-."  'call-last-kbd-macro ; q for evil-record-macro
-		 "C-o"  'evil-jump-forward
-		 "C-i"  'evil-jump-backward
-		 "C-0"  'evil-jump-forward
-		 "C-9"  'evil-jump-backward
-		 "C-p"  'evil-paste-pop-next
-		 "C-j"  'evil-join
-		 "C-n"  'electric-newline-and-maybe-indent ;; split-line
-		 "C-k"  'spacemacs/evil-smart-doc-lookup
-		 "zm"    nil ;; disable close-folds function
-		 "zr"    nil ;; disable open-folds function
-		 "gy"    nil ;; disable spacemacs/copy-and-comment-lines
-		 ;; "mc"   "ciw <C-r> 0 <ESC>" ;; how to pass e.g., <C-r> or <ESC> to string macro?
-		 ;; "M-o"  'find-file-at-point
-		 ;; "g"    "cg"
-		 ;; "ZZ"   'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
-		 ;; "gr"   'cider-load-buffer
-		 ;; "gR"   'spacemacs/cider-send-buffer-in-repl-and-focus
-		 ;; "M-d"   nil ;; disable kill-word
-		 ;; "C-d"   'evil-scroll-down
-		 ;; "C-u"   'evil-scroll-up
-		 ;; "C-f"   nil
-		 ;; "C-b"   nil
-		 ;; "C-p"   'replace-from-register-0
-		 )
+         ;; "C-d"    'vile-scroll-down
+         ;; "C-u"    'vile-scroll-up
+         ;; "C-f"    'evil-scroll-down
+         ;; "C-b"    'evil-scroll-up
+         ;; "~e"   'evil-forward-word-end ; temp key
+         ;; "E"     "~ea" ; append at end of word
+         ;; "~E"   'evil-forward-WORD-end ; temp key
+         ;; "e"     "~Ea" ; append at end of WORD
+         ;; "a"    'evil-append  ; default
+         ;; "gd"   'racket-jump-visit-definition
+         ;; "A"    'evil-insert-line
+         "~"     nil ;; free-up prefix key -- shadows evil-invert-char
+         "C-r"  nil ;; unmap C-r from unto-tree-redo
+         "r"  'evil-replace  ; was originally evil-replace-state
+         "R"  'undo-tree-redo
+         "C-e"  'iedit-mode
+         "C-;"  'evil-indent
+         "\\"  'evil-switch-to-windows-last-buffer
+         "s-;"  'evil-switch-to-windows-last-buffer
+         "t"    'evil-find-char
+         "T"    'evil-find-char-backward
+         "J"    'vile-scroll-down
+         "K"    'vile-scroll-up ;; often gets overridden by other modes due to non-determinism
+         "w"    'evil-forward-WORD-begin
+         "b"    'evil-backward-WORD-begin
+         "W"    'evil-forward-word-begin
+         "B"    'evil-backward-word-begin
+         "e"  'evil-forward-WORD-end
+         "E"  'evil-forward-word-end
+         "f"   'avy-goto-word-curr-line
+         "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
+         "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
+         "go"   'isearch-forward-word
+         "gk"   'vile-invert-char
+         "gc"   'evil-invert-case
+         "gu"   'evil-upcase
+         "gU"   'evil-downcase
+         "("    'evil-backward-paragraph
+         ")"    'evil-forward-paragraph
+         "gh"   'evil-first-non-blank ;; for use with d,c,y, etc
+         "ga"   'evil-digit-argument-or-evil-beginning-of-line
+         "gl"   'evil-end-of-line
+         "gi"   'evil-append-line
+         "gI"   'evil-insert-resume
+         "gd"   'spacemacs/jump-to-definition
+         "gm"   'evil-jump-item
+         "gn"   'spacemacs/enter-ahs-forward
+         "gN"   'spacemacs/enter-ahs-backward
+         "ZQ"   'kill-current-buffer
+         "gr"   'racket-run
+         "gR"   'racket-run-and-switch-to-repl
+         "C-h"  'previous-buffer
+         "C-l"  'next-buffer
+         "C-m"  'spacemacs/evil-insert-line-below
+         ;; "S-C-m"  'spacemacs/evil-insert-line-above  ; how to do Shift-Ctrl bindings?
+         "C-."  'call-last-kbd-macro ; q for evil-record-macro
+         "C-o"  'evil-jump-forward
+         "C-i"  'evil-jump-backward
+         "C-0"  'evil-jump-forward
+         "C-9"  'evil-jump-backward
+         "C-p"  'evil-paste-pop-next
+         "C-j"  'evil-join
+         "C-n"  'electric-newline-and-maybe-indent ;; split-line
+         "C-k"  'spacemacs/evil-smart-doc-lookup
+         "zm"    nil ;; disable close-folds function
+         "zr"    nil ;; disable open-folds function
+         "gy"    nil ;; disable spacemacs/copy-and-comment-lines
+         ;; "mc"   "ciw <C-r> 0 <ESC>" ;; how to pass e.g., <C-r> or <ESC> to string macro?
+         ;; "M-o"  'find-file-at-point
+         ;; "g"    "cg"
+         ;; "ZZ"   'save-modified-and-close-buffer ;; overrides evil-save-modified-and-close. i want to close only buffer
+         ;; "gr"   'cider-load-buffer
+         ;; "gR"   'spacemacs/cider-send-buffer-in-repl-and-focus
+         ;; "M-d"   nil ;; disable kill-word
+         ;; "C-d"   'evil-scroll-down
+         ;; "C-u"   'evil-scroll-up
+         ;; "C-f"   nil
+         ;; "C-b"   nil
+         ;; "C-p"   'replace-from-register-0
+         )
 
 ;; visual-state mappings
 (keymap+ evil-visual-state-map
@@ -1548,12 +1555,12 @@ you should place your code here."
 
 
 
-	;; Disable evil-snipe repeat keys 's' and 'S'
-  (setq evil-snipe-repeat-keys nil)
+	;; ;; Disable evil-snipe repeat keys 's' and 'S'
+  ;; (setq evil-snipe-repeat-keys nil)
 
-;; Disable evil-snipe highlighting
-  (setq evil-snipe-enable-highlight nil)
-  (setq evil-snipe-enable-incremental-highlight nil)
+;; ;; Disable evil-snipe highlighting
+;;   (setq evil-snipe-enable-highlight nil)
+;;   (setq evil-snipe-enable-incremental-highlight nil)
 
   ;; (setq evil-snipe-override-local-mode nil)
 
@@ -1583,8 +1590,8 @@ you should place your code here."
 	;;				map))
 
 
-	;; Enable evil-snipe to do a longer n-char search using TAB
-	(setq evil-snipe-tab-increment t)
+	;; ;; Enable evil-snipe to do a longer n-char search using TAB
+	;; (setq evil-snipe-tab-increment t)
 
 
 	;; ;; doesn't seem to work; default is still 2 chars
@@ -1630,8 +1637,8 @@ you should place your code here."
 
 
 
-;; Fix conflicts between snipe and Magit buffers
-  (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode)
+;; ;; Fix conflicts between snipe and Magit buffers
+;;   (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode)
 
 
 
@@ -1707,15 +1714,13 @@ you should place your code here."
      (object :foreground "#5974ab" :slant italic)
      (package :foreground "#000000")
      (deprecated :strike-through "#000000")))
- '(evil-snipe-enable-highlight nil)
- '(evil-snipe-enable-incremental-highlight nil)
+ '(evil-snipe-enable-highlight nil t)
+ '(evil-snipe-enable-incremental-highlight nil t)
  '(evil-surround-pairs-alist
    '((48 "----
 " . "
 ----")
-     (57 "----
-" . "
-----")
+     (109 "----" . "----")
      (113 "`" . "'")
      (80 "+++" . "+++")
      (112 "+" . "+")
@@ -1747,7 +1752,7 @@ you should place your code here."
      (60 . evil-surround-read-tag)
      (102 . evil-surround-function)))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#010F1D")
+ '(fci-rule-color "#010F1D" t)
  '(global-evil-search-highlight-persist nil)
  '(global-xah-math-input-mode t)
  '(gnutls-algorithm-priority "normal:-vers-tls1.3")
@@ -1765,7 +1770,7 @@ you should place your code here."
  '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
-   '(lua-mode evil-easymotion rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby j-mode gnu-apl-mode workgroups hlint-refactor hindent helm-hoogle haskell-snippets company-ghci haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help  company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(kbd-mode lua-mode evil-easymotion rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby j-mode gnu-apl-mode workgroups hlint-refactor hindent helm-hoogle haskell-snippets company-ghci haskell-mode company-cabal cmm-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data kaolin-themes vimrc-mode dactyl-mode nix-mode auto-sudoedit sudo-edit org-noter xah-math-input dyalog-mode zenburn-theme zen-and-art-theme white-sand-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme molokai-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme anti-zenburn-theme ample-zen-theme flucui-dark-theme lab-dark-theme hasklig-mode pretty-mode sublime-themes solarized-theme occidental-theme moe-theme light-soap-theme lab-themes intellij-theme heroku-theme flucui-themes flatui-theme fira-code-mode color-theme-sanityinc-tomorrow color-theme-modern base16-theme apropospriate-theme ample-theme alect-themes afternoon-theme yapfify racket-mode pos-tip faceup pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic adoc-mode markup-faces xterm-color shell-pop multi-term helm-company helm-c-yasnippet fuzzy eshell-z eshell-prompt-extras esh-help company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit git-commit with-editor transient evil-snipe parinfer tldr disable-mouse atom-one-dark-theme underwater-theme night-owl-theme monochrome-theme web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc coffee-mode psci purescript-mode psc-ide flycheck company dash-functional clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
  '(pos-tip-background-color "#FFF9DC")
  '(pos-tip-foreground-color "#011627")
  '(psc-ide-add-import-on-completion t t)
