@@ -1340,7 +1340,7 @@ you should place your code here."
          "a"   'evil-set-marker
          "b"   'evil-scroll-line-to-bottom
          "e"   'vile-backward-paragraph
-         "f"    'vile-goto-word-by-first-char
+         ;; "f"    'avy-goto-word-curr-line ;; poor design, as it should take 2 chars——with only a single-char search, there are too many display results; TODO: instead write a fn that does evil-avy-goto-word-1-below, but restricts it to the current line, and searches in both directions.
          "F"    'vile-goto-word-by-first-char-backward
          "j"   'evil-scroll-line-to-bottom
          "m"   'evil-scroll-line-to-center
@@ -1386,9 +1386,9 @@ you should place your code here."
          "B"    'evil-backward-word-begin
          "e"  'evil-forward-WORD-end
          "E"  'evil-forward-word-end
-         "f"   'avy-goto-word-curr-line
-         "s"   'evil-avy-goto-word-1-below ; easymotion-style hints
-         "S"   'evil-avy-goto-word-1-above ; easymotion-style hints
+         "f"   'vile-goto-word-by-first-char
+         "s"   'evil-avy-goto-word-1-below ; easymotion-style hints ; TODO replace with a vile 2-char version
+         "S"   'evil-avy-goto-word-1-above ; easymotion-style hints ; TODO replace with a vile 2-char version
          "go"   'isearch-forward-word
          "gk"   'vile-invert-char
          "gc"   'evil-invert-case

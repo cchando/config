@@ -60,9 +60,11 @@ set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 
 
 ## Autostart
-# exec_always kitty --listen-on=unix:@kitty, move scratchpad && kitty @ --to unix:@kitty "pamix"
-exec_always systemctl --user enable --now wireplumber
-exec_always systemctl --user restart pipewire
+
+## fix a bug (in Fedora? Gnome?) relating to the soundcard
+exec_always "systemctl --user enable --now wireplumber; systemctl --user restart pipewire"
+# exec_always systemctl --user restart pipewire
+exec_always batsignal -b -c 0 -d 10 -D 'systemctl suspend' # sleep upon draining to 10% battery;
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
@@ -78,6 +80,7 @@ exec_always nitrogen --set-zoom-fill $bg
 # exec pulseaudio-ctl set 35
 # exec vlc --loop --no-repeat file:///home/cameron/Music/1-Playlists/doki.m3u; mode "default"
 # exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
+# exec_always kitty --listen-on=unix:@kitty, move scratchpad && kitty @ --to unix:@kitty "pamix"
 
 # --- Syntax: ---
 # default_border normal|none|pixel   # pixel eliminates title bars
@@ -405,6 +408,7 @@ new_float none
 		bindsym $mod+s mode "system"
 		mode "system" {
         bindsym $alt+Shift+s exec systemctl suspend; mode "default"
+        bindsym $alt+Shift+h exec systemctl hybrid-sleep; mode "default"
 				bindsym $alt+Shift+r exec systemctl reboot
 				bindsym $alt+Shift+u exec shutdown now
 				bindsym Escape mode "default"

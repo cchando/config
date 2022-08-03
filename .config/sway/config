@@ -52,8 +52,10 @@ set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 
 
 ## Autostart
-exec_always systemctl --user enable --now wireplumber
-exec_always systemctl --user restart pipewire
+## fix a bug (in Fedora? Gnome?) relating to the soundcard
+exec_always "systemctl --user enable --now wireplumber; systemctl --user restart pipewire"
+# exec_always systemctl --user restart pipewire
+exec_always batsignal -b -c 0 -d 10 -D 'systemctl suspend' # sleep upon draining to 10% battery;
 exec_always seat * hide_cursor when-typing when-typing enable  # banish mouse cursor upon any key press
 exec_always seat * hide_cursor 1000  # banish mouse cursor when not in use
 exec gammastep -l 32.96:-96.67 -t 6500:3500
@@ -69,6 +71,7 @@ exec vlc --loop --random --no-repeat file:///home/cameron/Music/1-Playlists/noir
 exec mplayer -loop 0 -softvol -volume 60 /home/cameron/Music/sleeprain.ogg; mode "default"
 # exec_always ~/.config/waybar/waybar.sh
 # include ~/.config/sway/$(hostname)/*
+# exec_always kitty --listen-on=unix:@kitty, move scratchpad && kitty @ --to unix:@kitty "pamix"
 
 # --- Syntax: ---
 # default_border normal|none|pixel   # pixel eliminates title bars

@@ -1082,6 +1082,8 @@
   ["alpl" "⎕LA"]; lowercase alphabet
   ["dig" "⎕d"]; lowercase alphabet
   ["off" "⎕OFF"]
+  ["nums" "⎕AVU"]
+  ["numvec" "⎕AVU"]
   ["IO" "⎕IO←0"]
   ["apld" "⎕IO←0\n]box on -style=max\n]rows on\n"]
   ["aplsetup" "⎕IO←0\n]box on -style=max\n]rows on\n"]
