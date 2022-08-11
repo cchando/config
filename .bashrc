@@ -141,6 +141,8 @@ alias l='ls -Al'
 alias ll='ls -l'
 alias lg='ls | grep'
 alias lag='ls -A | grep'
+alias lw='lst wpa_supplicant'
+alias kw='sudo killall wpa_supplicant'
 alias wm='wavemon'
 alias pacman='pacman -Syu && pacman --noconfirm'
 alias pac='pacman -Syu && pacman --noconfirm'
@@ -206,9 +208,12 @@ alias aip='sudo ip addr add 10.0.0.1/8 dev enp0s31f6'
 
 # wifi -- wpa_supplicant
 alias wpaon='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf'
+alias won='wpaon'
 #alias wpaoff='systemctl stop wpa_supplicant'
 #alias wpaon='systemctl restart wpa_supplicant'
 alias wpastatus='systemctl status wpa_supplicant'
+alias stw='wpastatus'
+alias std='systemctl status dhcpcd'
 alias wpabg='sudo wpa_supplicant -i wlp1s0 -c f -B'  # (-d for debugging, -B for background/daemon)
 conn () {
 	  iw wlp1s0 connect -w $1

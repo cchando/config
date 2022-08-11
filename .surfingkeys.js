@@ -482,6 +482,7 @@ unmap('ymc');
 // !!! must put this AFTER all mappings based on ';'-prefixed default bindings
 map('<Ctrl-;>', '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
 map("\\", '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
+map('<Ctrl-\\>', '<Ctrl-6>'); // tab back-and-forth (must map AFTER any "map('⍵', ';_')")
 unmap('<Ctrl-6>');
 
 

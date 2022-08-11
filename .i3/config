@@ -37,9 +37,11 @@ set $HDMI HDMI-1
 set $VGA DP-1-3
 set $LAP eDP-1
 # current wallpaper
-set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
+set $bg ~/Pictures/wallpapers/new1/117491.jpg
 
 
+
+# set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 # set $bg ~/Pictures/wallpapers/new1/3346135.jpg
 # set $bg ~/Pictures/Florida/RV Parks/IMG_1790.jpg
 # set $bg ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg
@@ -64,7 +66,7 @@ set $bg ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg
 ## fix a bug (in Fedora? Gnome?) relating to the soundcard
 exec_always "systemctl --user enable --now wireplumber; systemctl --user restart pipewire"
 # exec_always systemctl --user restart pipewire
-exec_always batsignal -b -c 0 -d 10 -D 'systemctl suspend' # sleep upon draining to 10% battery;
+exec_always batsignal -b -c 0 -d 15 -D 'systemctl suspend' -f 100 -W "plug in" # sleep upon draining to 15% battery
 exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
@@ -225,33 +227,44 @@ new_float none
 		    bindsym r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
 		    bindsym Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
 		    bindsym Shift+r exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg"; mode "default"
-		    bindsym y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
-		    bindsym u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/research_center.jpg"; mode "default"
+		    bindsym u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
+		    bindsym y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
 		    bindsym i exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/master-frame-26-FINAL-LOGO.jpg"; mode "default"
+        # Irish rainy countryside
+		    bindsym Shift+i exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/117491.jpg"; mode "default"
 		    bindsym o exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/d29d22bff42ca805b208faa3df88df57.jpg"; mode "default"
 		    bindsym p exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/75c2e9dbc0496847cb71a98fb814c4e7.jpg"; mode "default"
-		    bindsym h exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
 		    bindsym Shift+g exec "nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"; mode "default"
 		    bindsym f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
 		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
 		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
+        # Singapore
+		    bindsym s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+        # Singapore
+		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+
         ###########
 		    bindsym $mod+g exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/7371738.jpg"; mode "default"
 		    bindsym $mod+r exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/vlad/vlad-rainy-text.jpg"; mode "default"
 		    bindsym $mod+Shift+f exec "nitrogen --set-zoom-fill ~/Pictures/Welcome\ to\ Florida/florida-state-01_BEST.jpg"; mode "default"
 		    bindsym $mod+Shift+r exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV Parks/riptide-rv-marina-36.jpg"; mode "default"
-		    bindsym $mod+y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
-		    bindsym $mod+u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/research_center.jpg"; mode "default"
+		    bindsym $mod+y exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
+		    bindsym $mod+u exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/3venus-June-Update-cc.-LRj-LOGO.jpg"; mode "default"
 		    bindsym $mod+i exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/master-frame-26-FINAL-LOGO.jpg"; mode "default"
+        # Irish rainy countryside
+		    bindsym $mod+Shift+i exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/117491.jpg"; mode "default"
 		    bindsym $mod+o exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/d29d22bff42ca805b208faa3df88df57.jpg"; mode "default"
 		    bindsym $mod+p exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/75c2e9dbc0496847cb71a98fb814c4e7.jpg"; mode "default"
-		    bindsym $mod+h exec "nitrogen --set-zoom-fill ~/Pictures/Venus\ Project/Research_centre_of_The_Venus_Project\ \(1\).jpg"; mode "default"
 		    bindsym $mod+Shift+g exec "nitrogen --set-zoom-fill ~/Pictures/Florida/homes_condos_townhouses/image-27.png"; mode "default"
 		    bindsym $mod+f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
 		    bindsym $mod+Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 		    bindsym $mod+q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
 		    bindsym $mod+b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
+        # Singapore
+		    bindsym $mod+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
+        # Singapore
+		    bindsym $mod+Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -516,7 +529,7 @@ new_float none
     # # screenshot using shotgun (replace w/ maim)
     # bindsym $mod+s exec shotgun
     # bindsym $mod+Shift+s exec ksnip
-    bindsym $mod+Shift+s exec shutter --select
+    bindsym $mod+$alt+s exec shutter -s -e -C -n -o "/home/cameron/Pictures/screenshots/%Y-%m-%d-%T.png"
 
     # close all google-chrome-stable windows
     bindsym $alt+$mod+g [class="^Google-chrome$"] kill
@@ -624,6 +637,7 @@ new_float none
     bindsym $mod+period workspace next_on_output
 		# $mod+semicolon taken by emacs for buffer-back-and-forth; much more deserving of the better keybind
     bindsym $mod+8 workspace back_and_forth
+    bindsym $mod+backslash workspace back_and_forth
 
     # switch to workspace
 		bindsym $mod+g mode "go"
