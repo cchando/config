@@ -565,6 +565,7 @@ addSearchAlias('y', 'youtube', 'https://www.youtube.com/results?search_query=');
 addSearchAlias('w', 'wikipedia', 'https://en.wikipedia.org/wiki/');
 addSearchAlias('u', 'github', 'https://github.com/search?q=');
 addSearchAlias('M', 'google maps', 'https://www.google.com/maps?q=');
+addSearchAlias('i', 'google images', 'https://www.google.com/search?sxsrf=ALiCzsY3O1s_UvQeAiB0uT_2u3MDaP7G_w:1660320482848&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjQs9_k18H5AhWUk2oFHesPCb4Q_AUoBHoECAEQBg&cshid=1660320515948683&biw=1050&bih=1792&dpr=1&q=');
 addSearchAlias('g', 'google', 'https://www.google.com/search?q=');
 addSearchAlias('s', 'google (site only)', 'https://www.google.com/search?q=site%3A'+window.location.href.split('/')[2]+'%20');
 // addSearchAlias('G', 'google', 'https://www.google.com/search?q=site%3A' + window.location.href.replace(/\?)+'%20'); // search pages only from current site --> replace everything after hostname, e.g., after '*.com' or '*.net'
@@ -604,8 +605,11 @@ mapkey('sA', '#8Search Amazon', function() {
 mapkey('sm', '#8Search MELPA', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "m"});
 });
-mapkey('sM', '#8Search with Google Maps', function() {
+mapkey('sM', '#8Search Google Maps', function() {
 		Front.openOmnibar({type: "SearchEngine", extra: "M"});
+});
+mapkey('si', '#8Search Google Images', function() {
+		Front.openOmnibar({type: "SearchEngine", extra: "i"});
 });
 mapkey('sh', '#8Search Hoogle', function() {
    Front.openOmnibar({type: "SearchEngine", extra: "h"});
