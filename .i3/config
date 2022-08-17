@@ -71,7 +71,7 @@ exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
-# exec redshift -l 32.96:-96.67 -t 6500:3500
+exec redshift -l 32.96:-96.67 -t 6500:3500
 # disable touchpad:
 exec xinput set-prop "$(xinput list | grep -i touchpad | cut -f 2 | grep -oE '[[:digit:]]+')" 'Device Enabled' 0
 # disable mouse stick:
@@ -307,7 +307,6 @@ new_float none
 		mode "playlist" {
 				bindsym v exec vlc --loop --random --no-repeat; mode "default"
         # kill vlc
-				bindsym k exec killall vlc; mode "default"
 		    bindsym a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/anime.m3u"; mode "default"
 		    bindsym Shift+a exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/all.m3u"; mode "default"
 		    bindsym c exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/classical.m3u"; mode "default"
@@ -316,25 +315,41 @@ new_float none
 		    bindsym Shift+e exec "killall vlc; vlc --loop --random --repeat ~/Music/1-Playlists/focus-tech-extended.m3u"; mode "default"
 		    bindsym f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus.m3u"; mode "default"
 		    bindsym Shift+f exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus2.m3u"; mode "default"
-		    bindsym h exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/helltaker.m3u"; mode "default"
 		    bindsym g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/games.m3u"; mode "default"
 		    bindsym Shift+g exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/focus3.m3u"; mode "default"
+		    bindsym h exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/helltaker.m3u"; mode "default"
+		    bindsym j exec "killall vlc; vlc --loop --random --no-repeat ~/Music/relaxing/4K_Cozy_Coffee_Shop_with_Smooth_Piano_Jazz_Music_for_Relaxing_Studying_and_Working.mp3"; mode "default"
+		    bindsym Shift+j exec "killall vlc; vlc --loop --random --no-repeat ~/Music/relaxing/Rainy_Day_at_the_Coffee_Shop_Ambiance_-_8_Hours_of_Rain_background_chatter_and_Jazz_Music.mp3"; mode "default"
 		    bindsym l exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/level.m3u"; mode "default"
 		    bindsym m exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/mixed-short.m3u"; mode "default"
 		    bindsym n exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/noir.m3u"; mode "default"
 		    bindsym p exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/playful-tech.m3u"; mode "default"
+		    bindsym Shift+p exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/panzer.m3u"; mode "default"
 		    bindsym s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/spyro.m3u"; mode "default"
 		    bindsym Shift+s exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/sonic.m3u"; mode "default"
 		    bindsym t exec "killall vlc; vlc --loop --random --no-repeat ~/Music/1-Playlists/takagi.m3u"; mode "default"
-		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/sleeprain.ogg"; mode "default"
-		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/sleeprain.ogg"; mode "default"
 		    bindsym Shift+m exec "mplayer -loop 0 -softvol -volume 160 ~/Music/sleeprain.ogg"; mode "default"
 		    bindsym e exec killall mplayer; mode "default"
+				bindsym k exec killall vlc; mode "default"
 		    bindsym 9 exec killall mplayer vlc; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
 		}
+
+    # background SFX mode
+		bindsym $mod+$alt+p mode "bg SFX"
+		mode "bg SFX" {
+		    bindsym r exec "killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/relaxing/sleeprain.ogg"; mode "default"
+		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/relaxing/sleeprain.ogg"; mode "default"
+		    bindsym c exec "killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
+		    bindsym Shift+c exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
+		    bindsym e exec killall mplayer; mode "default"
+				bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym space mode "default"
+		}
+
 
     # screen setup commands
 		bindsym $alt+$mod+o mode "outputs"
@@ -473,14 +488,12 @@ new_float none
     # redshift commands
 		bindsym $mod+y mode "redshift"
 		mode "redshift" {
-        # bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
+        bindsym t exec redshift -l 32.96:-96.67 -Prt 6500:3500; mode "default"
         bindsym a exec "killall redshift .redshift-wrapp; redshift -x"
         bindsym s exec "killall redshift .redshift-wrapp; redshift -PO 5000"
         bindsym d exec "killall redshift .redshift-wrapp; redshift -PO 4500"
         bindsym f exec "killall redshift .redshift-wrapp; redshift -PO 4000"
         bindsym g exec "killall redshift .redshift-wrapp; redshift -PO 3500"
-        bindsym h exec "killall redshift .redshift-wrapp; redshift -PO 3000"
-        bindsym j exec "killall redshift .redshift-wrapp; redshift -PO 2500"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -542,6 +555,12 @@ new_float none
 
 		## start emacs (full-height, full-width)
     bindsym $mod+e exec emacs -mm
+
+		## open Quantified Self spreadsheet with libreoffice
+    bindsym $mod+q exec libreoffice -o "/home/cameron/Documents/quantified-self.ods"
+
+		## open schedule spreadsheet with libreoffice
+    bindsym $mod+Shift+s exec libreoffice -o "/home/cameron/Documents/schedule.ods"
 
     ## start spacemacs w/ (modded) default config
 		# TODO: find out how to do this correctly
@@ -652,7 +671,7 @@ new_float none
 				bindsym k workspace 8; mode "default"
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
-				bindsym minus workspace 11; mode "default"
+				bindsym apostrophe workspace 11; mode "default"
         ###########
 		    bindsym $mod+a workspace 1; mode "default"
 				bindsym $mod+s workspace 2; mode "default"
@@ -664,7 +683,7 @@ new_float none
 				bindsym $mod+k workspace 8; mode "default"
 				bindsym $mod+l workspace 9; mode "default"
 				bindsym $mod+semicolon workspace 10; mode "default"
-				bindsym $mod+minus workspace 11; mode "default"
+				bindsym $mod+apostrophe workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -682,7 +701,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
-				bindsym minus move container to workspace 11; mode "default"
+				bindsym apostrophe move container to workspace 11; mode "default"
         ###########
         bindsym $mod+a move container to workspace 1; mode "default"
 				bindsym $mod+s move container to workspace 2; mode "default"
@@ -694,7 +713,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"
 				bindsym $mod+l move container to workspace 9; mode "default"
 				bindsym $mod+semicolon move container to workspace 10; mode "default"
-				bindsym $mod+minus move container to workspace 11; mode "default"
+				bindsym $mod+apostrophe move container to workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -712,7 +731,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"; workspace 8
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
-				bindsym minus move container to workspace 11; mode "default"; workspace 11
+				bindsym apostrophe move container to workspace 11; mode "default"; workspace 11
         ###########
         bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
 				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
@@ -724,7 +743,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"; workspace 8
 				bindsym $mod+l move container to workspace 9; mode "default"; workspace 9
 				bindsym $mod+semicolon move container to workspace 10; mode "default"; workspace 10
-				bindsym $mod+minus move container to workspace 11; mode "default"; workspace 11
+				bindsym $mod+apostrophe move container to workspace 11; mode "default"; workspace 11
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
