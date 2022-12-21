@@ -1,3 +1,5 @@
+;; <SPC><SPC> byte-compile-file xah-math-input.el
+
 ; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
@@ -515,7 +517,10 @@ you should place your code here."
 
 	;; ----------- For minimal font set -------------------------------------------------------------
 
-	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "Cambria Math") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Cambria Math") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Iosevka") ; APL symbols
+	(set-fontset-font "fontset-default" '(#x2200 . #x237A) "DejaVu Sans Mono") ; APL symbols
+	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Fira Code") ; APL symbols
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "Code2000") ; APL symbols
   (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Cambria Math") ; math operators block
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "Iosevka") ; arrows
@@ -529,7 +534,6 @@ you should place your code here."
 
 	;; (set-fontset-font "fontset-default" '(#x2200 . #x22FF) "Code 2000") ; math operators block
 
-	;; (set-fontset-font "fontset-default" '(#x2200 . #x237A) "DejaVu Sans Mono") ; APL symbols
 	;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "STIX Two Math") ; arrows
 	;; ;; (set-fontset-font "fontset-default" '(#x2190 . #x21FF) "DejaVu Sans Mono") ; arrows
 	;; (set-fontset-font "fontset-default" '(#x1D400 . #x214F) "TeX Gyre") ; mathematical alphanumeric and letterlike symbols
