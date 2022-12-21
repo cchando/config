@@ -28,7 +28,7 @@ ps-shell () {
 #ping 8.8.8.8
 #sftp cameron@10.0.0.2
 #xdg-mime  #check / modify file-type associations
-#wpa_passphrase Frontier4704 21422325889218 > /etc/wpa_supplicant.conf #5148275597
+# wpa_passphrase Frontier4704 21422325889218 > /etc/wpa_supplicant.conf #5148275597 #wifi
 #ip a -- get status of wireless devices
 #alias ni='nix-instantiate --eval'
 #xinput list
@@ -119,17 +119,25 @@ lsag () { # ls -Al then grep
     ls -Al "$1" | grep "$2"
 }
 trim () { # trim audio/video with ffmpeg
-    # usage: trim input-filepath output-filepath <start-time in [HH:]MM:SS[m[m...]]> <end-time>
-    'ffmpeg -i $1 -ss $3 -to $4 -c copy $2'
+    # usage: trim input-filepath output-filepath <start-time in [HH:]MM:SS[.m[m...]]> <end-time>
+    ffmpeg -i $1 -ss $3 -to $4 -c copy $2
 }
 
 # program aliases
+alias wm='wavemon'
+alias bt='blueman-manager'
 alias wpastart='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf '
 alias al='alias'
 alias h='history'
 alias g='grep'
+alias winpos='xdotool getwindowfocus getwindowgeometry'
+alias winsize='xdotool getwindowfocus getwindowgeometry'
+alias sw='termdown -a' # stopwatch
+alias swc='termdown -av en 21:50' # countdown
+alias timer='termdown -av en 21:50' # countdown
 alias dl='echo !' # use as 'dl !<prefix string>', i.e., still insert '!'
-alias show='echo'
+alias cb='cat $h/.bashrc'
+alias cbg='cat $h/.bashrc | grep'
 alias psa='ps -A'
 alias ls='ls --color=auto -hF'
 alias lsn='ls --color=never -hF'
@@ -141,20 +149,18 @@ alias l='ls -Al'
 alias ll='ls -l'
 alias lg='ls | grep'
 alias lag='ls -A | grep'
-alias lw='lst wpa_supplicant'
-alias kw='sudo killall wpa_supplicant'
-alias wm='wavemon'
-alias pacman='pacman -Syu && pacman --noconfirm'
-alias pac='pacman -Syu && pacman --noconfirm'
-alias lstin='dnf list --installed'
-alias lsinst='dnf list --installed'
+alias oo='libreoffice -o' #office: open (file)
+alias word='libreoffice --writer'
+alias excel='libreoffice --calc'
+alias calc='libreoffice --calc'
 alias lsfonts='kitty list-fonts'
 alias lstfonts='kitty list-fonts'
 alias wh='which'
 alias ty='type'
 alias os='uname -a' # OS version info
+alias osinfo='uname -a' # OS version info
 alias sys='hostnamectl' # OS version (and hardware) info
-alias bt='blueman-manager'
+alias sysinfo='hostnamectl' # OS version (and hardware) info
 alias s='sway'
 alias 7zip='7za'
 # alias ls='ls --color=never -hF'
@@ -163,7 +169,7 @@ alias c='clear'
 # alias sp='spago'
 alias s='sudo'
 alias jlang='$prog/j903/jconsole.sh'
-alias jl='$prog/j903/jconsole.sh'
+alias j='$prog/j903/jconsole.sh'
 alias ulp='nix-env -q --installed > $HOME/.nix-local-installed-progs' # update-local-packages
 alias vlch='vlc --longhelp --advanced' # vlc long-help
 alias vlclh='vlc --longhelp --advanced' # vlc long-help
@@ -195,19 +201,41 @@ alias dya='dyalog'
 alias pg=' psql -U cameron -d postgres'
 # alias rsl='redshift -l 32.96:-96.67 -t 6500:2000'
 
+## audio
+alias p='pamix'  # mixer
 
-# wifi -- generic
+## package manager
+alias lsi='dnf list --installed'
+alias lsig='dnf list --installed | grep'
+alias lstin='dnf list --installed'
+alias lsinst='dnf list --installed'
+alias pacman='pacman -Syu && pacman --noconfirm'
+alias pac='pacman -Syu && pacman --noconfirm'
+
+
+## wifi -- generic
 alias pingg='ping 8.8.8.8'
 alias rd='systemctl restart dhcpcd'
-alias scan='sudo iw wlp1s0 scan | grep SSID'
+alias ipu='sudo ip link set wlp1s0 up' # turn on wifi device (oftentimes is off when powering up from sleep, etc)
+alias scan='sudo iw wlp1s0 scan | grep SSID'  # wifi list networks
 alias scanb='iw wlp1s0 scan | grep BSS'
 alias logiv='dmesg wlp1s0'
 alias checki='ip a | grep "inet '
-alias ipsu='sudo ip link set wlp1s0 up'
 alias aip='sudo ip addr add 10.0.0.1/8 dev enp0s31f6'
+alias ipa='ip a | grep $wifi'
+alias wifist='ipa' # wifi status
+alias wifioff='sudo rfkill block all'
+alias wd='sudo rfkill block all'
+alias wifion='sudo rfkill unblock all'
+alias we='sudo rfkill unblock all'
+alias blocked='rfkill'
 
 # wifi -- wpa_supplicant
+alias wpa='wpa_supplicant'
+alias lw='lst wpa_supplicant'
+alias kw='sudo killall wpa_supplicant'
 alias wpaon='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf'
+alias ow='sudo wpa_supplicant -Bi wlp1s0 -c /etc/wpa_supplicant/wpa_supplicant.conf'
 alias won='wpaon'
 #alias wpaoff='systemctl stop wpa_supplicant'
 #alias wpaon='systemctl restart wpa_supplicant'
@@ -244,12 +272,13 @@ rl () {
 # alias ydlpv='nohup "youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"" &>/dev/null &'
 
 alias rs='systemctl --user enable --now wireplumber && systemctl --user restart pipewire' #restart sound
-alias p='pamix'
 alias ydl='youtube-dl -cix --no-playlist -o "~/Music/youtube-dl/%(title)s.%(ext)s" --audio-format mp3'
 alias ydlp='youtube-dl -cix --yes-playlist -o "~/Music/youtube-dl/%(playlist)s/%(title)s.%(ext)s" --audio-format mp3'
+alias ydlpi='youtube-dl -cix --yes-playlist -o "~/Music/youtube-dl/%(playlist)s/%(title)s.%(ext)s" --audio-format mp3 --playlist-items' # 'i' for index (list playlist indices as e.g. 1-3,6,8
 alias ydlv='youtube-dl --no-playlist -o "~/Videos/youtube-dl/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
 alias ydlpv='youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(playlist)s/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
 alias ydlvp='ydlpv'
+alias ydlpvi='youtube-dl -ci --yes-playlist -o "~/Videos/youtube-dl/%(playlist)s/%(title)s.%(4]+bestaudio[ext=m4a]/best[ext=mp4]/best" --playlist-items' # 'i' for index (list playlist indices as e.g. 1-3,6,8
 
 # alias emacs-def='git stash push -m "push cac .spacemacs" && mkdir /home/cameron/tmp && mv /home/cameron/.spacemacs /home/cameron/tmp/ && mv -f /home/cameron/spacemacs-default /home/cameron/.spacemacs && emacs -mm'    # "emacs default"
 # alias emacs-cac='git stash pop'
@@ -267,13 +296,6 @@ alias defaultkeys='xmodmap ~/.Xmodmap-fallback'  # fall back to safe mapping
 alias xme='xmodmap -pke > ~/.Xmodmap-fallback-tmp'  # export current keymap to holding file
 alias xmexportpermanent='xmodmap -pke > ~/.Xmodmap-fallback'  # export current keymap to holding file
 alias key='xev'
-alias ipa='ip a | grep $wifi'
-alias wifist='ipa' # wifi status
-alias wifioff='sudo rfkill block all'
-alias wd='sudo rfkill block all'
-alias wifion='sudo rfkill unblock all'
-alias we='sudo rfkill unblock all'
-alias blocked='rfkill'
 alias size='du -sh'
 alias lmon='xrandr --current' # list monitors
 alias findp='find . -ipath'
@@ -295,7 +317,6 @@ alias bat='acpi'    # or 'upower ...'
 # alias unzip='7z x'
 alias zip='tar czf'
 alias unzip='tar xf'
-alias wpa='wpa_supplicant'
 alias sctl='systemctl'
 alias status='systemctl status'
 alias restart='systemctl restart'

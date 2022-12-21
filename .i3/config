@@ -63,11 +63,10 @@ set $bg ~/Pictures/wallpapers/new1/117491.jpg
 
 ## Autostart
 
-## fix a bug (in Fedora? Gnome?) relating to the soundcard
-exec_always "systemctl --user enable --now wireplumber; systemctl --user restart pipewire"
-# exec_always systemctl --user restart pipewire
+
+exec_always "systemctl --user enable --now wireplumber; systemctl --user restart pipewire" # fix a bug (in Fedora? Gnome?) relating to the soundcard
 exec_always batsignal -b -c 0 -d 15 -D 'systemctl suspend' -f 100 -W "plug in" # sleep upon draining to 15% battery
-exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl & Escape, etc.)
+exec xmodmap ~/.Xmodmap   # set keyboard layout (swap Ctrl w/ Escape, etc.)
 exec_always xbanish  # banish mouse cursor upon any key press
 exec_always unclutter -idle 1 -root  # banish mouse cursor when not in use
 exec_always compton  # compositor to enable window transparency
@@ -238,6 +237,7 @@ new_float none
 		    bindsym f exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3346135.jpg"; mode "default"
 		    bindsym Shift+s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
 		    bindsym q exec "nitrogen --set-zoom-fill ~/Pictures/Florida/RV\ Parks/banner-lodging-campsites-1.jpg"; mode "default"
+		    bindsym t exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/5684679-beach-hd-wallpaper.jpg"; mode "default"
 		    bindsym b exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/rainy-birds.jpg"; mode "default"
         # Singapore
 		    bindsym s exec "nitrogen --set-zoom-fill ~/Pictures/wallpapers/new1/3275.jpg"; mode "default"
@@ -344,6 +344,8 @@ new_float none
 		    bindsym Shift+r exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/relaxing/sleeprain.ogg"; mode "default"
 		    bindsym c exec "killall mplayer; mplayer -loop 0 -softvol -volume 40 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
 		    bindsym Shift+c exec "killall mplayer; mplayer -loop 0 -softvol -volume 100 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
+		    bindsym v exec "killall mplayer; mplayer -loop 0 -softvol -volume 150 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
+		    bindsym Shift+v exec "killall mplayer; mplayer -loop 0 -softvol -volume 200 ~/Music/relaxing/It_s_raining._I_ll_sleep_in_the_car_-_Car_Camping.mp3"; mode "default"
 		    bindsym e exec killall mplayer; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -394,8 +396,9 @@ new_float none
         bindsym $left exec xrandr --output $VGA --auto
 				# turn on right monitor
         bindsym $right exec xrandr --output $HDMI --auto
-				# both monitors off
+				# usual setup
         bindsym s exec "xrandr --output $VGA --rotate left --output $HDMI --rotate right --right-of $VGA; sleep 4"; exec nitrogen --set-zoom-fill $bg; mode "default"
+				# both monitors off
         bindsym d exec xrandr --output $VGA --off --output $HDMI --off; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
@@ -433,7 +436,7 @@ new_float none
 
 
     # systemctl commands
-		bindsym $mod+s mode "system"
+		bindsym $alt+$mod+s mode "system"
 		mode "system" {
         bindsym $alt+Shift+s exec systemctl suspend; mode "default"
         bindsym $alt+Shift+h exec systemctl hybrid-sleep; mode "default"
@@ -542,7 +545,7 @@ new_float none
     # # screenshot using shotgun (replace w/ maim)
     # bindsym $mod+s exec shotgun
     # bindsym $mod+Shift+s exec ksnip
-    bindsym $mod+$alt+s exec shutter -s -e -C -n -o "/home/cameron/Pictures/screenshots/%Y-%m-%d-%T.png"
+    bindsym $mod+s exec shutter -s -e -C -n -o "/home/cameron/Pictures/screenshots/%Y-%m-%d-%T.png"
 
     # close all google-chrome-stable windows
     bindsym $alt+$mod+g [class="^Google-chrome$"] kill
@@ -569,17 +572,22 @@ new_float none
     ## pulseaudio (volume control)
     ## toggle mute
     bindsym $mod+Return exec pulseaudio-ctl mute
+    bindsym F7 exec pulseaudio-ctl mute
     ## vol down
     # bindsym $mod+9 exec pulseaudio-ctl down
     bindsym $mod+3 exec pulseaudio-ctl down
+    bindsym $mod+9 exec pulseaudio-ctl down
     bindsym $mod+d exec pulseaudio-ctl down
+    bindsym F8 exec pulseaudio-ctl down
     ## vol up
     # bindsym $mod+0 exec pulseaudio-ctl up
     bindsym $mod+4 exec pulseaudio-ctl up
+    bindsym $mod+0 exec pulseaudio-ctl up
     bindsym $mod+u exec pulseaudio-ctl up
+    bindsym F9 exec pulseaudio-ctl up
 
     # # system volume control
-    bindsym $mod+Shift+v exec pavucontrol #pavucontrol-qt
+    bindsym $mod+$alt+v exec pavucontrol #pavucontrol-qt
 
     # # start kcolorchooser
     # bindsym $mod+c exec kcolorchooser
@@ -671,7 +679,7 @@ new_float none
 				bindsym k workspace 8; mode "default"
 				bindsym l workspace 9; mode "default"
 				bindsym semicolon workspace 10; mode "default"
-				bindsym apostrophe workspace 11; mode "default"
+				bindsym minus workspace 11; mode "default"
         ###########
 		    bindsym $mod+a workspace 1; mode "default"
 				bindsym $mod+s workspace 2; mode "default"
@@ -683,7 +691,7 @@ new_float none
 				bindsym $mod+k workspace 8; mode "default"
 				bindsym $mod+l workspace 9; mode "default"
 				bindsym $mod+semicolon workspace 10; mode "default"
-				bindsym $mod+apostrophe workspace 11; mode "default"
+				bindsym $mod+minus workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -701,7 +709,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"
 				bindsym l move container to workspace 9; mode "default"
 				bindsym semicolon move container to workspace 10; mode "default"
-				bindsym apostrophe move container to workspace 11; mode "default"
+				bindsym minus move container to workspace 11; mode "default"
         ###########
         bindsym $mod+a move container to workspace 1; mode "default"
 				bindsym $mod+s move container to workspace 2; mode "default"
@@ -713,7 +721,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"
 				bindsym $mod+l move container to workspace 9; mode "default"
 				bindsym $mod+semicolon move container to workspace 10; mode "default"
-				bindsym $mod+apostrophe move container to workspace 11; mode "default"
+				bindsym $mod+minus move container to workspace 11; mode "default"
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -731,7 +739,7 @@ new_float none
 				bindsym k move container to workspace 8; mode "default"; workspace 8
 				bindsym l move container to workspace 9; mode "default"; workspace 9
 				bindsym semicolon move container to workspace 10; mode "default"; workspace 10
-				bindsym apostrophe move container to workspace 11; mode "default"; workspace 11
+				bindsym minus move container to workspace 11; mode "default"; workspace 11
         ###########
         bindsym $mod+a move container to workspace 1; mode "default"; workspace 1
 				bindsym $mod+s move container to workspace 2; mode "default"; workspace 2
@@ -743,7 +751,7 @@ new_float none
 				bindsym $mod+k move container to workspace 8; mode "default"; workspace 8
 				bindsym $mod+l move container to workspace 9; mode "default"; workspace 9
 				bindsym $mod+semicolon move container to workspace 10; mode "default"; workspace 10
-				bindsym $mod+apostrophe move container to workspace 11; mode "default"; workspace 11
+				bindsym $mod+minus move container to workspace 11; mode "default"; workspace 11
 				bindsym Escape mode "default"
 				bindsym Return mode "default"
 				bindsym space mode "default"
@@ -825,14 +833,17 @@ for_window [window_role="vlc-main"] floating enable , \
     bindsym $mod+space fullscreen
     bindsym $alt+$mod+space fullscreen
 
+    # Toggle sticky window
+    bindsym Shift+$mod+f sticky toggle
+
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+f floating toggle
+    bindsym $alt+$mod+f floating toggle
 
     # Hold the mod key and click on a floating window to drag it
     floating_modifier $mod
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+$alt+f focus mode_toggle
+    bindsym $mod+f focus mode_toggle
 
     # # move focus to the parent container
     # bindsym $mod+a focus parent
@@ -859,7 +870,20 @@ mode "resize" {
     bindsym $up resize grow height 20px
     bindsym $right resize grow width 20px
     # for vlc after restarting i3
-    bindsym e resize set 1070 700, move position center; mode "default"
+    bindsym e resize set 1050 700, move position center; mode "default"
+    bindsym $mod+e resize set 1050 700, move position center; mode "default"
+    # for stopwatch; can use "xdotool getwindowfocus getwindowgeometry" to get geometry of given window
+    # top
+    bindsym s resize set 1050 50, move position 15 px 39 px; mode "default"
+    bindsym $mod+s resize set 1050 50, move position 15 px 39 px; mode "default"
+    # bottom
+    bindsym Shift+s resize set 1050 50, move position 15 px 1855 px; mode "default"
+    # for stopwatch; can use "xdotool getwindowfocus getwindowgeometry" to get geometry of given window
+    # top
+    bindsym m resize set 1050 166, move position 15 px 39 px; mode "default"
+    bindsym $mod+m resize set 1050 166, move position 15 px 39 px; mode "default"
+    # bottom
+    bindsym Shift+m resize set 1050 166, move position 15 px 1739 px; mode "default"
     bindsym $mod+r mode "default"
     bindsym space mode "default"
     bindsym Return mode "default"

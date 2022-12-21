@@ -36,13 +36,13 @@ clear Shift
 
 
 
-! CapsLock ← Escape:
+! CapsLock ← Escape (CapsLock physical key gets Escape keycode):
 keycode 66 = Escape NoSymbol Escape
 
 ! Esc ← CapsLock:
-keycode 9 = Caps_Lock NoSymbol Caps_Lock
+! keycode 9 = Caps_Lock NoSymbol Caps_Lock
 
-! Ctrl_R ← Logo Key
+! Ctrl_R ← Logo Key (Ctrl_R physical key gets Logo Key keycode)
 keycode 105 = Super_R NoSymbol Super_R
 
 ! ! Shift_R ← Shift_L (just an experiment) -- not working somewhy
