@@ -565,6 +565,8 @@
 	["∩" "⋂"]; n-ary
  	["UU'" "⋃"]; n-ary ; UU'
 	["II'" "⋂"]; n-ary ; II'
+	["⋃" "∪"]; n-ary to binary
+	["⋂" "∩"]; n-ary to binary
  	["(" "⊂"]
  	["⊂" "⊆"]
  	["⊆" "⊄"]
@@ -649,8 +651,10 @@
 
 	["ne" "≠"]
 	["le" "≤"]
+	["<" "≤"]
 	["<u" "≤"]
 	["ge" "≥"]
+	[">" "≥"]
 	[">u" "≥"]
 	["le'" "⩽"]
 	["<u''" "⩽"]
@@ -716,9 +720,13 @@
   ;; ["cm" "⊖ "] ; circle minus
   ;; ["cd" "⊘ "] ; circle divide
   ["p'" "′"]  ; prime -- save ' for back-tick (grave accent) ` (adoc, etc)
+  ["⁗" "′"]  ; prime -- cycle from quad prime
   ["p''" "″"] ; double prime
+  ["′" "″"] ; double prime
   ["p'''" "‴"] ; triple prime
+  ["″" "‴"] ; triple prime
   ["p''''" "⁗"] ; quad prime
+  ["‴" "⁗"] ; quad prime
   [".m" "·"]
 
 
@@ -820,7 +828,6 @@
   [")" "⊃"]
   ["dis" "⊃"]; disclose
   ["unb" "⊃"]; unbox
-  ["he" "⊃"]; head
   ["pic" "⊃"]; pick
   ["x" "×"]; times
   ;; ["vh" "⍅"] ; left vane
@@ -902,12 +909,10 @@
   ["rig" "⊢"] ; right
   ;; ["th" "⊣"] ; tack left (vim keys) TODO: activate after mapping kmonad
   ;; ["tl" "⊢"] ; tack right (vim keys) TODO: activate after mapping kmonad
-  ["mad" "⌺"] ; matrix divide
-  ["md" "⌹"] ; matrix divide
+  ["mad" "⌹"] ; matrix divide
   ["mdi" "⌹"] ; matrix divide
   ["mdiv" "⌹"] ; matrix divide
   ["minv" "⌹"] ; matrix inverse
-  ;; ["dom" "⌹"] ; domino
   ["ci" "○"] ; pi-times, circular fns
   ["cir" "○"] ; pi-times, circular fns
   ["OO" "○"] ; pi-times, circular fns
@@ -923,9 +928,7 @@
   ["rot" "⌽"]
   ["rof" "⊖"] ; rotate first
   ["rf" "⊖"] ; rotate first
-  ["rf" "⊖"] ; rotate first
   ["fl" "⊖"] ; flip
-  ;; ["Ob" "⊖"] ; "circle bar"
   ["tr" "⍉"] ; transpose
   ["tra" "⍉"] ; transpose
   ["\\" "⍀"] ; backslash bar; single backslash; escaped here
@@ -978,8 +981,8 @@
   ;; ["ra" "⍤"] ; rank
   ["rk" "⍤"] ; rank
   ["rnk" "⍤"] ; rank
-  ["dia" "⋄"]
-  ["sep" "⋄"] ; separator
+  ["dia" "⋄ "]
+  ["sep" "⋄ "] ; separator
   ["no" "~"]
   ["wo" "~"]
   ["ov" "⍥"] ; Over
@@ -1079,14 +1082,14 @@
   ["diag" "⍁"]
   ["obl" "⍁"] ; "oblique (diagonals)" (J vb name)
   ["b\\" "⍂"]
-  ["ce" "˘"] ; Cells
+  ["ce" "⍤¯1"] ; Cells
+  ["ce'" "˘"] ; Cells
   ["val" "⊘"] ; Valences
+  ["md" "⊘"] ; monad-dyad
   ["fc" "⊏"] ; First Cell
-  ["bind" "⊏"] ; Select (BQN Index)
-  ["bsel" "⊏"] ; Select
-  ["bsele" "⊏"] ; Select
   ;; ["bhe" "⊑"] ; BQN Head
   ;; ["bpic" "⊑"] ; BQN Pick
+  ["bsel" "⊏"] ; BQN Select
   ["cla" "⊐"] ; Classify (BQN)
   ["bi" "⊐"] ; BQN Index Of
   ["bio" "⊐"] ; BQN Index Of
@@ -1096,10 +1099,15 @@
   ["occ" "⊒"] ; Occurrence Count——BQN
   ["gr" "⊔"] ; Group
   ["grp" "⊔"] ; Group
+  ["inv''" "⁼"] ; inverse
+  ["heq" "⁼"] ; high equals
+  ["he" "⁼"] ; high equals
 
-  ["alpu" "⎕A"]; uppercase alphabet
-  ["alpl" "⎕LA"]; lowercase alphabet
-  ["dig" "⎕d"]; lowercase alphabet
+
+  ["AA" "⎕A"]; uppercase alphabet
+  ["aa" "⎕C⎕A"]; lowercase alphabet
+  ["DD" "⎕d"]; lowercase alphabet
+  ["dd" "⎕d"]; lowercase alphabet
   ["off" "⎕OFF"]
   ["nums" "⎕AVU"]
   ["numvec" "⎕AVU"]
@@ -1132,8 +1140,13 @@
   ["ss" "      "]; six spaces
 
   ;; ---- idioms ------
-  ["ax" "⍳⍴⍴"]; axes
-  ["ax'" "⍳∘⍴∘⍴⍤"]; axes ;⍳∘⍴∘⍴⍤⊢ ;⍳∘⍴∘⍴⍤⊣
+  ["ce" "⍤¯1"]; Cells
+  ["cr" "⍤99 ¯1"]; Cells right
+  ["cl" "⍤¯1 99"]; Cells left
+  ["er" "⍤99 0"]; Each right
+  ["el" "⍤0 99"]; Each left
+  ["ax" "⍳≢⍴"]; axes
+  ["ax'" "⍳∘≢∘⍴⍤"]; axes ;⍳∘≢∘⍴⍤⊢ ;⍳∘≢∘⍴⍤⊣
   ["tai" "1↓"]; tail (Haskell semantic)
   ["tl" "1↓"]; tail (Haskell semantic)
   ["tai'" "(1∘↓)"]; tail (Haskell semantic)

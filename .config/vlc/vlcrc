@@ -4583,10 +4583,10 @@ vod-server=any
 #random=0
 
 # Repeat all (boolean)
-#loop=0
+loop=1
 
 # Repeat current item (boolean)
-repeat=1
+#repeat=0
 
 # Play and exit (boolean)
 #play-and-exit=0
@@ -4694,7 +4694,7 @@ key-leave-fullscreen=Shift+f
 global-key-play-pause=Alt+p
 
 # Play/Pause (string)
-#key-play-pause=Space	Media Play Pause
+key-play-pause=Space
 
 # Pause only (string)
 #global-key-pause=
@@ -4826,13 +4826,13 @@ key-nav-activate=
 #global-key-nav-up=
 
 # Navigate up (string)
-#key-nav-up=Up
+key-nav-up=
 
 # Navigate down (string)
 #global-key-nav-down=
 
 # Navigate down (string)
-#key-nav-down=Down
+key-nav-down=
 
 # Navigate left (string)
 #global-key-nav-left=
@@ -4886,19 +4886,19 @@ key-nav-activate=
 global-key-vol-up=Alt+0
 
 # Volume up (string)
-key-vol-up=l
+key-vol-up=Up
 
 # Volume down (string)
 global-key-vol-down=Alt+9
 
 # Volume down (string)
-key-vol-down=h
+key-vol-down=Down
 
 # Mute (string)
 global-key-vol-mute=Alt+Enter
 
 # Mute (string)
-key-vol-mute=m
+key-vol-mute=d
 
 # Subtitle delay up (string)
 #global-key-subdelay-up=
