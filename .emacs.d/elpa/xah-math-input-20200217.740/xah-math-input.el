@@ -222,8 +222,6 @@
 	 ["cf" "c.f. "]
 	 ["Cf" "C.f. "]
 	 ["CF" "C.f. "]
-   ["nb" "N.B. "]
-   ["NB" "N.B. "]
 
    ; contractions
 	 ["cant" "can't"]
@@ -1104,10 +1102,6 @@
   ["he" "⁼"] ; high equals
 
 
-  ["AA" "⎕A"]; uppercase alphabet
-  ["aa" "⎕C⎕A"]; lowercase alphabet
-  ["DD" "⎕d"]; lowercase alphabet
-  ["dd" "⎕d"]; lowercase alphabet
   ["off" "⎕OFF"]
   ["nums" "⎕AVU"]
   ["numvec" "⎕AVU"]
@@ -1198,14 +1192,14 @@
   ["avg" "(+/÷≢)"]
   ["mean" "(+/÷≢)"]
   ["mea" "(+/÷≢)"]
-  ["pai" ",⍥⊂"]; pair
-  ["pa" ",⍥⊂"]; pair
-  ["⍮" ",⍥⊂"]; pair
-  ["words" "{1↓¨(1+' '=⍵)⊂⍵}"]
-  ["wor" "{1↓¨(1+' '=⍵)⊂⍵}"]
-  ["⍘" "{1↓¨(1+' '=⍵)⊂⍵}"]
-  ["words'" "(1↓¨(1∘+)∘(' '∘=)⊂⊢)"] ; tacit (monadic)
-  ["wor'" "(1↓¨(1∘+)∘(' '∘=)⊂⊢)"] ; tacit (monadic)
+  ["pai" "{⍺⍵}"]; pair
+  ["pa" "{⍺⍵}"]; pair
+  ["wor" "(≠⊆⊢)"]; words
+  ;; ["words" "{1↓¨(1+' '=⍵)⊂⍵}"]
+  ;; ["wor" "{1↓¨(1+' '=⍵)⊂⍵}"]
+  ;; ["⍘" "{1↓¨(1+' '=⍵)⊂⍵}"]
+  ;; ["words'" "(1↓¨(1∘+)∘(' '∘=)⊂⊢)"] ; tacit (monadic)
+  ;; ["wor'" "(1↓¨(1∘+)∘(' '∘=)⊂⊢)"] ; tacit (monadic)
   ;; ["⍘'" "{1↓¨(1∘+)∘(' '∘=)⍛⊂}"] ; tacit (monadic)
   ["ra" "≢⍴"]; rank of A
   ["ra'" "≢∘⍴"]; rank of A
@@ -1351,6 +1345,8 @@
   ["jisl" "=."] ; J comment
   ["jc" "   NB. "] ; J comment
   ["jc'" "NB. "] ; J comment
+  ["nb" "   NB. "] ; J comment
+  ["nb'" "NB. "] ; J comment
 
 ])
 
